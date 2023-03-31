@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="sub" format="reference" />
+    <attr name="title" format="string" />
+    <attr name="icon_size" format="dimension" />
+    <attr name="corner_radius" format="dimension" />
+
+    <declare-styleable name="RoundImageView">
+        <attr name="corner_radius" />
+        <attr name="corner_top_left_radius" format="dimension" />
+        <attr name="corner_top_right_radius" format="dimension" />
+        <attr name="corner_bottom_left_radius" format="dimension" />
+        <attr name="corner_bottom_right_radius" format="dimension" />
+        <attr name="bg_color" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="LayerView">
+        <attr name="is_hidden_when_shadow_click" format="boolean" />
+        <attr name="is_hidden_when_back_click" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="CoreEditDialogView">
+        <attr name="title" />
+        <attr name="android:hint" />
+        <attr name="android:inputType" />
+    </declare-styleable>
+
+    <declare-styleable name="CoreToastDialogView">
+        <attr name="android:text" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="CoreDialogView">
+        <attr name="title" />
+        <attr name="subTitle" format="string" />
+    </declare-styleable>
+    <declare-styleable name="FloatingButton">
+        <attr name="icon_size" />
+        <attr name="sub_icon_size" format="dimension" />
+        <attr name="icon_padding" format="dimension" />
+        <attr name="icon_margin" format="dimension" />
+        <attr name="text_Padding" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="FloatingSubButton">
+        <attr name="icon_size" />
+        <attr name="icon" format="reference" />
+        <attr name="text" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="TagTextView">
+        <attr name="android:textSize" format="dimension" />
+        <attr name="android:text" format="string" />
+        <attr name="android:textColor" format="color|reference" />
+        <attr name="bgColor" format="color|reference" />
+        <attr name="lineWidth" format="dimension" />
+        <attr name="corner_radius" />
+    </declare-styleable>
+
+</resources>

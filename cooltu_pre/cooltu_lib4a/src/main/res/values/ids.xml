@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="tag_0" type="id" />
+    <item name="tag_1" type="id" />
+    <item name="tag_2" type="id" />
+    <item name="tag_3" type="id" />
+    <item name="tag_4" type="id" />
+    <item name="tag_5" type="id" />
+    <item name="tag_6" type="id" />
+    <item name="tag_7" type="id" />
+    <item name="tag_8" type="id" />
+    <item name="tag_9" type="id" />
+    <item name="core_containerView" type="id" />
+    <item name="core_barView" type="id" />
+    <item name="tag_add_bt" type="id" />
+    <!-- EditDialogView -->
+    <item name="editDialogTitleTv" type="id" />
+    <item name="editDialogTitleEt" type="id" />
+    <item name="editDialogYesBt" type="id" />
+    <item name="editDialogNoBt" type="id" />
+    <!-- DialogView -->
+    <item name="dialogTitleTv" type="id" />
+    <item name="dialogContentTv" type="id" />
+    <item name="dialogYesBt" type="id" />
+    <item name="dialogNoBt" type="id" />
+    <!-- DialogView -->
+    <item name="floatingIv" type="id" />
+</resources>

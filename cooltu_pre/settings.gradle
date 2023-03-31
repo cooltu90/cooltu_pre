@@ -3,6 +3,7 @@ pluginManagement {
         gradlePluginPortal()
         google()
         mavenCentral()
+        maven { url "https://www.jitpack.io" }
     }
 }
 dependencyResolutionManagement {
@@ -10,7 +11,13 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url "https://www.jitpack.io" }
     }
 }
 rootProject.name = "cooltu_pre"
 include ':app'
+include ':cooltu_constant'
+include ':cooltu_processor_model_interface'
+include ':cooltu_processor_annotation'
+include ':cooltu_processor'
+include ':cooltu_lib4a'
