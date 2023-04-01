@@ -4,7 +4,7 @@ import javax.lang.model.element.Element;
 
 import cooltu.lib4j.tools.ClassTool;
 import cooltu.lib4j.tools.StringTool;
-import core.constant.FieldName;
+import com.codingtu.cooltu.constant.FieldName;
 import core.processor.annotation.form.FormRadioGroup;
 
 public class FromItemInfoForRg extends FormItemInfo {

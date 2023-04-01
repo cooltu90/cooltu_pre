@@ -8,7 +8,7 @@ import javax.lang.model.element.VariableElement;
 import cooltu.lib4j.data.bean.JavaInfo;
 import cooltu.lib4j.tools.ClassTool;
 import cooltu.lib4j.tools.StringTool;
-import core.constant.FullName;
+import com.codingtu.cooltu.constant.FullName;
 import core.processor.annotation.ui.ActBack;
 import core.processor.lib.ls.EachType;
 import core.processor.lib.ls.TypeLss;

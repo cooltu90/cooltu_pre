@@ -1,7 +1,7 @@
 package com.codingtu.cooltu_pre;
 
-import core.constant.Module;
-import core.constant.Pkg;
+import com.codingtu.cooltu.constant.Module;
+import com.codingtu.cooltu.constant.Pkg;
 import core.lib4a.CoreApp;
 import core.lib4a.CoreConfigs;
 import core.lib4a.act.CoreActivity;

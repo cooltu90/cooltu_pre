@@ -21,14 +21,13 @@ public class AdapterDeal extends BaseDeal {
                 return adapter.value();
             }
         });
-        int type = adapter.type();
         String rvName = adapter.rvName();
 
         if (!ClassTool.isVoid(adapterFullName)) {
             String classFullName = ElementTools.getType(element);
             BaseParentModel baseModel = getBaseParentModel(classFullName);
             if (baseModel != null) {
-                BaseAdapterModel adapterModel = AdapterModels.getAdapterModel(type);
+                BaseAdapterModel adapterModel = AdapterModels.getAdapterModel(adapter.type());
                 adapterModel.setAdapter(adapterFullName);
                 adapterModel.setRvName(rvName);
                 adapterModel.setAdapterName("adapter");

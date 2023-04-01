@@ -6,8 +6,8 @@ import javax.lang.model.element.Element;
 
 import cooltu.lib4j.data.bean.JavaInfo;
 import cooltu.lib4j.tools.ClassTool;
-import core.constant.FullName;
-import core.constant.Pkg;
+import com.codingtu.cooltu.constant.FullName;
+import com.codingtu.cooltu.constant.Pkg;
 import core.processor.annotation.create.CreateFragment;
 import core.processor.lib.tools.NameTools;
 import core.processor.worker.deal.base.BaseDeal;

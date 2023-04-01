@@ -4,7 +4,7 @@ import javax.lang.model.element.Element;
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.TypeElement;
 
-import core.constant.Constant;
+import com.codingtu.cooltu.constant.Constant;
 import core.processor.lib.tools.ElementTools;
 import core.processor.lib.tools.NameTools;
 import core.processor.worker.deal.ActBaseDeal;

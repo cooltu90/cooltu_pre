@@ -1,7 +1,7 @@
 package core.processor.worker.model;
 
 import cooltu.lib4j.data.bean.JavaInfo;
-import core.constant.FullName;
+import com.codingtu.cooltu.constant.FullName;
 import core.processor.modelinterface.ResModelInterface;
 import core.processor.worker.model.base.BaseModel;
 

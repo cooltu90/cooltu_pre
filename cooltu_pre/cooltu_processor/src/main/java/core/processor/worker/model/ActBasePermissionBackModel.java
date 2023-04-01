@@ -8,7 +8,7 @@ import javax.lang.model.element.VariableElement;
 import cooltu.lib4j.tools.ClassTool;
 import cooltu.lib4j.tools.CountTool;
 import cooltu.lib4j.tools.StringTool;
-import core.constant.FullName;
+import com.codingtu.cooltu.constant.FullName;
 import core.processor.lib.tools.ElementTools;
 import core.processor.modelinterface.ActBasePermissionBackModelInterface;
 import core.processor.worker.model.base.SubBaseModel;

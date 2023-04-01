@@ -5,7 +5,7 @@ import javax.lang.model.element.TypeElement;
 
 import cooltu.lib4j.data.bean.JavaInfo;
 import cooltu.lib4j.tools.ClassTool;
-import core.constant.FullName;
+import com.codingtu.cooltu.constant.FullName;
 import core.processor.annotation.ui.ActBase;
 import core.processor.lib.model.ModelMap;
 import core.processor.lib.tools.IdTools;

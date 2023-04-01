@@ -7,7 +7,7 @@ import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.element.VariableElement;
 
-import core.constant.FullName;
+import com.codingtu.cooltu.constant.FullName;
 import core.processor.lib.ls.EachType;
 import core.processor.lib.ls.TypeLss;
 import core.processor.lib.tools.NameTools;

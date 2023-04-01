@@ -1,7 +1,7 @@
 package core.processor.worker.model;
 
-import core.constant.Constant;
-import core.constant.FullName;
+import com.codingtu.cooltu.constant.Constant;
+import com.codingtu.cooltu.constant.FullName;
 import core.processor.modelinterface.DialogForToastMethodModelInterface;
 import core.processor.worker.model.base.SubBaseModel;
 

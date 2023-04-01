@@ -2,7 +2,7 @@ package core.processor.worker.deal;
 
 import javax.lang.model.element.Element;
 
-import core.constant.Constant;
+import com.codingtu.cooltu.constant.Constant;
 import core.processor.annotation.ui.DefaultToastDialogLayout;
 import core.processor.lib.tools.IdTools;
 import core.processor.worker.deal.base.BaseDeal;

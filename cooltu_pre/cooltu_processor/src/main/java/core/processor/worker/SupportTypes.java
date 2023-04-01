@@ -1,7 +1,6 @@
 package core.processor.worker;
 
 import core.processor.annotation.ModuleInfo;
-import core.processor.annotation.UseParams;
 import core.processor.annotation.create.CreateAct;
 import core.processor.annotation.create.CreateAdapter;
 import core.processor.annotation.create.CreateFragment;
@@ -53,7 +52,6 @@ public class SupportTypes {
                 ActBase.class,
                 FragmentBase.class,
                 BusConfig.class,
-                UseParams.class,
                 ActRes.class,
                 ClickView.class,
                 LongClickView.class,

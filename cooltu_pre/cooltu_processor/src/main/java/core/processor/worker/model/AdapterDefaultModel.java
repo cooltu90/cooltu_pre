@@ -2,7 +2,7 @@ package core.processor.worker.model;
 
 import cooltu.lib4j.data.bean.JavaInfo;
 import cooltu.lib4j.tools.StringTool;
-import core.constant.Pkg;
+import com.codingtu.cooltu.constant.Pkg;
 import core.processor.lib.tools.NameTools;
 import core.processor.worker.model.base.BaseAdapterModel;
 

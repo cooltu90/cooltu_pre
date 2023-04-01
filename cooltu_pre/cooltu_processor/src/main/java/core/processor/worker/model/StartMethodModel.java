@@ -9,7 +9,7 @@ import cooltu.lib4j.tools.CountTool;
 import cooltu.lib4j.tools.StringTool;
 import cooltu.lib4j.ts.Ts;
 import cooltu.lib4j.ts.each.Each;
-import core.constant.FullName;
+import com.codingtu.cooltu.constant.FullName;
 import core.processor.lib.tools.RenameTools;
 import core.processor.modelinterface.StartMethodModelInterface;
 import core.processor.worker.model.base.SubBaseModel;

@@ -1,5 +1,11 @@
 package core.processor.worker.model;
 
+import com.codingtu.cooltu.constant.Constant;
+import com.codingtu.cooltu.constant.FieldName;
+import com.codingtu.cooltu.constant.FormViewType;
+import com.codingtu.cooltu.constant.FullName;
+import com.codingtu.cooltu.constant.Pkg;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,11 +23,6 @@ import cooltu.lib4j.tools.StringTool;
 import cooltu.lib4j.ts.Ts;
 import cooltu.lib4j.ts.each.Each;
 import cooltu.lib4j.ts.getter.Getter;
-import core.constant.Constant;
-import core.constant.FieldName;
-import core.constant.FullName;
-import core.constant.Index;
-import core.constant.Pkg;
 import core.processor.annotation.form.FormType;
 import core.processor.annotation.ui.BusBack;
 import core.processor.annotation.ui.ClickView;
@@ -394,9 +395,9 @@ public abstract class BaseParentModel extends BaseModel {
             List<FormItemInfo> etInfos = formItemMap.get(FormType.EDIT_TEXT);
             List<FormItemInfo> rgInfos = formItemMap.get(FormType.RADIO_GROUP);
 
-            addChange(bindsSb, etInfos, "addTextChangedListener", FullName.HANDLER_TEXT_WATCHER, Index.EDIT_TEXT);
-            addChange(bindsSb, tvInfos, "addTextChangedListener", FullName.HANDLER_TEXT_WATCHER, Index.TEXT_VIEW);
-            addChange(bindsSb, rgInfos, "addOnSelectChange", FullName.HANDLER_ON_SELECT_CHANGE, Index.RADIO_GROUP);
+            addChange(bindsSb, etInfos, "addTextChangedListener", FullName.HANDLER_TEXT_WATCHER, FormViewType.EDIT_TEXT.ordinal());
+            addChange(bindsSb, tvInfos, "addTextChangedListener", FullName.HANDLER_TEXT_WATCHER, FormViewType.TEXT_VIEW.ordinal());
+            addChange(bindsSb, rgInfos, "addOnSelectChange", FullName.HANDLER_ON_SELECT_CHANGE, FormViewType.RADIO_GROUP.ordinal());
 
 
             addLnTag(bindsSb, "        if (![initFormBean]) {", FieldName.INIT_FORM_BEAN);

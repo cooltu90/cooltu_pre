@@ -10,7 +10,7 @@ import cooltu.lib4j.tools.StringTool;
 import cooltu.lib4j.ts.Ts;
 import cooltu.lib4j.ts.each.Each;
 import cooltu.lib4j.ts.each.MapEach;
-import core.constant.Constant;
+import com.codingtu.cooltu.constant.Constant;
 import core.processor.lib.tools.NameTools;
 import core.processor.modelinterface.StartModelInterface;
 import core.processor.worker.model.base.SingleCoreToolsBaseModel;

@@ -1,4 +1,4 @@
-package core.constant;
+package com.codingtu.cooltu.constant;
 
 import java.io.File;
 import java.util.List;

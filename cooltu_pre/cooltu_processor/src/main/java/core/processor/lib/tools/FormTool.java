@@ -1,7 +1,7 @@
 package core.processor.lib.tools;
 
 import cooltu.lib4j.tools.ClassTool;
-import core.constant.FullName;
+import com.codingtu.cooltu.constant.FullName;
 import core.processor.lib.bean.FormItemInfo;
 
 public class FormTool {

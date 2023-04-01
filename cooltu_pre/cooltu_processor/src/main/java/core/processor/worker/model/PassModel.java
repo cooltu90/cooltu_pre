@@ -10,8 +10,8 @@ import cooltu.lib4j.tools.ClassTool;
 import cooltu.lib4j.tools.StringTool;
 import cooltu.lib4j.ts.Ts;
 import cooltu.lib4j.ts.each.Each;
-import core.constant.Constant;
-import core.constant.FullName;
+import com.codingtu.cooltu.constant.Constant;
+import com.codingtu.cooltu.constant.FullName;
 import core.processor.lib.ls.EachType;
 import core.processor.lib.ls.TypeLss;
 import core.processor.modelinterface.PassModelInterface;
@@ -136,7 +136,7 @@ package core.tools;
 import android.content.Intent;
 
 public class Pass {
-    public static final String FROM_ACT = core.constant.Constant.FROM_ACT;
+    public static final String FROM_ACT = com.codingtu.cooltu.constant.Constant.FROM_ACT;
 [[fields]]
 
     public static final int fromAct(Intent data) {

@@ -1,4 +1,4 @@
-package core.constant;
+package com.codingtu.cooltu.constant;
 
 public class Suffix {
     //各种后缀

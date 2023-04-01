@@ -5,7 +5,7 @@ import javax.lang.model.element.ExecutableElement;
 import cooltu.lib4j.data.bean.JavaInfo;
 import cooltu.lib4j.tools.ClassTool;
 import cooltu.lib4j.tools.StringTool;
-import core.constant.FullName;
+import com.codingtu.cooltu.constant.FullName;
 import core.processor.lib.tools.NameTools;
 import core.processor.modelinterface.NetBackModelInterface;
 import core.processor.worker.model.base.BaseModel;

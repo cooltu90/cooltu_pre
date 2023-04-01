@@ -3,7 +3,7 @@ package core.processor.lib.tools;
 import cooltu.lib4j.data.bean.JavaInfo;
 import cooltu.lib4j.tools.CountTool;
 import cooltu.lib4j.tools.StringTool;
-import core.constant.Constant;
+import com.codingtu.cooltu.constant.Constant;
 
 public class RenameTools {
 

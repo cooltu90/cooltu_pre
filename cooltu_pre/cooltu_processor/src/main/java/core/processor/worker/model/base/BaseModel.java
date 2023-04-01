@@ -12,7 +12,7 @@ import cooltu.lib4j.file.write.FileWriter;
 import cooltu.lib4j.tools.CountTool;
 import cooltu.lib4j.ts.Ts;
 import cooltu.lib4j.ts.each.Each;
-import core.constant.Constant;
+import com.codingtu.cooltu.constant.Constant;
 import core.processor.lib.model.ModelMap;
 import core.processor.lib.tools.NameTools;
 import core.processor.lib.tools.TagTools;

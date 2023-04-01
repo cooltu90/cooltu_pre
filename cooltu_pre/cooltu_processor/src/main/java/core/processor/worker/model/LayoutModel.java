@@ -5,7 +5,7 @@ import java.util.List;
 
 import cooltu.lib4j.data.bean.JavaInfo;
 import cooltu.lib4j.file.read.FileReader;
-import core.constant.Constant;
+import com.codingtu.cooltu.constant.Constant;
 import core.processor.lib.tools.NameTools;
 import core.processor.modelinterface.LayoutModelInterface;
 import core.processor.worker.model.base.BaseModel;

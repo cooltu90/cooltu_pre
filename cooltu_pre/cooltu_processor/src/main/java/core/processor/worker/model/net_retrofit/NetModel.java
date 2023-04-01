@@ -9,7 +9,7 @@ import javax.lang.model.element.ExecutableElement;
 import cooltu.lib4j.tools.StringTool;
 import cooltu.lib4j.ts.Ts;
 import cooltu.lib4j.ts.each.Each;
-import core.constant.Constant;
+import com.codingtu.cooltu.constant.Constant;
 import core.processor.lib.bean.NetMethodDeal;
 import core.processor.lib.tools.ElementTools;
 import core.processor.modelinterface.NetModelInterface;

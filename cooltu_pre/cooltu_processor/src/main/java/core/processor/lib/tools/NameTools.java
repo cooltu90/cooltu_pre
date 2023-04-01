@@ -9,12 +9,12 @@ import javax.lang.model.element.TypeElement;
 import cooltu.lib4j.data.bean.JavaInfo;
 import cooltu.lib4j.file.FileTool;
 import cooltu.lib4j.tools.StringTool;
-import core.constant.Constant;
-import core.constant.FileType;
-import core.constant.Module;
-import core.constant.Path;
-import core.constant.Pkg;
-import core.constant.Suffix;
+import com.codingtu.cooltu.constant.Constant;
+import com.codingtu.cooltu.constant.FileType;
+import com.codingtu.cooltu.constant.Module;
+import com.codingtu.cooltu.constant.Path;
+import com.codingtu.cooltu.constant.Pkg;
+import com.codingtu.cooltu.constant.Suffix;
 import core.processor.worker.model.base.BaseModel;
 
 public class NameTools extends StringTool {

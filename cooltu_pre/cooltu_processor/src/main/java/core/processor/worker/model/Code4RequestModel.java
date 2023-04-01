@@ -5,7 +5,7 @@ import java.util.List;
 
 import cooltu.lib4j.ts.Ts;
 import cooltu.lib4j.ts.each.Each;
-import core.constant.Constant;
+import com.codingtu.cooltu.constant.Constant;
 import core.processor.lib.tools.RenameTools;
 import core.processor.modelinterface.Code4RequestModelInterface;
 import core.processor.worker.model.base.SingleCoreToolsBaseModel;

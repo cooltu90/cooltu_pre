@@ -3,7 +3,7 @@ package core.processor.worker.model;
 import cooltu.lib4j.data.bean.JavaInfo;
 import cooltu.lib4j.data.bean.KV;
 import cooltu.lib4j.tools.ClassTool;
-import core.constant.Pkg;
+import com.codingtu.cooltu.constant.Pkg;
 import core.processor.modelinterface.BusModelInterface;
 import core.processor.worker.model.base.BaseModel;
 

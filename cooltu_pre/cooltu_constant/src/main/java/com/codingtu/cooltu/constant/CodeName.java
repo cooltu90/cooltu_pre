@@ -1,4 +1,4 @@
-package core.constant;
+package com.codingtu.cooltu.constant;
 
 public class CodeName {
     public static final String GET_PIC_BY_CAMERA = "GET_PIC_BY_CAMERA";

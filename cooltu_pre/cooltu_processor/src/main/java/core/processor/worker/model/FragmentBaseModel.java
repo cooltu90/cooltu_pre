@@ -2,7 +2,7 @@ package core.processor.worker.model;
 
 import cooltu.lib4j.data.bean.JavaInfo;
 import cooltu.lib4j.tools.StringTool;
-import core.constant.FullName;
+import com.codingtu.cooltu.constant.FullName;
 import core.processor.modelinterface.FragmentBaseModelInterface;
 import core.processor.worker.ModelType;
 

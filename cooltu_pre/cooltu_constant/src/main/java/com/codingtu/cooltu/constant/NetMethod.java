@@ -1,4 +1,4 @@
-package core.constant;
+package com.codingtu.cooltu.constant;
 
 public class NetMethod {
     public static final String GET = "GET";

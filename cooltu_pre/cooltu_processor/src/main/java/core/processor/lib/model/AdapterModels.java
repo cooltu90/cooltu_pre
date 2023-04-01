@@ -1,17 +1,18 @@
 package core.processor.lib.model;
 
-import core.constant.AdapterType;
+import com.codingtu.cooltu.constant.AdapterType;
+
 import core.processor.worker.model.AdapterDefaultModel;
 import core.processor.worker.model.AdapterDefaultMoreModel;
 import core.processor.worker.model.base.BaseAdapterModel;
 
 public class AdapterModels {
 
-    public static BaseAdapterModel getAdapterModel(int type) {
+    public static BaseAdapterModel getAdapterModel(AdapterType type) {
         switch (type) {
-            case AdapterType.DEFAULT_LIST:
+            case DEFAULT_LIST:
                 return new AdapterDefaultModel();
-            case AdapterType.DEFAULT_MORE_LIST:
+            case DEFAULT_MORE_LIST:
                 return new AdapterDefaultMoreModel();
         }
         return null;

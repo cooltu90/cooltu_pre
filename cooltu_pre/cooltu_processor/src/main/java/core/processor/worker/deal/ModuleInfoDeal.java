@@ -3,10 +3,10 @@ package core.processor.worker.deal;
 import javax.lang.model.element.Element;
 
 import cooltu.lib4j.tools.ClassTool;
-import core.constant.Constant;
-import core.constant.FullName;
-import core.constant.Module;
-import core.constant.Pkg;
+import com.codingtu.cooltu.constant.Constant;
+import com.codingtu.cooltu.constant.FullName;
+import com.codingtu.cooltu.constant.Module;
+import com.codingtu.cooltu.constant.Pkg;
 import core.processor.annotation.ModuleInfo;
 import core.processor.worker.deal.base.BaseDeal;
 import core.processor.worker.model.ActBackIntentModel;

@@ -1,16 +1,22 @@
-package core.constant;
+package com.codingtu.cooltu.constant;
 
+/**************************************************
+ *
+ * 如果更改框架结构。可能会修改这里
+ *
+ **************************************************/
 public class FullName {
     //可设置的
     public static String BASE_ACT = "androidx.appcompat.app.AppCompatActivity";
     public static String BASE_FRAGMENT = "androidx.fragment.app.Fragment";
     //可变的
-    public static final String RADIO_GROUP = "core.lib4a.view.combine.RadioGroup";
-    public static final String HANDLER_TEXT_WATCHER = "core.lib4a.view.textview.HandlerTextWatcher";
-    public static final String HANDLER_ON_SELECT_CHANGE = "core.lib4a.view.combine.HandlerOnSelectChange";
     public static final String STRING_TOOL = "cooltu.lib4j.tools.StringTool";
     public static final String JSON_TOOL = "cooltu.lib4j.json.JsonTool";
     public static final String JO = "cooltu.lib4j.json.base.JO";
+
+    public static final String RADIO_GROUP = "core.lib4a.view.combine.RadioGroup";
+    public static final String HANDLER_TEXT_WATCHER = "core.lib4a.view.textview.HandlerTextWatcher";
+    public static final String HANDLER_ON_SELECT_CHANGE = "core.lib4a.view.combine.HandlerOnSelectChange";
     public static final String ACT_TOOL = "core.lib4a.tools.ActTool";
     public static final String NET_TOOL = "core.lib4a.net.NetTool";
     public static final String INFLATE_TOOL = "core.lib4a.tools.InflateTool";

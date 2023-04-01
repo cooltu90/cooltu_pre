@@ -1,5 +1,7 @@
 package core.processor.worker.model;
 
+import com.codingtu.cooltu.constant.FormViewType;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -7,7 +9,6 @@ import cooltu.lib4j.data.map.ListValueMap;
 import cooltu.lib4j.tools.CountTool;
 import cooltu.lib4j.ts.Ts;
 import cooltu.lib4j.ts.each.Each;
-import core.constant.Index;
 import core.processor.annotation.form.FormType;
 import core.processor.lib.bean.FormItemInfo;
 import core.processor.lib.tools.FormTool;
@@ -50,9 +51,9 @@ public class BindHandlerModel extends SubBaseModel implements BindHandlerModelIn
 
     @Override
     public void setTagFor_cases(StringBuilder sb) {
-        setTagFor_cases(sb, formItemMap.get(FormType.EDIT_TEXT), Index.EDIT_TEXT);
-        setTagFor_cases(sb, formItemMap.get(FormType.TEXT_VIEW), Index.TEXT_VIEW);
-        setTagFor_cases(sb, formItemMap.get(FormType.RADIO_GROUP), Index.RADIO_GROUP);
+        setTagFor_cases(sb, formItemMap.get(FormType.EDIT_TEXT), FormViewType.EDIT_TEXT.ordinal());
+        setTagFor_cases(sb, formItemMap.get(FormType.TEXT_VIEW), FormViewType.TEXT_VIEW.ordinal());
+        setTagFor_cases(sb, formItemMap.get(FormType.RADIO_GROUP), FormViewType.RADIO_GROUP.ordinal());
     }
 
     private void setTagFor_cases(StringBuilder sb, List<FormItemInfo> etTvItems, int index) {

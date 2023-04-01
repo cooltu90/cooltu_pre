@@ -1,4 +1,4 @@
-package core.constant;
+package com.codingtu.cooltu.constant;
 
 public class FileType {
     //文件后缀

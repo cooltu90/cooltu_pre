@@ -1,5 +1,7 @@
 package core.processor.annotation.create;
 
+import com.codingtu.cooltu.constant.AdapterType;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -9,7 +11,7 @@ public @interface CreateAdapter {
 
     String packages();
 
-    int type();
+    AdapterType type();
 
     Class[] beanClasses();
 }
