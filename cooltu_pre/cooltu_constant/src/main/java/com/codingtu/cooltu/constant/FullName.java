@@ -29,7 +29,7 @@ public class FullName {
     public static final String MOBILE_TOOL = "com.codingtu.cooltu.lib4a.tools.MobileTool";
     public static final String VIEW_TOOL = "com.codingtu.cooltu.lib4a.tools.ViewTool";
     public static final String BUS_BACK = "com.codingtu.cooltu.lib4a.bus.BusBack";
-    public static final String FORM_LINK = "com.codingtu.cooltu.lib4a.form";
+    public static final String FORM_LINK = "com.codingtu.cooltu.lib4a.form.FormLink";
     //不变的
     public static final String INT = "int";
     public static final String FLOAT = "float";

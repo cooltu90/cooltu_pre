@@ -108,23 +108,23 @@ public class BindHandlerModel extends SubBaseModel implements BindHandlerModelIn
         }
 
 
-        private cooltu.lib4j.data.map.ListValueMap<Integer, com.codingtu.cooltu.processor.lib.form.FormLink> links;
+        private cooltu.lib4j.data.map.ListValueMap<Integer, com.codingtu.cooltu.lib4a.form.FormLink> links;
 
-        private cooltu.lib4j.data.map.ListValueMap<Integer, com.codingtu.cooltu.processor.lib.form.FormLink> getLinks() {
+        private cooltu.lib4j.data.map.ListValueMap<Integer, com.codingtu.cooltu.lib4a.form.FormLink> getLinks() {
             if (links == null) {
                 links = new cooltu.lib4j.data.map.ListValueMap<>();
             }
             return links;
         }
 
-        public void addLink(int index, com.codingtu.cooltu.processor.lib.form.FormLink link) {
+        public void addLink(int index, com.codingtu.cooltu.lib4a.form.FormLink link) {
             getLinks().get(index).add(link);
         }
 
         private void link(int id) {
-            cooltu.lib4j.ts.Ts.ls(getLinks().get(id), new cooltu.lib4j.ts.each.Each<com.codingtu.cooltu.processor.lib.form.FormLink>() {
+            cooltu.lib4j.ts.Ts.ls(getLinks().get(id), new cooltu.lib4j.ts.each.Each<com.codingtu.cooltu.lib4a.form.FormLink>() {
                 @Override
-                public boolean each(int position, com.codingtu.cooltu.processor.lib.form.FormLink formLink) {
+                public boolean each(int position, com.codingtu.cooltu.lib4a.form.FormLink formLink) {
                     formLink.link();
                     return false;
                 }
