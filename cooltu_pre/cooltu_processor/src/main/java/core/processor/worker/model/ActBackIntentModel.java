@@ -1,5 +1,8 @@
 package core.processor.worker.model;
 
+import com.codingtu.cooltu.constant.Constant;
+import com.codingtu.cooltu.constant.Suffix;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,12 +12,11 @@ import javax.lang.model.element.VariableElement;
 
 import cooltu.lib4j.data.bean.JavaInfo;
 import cooltu.lib4j.tools.ClassTool;
+import cooltu.lib4j.tools.ConvertTool;
 import cooltu.lib4j.tools.CountTool;
 import cooltu.lib4j.tools.StringTool;
 import cooltu.lib4j.ts.Ts;
 import cooltu.lib4j.ts.each.Each;
-import com.codingtu.cooltu.constant.Constant;
-import com.codingtu.cooltu.constant.Suffix;
 import core.processor.annotation.ui.ActBack;
 import core.processor.lib.ls.EachType;
 import core.processor.lib.ls.TypeLss;
@@ -58,7 +60,7 @@ public class ActBackIntentModel extends SingleCoreToolsBaseModel implements ActB
                     }
                 });
                 JavaInfo javaInfo = NameTools.getJavaInfoByName(fullName);
-                String methodName = StringTool.toMethodType(javaInfo.name.replace(Suffix.ACTIVITY, ""));
+                String methodName = ConvertTool.toMethodType(javaInfo.name.replace(Suffix.ACTIVITY, ""));
                 String params = ParamTools.getDefaultParam(ee).getParams();
                 String id = methodName + params;
                 if (StringTool.isNotBlank(names.get(id))) {
@@ -79,7 +81,7 @@ public class ActBackIntentModel extends SingleCoreToolsBaseModel implements ActB
                         } else {
                             line = "        intent.putExtra(Pass.[staticName], [name].toJson());";
                         }
-                        addLnTag(sb, line, StringTool.toStaticType(name), name);
+                        addLnTag(sb, line, ConvertTool.toStaticType(name), name);
                     }
                 });
                 addLnTag(sb, "        return intent;");

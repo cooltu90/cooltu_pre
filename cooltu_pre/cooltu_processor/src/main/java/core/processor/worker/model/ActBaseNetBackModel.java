@@ -1,12 +1,14 @@
 package core.processor.worker.model;
 
+import com.codingtu.cooltu.constant.Pkg;
+import com.codingtu.cooltu.constant.Suffix;
+
 import javax.lang.model.element.ExecutableElement;
 
 import cooltu.lib4j.data.bean.JavaInfo;
 import cooltu.lib4j.tools.ClassTool;
+import cooltu.lib4j.tools.ConvertTool;
 import cooltu.lib4j.tools.StringTool;
-import com.codingtu.cooltu.constant.Pkg;
-import com.codingtu.cooltu.constant.Suffix;
 import core.processor.annotation.net.NetBack;
 import core.processor.lib.ls.EachType;
 import core.processor.lib.ls.TypeLss;
@@ -49,7 +51,7 @@ public class ActBaseNetBackModel extends SubBaseModel implements ActBaseNetBackM
     public void setTagFor_params(StringBuilder sb) {
         NetBack netBack = netBackElement.getAnnotation(NetBack.class);
         boolean mock = netBack.mock();
-        String mockName = Pkg.MOCK + "." + StringTool.toClassType(methodBaseName) + Suffix.MOCK;
+        String mockName = Pkg.MOCK + "." + ConvertTool.toClassType(methodBaseName) + Suffix.MOCK;
 
         //params
         TypeLss.ls(netBackElement.getParameters(), new EachType() {
@@ -77,9 +79,9 @@ public class ActBaseNetBackModel extends SubBaseModel implements ActBaseNetBackM
                         JavaInfo info1 = NameTools.getJavaInfoByName(beanType);
 
                         if (mock) {
-                            addTag(sb, "new [name]().[user]s", mockName, StringTool.toMethodType(info1.name));
+                            addTag(sb, "new [name]().[user]s", mockName, ConvertTool.toMethodType(info1.name));
                         } else {
-                            sb.append(StringTool.toMethodType(info1.name)).append("s");
+                            sb.append(ConvertTool.toMethodType(info1.name)).append("s");
                         }
                     }
                 } else if (type.equals(paramsInfo.fullName)) {
@@ -87,9 +89,9 @@ public class ActBaseNetBackModel extends SubBaseModel implements ActBaseNetBackM
                 } else {
                     JavaInfo info1 = NameTools.getJavaInfoByName(type);
                     if (mock) {
-                        addTag(sb, "new [name]().[user]", mockName, StringTool.toMethodType(info1.name));
+                        addTag(sb, "new [name]().[user]", mockName, ConvertTool.toMethodType(info1.name));
                     } else {
-                        sb.append(StringTool.toMethodType(info1.name));
+                        sb.append(ConvertTool.toMethodType(info1.name));
                     }
                 }
             }

@@ -1,11 +1,13 @@
 package core.processor.worker.model.net_retrofit;
 
+import com.codingtu.cooltu.constant.FullName;
+
 import javax.lang.model.element.ExecutableElement;
 
 import cooltu.lib4j.data.bean.JavaInfo;
 import cooltu.lib4j.tools.ClassTool;
+import cooltu.lib4j.tools.ConvertTool;
 import cooltu.lib4j.tools.StringTool;
-import com.codingtu.cooltu.constant.FullName;
 import core.processor.lib.tools.NameTools;
 import core.processor.modelinterface.NetBackModelInterface;
 import core.processor.worker.model.base.BaseModel;
@@ -39,14 +41,14 @@ public class NetBackModel extends BaseModel implements NetBackModelInterface {
         } else if (ClassTool.isList(typeName)) {
             String beanType = StringTool.getSub(typeName, "List", "<", ">");
             JavaInfo info = NameTools.getJavaInfoByName(beanType);
-            String fieldName = StringTool.toMethodType(info.name) + "s";
+            String fieldName = ConvertTool.toMethodType(info.name) + "s";
             addTag(sb, "    public [type] [name];", typeName, fieldName);
 
         } else if (ClassTool.isBaseClass(typeName)) {
 
         } else {
             JavaInfo info = NameTools.getJavaInfoByName(typeName);
-            String fieldName = StringTool.toMethodType(info.name);
+            String fieldName = ConvertTool.toMethodType(info.name);
             addTag(sb, "    public [type] [name];", typeName, fieldName);
         }
     }
@@ -61,7 +63,7 @@ public class NetBackModel extends BaseModel implements NetBackModelInterface {
         } else if (ClassTool.isList(typeName)) {
             String beanType = StringTool.getSub(typeName, "List", "<", ">");
             JavaInfo info = NameTools.getJavaInfoByName(beanType);
-            String fieldName = StringTool.toMethodType(info.name) + "s";
+            String fieldName = ConvertTool.toMethodType(info.name) + "s";
 
             addLnTag(backSb, "        if ([StringTool].isNotBlank(json)) {", FullName.STRING_TOOL);
             addLnTag(backSb, "            [name] = [JsonTools].toBeanList([type].class, json);", fieldName, FullName.JSON_TOOL, beanType);
@@ -71,7 +73,7 @@ public class NetBackModel extends BaseModel implements NetBackModelInterface {
 
         } else {
             JavaInfo info = NameTools.getJavaInfoByName(typeName);
-            String fieldName = StringTool.toMethodType(info.name);
+            String fieldName = ConvertTool.toMethodType(info.name);
 
             addLnTag(backSb, "        if ([StringTool].isNotBlank(json)) {", FullName.STRING_TOOL);
             addLnTag(backSb, "            [name] = [JsonTools].toBean([type].class, json);", fieldName, FullName.JSON_TOOL, typeName);

@@ -18,6 +18,7 @@ import cooltu.lib4j.data.bean.JavaInfo;
 import cooltu.lib4j.data.bean.KV;
 import cooltu.lib4j.data.map.ListValueMap;
 import cooltu.lib4j.tools.ClassTool;
+import cooltu.lib4j.tools.ConvertTool;
 import cooltu.lib4j.tools.CountTool;
 import cooltu.lib4j.tools.StringTool;
 import cooltu.lib4j.ts.Ts;
@@ -501,7 +502,7 @@ public abstract class BaseParentModel extends BaseModel {
 
     public void setTagFor_bindCheck(StringBuilder bindCheckSb) {
         if (formBeanKv != null) {
-            addLnTag(bindCheckSb, "    protected boolean check[User]() {", StringTool.toClassType(formBeanKv.v));
+            addLnTag(bindCheckSb, "    protected boolean check[User]() {", ConvertTool.toClassType(formBeanKv.v));
 
             Ts.ls(formItemMap.get(FormType.TOTAL), new Each<FormItemInfo>() {
                 @Override
@@ -579,7 +580,7 @@ public abstract class BaseParentModel extends BaseModel {
                     }
 
                     if (clickView.check() && formBeanKv != null) {
-                        addLnTag(sb, "                if (!check[User]()) {", StringTool.toClassType(formBeanKv.v));
+                        addLnTag(sb, "                if (!check[User]()) {", ConvertTool.toClassType(formBeanKv.v));
                         addLnTag(sb, "                    return;");
                         addLnTag(sb, "                }");
                     }
@@ -721,7 +722,7 @@ public abstract class BaseParentModel extends BaseModel {
                     }
 
                     if (clickView.check() && StringTool.isNotBlank(beanName)) {
-                        addLnTag(sb, "                if (!check[User]()) {", StringTool.toClassType(beanName));
+                        addLnTag(sb, "                if (!check[User]()) {", ConvertTool.toClassType(beanName));
                         addLnTag(sb, "                    return false;");
                         addLnTag(sb, "                }");
                     }
@@ -931,7 +932,7 @@ public abstract class BaseParentModel extends BaseModel {
                 addLnTag(sb, "        addBus(new [BluetoothBus]() {", busInfo.fullName);
                 addLnTag(sb, "            @Override");
                 addLnTag(sb, "            protected void [bluetoothBus]Back([params]) {",
-                        NameTools.toMethodType(busInfo.name),
+                        ConvertTool.toMethodType(busInfo.name),
                         params);
                 addLnTag(sb, "                [base].this.[name]([data]);",
                         info.name,

@@ -18,7 +18,7 @@ import core.processor.annotation.create.CreateAct;
         defaultLayout = Constants.LAYOUT_NAME_DEFAULT_TEMP
 )
 @CreateAct(
-        name = "welcome",
+        name = "step_one",
         packages = Constants.PKG_MODULE_APP + Pkg.DEFAULT_UI
 )
 public class App extends CoreApp {

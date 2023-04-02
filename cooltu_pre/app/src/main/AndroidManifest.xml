@@ -26,6 +26,9 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity
+            android:name="com.codingtu.cooltu_pre.ui.StepOneActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

@@ -1,8 +1,9 @@
 package core.processor.worker.model;
 
-import cooltu.lib4j.data.bean.JavaInfo;
-import cooltu.lib4j.tools.StringTool;
 import com.codingtu.cooltu.constant.Pkg;
+
+import cooltu.lib4j.data.bean.JavaInfo;
+import cooltu.lib4j.tools.ConvertTool;
 import core.processor.lib.tools.NameTools;
 import core.processor.worker.model.base.BaseAdapterModel;
 
@@ -17,7 +18,7 @@ public class AdapterDefaultMoreModel extends BaseAdapterModel {
         String typeBaseName = NameTools.getAdapterTypeBaseName(info.name);
         JavaInfo vhInfo = NameTools.getVHInfo(typeBaseName);
         addTag("vhFullName", vhInfo.fullName);
-        String layoutBaseName = StringTool.toLayoutType(typeBaseName);
+        String layoutBaseName = ConvertTool.toLayoutType(typeBaseName);
         addTag("layoutName", NameTools.getItemLayoutName(layoutBaseName));
         addTag("name", info.name);
         addTag("vhName", vhInfo.name);

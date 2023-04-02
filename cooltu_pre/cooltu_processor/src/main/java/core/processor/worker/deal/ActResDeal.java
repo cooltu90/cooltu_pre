@@ -10,8 +10,8 @@ import javax.lang.model.element.VariableElement;
 import cooltu.lib4j.data.bean.KV;
 import cooltu.lib4j.data.map.ListValueMap;
 import cooltu.lib4j.tools.ClassTool;
+import cooltu.lib4j.tools.ConvertTool;
 import cooltu.lib4j.tools.CountTool;
-import cooltu.lib4j.tools.StringTool;
 import cooltu.lib4j.ts.Ts;
 import cooltu.lib4j.ts.each.Each;
 import core.processor.annotation.resource.ColorRes;
@@ -107,7 +107,7 @@ public class ActResDeal extends BaseDeal {
     }
 
     private void dealStartGroup(String actFullName, List<VariableElement> startGroups) {
-        String actStaticName = StringTool.toStaticType(NameTools.getJavaSimpleName(actFullName));
+        String actStaticName = ConvertTool.toStaticType(NameTools.getJavaSimpleName(actFullName));
         if (CountTool.isNull(startGroups)) {
             //没有
             StartModel.model.addStart(actFullName, actStaticName, null);

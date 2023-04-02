@@ -12,7 +12,10 @@ import cooltu.lib4j.file.write.FileWriter;
 import cooltu.lib4j.tools.CountTool;
 import cooltu.lib4j.ts.Ts;
 import cooltu.lib4j.ts.each.Each;
+
 import com.codingtu.cooltu.constant.Constant;
+
+import core.processor.lib.log.Logs;
 import core.processor.lib.model.ModelMap;
 import core.processor.lib.tools.NameTools;
 import core.processor.lib.tools.TagTools;
@@ -53,10 +56,15 @@ public class BaseModel {
             return;
         beforCreate();
         File file = new File(info.path);
+        Logs.i("model create:" + file.getAbsolutePath());
         if (isForce || !file.exists()) {
             List<String> lines = getLines();
             if (!CountTool.isNull(lines)) {
-                FileWriter.to(file).cover().write(lines);
+                try {
+                    FileWriter.to(file).cover().write(lines);
+                } catch (Exception e) {
+                    Logs.w(e);
+                }
             }
         }
     }

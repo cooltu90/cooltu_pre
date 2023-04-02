@@ -5,6 +5,7 @@ import javax.lang.model.element.Element;
 import javax.lang.model.element.VariableElement;
 
 import cooltu.lib4j.data.bean.KV;
+import cooltu.lib4j.tools.ConvertTool;
 import cooltu.lib4j.tools.StringTool;
 import core.processor.annotation.form.FormBean;
 
@@ -23,7 +24,7 @@ public class ElementTools {
     }
 
     public static String staticSimpleName(Element e) {
-        return StringTool.toStaticType(simpleName(e));
+        return ConvertTool.toStaticType(simpleName(e));
     }
 
     public static KV<String, String> getFiledKv(VariableElement ve) {
@@ -35,7 +36,7 @@ public class ElementTools {
         String value = formBean.value();
         String type = ElementTools.getType(element);
         if (StringTool.isBlank(value)) {
-            value = StringTool.toMethodType(NameTools.getJavaSimpleName(type));
+            value = ConvertTool.toMethodType(NameTools.getJavaSimpleName(type));
         }
         return new KV<String, String>(type, value);
     }

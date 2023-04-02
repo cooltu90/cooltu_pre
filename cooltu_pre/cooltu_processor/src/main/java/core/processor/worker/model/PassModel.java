@@ -7,6 +7,7 @@ import java.util.Map;
 
 import cooltu.lib4j.data.bean.KV;
 import cooltu.lib4j.tools.ClassTool;
+import cooltu.lib4j.tools.ConvertTool;
 import cooltu.lib4j.tools.StringTool;
 import cooltu.lib4j.ts.Ts;
 import cooltu.lib4j.ts.each.Each;
@@ -59,7 +60,7 @@ public class PassModel extends SingleCoreToolsBaseModel implements PassModelInte
 
                 addLnTag(fieldsSb,
                         "    public static final String [name] = \"[value]\";",
-                        StringTool.toStaticType(kv.v), kv.v);
+                        ConvertTool.toStaticType(kv.v), kv.v);
                 return false;
             }
         });
@@ -79,8 +80,8 @@ public class PassModel extends SingleCoreToolsBaseModel implements PassModelInte
                 }
                 nameMap1.put(name, name);
 
-                String staticName = StringTool.toStaticType(name);
-                String methodName = StringTool.toMethodType(name);
+                String staticName = ConvertTool.toStaticType(name);
+                String methodName = ConvertTool.toMethodType(name);
 
                 if (ClassTool.isString(type)) {
                     addLnTag(methodsSb, "    public static final String [name](Intent data) {", methodName);

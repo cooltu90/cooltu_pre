@@ -1,15 +1,17 @@
 package core.processor.worker.model.net_retrofit;
 
+import com.codingtu.cooltu.constant.FullName;
+import com.codingtu.cooltu.constant.Suffix;
+
 import java.util.List;
 
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.VariableElement;
 
 import cooltu.lib4j.tools.ClassTool;
+import cooltu.lib4j.tools.ConvertTool;
 import cooltu.lib4j.tools.CountTool;
 import cooltu.lib4j.tools.StringTool;
-import com.codingtu.cooltu.constant.FullName;
-import com.codingtu.cooltu.constant.Suffix;
 import core.processor.annotation.net.Default;
 import core.processor.annotation.net.Param;
 import core.processor.lib.bean.NetMethodDeal;
@@ -68,18 +70,18 @@ public class NetMethodModel extends SubBaseModel implements NetMethodModelInterf
 
     @Override
     public void setTagFor_methodBackName(StringBuilder sb) {
-        addTag(sb, StringTool.toStaticType(methodName));
+        addTag(sb, ConvertTool.toStaticType(methodName));
     }
 
     @Override
     public void setTagFor_baseUrl(StringBuilder sb) {
         if (StringTool.isNotBlank(netMethodDeal.getMethodBaseUrl())) {
-            addTag(sb, "BASE_URL_[api]_[method]", StringTool.toStaticType(apiTypeName), StringTool.toStaticType(methodName));
+            addTag(sb, "BASE_URL_[api]_[method]", ConvertTool.toStaticType(apiTypeName), ConvertTool.toStaticType(methodName));
         } else {
             if (StringTool.isBlank(baseUrl)) {
                 addTag(sb, "core.lib4a.CoreConfigs.configs().getBaseUrl()");
             } else {
-                addTag(sb, "BASE_URL_" + StringTool.toStaticType(apiTypeName));
+                addTag(sb, "BASE_URL_" + ConvertTool.toStaticType(apiTypeName));
             }
         }
     }
@@ -124,7 +126,7 @@ public class NetMethodModel extends SubBaseModel implements NetMethodModelInterf
     @Override
     public void setTagFor_beforeReturn(StringBuilder sb) {
         if (parametersCount > 0) {
-            String sendParamName = StringTool.toClassType(methodName) + "Params";
+            String sendParamName = ConvertTool.toClassType(methodName) + "Params";
             addLnTag(sb, "        core.tools.net.params.[sendParamName] params = new core.tools.net.params.[sendParamName]();",
                     sendParamName, sendParamName);
         }
@@ -154,7 +156,7 @@ public class NetMethodModel extends SubBaseModel implements NetMethodModelInterf
     public void setTagFor_beforeCreate(StringBuilder sb) {
 
         if (parametersCount > 0) {
-            String sendParamName = StringTool.toClassType(methodName) + "Params";
+            String sendParamName = ConvertTool.toClassType(methodName) + "Params";
             addLnTag(sb, "                core.tools.net.params.[sendParamName] params = (core.tools.net.params.[sendParamName]) ps;",
                     sendParamName, sendParamName);
         }

@@ -1,13 +1,15 @@
 package core.processor.worker.model;
 
+import com.codingtu.cooltu.constant.Constant;
+import com.codingtu.cooltu.constant.Pkg;
+
 import java.util.List;
 
 import cooltu.lib4j.data.bean.JavaInfo;
+import cooltu.lib4j.tools.ConvertTool;
 import cooltu.lib4j.tools.StringTool;
 import cooltu.lib4j.ts.Ts;
 import cooltu.lib4j.ts.each.Each;
-import com.codingtu.cooltu.constant.Constant;
-import com.codingtu.cooltu.constant.Pkg;
 import core.processor.lib.tools.IdTools;
 import core.processor.lib.tools.LayoutTools;
 import core.processor.lib.tools.NameTools;
@@ -21,7 +23,7 @@ public class VHModel extends BaseModel implements VHModelInterface {
 
     public VHModel(JavaInfo info, String typeBaseName, boolean isForce) {
         super(info);
-        layoutName = NameTools.getItemLayoutName(StringTool.toLayoutType(typeBaseName));
+        layoutName = NameTools.getItemLayoutName(ConvertTool.toLayoutType(typeBaseName));
         layoutId = new IdTools.Id(Pkg.DEFAULT_R, Constant.R_TYPE_LAYOUT, layoutName);
         vis = LayoutTools.read(layoutId.rName, null);
         this.isForce = isForce;

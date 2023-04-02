@@ -1,5 +1,7 @@
 package core.processor.worker.model.mock;
 
+import com.codingtu.cooltu.constant.Constant;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -7,10 +9,10 @@ import javax.lang.model.element.Element;
 import javax.lang.model.element.ExecutableElement;
 
 import cooltu.lib4j.file.read.FileReader;
+import cooltu.lib4j.tools.ConvertTool;
 import cooltu.lib4j.tools.StringTool;
 import cooltu.lib4j.ts.Ts;
 import cooltu.lib4j.ts.each.Each;
-import com.codingtu.cooltu.constant.Constant;
 import core.processor.modelinterface.MockModelInterface;
 import core.processor.worker.model.base.SingleCoreToolsBaseModel;
 
@@ -47,7 +49,7 @@ public class MockModel extends SingleCoreToolsBaseModel implements MockModelInte
         //getUserByIdBack
         String actName = typeElement.getSimpleName().toString();
         String methodName = element.getSimpleName().toString();
-        String name = StringTool.toStaticType(actName) + "_" + StringTool.toStaticType(methodName);
+        String name = ConvertTool.toStaticType(actName) + "_" + ConvertTool.toStaticType(methodName);
         if (!map.containsKey(name)) {
             map.put(name, name);
             addLnTag("fields", "    public static final boolean [name] = false;", name);

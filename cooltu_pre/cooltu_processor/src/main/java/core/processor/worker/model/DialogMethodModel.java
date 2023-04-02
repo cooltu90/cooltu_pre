@@ -1,10 +1,11 @@
 package core.processor.worker.model;
 
-import cooltu.lib4j.data.bean.JavaInfo;
-import cooltu.lib4j.tools.ClassTool;
-import cooltu.lib4j.tools.StringTool;
 import com.codingtu.cooltu.constant.Constant;
 import com.codingtu.cooltu.constant.FullName;
+
+import cooltu.lib4j.data.bean.JavaInfo;
+import cooltu.lib4j.tools.ClassTool;
+import cooltu.lib4j.tools.ConvertTool;
 import core.processor.lib.bean.DialogInfo;
 import core.processor.lib.tools.NameTools;
 import core.processor.modelinterface.DialogMethodModelInterface;
@@ -33,7 +34,7 @@ public class DialogMethodModel extends SubBaseModel implements DialogMethodModel
 
     @Override
     public void setTagFor_nameToClass(StringBuilder sb) {
-        addTag(sb, StringTool.toClassType(info.name));
+        addTag(sb, ConvertTool.toClassType(info.name));
     }
 
     @Override
@@ -50,7 +51,7 @@ public class DialogMethodModel extends SubBaseModel implements DialogMethodModel
         if (ClassTool.isVoid(info.objType)) {
             addTag(sb, "");
         } else {
-            addTag(sb, StringTool.toMethodType(objInfo.name));
+            addTag(sb, ConvertTool.toMethodType(objInfo.name));
         }
     }
 
@@ -94,7 +95,7 @@ public class DialogMethodModel extends SubBaseModel implements DialogMethodModel
         if (ClassTool.isVoid(info.objType)) {
             addTag(sb, "null");
         } else {
-            addTag(sb, StringTool.toMethodType(objInfo.name));
+            addTag(sb, ConvertTool.toMethodType(objInfo.name));
         }
     }
 }

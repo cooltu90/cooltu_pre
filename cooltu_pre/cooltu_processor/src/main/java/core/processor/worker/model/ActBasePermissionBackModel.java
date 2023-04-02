@@ -1,14 +1,15 @@
 package core.processor.worker.model;
 
+import com.codingtu.cooltu.constant.FullName;
+
 import java.util.List;
 
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.VariableElement;
 
 import cooltu.lib4j.tools.ClassTool;
+import cooltu.lib4j.tools.ConvertTool;
 import cooltu.lib4j.tools.CountTool;
-import cooltu.lib4j.tools.StringTool;
-import com.codingtu.cooltu.constant.FullName;
 import core.processor.lib.tools.ElementTools;
 import core.processor.modelinterface.ActBasePermissionBackModelInterface;
 import core.processor.worker.model.base.SubBaseModel;
@@ -37,7 +38,7 @@ public class ActBasePermissionBackModel extends SubBaseModel implements ActBaseP
 
     @Override
     public void setTagFor_code(StringBuilder sb) {
-        addTag(sb, StringTool.toStaticType(methodName));
+        addTag(sb, ConvertTool.toStaticType(methodName));
     }
 
     @Override

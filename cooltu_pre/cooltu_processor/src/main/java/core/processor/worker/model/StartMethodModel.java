@@ -1,15 +1,17 @@
 package core.processor.worker.model;
 
+import com.codingtu.cooltu.constant.FullName;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import cooltu.lib4j.data.bean.KV;
 import cooltu.lib4j.tools.ClassTool;
+import cooltu.lib4j.tools.ConvertTool;
 import cooltu.lib4j.tools.CountTool;
 import cooltu.lib4j.tools.StringTool;
 import cooltu.lib4j.ts.Ts;
 import cooltu.lib4j.ts.each.Each;
-import com.codingtu.cooltu.constant.FullName;
 import core.processor.lib.tools.RenameTools;
 import core.processor.modelinterface.StartMethodModelInterface;
 import core.processor.worker.model.base.SubBaseModel;
@@ -87,10 +89,10 @@ public class StartMethodModel extends SubBaseModel implements StartMethodModelIn
             @Override
             public boolean each(int position, KV<String, String> kv) {
                 if (ClassTool.isBaseClass(kv.k)) {
-                    addLnTag(sb, "        intent.putExtra(Pass.[NAME], [name]);", StringTool.toStaticType(kv.v), kv.v);
+                    addLnTag(sb, "        intent.putExtra(Pass.[NAME], [name]);", ConvertTool.toStaticType(kv.v), kv.v);
                 } else {
                     addLnTag(sb, "        intent.putExtra(Pass.[NAME], [JsonTools].toJson([name]));",
-                            StringTool.toStaticType(kv.v), FullName.JSON_TOOL, kv.v);
+                            ConvertTool.toStaticType(kv.v), FullName.JSON_TOOL, kv.v);
                 }
                 return false;
             }

@@ -1,6 +1,7 @@
 package core.processor.lib.tools;
 
 import cooltu.lib4j.data.bean.JavaInfo;
+import cooltu.lib4j.tools.ConvertTool;
 import cooltu.lib4j.tools.CountTool;
 import cooltu.lib4j.tools.StringTool;
 import com.codingtu.cooltu.constant.Constant;
@@ -23,12 +24,12 @@ public class RenameTools {
 
     public static String actFullNameToStaticName(String actFullName) {
         ////ONE_ACTIVITY
-        return StringTool.toStaticType(NameTools.getJavaInfoByName(actFullName).name);
+        return ConvertTool.toStaticType(NameTools.getJavaInfoByName(actFullName).name);
     }
 
     public static String actFullNameToMethodName(String actFullName) {
         ////ONE_ACTIVITY
-        return StringTool.toMethodType(NameTools.getJavaInfoByName(actFullName).name);
+        return ConvertTool.toMethodType(NameTools.getJavaInfoByName(actFullName).name);
     }
 
     public static JavaInfo actFullNameToActBaseInfo(String fullName) {
@@ -37,7 +38,7 @@ public class RenameTools {
 
     public static String actFullNameToLayout(String fullName) {
         String baseName = NameTools.getActivityTypeBaseName(fullName);
-        return NameTools.getActivityLayoutName(StringTool.toStaticType(baseName).toLowerCase());
+        return NameTools.getActivityLayoutName(ConvertTool.toStaticType(baseName).toLowerCase());
     }
 
 

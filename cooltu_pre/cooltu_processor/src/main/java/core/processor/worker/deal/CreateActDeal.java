@@ -1,14 +1,15 @@
 package core.processor.worker.deal;
 
+import com.codingtu.cooltu.constant.FullName;
+import com.codingtu.cooltu.constant.Pkg;
+
 import java.io.File;
 
 import javax.lang.model.element.Element;
 
 import cooltu.lib4j.data.bean.JavaInfo;
 import cooltu.lib4j.tools.ClassTool;
-import cooltu.lib4j.tools.StringTool;
-import com.codingtu.cooltu.constant.FullName;
-import com.codingtu.cooltu.constant.Pkg;
+import cooltu.lib4j.tools.ConvertTool;
 import core.processor.annotation.create.CreateAct;
 import core.processor.lib.tools.NameTools;
 import core.processor.worker.deal.base.BaseDeal;
@@ -67,7 +68,7 @@ public class CreateActDeal extends BaseDeal {
         new ManifestModel(manifestInfo).setAct(actInfo.fullName, createAct.screenOrientation());
 
         //添加ActStart
-        StartModel.model.addStart(actInfo.fullName, StringTool.toStaticType(actInfo.name), null);
+        StartModel.model.addStart(actInfo.fullName, ConvertTool.toStaticType(actInfo.name), null);
     }
 
 }

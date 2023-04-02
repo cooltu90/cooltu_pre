@@ -1,15 +1,17 @@
 package core.processor.worker.model.net_retrofit;
 
+import com.codingtu.cooltu.constant.Constant;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.lang.model.element.ExecutableElement;
 
+import cooltu.lib4j.tools.ConvertTool;
 import cooltu.lib4j.tools.StringTool;
 import cooltu.lib4j.ts.Ts;
 import cooltu.lib4j.ts.each.Each;
-import com.codingtu.cooltu.constant.Constant;
 import core.processor.lib.bean.NetMethodDeal;
 import core.processor.lib.tools.ElementTools;
 import core.processor.modelinterface.NetModelInterface;
@@ -41,7 +43,7 @@ public class NetModel extends SingleCoreToolsBaseModel implements NetModelInterf
             public boolean each(int position, ExecutableElement ee) {
                 String methodName = ElementTools.simpleName(ee);
                 addLnTag(sb, "    private static final String [GET_USER_LIST1] = \"[getUserList1]Back\";",
-                        StringTool.toStaticType(methodName), methodName);
+                        ConvertTool.toStaticType(methodName), methodName);
                 return false;
             }
         });
@@ -55,19 +57,19 @@ public class NetModel extends SingleCoreToolsBaseModel implements NetModelInterf
             public boolean each(int position, ExecutableElement ee) {
                 String baseUrl = baseUrls.get(position);
                 String apiTypeName = apiTypeNames.get(position);
-                String apiBaseUrlName = StringTool.toStaticType(apiTypeName);
+                String apiBaseUrlName = ConvertTool.toStaticType(apiTypeName);
 
                 if (!urlNames.containsKey(apiBaseUrlName)) {
                     if (StringTool.isNotBlank(baseUrl)) {
                         urlNames.put(apiBaseUrlName, apiBaseUrlName);
                         addLnTag(sb, "    private static final String BASE_URL_[USER_API] = \"[baseUrl]\";",
-                                StringTool.toStaticType(apiTypeName), baseUrl);
+                                ConvertTool.toStaticType(apiTypeName), baseUrl);
                     }
                 }
 
                 if (StringTool.isNotBlank(netMethodDeal.getMethodBaseUrl())) {
                     addLnTag(sb, "    private static final String BASE_URL_[USER_API]_[methodName] = \"[baseUrl]\";",
-                            apiBaseUrlName, StringTool.toStaticType(ElementTools.simpleName(ee)), netMethodDeal.getMethodBaseUrl());
+                            apiBaseUrlName, ConvertTool.toStaticType(ElementTools.simpleName(ee)), netMethodDeal.getMethodBaseUrl());
                 }
 
                 return false;

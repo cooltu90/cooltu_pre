@@ -7,6 +7,7 @@ import javax.lang.model.element.VariableElement;
 
 import cooltu.lib4j.data.bean.JavaInfo;
 import cooltu.lib4j.tools.ClassTool;
+import cooltu.lib4j.tools.ConvertTool;
 import cooltu.lib4j.tools.StringTool;
 import com.codingtu.cooltu.constant.FullName;
 import core.processor.annotation.ui.ActBack;
@@ -49,7 +50,7 @@ public class ActBackModel extends SubBaseModel implements ActBackModelInterface 
     @Override
     public void setTagFor_code(StringBuilder sb) {
         JavaInfo info = NameTools.getJavaInfoByName(fromClassName);
-        String staticType = StringTool.toStaticType(info.name);
+        String staticType = ConvertTool.toStaticType(info.name);
         addTag(sb, staticType);
     }
 

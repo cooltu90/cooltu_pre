@@ -1,10 +1,11 @@
 package core.processor.worker.model;
 
-import cooltu.lib4j.data.bean.JavaInfo;
-import cooltu.lib4j.tools.ClassTool;
-import cooltu.lib4j.tools.StringTool;
 import com.codingtu.cooltu.constant.Constant;
 import com.codingtu.cooltu.constant.FullName;
+
+import cooltu.lib4j.data.bean.JavaInfo;
+import cooltu.lib4j.tools.ClassTool;
+import cooltu.lib4j.tools.ConvertTool;
 import core.processor.lib.bean.EditDialogInfo;
 import core.processor.lib.tools.NameTools;
 import core.processor.modelinterface.DialogForEditMethodModelInterface;
@@ -34,7 +35,7 @@ public class DialogForEditMethodModel extends SubBaseModel implements DialogForE
 
     @Override
     public void setTagFor_nameClassType(StringBuilder sb) {
-        addTag(sb, StringTool.toClassType(info.name));
+        addTag(sb, ConvertTool.toClassType(info.name));
     }
 
     @Override
@@ -51,7 +52,7 @@ public class DialogForEditMethodModel extends SubBaseModel implements DialogForE
         if (ClassTool.isVoid(info.objType)) {
             addTag(sb, "");
         } else {
-            addTag(sb, StringTool.toMethodType(objInfo.name));
+            addTag(sb, ConvertTool.toMethodType(objInfo.name));
         }
     }
 
@@ -112,7 +113,7 @@ public class DialogForEditMethodModel extends SubBaseModel implements DialogForE
         if (ClassTool.isVoid(info.objType)) {
             addTag(sb, "null");
         } else {
-            addTag(sb, StringTool.toMethodType(objInfo.name));
+            addTag(sb, ConvertTool.toMethodType(objInfo.name));
         }
     }
 }

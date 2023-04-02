@@ -8,6 +8,7 @@ import javax.lang.model.element.TypeElement;
 
 import cooltu.lib4j.data.bean.JavaInfo;
 import cooltu.lib4j.file.FileTool;
+import cooltu.lib4j.tools.ConvertTool;
 import cooltu.lib4j.tools.StringTool;
 import com.codingtu.cooltu.constant.Constant;
 import com.codingtu.cooltu.constant.FileType;
@@ -30,7 +31,7 @@ public class NameTools extends StringTool {
         int lastIndexOf = filePath.lastIndexOf(File.separator) + 1;
         info.name = filePath.substring(lastIndexOf, filePath.length() - ".java".length());
         String subPath = getSub(filePath, null, javaPath, info.name);
-        info.pkg = pathToPkg(subPath);
+        info.pkg = ConvertTool.pathToPkg(subPath);
         if (isNotBlank(info.pkg)) {
             info.fullName = info.pkg + "." + info.name;
         } else {
@@ -46,7 +47,7 @@ public class NameTools extends StringTool {
         info.fullName = packages + "." + info.name;
         info.pkg = packages;
         String javaPath = getJavaDir();
-        String pkgPath = pkgToPath(packages);
+        String pkgPath = ConvertTool.pkgToPath(packages);
         info.path = javaPath + pkgPath + Constant.SEPARATOR + info.name + FileType.JAVA;
         return info;
     }
@@ -59,7 +60,7 @@ public class NameTools extends StringTool {
 
     //根据包名+基础名+后缀获取,基础名（test，user_name,UserName等类型，除去后缀的名字）
     public static JavaInfo getJavaInfoByName(String packages, String allBaseName, String suffix) {
-        return getJavaInfoByName(packages, toClassType(allBaseName) + suffix);
+        return getJavaInfoByName(packages, ConvertTool.toClassType(allBaseName) + suffix);
     }
 
     public static String getJavaSimpleName(String fullName) {
@@ -137,7 +138,7 @@ public class NameTools extends StringTool {
 
     public static String getModelPath(BaseModel baseModel) {
         String canonicalName = baseModel.getClass().getCanonicalName();
-        String s = pkgToPath(canonicalName);
+        String s = ConvertTool.pkgToPath(canonicalName);
         return FileTool.getProjectDir()
                 + Constant.SEPARATOR
                 + Module.CORE_PROCESSOR
@@ -147,7 +148,7 @@ public class NameTools extends StringTool {
     }
 
     public static String getModelPath() {
-        String s = pkgToPath(Pkg.MODEL);
+        String s = ConvertTool.pkgToPath(Pkg.MODEL);
         return FileTool.getProjectDir()
                 + Constant.SEPARATOR
                 + Module.CORE_PROCESSOR
@@ -156,7 +157,7 @@ public class NameTools extends StringTool {
     }
 
     public static String getModelInterPath(String typeName) {
-        String s = pkgToPath(Pkg.MODEL_INTERFACE);
+        String s = ConvertTool.pkgToPath(Pkg.MODEL_INTERFACE);
         return FileTool.getProjectDir()
                 + Constant.SEPARATOR
                 + Module.CORE_PROCESSOR_MODEL_INTERFACE

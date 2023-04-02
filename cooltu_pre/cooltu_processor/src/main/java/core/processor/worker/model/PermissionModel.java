@@ -1,15 +1,17 @@
 package core.processor.worker.model;
 
+import com.codingtu.cooltu.constant.Constant;
+import com.codingtu.cooltu.constant.FullName;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.lang.model.element.ExecutableElement;
 
+import cooltu.lib4j.tools.ConvertTool;
 import cooltu.lib4j.tools.StringTool;
 import cooltu.lib4j.ts.Ts;
 import cooltu.lib4j.ts.each.Each;
-import com.codingtu.cooltu.constant.Constant;
-import com.codingtu.cooltu.constant.FullName;
 import core.processor.annotation.permission.Permission;
 import core.processor.lib.tools.ElementTools;
 import core.processor.modelinterface.PermissionModelInterface;
@@ -34,7 +36,7 @@ public class PermissionModel extends SingleCoreToolsBaseModel implements Permiss
             public boolean each(int position, ExecutableElement element) {
                 addLnTag(fieldsSb,
                         "    public static final int CODE_[name] = [num];",
-                        StringTool.toStaticType(ElementTools.simpleName(element)),
+                        ConvertTool.toStaticType(ElementTools.simpleName(element)),
                         code++);
                 return false;
             }
@@ -58,7 +60,7 @@ public class PermissionModel extends SingleCoreToolsBaseModel implements Permiss
                         return false;
                     }
                 });
-                addLnTag(methodsSb, "        [tool].check(act, CODE_[name] [params]);", FullName.PERMISSION_TOOL, StringTool.toStaticType(simpleName), sb.toString());
+                addLnTag(methodsSb, "        [tool].check(act, CODE_[name] [params]);", FullName.PERMISSION_TOOL, ConvertTool.toStaticType(simpleName), sb.toString());
                 addLnTag(methodsSb, "    }");
 
                 return false;

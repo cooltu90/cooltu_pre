@@ -4,8 +4,8 @@ import javax.lang.model.element.Element;
 import javax.lang.model.element.ExecutableElement;
 
 import cooltu.lib4j.data.bean.JavaInfo;
+import cooltu.lib4j.tools.ConvertTool;
 import cooltu.lib4j.tools.CountTool;
-import cooltu.lib4j.tools.StringTool;
 import cooltu.lib4j.ts.Ts;
 import cooltu.lib4j.ts.each.Each;
 import core.processor.annotation.net.Apis;
@@ -53,7 +53,7 @@ public class ApisDeal extends BaseDeal {
                 //Net
                 NetModel.model.add(ee, baseUrl, apiTypeName);
 
-                String classTypeName = StringTool.toClassType(ElementTools.simpleName(ee));
+                String classTypeName = ConvertTool.toClassType(ElementTools.simpleName(ee));
                 //XxxxSendParams
                 if (!CountTool.isNull(ee.getParameters())) {
                     new SendParamsModel(NameTools.getSendParamsInfo(classTypeName), ee);
