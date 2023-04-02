@@ -3,12 +3,12 @@ package com.codingtu.cooltu_pre;
 import com.codingtu.cooltu.constant.Module;
 import com.codingtu.cooltu.constant.Pkg;
 
-import core.lib4a.CoreApp;
-import core.lib4a.CoreConfigs;
-import core.lib4a.act.CoreActivity;
-import core.lib4a.fragment.CoreFragment;
-import core.processor.annotation.ModuleInfo;
-import core.processor.annotation.create.CreateAct;
+import com.codingtu.cooltu.lib4a.CoreApp;
+import com.codingtu.cooltu.lib4a.CoreConfigs;
+import com.codingtu.cooltu.lib4a.act.CoreActivity;
+import com.codingtu.cooltu.lib4a.fragment.CoreFragment;
+import com.codingtu.cooltu.processor.annotation.ModuleInfo;
+import com.codingtu.cooltu.processor.annotation.create.CreateAct;
 
 @ModuleInfo(
         module = Module.APP,
@@ -19,7 +19,7 @@ import core.processor.annotation.create.CreateAct;
         defaultLayout = Constants.LAYOUT_NAME_DEFAULT_TEMP
 )
 @CreateAct(
-        name = "welcome",
+        name = "step_two",
         packages = Constants.PKG_MODULE_APP + Pkg.DEFAULT_UI
 )
 public class App extends CoreApp {

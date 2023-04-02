@@ -1,6 +1,6 @@
 package core.tools;
 
-import core.lib4a.bus.BusStation;
+import com.codingtu.cooltu.lib4a.bus.BusStation;
 
 public class BusSend {
 

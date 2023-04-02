@@ -1,5 +1,0 @@
-package core.lib4a.view.attrs;
-
-public interface GetAttrs {
-    public void getAttrs(Attrs attrs);
-}

@@ -1,6 +1,6 @@
 package com.codingtu.cooltu_pre;
 
-import core.lib4a.CoreConfigs;
+import com.codingtu.cooltu.lib4a.CoreConfigs;
 
 public class Configs extends CoreConfigs {
     @Override

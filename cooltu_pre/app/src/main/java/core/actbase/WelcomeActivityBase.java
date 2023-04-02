@@ -10,17 +10,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import core.lib4a.net.bean.CoreSendParams;
-import core.lib4a.net.netback.NetBackI;
+import com.codingtu.cooltu.lib4a.net.bean.CoreSendParams;
+import com.codingtu.cooltu.lib4a.net.netback.NetBackI;
 import okhttp3.ResponseBody;
 import retrofit2.adapter.rxjava2.Result;
 
-import core.lib4a.permission.PermissionBack;
+import com.codingtu.cooltu.lib4a.permission.PermissionBack;
 
-public abstract class WelcomeActivityBase extends core.lib4a.act.CoreActivity implements View.OnClickListener, NetBackI, PermissionBack {
+public abstract class WelcomeActivityBase extends com.codingtu.cooltu.lib4a.act.CoreActivity implements View.OnClickListener, NetBackI, PermissionBack {
 
     protected int fromAct;
 
+    protected android.widget.TextView tv;
 
 
     @Override
@@ -31,6 +32,7 @@ public abstract class WelcomeActivityBase extends core.lib4a.act.CoreActivity im
         Intent data = getIntent();
         fromAct = core.tools.Pass.fromAct(data);
 
+        tv = findViewById(com.codingtu.cooltu_pre.R.id.tv);
 
 
 

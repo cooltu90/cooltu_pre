@@ -7,8 +7,8 @@ import androidx.annotation.Nullable;
 import com.codingtu.cooltu_pre.R;
 
 import core.actbase.WelcomeActivityBase;
-import core.processor.annotation.tools.To;
-import core.processor.annotation.ui.ActBase;
+import com.codingtu.cooltu.processor.annotation.tools.To;
+import com.codingtu.cooltu.processor.annotation.ui.ActBase;
 import core.actres.WelcomeActivityRes;
 
 @To(WelcomeActivityRes.class)
@@ -19,4 +19,6 @@ public class WelcomeActivity extends WelcomeActivityBase {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
+
 }
