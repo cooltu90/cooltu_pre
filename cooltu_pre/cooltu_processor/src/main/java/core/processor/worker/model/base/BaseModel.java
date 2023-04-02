@@ -146,6 +146,7 @@ public class BaseModel {
     public List<String> getTempLines() {
         try {
             List<String> lines = FileReader.from(new File(NameTools.getModelPath(this))).readLine();
+            Logs.i("lines:"+CountTool.count(lines));
             int start = 0;
             int end = 0;
             for (int i = 0; i < CountTool.count(lines); i++) {

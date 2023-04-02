@@ -17,10 +17,10 @@ import core.processor.annotation.create.CreateAct;
         mockPackage = Pkg.DEFAULT_NET_MOCK,
         defaultLayout = Constants.LAYOUT_NAME_DEFAULT_TEMP
 )
-@CreateAct(
-        name = "welcome",
-        packages = Constants.PKG_MODULE_APP + Pkg.DEFAULT_UI
-)
+//@CreateAct(
+//        name = "welcome",
+//        packages = Constants.PKG_MODULE_APP + Pkg.DEFAULT_UI
+//)
 public class App extends CoreApp {
     @Override
     public CoreConfigs createConfigs() {
