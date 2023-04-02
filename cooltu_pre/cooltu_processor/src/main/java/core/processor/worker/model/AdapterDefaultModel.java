@@ -2,12 +2,20 @@ package core.processor.worker.model;
 
 import com.codingtu.cooltu.constant.Pkg;
 
+import java.util.List;
+
 import cooltu.lib4j.data.bean.JavaInfo;
 import cooltu.lib4j.tools.ConvertTool;
 import core.processor.lib.tools.NameTools;
+import core.processor.modelinterface.AdapterDefaultModelInterface;
 import core.processor.worker.model.base.BaseAdapterModel;
 
-public class AdapterDefaultModel extends BaseAdapterModel {
+public class AdapterDefaultModel extends BaseAdapterModel implements AdapterDefaultModelInterface {
+
+    @Override
+    public List<String> getTempLines() {
+        return getTempLinesArray();
+    }
 
     public void beforCreate() {
         addTag("pkg", info.pkg);
@@ -50,6 +58,46 @@ public class AdapterDefaultModel extends BaseAdapterModel {
     @Override
     public StringBuilder getOnDestorys(JavaInfo baseInfo) {
         return new StringBuilder();
+    }
+
+    @Override
+    public void setTagFor_pkg(StringBuilder sb) {
+
+    }
+
+    @Override
+    public void setTagFor_rPkg(StringBuilder sb) {
+
+    }
+
+    @Override
+    public void setTagFor_bean(StringBuilder sb) {
+
+    }
+
+    @Override
+    public void setTagFor_vhFullName(StringBuilder sb) {
+
+    }
+
+    @Override
+    public void setTagFor_layoutName(StringBuilder sb) {
+
+    }
+
+    @Override
+    public void setTagFor_name(StringBuilder sb) {
+
+    }
+
+    @Override
+    public void setTagFor_vhName(StringBuilder sb) {
+
+    }
+
+    @Override
+    public void setTagFor_beanTypeName(StringBuilder sb) {
+
     }
 }
 /* model_temp_start

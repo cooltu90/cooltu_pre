@@ -36,11 +36,14 @@ public class ActBackIntentModel extends SingleCoreToolsBaseModel implements ActB
         super(Constant.NAME_ACT_BACK_INTENT);
     }
 
+    @Override
+    public List<String> getTempLines() {
+        return getTempLinesArray();
+    }
 
     public void add(ExecutableElement ee) {
         ees.add(ee);
     }
-
 
     @Override
     public void setTagFor_methods(StringBuilder sb) {

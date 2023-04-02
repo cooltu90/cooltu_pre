@@ -2,6 +2,9 @@ package core.processor.worker.model;
 
 import com.codingtu.cooltu.constant.Constant;
 import com.codingtu.cooltu.constant.FullName;
+
+import java.util.List;
+
 import core.processor.modelinterface.DialogForToastMethodModelInterface;
 import core.processor.worker.model.base.SubBaseModel;
 
@@ -11,6 +14,11 @@ public class DialogForToastMethodModel extends SubBaseModel implements DialogFor
 
     public DialogForToastMethodModel(boolean isAct) {
         this.isAct = isAct;
+    }
+
+    @Override
+    public List<String> getTempLines() {
+        return getTempLinesArray();
     }
 
     @Override

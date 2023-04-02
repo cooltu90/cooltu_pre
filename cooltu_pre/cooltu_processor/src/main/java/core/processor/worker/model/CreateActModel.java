@@ -1,7 +1,11 @@
 package core.processor.worker.model;
 
 import cooltu.lib4j.data.bean.JavaInfo;
+
 import com.codingtu.cooltu.constant.Pkg;
+
+import java.util.List;
+
 import core.processor.modelinterface.CreateActModelInterface;
 import core.processor.worker.model.base.BaseModel;
 
@@ -13,6 +17,11 @@ public class CreateActModel extends BaseModel implements CreateActModelInterface
         super(info);
         this.layoutBaseName = layoutBaseName;
         this.actBaseInfo = actBaseInfo;
+    }
+
+    @Override
+    public List<String> getTempLines() {
+        return getTempLinesArray();
     }
 
     /***************************************

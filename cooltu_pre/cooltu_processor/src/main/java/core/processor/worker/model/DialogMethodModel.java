@@ -3,6 +3,8 @@ package core.processor.worker.model;
 import com.codingtu.cooltu.constant.Constant;
 import com.codingtu.cooltu.constant.FullName;
 
+import java.util.List;
+
 import cooltu.lib4j.data.bean.JavaInfo;
 import cooltu.lib4j.tools.ClassTool;
 import cooltu.lib4j.tools.ConvertTool;
@@ -20,6 +22,11 @@ public class DialogMethodModel extends SubBaseModel implements DialogMethodModel
         this.info = info;
         this.isAct = isAct;
         objInfo = NameTools.getJavaInfoByName(info.objType);
+    }
+
+    @Override
+    public List<String> getTempLines() {
+        return getTempLinesArray();
     }
 
     @Override

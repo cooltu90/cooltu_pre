@@ -34,6 +34,11 @@ public class StartMethodModel extends SubBaseModel implements StartMethodModelIn
     }
 
     @Override
+    public List<String> getTempLines() {
+        return getTempLinesArray();
+    }
+
+    @Override
     public void setTagFor_methodName(StringBuilder sb) {
         String fullName = RenameTools.lsActs(actFullName, (oldFullName, newFullName) -> {
             if (oldFullName.equals(actFullName)) {

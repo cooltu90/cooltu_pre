@@ -22,6 +22,11 @@ public class SendParamsModel extends BaseModel implements SendParamsModelInterfa
     }
 
     @Override
+    public List<String> getTempLines() {
+        return getTempLinesArray();
+    }
+
+    @Override
     public void setTagFor_name(StringBuilder sb) {
         addTag(sb, info.name);
     }

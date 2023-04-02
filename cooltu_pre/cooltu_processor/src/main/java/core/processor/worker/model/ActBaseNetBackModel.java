@@ -3,6 +3,8 @@ package core.processor.worker.model;
 import com.codingtu.cooltu.constant.Pkg;
 import com.codingtu.cooltu.constant.Suffix;
 
+import java.util.List;
+
 import javax.lang.model.element.ExecutableElement;
 
 import cooltu.lib4j.data.bean.JavaInfo;
@@ -30,6 +32,11 @@ public class ActBaseNetBackModel extends SubBaseModel implements ActBaseNetBackM
         methodName = ElementTools.simpleName(netBackElement);
         methodBaseName = NameTools.cutSuffix(methodName, Suffix.NET_BACK);
         info = NameTools.getNetBackInfo(methodBaseName);
+    }
+
+    @Override
+    public List<String> getTempLines() {
+        return getTempLinesArray();
     }
 
     /**************************************************

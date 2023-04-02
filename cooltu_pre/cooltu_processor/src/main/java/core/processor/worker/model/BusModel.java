@@ -3,7 +3,11 @@ package core.processor.worker.model;
 import cooltu.lib4j.data.bean.JavaInfo;
 import cooltu.lib4j.data.bean.KV;
 import cooltu.lib4j.tools.ClassTool;
+
 import com.codingtu.cooltu.constant.Pkg;
+
+import java.util.List;
+
 import core.processor.modelinterface.BusModelInterface;
 import core.processor.worker.model.base.BaseModel;
 
@@ -13,6 +17,11 @@ public class BusModel extends BaseModel implements BusModelInterface {
     public BusModel(JavaInfo info) {
         super(info);
         isForce = true;
+    }
+
+    @Override
+    public List<String> getTempLines() {
+        return getTempLinesArray();
     }
 
     public void add(KV<String, String> kv) {

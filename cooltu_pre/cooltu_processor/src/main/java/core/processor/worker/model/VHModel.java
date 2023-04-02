@@ -29,6 +29,11 @@ public class VHModel extends BaseModel implements VHModelInterface {
         this.isForce = isForce;
     }
 
+    @Override
+    public List<String> getTempLines() {
+        return getTempLinesArray();
+    }
+
     /**************************************************
      *
      * 设置tag的方法

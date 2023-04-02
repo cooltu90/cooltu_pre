@@ -11,8 +11,10 @@ import cooltu.lib4j.tools.ConvertTool;
 import cooltu.lib4j.tools.StringTool;
 import cooltu.lib4j.ts.Ts;
 import cooltu.lib4j.ts.each.Each;
+
 import com.codingtu.cooltu.constant.Constant;
 import com.codingtu.cooltu.constant.FullName;
+
 import core.processor.lib.ls.EachType;
 import core.processor.lib.ls.TypeLss;
 import core.processor.modelinterface.PassModelInterface;
@@ -28,6 +30,11 @@ public class PassModel extends SingleCoreToolsBaseModel implements PassModelInte
 
     public PassModel() {
         super(Constant.NAME_PASS);
+    }
+
+    @Override
+    public List<String> getTempLines() {
+        return getTempLinesArray();
     }
 
     public void add(List<String> classes, String[] paramNames) {

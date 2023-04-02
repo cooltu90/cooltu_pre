@@ -40,6 +40,11 @@ public class NetMethodModel extends SubBaseModel implements NetMethodModelInterf
     }
 
     @Override
+    public List<String> getTempLines() {
+        return getTempLinesArray();
+    }
+
+    @Override
     public void setTagFor_methodName(StringBuilder sb) {
         addTag(sb, methodName);
     }

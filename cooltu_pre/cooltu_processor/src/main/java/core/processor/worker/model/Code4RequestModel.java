@@ -1,11 +1,12 @@
 package core.processor.worker.model;
 
+import com.codingtu.cooltu.constant.Constant;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import cooltu.lib4j.ts.Ts;
 import cooltu.lib4j.ts.each.Each;
-import com.codingtu.cooltu.constant.Constant;
 import core.processor.lib.tools.RenameTools;
 import core.processor.modelinterface.Code4RequestModelInterface;
 import core.processor.worker.model.base.SingleCoreToolsBaseModel;
@@ -17,6 +18,11 @@ public class Code4RequestModel extends SingleCoreToolsBaseModel implements Code4
 
     public Code4RequestModel() {
         super(Constant.NAME_CODE_4_REQUEST);
+    }
+
+    @Override
+    public List<String> getTempLines() {
+        return getTempLinesArray();
     }
 
     public void addActStaticName(String actStaticName) {

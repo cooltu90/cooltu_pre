@@ -2,6 +2,8 @@ package core.processor.worker.model.net_retrofit;
 
 import com.codingtu.cooltu.constant.FullName;
 
+import java.util.List;
+
 import javax.lang.model.element.ExecutableElement;
 
 import cooltu.lib4j.data.bean.JavaInfo;
@@ -20,6 +22,12 @@ public class NetBackModel extends BaseModel implements NetBackModelInterface {
         isForce = true;
         this.element = element;
     }
+
+    @Override
+    public List<String> getTempLines() {
+        return getTempLinesArray();
+    }
+
 
     /***************************************
      *

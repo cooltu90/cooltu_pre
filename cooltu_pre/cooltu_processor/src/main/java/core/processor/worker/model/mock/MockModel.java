@@ -58,6 +58,11 @@ public class MockModel extends SingleCoreToolsBaseModel implements MockModelInte
     }
 
     @Override
+    public List<String> getTempLines() {
+        return getTempLinesArray();
+    }
+
+    @Override
     public void setTagFor_fields(StringBuilder sb) {
     }
 }

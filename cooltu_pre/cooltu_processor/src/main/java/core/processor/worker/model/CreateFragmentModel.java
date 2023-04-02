@@ -1,7 +1,11 @@
 package core.processor.worker.model;
 
 import cooltu.lib4j.data.bean.JavaInfo;
+
 import com.codingtu.cooltu.constant.Pkg;
+
+import java.util.List;
+
 import core.processor.modelinterface.CreateFragmentModelInterface;
 import core.processor.worker.model.base.BaseModel;
 
@@ -13,6 +17,11 @@ public class CreateFragmentModel extends BaseModel implements CreateFragmentMode
         super(info);
         this.layoutBaseName = layoutBaseName;
         this.fragmentBaseInfo = fragmentBaseInfo;
+    }
+
+    @Override
+    public List<String> getTempLines() {
+        return getTempLinesArray();
     }
 
     /***************************************

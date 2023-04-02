@@ -25,6 +25,11 @@ public class ActBasePermissionBackModel extends SubBaseModel implements ActBaseP
         parameters = element.getParameters();
     }
 
+    @Override
+    public List<String> getTempLines() {
+        return getTempLinesArray();
+    }
+
     /**************************************************
      *
      *

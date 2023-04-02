@@ -26,6 +26,11 @@ public class StartModel extends SingleCoreToolsBaseModel implements StartModelIn
     private HashMap<String, ListValueMap<Integer, KV<String, String>>> METHODS_MAP = new HashMap<>();
     private ListValueMap<String, List<KV<String, String>>> METHODS_MAP1 = new ListValueMap<>();
 
+    @Override
+    public List<String> getTempLines() {
+        return getTempLinesArray();
+    }
+
     public void addStart(String actFullName, String actStaticName, ListValueMap<Integer, KV<String, String>> ikv) {
         METHODS_MAP.put(actFullName, ikv);
         if (ikv != null) {

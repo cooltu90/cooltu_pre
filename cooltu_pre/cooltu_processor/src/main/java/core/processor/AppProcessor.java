@@ -99,6 +99,9 @@ public class AppProcessor extends AbstractProcessor {
         ArrayList<String> newLines = new ArrayList<>();
         newLines.add("package core.processor.modelinterface;");
         newLines.add("");
+        newLines.add("import java.util.ArrayList;");
+        newLines.add("import java.util.List;");
+        newLines.add("");
         newLines.add("public interface " + typeName + " {");
         newLines.add("");
         Ts.ls(tags, new Each<String>() {
@@ -110,6 +113,18 @@ public class AppProcessor extends AbstractProcessor {
                 return false;
             }
         });
+
+        newLines.add("    default List<String> getTempLinesArray() {");
+        newLines.add("        ArrayList<String> lines = new ArrayList<>();");
+        Ts.ls(lines, new Each<String>() {
+            @Override
+            public boolean each(int position, String s) {
+                newLines.add("        lines.add(\"" + s.replace("\"", "\\\"") + "\");");
+                return false;
+            }
+        });
+        newLines.add("        return lines;");
+        newLines.add("    }");
         newLines.add("}");
 
         String path = NameTools.getModelInterPath(typeName);

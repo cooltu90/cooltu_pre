@@ -22,6 +22,10 @@ public class BindHandlerModel extends SubBaseModel implements BindHandlerModelIn
     private ListValueMap<Integer, FormItemInfo> formItemMap;
     private HashMap<String, String> needLinkMap;
 
+    @Override
+    public List<String> getTempLines() {
+        return getTempLinesArray();
+    }
 
     public void setType(String type) {
         this.type = type;

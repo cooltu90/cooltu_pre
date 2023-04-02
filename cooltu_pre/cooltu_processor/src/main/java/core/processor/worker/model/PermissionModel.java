@@ -30,6 +30,11 @@ public class PermissionModel extends SingleCoreToolsBaseModel implements Permiss
     }
 
     @Override
+    public List<String> getTempLines() {
+        return getTempLinesArray();
+    }
+
+    @Override
     public void setTagFor_fields(StringBuilder fieldsSb) {
         Ts.ls(elements, new Each<ExecutableElement>() {
             @Override

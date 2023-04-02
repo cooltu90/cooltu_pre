@@ -29,6 +29,11 @@ public class ApiServiceMethodModel extends SubBaseModel implements ApiServiceMet
     }
 
     @Override
+    public List<String> getTempLines() {
+        return getTempLinesArray();
+    }
+
+    @Override
     public void setTagFor_methodName(StringBuilder sb) {
         addTag(sb, ElementTools.simpleName(this.ee));
     }

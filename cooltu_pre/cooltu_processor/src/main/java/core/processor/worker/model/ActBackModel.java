@@ -1,5 +1,7 @@
 package core.processor.worker.model;
 
+import com.codingtu.cooltu.constant.FullName;
+
 import java.util.List;
 
 import javax.lang.model.element.ExecutableElement;
@@ -8,8 +10,6 @@ import javax.lang.model.element.VariableElement;
 import cooltu.lib4j.data.bean.JavaInfo;
 import cooltu.lib4j.tools.ClassTool;
 import cooltu.lib4j.tools.ConvertTool;
-import cooltu.lib4j.tools.StringTool;
-import com.codingtu.cooltu.constant.FullName;
 import core.processor.annotation.ui.ActBack;
 import core.processor.lib.ls.EachType;
 import core.processor.lib.ls.TypeLss;
@@ -34,6 +34,11 @@ public class ActBackModel extends SubBaseModel implements ActBackModelInterface 
         });
         methodName = element.getSimpleName().toString();
         parameters = element.getParameters();
+    }
+
+    @Override
+    public List<String> getTempLines() {
+        return getTempLinesArray();
     }
 
     /**************************************************

@@ -1,5 +1,7 @@
 package core.processor.worker.model;
 
+import com.codingtu.cooltu.constant.Constant;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +10,6 @@ import cooltu.lib4j.data.bean.KV;
 import cooltu.lib4j.tools.ClassTool;
 import cooltu.lib4j.ts.Ts;
 import cooltu.lib4j.ts.each.Each;
-import com.codingtu.cooltu.constant.Constant;
 import core.processor.lib.tools.NameTools;
 import core.processor.modelinterface.BusSendModelInterface;
 import core.processor.worker.model.base.SingleCoreToolsBaseModel;
@@ -21,6 +22,11 @@ public class BusSendModel extends SingleCoreToolsBaseModel implements BusSendMod
 
     public BusSendModel() {
         super(Constant.NAME_BUS_SEND);
+    }
+
+    @Override
+    public List<String> getTempLines() {
+        return getTempLinesArray();
     }
 
     public void add(KV<String, String> kv) {

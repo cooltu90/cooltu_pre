@@ -37,6 +37,11 @@ public class NetModel extends SingleCoreToolsBaseModel implements NetModelInterf
     }
 
     @Override
+    public List<String> getTempLines() {
+        return getTempLinesArray();
+    }
+
+    @Override
     public void setTagFor_backNameFileds(StringBuilder sb) {
         Ts.ls(methodElements, new Each<ExecutableElement>() {
             @Override

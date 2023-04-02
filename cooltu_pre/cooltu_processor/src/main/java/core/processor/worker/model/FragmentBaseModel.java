@@ -2,7 +2,11 @@ package core.processor.worker.model;
 
 import cooltu.lib4j.data.bean.JavaInfo;
 import cooltu.lib4j.tools.StringTool;
+
 import com.codingtu.cooltu.constant.FullName;
+
+import java.util.List;
+
 import core.processor.modelinterface.FragmentBaseModelInterface;
 import core.processor.worker.ModelType;
 
@@ -15,6 +19,11 @@ public class FragmentBaseModel extends BaseParentModel implements FragmentBaseMo
     @Override
     public ModelType getModelType() {
         return ModelType.fragmentBase;
+    }
+
+    @Override
+    public List<String> getTempLines() {
+        return getTempLinesArray();
     }
 
     @Override

@@ -20,6 +20,11 @@ public class ApiServiceModel extends BaseModel implements ApiServiceModelInterfa
         isForce = true;
     }
 
+    @Override
+    public List<String> getTempLines() {
+        return getTempLinesArray();
+    }
+
     public void addMethod(ExecutableElement ee) {
         apiMethodElments.add(ee);
     }

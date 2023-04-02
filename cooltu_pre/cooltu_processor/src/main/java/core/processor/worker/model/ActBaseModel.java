@@ -17,6 +17,7 @@ import cooltu.lib4j.tools.StringTool;
 import cooltu.lib4j.ts.Ts;
 import cooltu.lib4j.ts.each.Each;
 import cooltu.lib4j.ts.each.MapEach;
+import core.processor.lib.log.Logs;
 import core.processor.lib.tools.ElementTools;
 import core.processor.modelinterface.ActBaseModelInterface;
 import core.processor.worker.ModelType;
@@ -31,6 +32,11 @@ public class ActBaseModel extends BaseParentModel implements ActBaseModelInterfa
 
     public ActBaseModel(JavaInfo info) {
         super(info, true);
+    }
+
+    @Override
+    public List<String> getTempLines() {
+        return getTempLinesArray();
     }
 
     @Override

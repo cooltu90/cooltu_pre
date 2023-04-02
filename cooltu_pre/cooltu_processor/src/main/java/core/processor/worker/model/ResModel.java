@@ -1,7 +1,11 @@
 package core.processor.worker.model;
 
 import cooltu.lib4j.data.bean.JavaInfo;
+
 import com.codingtu.cooltu.constant.FullName;
+
+import java.util.List;
+
 import core.processor.modelinterface.ResModelInterface;
 import core.processor.worker.model.base.BaseModel;
 
@@ -11,6 +15,11 @@ public class ResModel extends BaseModel implements ResModelInterface {
     public ResModel(JavaInfo info, JavaInfo actInfo) {
         super(info);
         this.actInfo = actInfo;
+    }
+
+    @Override
+    public List<String> getTempLines() {
+        return getTempLinesArray();
     }
 
     @Override
