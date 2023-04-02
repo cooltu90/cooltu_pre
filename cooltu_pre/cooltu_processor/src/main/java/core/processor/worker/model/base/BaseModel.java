@@ -56,7 +56,6 @@ public class BaseModel {
             return;
         beforCreate();
         File file = new File(info.path);
-        Logs.i("model create:" + file.getAbsolutePath());
         if (isForce || !file.exists()) {
             List<String> lines = getLines();
             if (!CountTool.isNull(lines)) {

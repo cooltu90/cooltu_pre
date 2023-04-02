@@ -26,10 +26,12 @@ import cooltu.lib4j.tools.ClassTool;
 import cooltu.lib4j.tools.CountTool;
 import cooltu.lib4j.ts.Ts;
 import cooltu.lib4j.ts.each.Each;
+
 import com.codingtu.cooltu.constant.Constant;
 import com.codingtu.cooltu.constant.FileType;
 import com.codingtu.cooltu.constant.Pkg;
 import com.codingtu.cooltu.constant.Suffix;
+
 import core.processor.lib.model.ModelMap;
 import core.processor.lib.tools.App;
 import core.processor.lib.tools.IdTools;
@@ -48,7 +50,7 @@ public class AppProcessor extends AbstractProcessor {
         super.init(processingEnv);
         IdTools.trees = Trees.instance(processingEnv);
         IdTools.rScanner = new IdTools.RScanner();
-        App.init(processingEnv.getMessager());
+        App.init(processingEnv);
         createModelInterface();
         dealSupportTypes();
     }
