@@ -1,9 +1,9 @@
 package core.actres;
 
+import com.codingtu.cooltu.processor.annotation.resource.ResFor;
 import com.codingtu.cooltu_pre.ui.StepTwoActivity;
-import com.codingtu.cooltu.processor.annotation.ui.ActRes;
 
-@ActRes(StepTwoActivity.class)
+@ResFor(StepTwoActivity.class)
 public class StepTwoActivityRes {
 
 }

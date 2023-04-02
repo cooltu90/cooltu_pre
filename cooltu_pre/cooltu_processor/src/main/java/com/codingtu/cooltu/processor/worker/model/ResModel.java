@@ -34,7 +34,7 @@ public class ResModel extends BaseModel implements ResModelInterface {
 
     @Override
     public void setTagFor_resFullName(StringBuilder sb) {
-        addTag(sb, FullName.RES);
+        addTag(sb, FullName.RES_FOR);
     }
 
     @Override
@@ -48,7 +48,7 @@ package [[pkg]];
 import [[actFullName]];
 import [[resFullName]];
 
-@ActRes([[actSimpleName]].class)
+@ResFor([[actSimpleName]].class)
 public class [[actSimpleName]]Res {
 
 }

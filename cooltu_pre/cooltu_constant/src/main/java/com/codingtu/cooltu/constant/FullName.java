@@ -14,7 +14,7 @@ public class FullName {
     public static final String JSON_TOOL = "cooltu.lib4j.json.JsonTool";
     public static final String JO = "cooltu.lib4j.json.base.JO";
     //
-    public static final String RES = "com.codingtu.cooltu.processor.annotation.ui.ActRes";
+    public static final String RES_FOR = "com.codingtu.cooltu.processor.annotation.resource.ResFor";
     public static final String RADIO_GROUP = "com.codingtu.cooltu.lib4a.view.combine.RadioGroup";
     public static final String HANDLER_TEXT_WATCHER = "com.codingtu.cooltu.lib4a.view.textview.HandlerTextWatcher";
     public static final String HANDLER_ON_SELECT_CHANGE = "com.codingtu.cooltu.lib4a.view.combine.HandlerOnSelectChange";

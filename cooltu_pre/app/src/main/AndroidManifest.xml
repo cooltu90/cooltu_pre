@@ -35,6 +35,9 @@
         <activity
             android:name="com.codingtu.cooltu_pre.ui.StepTwoActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="com.codingtu.cooltu_pre.ui.ThreeActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

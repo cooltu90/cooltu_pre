@@ -20,7 +20,7 @@ public interface ResModelInterface {
         lines.add("import [[actFullName]];");
         lines.add("import [[resFullName]];");
         lines.add("");
-        lines.add("@ActRes([[actSimpleName]].class)");
+        lines.add("@ResFor([[actSimpleName]].class)");
         lines.add("public class [[actSimpleName]]Res {");
         lines.add("");
         lines.add("}");

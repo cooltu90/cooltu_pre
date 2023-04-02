@@ -11,6 +11,12 @@ public class ActStart {
 
         com.codingtu.cooltu.lib4a.tools.ActTool.startActivityForResult(act, intent, Code4Request.STEP_TWO_ACTIVITY);
     }
+    public static final void threeActivity(Activity act) {
+        Intent intent = new Intent(act, com.codingtu.cooltu_pre.ui.ThreeActivity.class);
+        intent.putExtra(Pass.FROM_ACT,Code4Request.THREE_ACTIVITY);
+
+        com.codingtu.cooltu.lib4a.tools.ActTool.startActivityForResult(act, intent, Code4Request.THREE_ACTIVITY);
+    }
     public static final void stepOneActivity(Activity act) {
         Intent intent = new Intent(act, com.codingtu.cooltu_pre.ui.StepOneActivity.class);
         intent.putExtra(Pass.FROM_ACT,Code4Request.STEP_ONE_ACTIVITY);

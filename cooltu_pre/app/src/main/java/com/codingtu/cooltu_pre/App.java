@@ -19,7 +19,7 @@ import com.codingtu.cooltu.processor.annotation.create.CreateAct;
         defaultLayout = Constants.LAYOUT_NAME_DEFAULT_TEMP
 )
 @CreateAct(
-        name = "step_two",
+        name = "three",
         packages = Constants.PKG_MODULE_APP + Pkg.DEFAULT_UI
 )
 public class App extends CoreApp {

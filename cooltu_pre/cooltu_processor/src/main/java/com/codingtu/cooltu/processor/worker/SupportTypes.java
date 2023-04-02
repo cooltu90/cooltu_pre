@@ -14,7 +14,7 @@ import com.codingtu.cooltu.processor.annotation.permission.Permission;
 import com.codingtu.cooltu.processor.annotation.rename.RenameAct;
 import com.codingtu.cooltu.processor.annotation.ui.ActBack;
 import com.codingtu.cooltu.processor.annotation.ui.ActBase;
-import com.codingtu.cooltu.processor.annotation.ui.ActRes;
+import com.codingtu.cooltu.processor.annotation.resource.ResFor;
 import com.codingtu.cooltu.processor.annotation.ui.Adapter;
 import com.codingtu.cooltu.processor.annotation.ui.BusBack;
 import com.codingtu.cooltu.processor.annotation.ui.BusConfig;
@@ -52,7 +52,7 @@ public class SupportTypes {
                 ActBase.class,
                 FragmentBase.class,
                 BusConfig.class,
-                ActRes.class,
+                ResFor.class,
                 ClickView.class,
                 LongClickView.class,
                 BusBack.class,

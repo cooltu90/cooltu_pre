@@ -14,11 +14,12 @@ import cooltu.lib4j.tools.ConvertTool;
 import cooltu.lib4j.tools.CountTool;
 import cooltu.lib4j.ts.Ts;
 import cooltu.lib4j.ts.each.Each;
+
 import com.codingtu.cooltu.processor.annotation.resource.ColorRes;
 import com.codingtu.cooltu.processor.annotation.resource.ColorStr;
 import com.codingtu.cooltu.processor.annotation.resource.Dimen;
 import com.codingtu.cooltu.processor.annotation.resource.Dp;
-import com.codingtu.cooltu.processor.annotation.ui.ActRes;
+import com.codingtu.cooltu.processor.annotation.resource.ResFor;
 import com.codingtu.cooltu.processor.annotation.ui.Adapter;
 import com.codingtu.cooltu.processor.annotation.ui.StartGroup;
 import com.codingtu.cooltu.processor.annotation.ui.dialog.DialogUse;
@@ -37,15 +38,15 @@ import com.codingtu.cooltu.processor.worker.model.PassModel;
 import com.codingtu.cooltu.processor.worker.model.StartModel;
 import com.codingtu.cooltu.processor.worker.model.base.BaseAdapterModel;
 
-public class ActResDeal extends BaseDeal {
+public class ResForDeal extends BaseDeal {
     @Override
     public void deal(Element element) {
         TypeElement te = (TypeElement) element;
-        ActRes actRes = te.getAnnotation(ActRes.class);
+        ResFor resFor = te.getAnnotation(ResFor.class);
         String actFullName = ClassTool.getAnnotationClass(new ClassTool.AnnotationClassGetter() {
             @Override
             public Object get() {
-                return actRes.value();
+                return resFor.value();
             }
         });
 
@@ -107,6 +108,10 @@ public class ActResDeal extends BaseDeal {
     }
 
     private void dealStartGroup(String actFullName, List<VariableElement> startGroups) {
+        if (NameTools.isFragment(actFullName)) {
+            return;
+        }
+
         String actStaticName = ConvertTool.toStaticType(NameTools.getJavaSimpleName(actFullName));
         if (CountTool.isNull(startGroups)) {
             //没有
