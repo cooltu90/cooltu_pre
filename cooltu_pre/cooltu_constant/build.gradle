@@ -1,5 +1,23 @@
 plugins {
     id 'java-library'
+    id 'maven-publish'
+}
+
+group = COOLTU_PKG + '.' + COOLTU_PKG_CONSTANT
+version = COOLTU_VERSION
+
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                from components.java
+                groupId = COOLTU_PKG + '.' + COOLTU_PKG_CONSTANT
+                artifactId = COOLTU + '_' + COOLTU_MODULE_CONSTANT
+                version = COOLTU_VERSION
+            }
+        }
+    }
 }
 
 java {

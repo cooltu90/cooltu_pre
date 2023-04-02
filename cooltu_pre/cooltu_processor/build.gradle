@@ -1,6 +1,25 @@
 plugins {
     id 'java-library'
+    id 'maven-publish'
 }
+
+group = COOLTU_PKG + '.' + COOLTU_PKG_PROCESSOR
+version = COOLTU_VERSION
+
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                from components.java
+                groupId = COOLTU_PKG + '.' + COOLTU_PKG_PROCESSOR
+                artifactId = COOLTU + '_' + COOLTU_MODULE_PROCESSOR
+                version = COOLTU_VERSION
+            }
+        }
+    }
+}
+
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
@@ -16,7 +35,7 @@ dependencies {
 //    compileOnly files(org.gradle.internal.jvm.Jvm.current().getToolsJar())
     compileOnly files("${System.properties['java.home']}/../lib/tools.jar")
 
-    implementation 'com.github.cooltu90:cooltu4j:1.0.6'
+    implementation 'com.github.cooltu90:cooltu4j:' + COOLTU4J_VERSION
 
 
 }
