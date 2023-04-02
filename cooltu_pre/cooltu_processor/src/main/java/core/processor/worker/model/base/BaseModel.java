@@ -1,5 +1,7 @@
 package core.processor.worker.model.base;
 
+import com.codingtu.cooltu.constant.Constant;
+
 import java.io.File;
 import java.lang.reflect.Method;
 import java.util.List;
@@ -12,9 +14,6 @@ import cooltu.lib4j.file.write.FileWriter;
 import cooltu.lib4j.tools.CountTool;
 import cooltu.lib4j.ts.Ts;
 import cooltu.lib4j.ts.each.Each;
-
-import com.codingtu.cooltu.constant.Constant;
-
 import core.processor.lib.log.Logs;
 import core.processor.lib.model.ModelMap;
 import core.processor.lib.tools.NameTools;
@@ -59,11 +58,7 @@ public class BaseModel {
         if (isForce || !file.exists()) {
             List<String> lines = getLines();
             if (!CountTool.isNull(lines)) {
-                try {
-                    FileWriter.to(file).cover().write(lines);
-                } catch (Exception e) {
-                    Logs.w(e);
-                }
+                FileWriter.to(file).cover().write(lines);
             }
         }
     }
@@ -166,7 +161,7 @@ public class BaseModel {
                 return strings;
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Logs.w(e);
         }
         return null;
     }
