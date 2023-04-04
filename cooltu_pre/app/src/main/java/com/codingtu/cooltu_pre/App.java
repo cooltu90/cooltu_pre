@@ -9,6 +9,7 @@ import com.codingtu.cooltu.lib4a.act.CoreActivity;
 import com.codingtu.cooltu.lib4a.fragment.CoreFragment;
 import com.codingtu.cooltu.processor.annotation.ModuleInfo;
 import com.codingtu.cooltu.processor.annotation.create.CreateAct;
+import com.codingtu.cooltu.processor.annotation.ui.DefaultEditDialogLayout;
 
 @ModuleInfo(
         module = Module.APP,
@@ -18,6 +19,7 @@ import com.codingtu.cooltu.processor.annotation.create.CreateAct;
         mockPackage = Pkg.DEFAULT_NET_MOCK,
         defaultLayout = Constants.LAYOUT_NAME_DEFAULT_TEMP
 )
+@DefaultEditDialogLayout(R.layout.dialog_et)
 @CreateAct(
         name = "three",
         packages = Constants.PKG_MODULE_APP + Pkg.DEFAULT_UI

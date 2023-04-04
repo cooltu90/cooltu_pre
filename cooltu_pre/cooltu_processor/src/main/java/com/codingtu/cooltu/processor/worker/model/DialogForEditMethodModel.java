@@ -8,6 +8,7 @@ import java.util.List;
 import cooltu.lib4j.data.bean.JavaInfo;
 import cooltu.lib4j.tools.ClassTool;
 import cooltu.lib4j.tools.ConvertTool;
+
 import com.codingtu.cooltu.processor.lib.bean.EditDialogInfo;
 import com.codingtu.cooltu.processor.lib.tools.NameTools;
 import com.codingtu.cooltu.processor.modelinterface.DialogForEditMethodModelInterface;
@@ -123,6 +124,20 @@ public class DialogForEditMethodModel extends SubBaseModel implements DialogForE
             addTag(sb, ConvertTool.toMethodType(objInfo.name));
         }
     }
+
+    @Override
+    public void setTagFor_textwatcher(StringBuilder sb) {
+        if (info.isUseTextwatcher) {
+            addTag(sb, "\n                    .setTextWatcher(get[Ed]TextWatcher())", ConvertTool.toClassType(info.name));
+        }
+    }
+
+    @Override
+    public void setTagFor_textwatcherMethod(StringBuilder sb) {
+        if (info.isUseTextwatcher) {
+            addLnTag(sb, "protected android.text.TextWatcher get[Ed]TextWatcher() { return null;}", ConvertTool.toClassType(info.name));
+        }
+    }
 }
 /* model_temp_start
     private [[className]] [[name]];
@@ -133,7 +148,7 @@ public class DialogForEditMethodModel extends SubBaseModel implements DialogForE
                     .setTitle("[[title]]")
                     .setHint("[[hint]]")
                     .setInputType([[inputType]])
-                    .setLayout([[layout]])
+                    .setLayout([[layout]])[[textwatcher]]
                     .setReserveOriValue([[reserve]])[[stopAnimation]]
                     .setYes(new [[className]].Yes() {
                         @Override
@@ -147,8 +162,12 @@ public class DialogForEditMethodModel extends SubBaseModel implements DialogForE
         [[name]].show();
     }
 
+    [[textwatcherMethod]]
+
     protected boolean [[name]]Yes(String text[[classType]] [[classParam]]) {
         return false;
     }
+
+
 model_temp_end */
 

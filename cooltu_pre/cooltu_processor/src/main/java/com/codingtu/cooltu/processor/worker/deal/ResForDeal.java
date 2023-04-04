@@ -208,6 +208,7 @@ public class ResForDeal extends BaseDeal {
             info.hint = use.hint();
             info.inputType = use.inputType();
             info.stopAnimation = use.stopAnimation();
+            info.isUseTextwatcher = use.isUseTextWatcher();
             info.objType = ClassTool.getAnnotationClass(new ClassTool.AnnotationClassGetter() {
                 @Override
                 public Object get() {

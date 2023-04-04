@@ -26,4 +26,6 @@ public @interface EditDialogUse {
     //传递的值类型
     Class objType() default Void.class;
 
+    boolean isUseTextWatcher() default false;
+
 }

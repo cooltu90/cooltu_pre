@@ -10,6 +10,7 @@ public class EditDialogInfo {
     public boolean reserve;
     public boolean stopAnimation;
     public String objType;
+    public boolean isUseTextwatcher;
 
     @Override
     public boolean equals(Object o) {

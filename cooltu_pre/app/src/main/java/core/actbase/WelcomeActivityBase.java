@@ -102,6 +102,37 @@ public abstract class WelcomeActivityBase extends com.codingtu.cooltu.lib4a.act.
 
 
 
+    private com.codingtu.cooltu.lib4a.view.dialogview.EditDialog ed;
+
+    protected void showEd(String text ) {
+        if (ed == null)
+            ed = new com.codingtu.cooltu.lib4a.view.dialogview.EditDialog(getThis())
+                    .setTitle("xxx")
+                    .setHint("xxx")
+                    .setInputType(1)
+                    .setLayout(com.codingtu.cooltu_pre.R.layout.dialog_et)
+                    .setTextWatcher(getEdTextWatcher())
+                    .setReserveOriValue(true)
+                    .setYes(new com.codingtu.cooltu.lib4a.view.dialogview.EditDialog.Yes() {
+                        @Override
+                        public boolean yes(String text, Object obj) {
+                            return edYes(text);
+                        }
+                    })
+                    .build();
+        ed.setEditText(text);
+        ed.setObject(null);
+        ed.show();
+    }
+
+    protected android.text.TextWatcher getEdTextWatcher() { return null;}
+
+
+    protected boolean edYes(String text ) {
+        return false;
+    }
+
+
 
 
 

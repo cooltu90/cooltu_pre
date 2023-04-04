@@ -25,6 +25,8 @@ public interface DialogForEditMethodModelInterface {
 
     public void setTagFor_layout(StringBuilder sb);
 
+    public void setTagFor_textwatcher(StringBuilder sb);
+
     public void setTagFor_reserve(StringBuilder sb);
 
     public void setTagFor_stopAnimation(StringBuilder sb);
@@ -32,6 +34,8 @@ public interface DialogForEditMethodModelInterface {
     public void setTagFor_yesParam(StringBuilder sb);
 
     public void setTagFor_obj(StringBuilder sb);
+
+    public void setTagFor_textwatcherMethod(StringBuilder sb);
 
     default List<String> getTempLinesArray() {
         ArrayList<String> lines = new ArrayList<>();
@@ -43,7 +47,7 @@ public interface DialogForEditMethodModelInterface {
         lines.add("                    .setTitle(\"[[title]]\")");
         lines.add("                    .setHint(\"[[hint]]\")");
         lines.add("                    .setInputType([[inputType]])");
-        lines.add("                    .setLayout([[layout]])");
+        lines.add("                    .setLayout([[layout]])[[textwatcher]]");
         lines.add("                    .setReserveOriValue([[reserve]])[[stopAnimation]]");
         lines.add("                    .setYes(new [[className]].Yes() {");
         lines.add("                        @Override");
@@ -57,9 +61,13 @@ public interface DialogForEditMethodModelInterface {
         lines.add("        [[name]].show();");
         lines.add("    }");
         lines.add("");
+        lines.add("    [[textwatcherMethod]]");
+        lines.add("");
         lines.add("    protected boolean [[name]]Yes(String text[[classType]] [[classParam]]) {");
         lines.add("        return false;");
         lines.add("    }");
+        lines.add("");
+        lines.add("");
         return lines;
     }
 }
