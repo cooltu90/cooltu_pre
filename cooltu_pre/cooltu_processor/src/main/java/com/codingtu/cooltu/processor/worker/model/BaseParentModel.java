@@ -224,7 +224,7 @@ public abstract class BaseParentModel extends BaseModel {
         }
         fields.put(key, key);
 
-        addLnTag(fieldSb, "    protected [type] [name];", type, name);
+        addLnTag(fieldSb, "    public [type] [name];", type, name);
     }
 
 

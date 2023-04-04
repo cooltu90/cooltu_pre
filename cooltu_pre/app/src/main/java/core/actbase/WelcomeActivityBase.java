@@ -21,7 +21,7 @@ public abstract class WelcomeActivityBase extends com.codingtu.cooltu.lib4a.act.
 
     protected int fromAct;
 
-    protected android.widget.TextView tv;
+    public android.widget.TextView tv;
 
 
     @Override
