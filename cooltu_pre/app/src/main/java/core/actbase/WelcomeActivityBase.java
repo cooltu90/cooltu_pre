@@ -125,7 +125,7 @@ public abstract class WelcomeActivityBase extends com.codingtu.cooltu.lib4a.act.
         ed.show();
     }
 
-    protected android.text.TextWatcher getEdTextWatcher() { return null;}
+    protected com.codingtu.cooltu.lib4a.view.dialogview.EditDialog.EdTextWatcher getEdTextWatcher() { return null;}
 
 
     protected boolean edYes(String text ) {

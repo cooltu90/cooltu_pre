@@ -1,6 +1,7 @@
 package com.codingtu.cooltu.lib4a.view.dialogview;
 
 import android.app.Activity;
+import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
@@ -41,7 +42,7 @@ public class EditDialog implements OnDestroy, View.OnClickListener {
     private String lastText;
     private Object obj;
     private boolean isStopAnimation;
-    private TextWatcher textWatcher;
+    private EdTextWatcher textWatcher;
 
     public EditDialog(Activity act) {
         this.act = act;
@@ -107,7 +108,7 @@ public class EditDialog implements OnDestroy, View.OnClickListener {
     }
 
 
-    public EditDialog setTextWatcher(TextWatcher textWatcher) {
+    public EditDialog setTextWatcher(EdTextWatcher textWatcher) {
         this.textWatcher = textWatcher;
         return this;
     }
@@ -129,8 +130,10 @@ public class EditDialog implements OnDestroy, View.OnClickListener {
         et = inflate.findViewById(R.id.editDialogTitleEt);
         et.setHint(hint);
         et.setImeOptions(EditorInfo.IME_ACTION_DONE);
-        if (textWatcher != null)
+        if (textWatcher != null) {
+            textWatcher.setEditText(et);
             et.addTextChangedListener(textWatcher);
+        }
         et.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
@@ -249,5 +252,9 @@ public class EditDialog implements OnDestroy, View.OnClickListener {
 
     public static interface Yes {
         public boolean yes(String text, Object obj);
+    }
+
+    public static interface EdTextWatcher extends TextWatcher {
+        public void setEditText(EditText et);
     }
 }

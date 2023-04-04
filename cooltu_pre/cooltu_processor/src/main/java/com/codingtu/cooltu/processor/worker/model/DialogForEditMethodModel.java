@@ -135,7 +135,7 @@ public class DialogForEditMethodModel extends SubBaseModel implements DialogForE
     @Override
     public void setTagFor_textwatcherMethod(StringBuilder sb) {
         if (info.isUseTextwatcher) {
-            addLnTag(sb, "protected android.text.TextWatcher get[Ed]TextWatcher() { return null;}", ConvertTool.toClassType(info.name));
+            addLnTag(sb, "protected com.codingtu.cooltu.lib4a.view.dialogview.EditDialog.EdTextWatcher get[Ed]TextWatcher() { return null;}", ConvertTool.toClassType(info.name));
         }
     }
 }
