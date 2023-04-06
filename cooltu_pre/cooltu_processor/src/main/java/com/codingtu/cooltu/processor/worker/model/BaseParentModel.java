@@ -2,29 +2,8 @@ package com.codingtu.cooltu.processor.worker.model;
 
 import com.codingtu.cooltu.constant.Constant;
 import com.codingtu.cooltu.constant.FieldName;
-import com.codingtu.cooltu.constant.FormViewType;
 import com.codingtu.cooltu.constant.FullName;
 import com.codingtu.cooltu.constant.Pkg;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.lang.model.element.ExecutableElement;
-import javax.lang.model.element.VariableElement;
-
-import cooltu.lib4j.data.bean.JavaInfo;
-import cooltu.lib4j.data.bean.KV;
-import cooltu.lib4j.data.map.ListValueMap;
-import cooltu.lib4j.tools.ClassTool;
-import cooltu.lib4j.tools.ConvertTool;
-import cooltu.lib4j.tools.CountTool;
-import cooltu.lib4j.tools.StringTool;
-import cooltu.lib4j.ts.Ts;
-import cooltu.lib4j.ts.each.Each;
-import cooltu.lib4j.ts.getter.Getter;
-
 import com.codingtu.cooltu.processor.annotation.form.FormType;
 import com.codingtu.cooltu.processor.annotation.ui.BusBack;
 import com.codingtu.cooltu.processor.annotation.ui.ClickView;
@@ -46,6 +25,25 @@ import com.codingtu.cooltu.processor.lib.tools.RenameTools;
 import com.codingtu.cooltu.processor.lib.tools.TagTools;
 import com.codingtu.cooltu.processor.worker.model.base.BaseAdapterModel;
 import com.codingtu.cooltu.processor.worker.model.base.BaseModel;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.lang.model.element.ExecutableElement;
+import javax.lang.model.element.VariableElement;
+
+import cooltu.lib4j.data.bean.JavaInfo;
+import cooltu.lib4j.data.bean.KV;
+import cooltu.lib4j.data.map.ListValueMap;
+import cooltu.lib4j.tools.ClassTool;
+import cooltu.lib4j.tools.ConvertTool;
+import cooltu.lib4j.tools.CountTool;
+import cooltu.lib4j.tools.StringTool;
+import cooltu.lib4j.ts.Ts;
+import cooltu.lib4j.ts.each.Each;
+import cooltu.lib4j.ts.getter.Getter;
 
 public abstract class BaseParentModel extends BaseModel {
 
@@ -397,9 +395,9 @@ public abstract class BaseParentModel extends BaseModel {
             List<FormItemInfo> etInfos = formItemMap.get(FormType.EDIT_TEXT);
             List<FormItemInfo> rgInfos = formItemMap.get(FormType.RADIO_GROUP);
 
-            addChange(bindsSb, etInfos, "addTextChangedListener", FullName.HANDLER_TEXT_WATCHER, FormViewType.EDIT_TEXT.ordinal());
-            addChange(bindsSb, tvInfos, "addTextChangedListener", FullName.HANDLER_TEXT_WATCHER, FormViewType.TEXT_VIEW.ordinal());
-            addChange(bindsSb, rgInfos, "addOnSelectChange", FullName.HANDLER_ON_SELECT_CHANGE, FormViewType.RADIO_GROUP.ordinal());
+            addChange(bindsSb, etInfos, "addTextChangedListener", FullName.HANDLER_TEXT_WATCHER, FormType.EDIT_TEXT);
+            addChange(bindsSb, tvInfos, "addTextChangedListener", FullName.HANDLER_TEXT_WATCHER, FormType.TEXT_VIEW);
+            addChange(bindsSb, rgInfos, "addOnSelectChange", FullName.HANDLER_ON_SELECT_CHANGE, FormType.RADIO_GROUP);
 
 
             addLnTag(bindsSb, "        if (![initFormBean]) {", FieldName.INIT_FORM_BEAN);

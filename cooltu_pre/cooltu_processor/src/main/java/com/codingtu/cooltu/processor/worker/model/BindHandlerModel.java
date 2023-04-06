@@ -1,6 +1,10 @@
 package com.codingtu.cooltu.processor.worker.model;
 
-import com.codingtu.cooltu.constant.FormViewType;
+import com.codingtu.cooltu.processor.annotation.form.FormType;
+import com.codingtu.cooltu.processor.lib.bean.FormItemInfo;
+import com.codingtu.cooltu.processor.lib.tools.FormTool;
+import com.codingtu.cooltu.processor.modelinterface.BindHandlerModelInterface;
+import com.codingtu.cooltu.processor.worker.model.base.SubBaseModel;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,11 +13,6 @@ import cooltu.lib4j.data.map.ListValueMap;
 import cooltu.lib4j.tools.CountTool;
 import cooltu.lib4j.ts.Ts;
 import cooltu.lib4j.ts.each.Each;
-import com.codingtu.cooltu.processor.annotation.form.FormType;
-import com.codingtu.cooltu.processor.lib.bean.FormItemInfo;
-import com.codingtu.cooltu.processor.lib.tools.FormTool;
-import com.codingtu.cooltu.processor.modelinterface.BindHandlerModelInterface;
-import com.codingtu.cooltu.processor.worker.model.base.SubBaseModel;
 
 public class BindHandlerModel extends SubBaseModel implements BindHandlerModelInterface {
 
@@ -55,9 +54,9 @@ public class BindHandlerModel extends SubBaseModel implements BindHandlerModelIn
 
     @Override
     public void setTagFor_cases(StringBuilder sb) {
-        setTagFor_cases(sb, formItemMap.get(FormType.EDIT_TEXT), FormViewType.EDIT_TEXT.ordinal());
-        setTagFor_cases(sb, formItemMap.get(FormType.TEXT_VIEW), FormViewType.TEXT_VIEW.ordinal());
-        setTagFor_cases(sb, formItemMap.get(FormType.RADIO_GROUP), FormViewType.RADIO_GROUP.ordinal());
+        setTagFor_cases(sb, formItemMap.get(FormType.EDIT_TEXT), FormType.EDIT_TEXT);
+        setTagFor_cases(sb, formItemMap.get(FormType.TEXT_VIEW), FormType.TEXT_VIEW);
+        setTagFor_cases(sb, formItemMap.get(FormType.RADIO_GROUP), FormType.RADIO_GROUP);
     }
 
     private void setTagFor_cases(StringBuilder sb, List<FormItemInfo> etTvItems, int index) {
