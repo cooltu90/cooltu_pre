@@ -35,7 +35,7 @@ public interface AdapterDefaultMoreModelInterface {
         lines.add("@VH(R.layout.[[layoutName]])");
         lines.add("public abstract class [[name]] extends CoreMoreListAdapter<[[vhName]], [[beanTypeName]]> {");
         lines.add("    @Override");
-        lines.add("    public void onBindViewHolder([[vhName]] vh, int position, [[beanTypeName]] t) {");
+        lines.add("    public void onBindVH([[vhName]] vh, int position, [[beanTypeName]] t) {");
         lines.add("");
         lines.add("    }");
         lines.add("}");

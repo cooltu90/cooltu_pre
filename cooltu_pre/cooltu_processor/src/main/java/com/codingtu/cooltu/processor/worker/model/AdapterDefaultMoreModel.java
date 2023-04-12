@@ -123,7 +123,7 @@ import [[vhFullName]];
 @VH(R.layout.[[layoutName]])
 public abstract class [[name]] extends CoreMoreListAdapter<[[vhName]], [[beanTypeName]]> {
     @Override
-    public void onBindViewHolder([[vhName]] vh, int position, [[beanTypeName]] t) {
+    public void onBindVH([[vhName]] vh, int position, [[beanTypeName]] t) {
 
     }
 }
