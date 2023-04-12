@@ -100,6 +100,40 @@ public abstract class WelcomeActivityBase extends com.codingtu.cooltu.lib4a.act.
 
 
 
+    private com.codingtu.cooltu.lib4a.view.dialogview.ToastDialog toastDialog;
+
+    protected com.codingtu.cooltu.lib4a.view.dialogview.ToastDialog getToastDialog() {
+        if (toastDialog == null)
+            toastDialog = new com.codingtu.cooltu.lib4a.view.dialogview.ToastDialog(getThis())
+                    .setLayout(com.codingtu.cooltu.lib4a.R.layout.default_dialog_toast)
+                    .build();
+        return toastDialog;
+    }
+
+    protected void toastShow(String msg) {
+        com.codingtu.cooltu.lib4a.view.dialogview.ToastDialog td = getToastDialog();
+        td.setContent(msg);
+        td.show();
+    }
+
+    protected void toastSet(String msg) {
+        if (cooltu.lib4j.tools.StringTool.isNotBlank(msg)) {
+            getToastDialog().setContent(msg);
+        }
+    }
+
+    protected void toastHidden(String msg, long time, com.codingtu.cooltu.lib4a.view.layerview.listener.OnHiddenFinished onHiddenFinished) {
+        toastSet(msg);
+        com.codingtu.cooltu.lib4a.tools.HandlerTool.getMainHandler().postDelayed(() -> getToastDialog().hidden(onHiddenFinished), time);
+    }
+
+    protected void toastHidden(String msg, com.codingtu.cooltu.lib4a.view.layerview.listener.OnHiddenFinished onHiddenFinished) {
+        toastHidden(msg, 1000, onHiddenFinished);
+    }
+
+    protected void toastHidden(String msg) {
+        toastHidden(msg, null);
+    }
 
 
     private com.codingtu.cooltu.lib4a.view.dialogview.EditDialog ed;
@@ -110,7 +144,7 @@ public abstract class WelcomeActivityBase extends com.codingtu.cooltu.lib4a.act.
                     .setTitle("xxx")
                     .setHint("xxx")
                     .setInputType(1)
-                    .setLayout(com.codingtu.cooltu_pre.R.layout.dialog_et)
+                    .setLayout(com.codingtu.cooltu.lib4a.R.layout.default_dialog_edit)
                     .setTextWatcher(getEdTextWatcher())
                     .setReserveOriValue(true)
                     .setYes(new com.codingtu.cooltu.lib4a.view.dialogview.EditDialog.Yes() {

@@ -21,7 +21,6 @@ import com.codingtu.cooltu.processor.annotation.ui.DefaultEditDialogLayout;
         mockPackage = Pkg.DEFAULT_NET_MOCK,
         defaultLayout = Constants.LAYOUT_NAME_DEFAULT_TEMP
 )
-@DefaultEditDialogLayout(R.layout.dialog_et)
 @CreateAct(
         name = "three",
         packages = Constants.PKG_MODULE_APP + Pkg.DEFAULT_UI

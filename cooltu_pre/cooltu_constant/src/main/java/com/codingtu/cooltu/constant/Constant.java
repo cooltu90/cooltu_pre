@@ -65,9 +65,9 @@ public class Constant {
     public static List<String> DELETE_ACTS;
     public static List<String> RENAME_ACTS;
     //package
-    public static String DEFAULT_DIALOG_LAYOUT;
-    public static String DEFAULT_TOAST_DIALOG_LAYOUT;
-    public static String DEFAULT_EDIT_DIALOG_LAYOUT;
+    public static String DEFAULT_DIALOG_LAYOUT = "com.codingtu.cooltu.lib4a.R.layout.default_dialog";
+    public static String DEFAULT_TOAST_DIALOG_LAYOUT = "com.codingtu.cooltu.lib4a.R.layout.default_dialog_toast";
+    public static String DEFAULT_EDIT_DIALOG_LAYOUT = "com.codingtu.cooltu.lib4a.R.layout.default_dialog_edit";
     public static String DEFAULT_TEMP_LAYOUT;
 
     //文件名
