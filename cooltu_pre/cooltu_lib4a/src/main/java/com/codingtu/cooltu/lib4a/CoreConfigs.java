@@ -6,8 +6,10 @@ import android.util.Log;
 
 import cooltu.lib4j.config.LibConfigs;
 import cooltu.lib4j.log.LibLogs;
+
 import com.codingtu.cooltu.lib4a.net.retrofit.OkHttpClientCreater;
 import com.codingtu.cooltu.lib4a.net.retrofit.RetrofitCreater;
+
 import okhttp3.OkHttpClient;
 
 public abstract class CoreConfigs extends LibConfigs {
@@ -54,6 +56,7 @@ public abstract class CoreConfigs extends LibConfigs {
     }
 
     public abstract String getImageGetterFileProvider();
+
 
     public Integer getDefaultIcon() {
         return R.mipmap.default_img;

@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.hardware.camera2.CameraManager;
 import android.location.LocationManager;
 import android.media.AudioManager;
+import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
 import android.telephony.TelephonyManager;
 import android.view.WindowManager;
@@ -62,5 +63,9 @@ public class SystemTool {
 
     public static WifiManager getWifiManager() {
         return (WifiManager) getContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+    }
+
+    public static ConnectivityManager getConnectivityManager() {
+        return (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
     }
 }
