@@ -25,4 +25,5 @@
     <item name="dialogNoBt" type="id" />
     <!-- DialogView -->
     <item name="floatingIv" type="id" />
+    <item name="labelViewTv" type="id" />
 </resources>

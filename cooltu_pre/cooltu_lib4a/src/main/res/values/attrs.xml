@@ -6,6 +6,19 @@
     <attr name="icon_size" format="dimension" />
     <attr name="corner_radius" format="dimension" />
 
+
+    <declare-styleable name="LabelView">
+        <attr name="labelBgColor" format="color|reference" />
+        <attr name="labelTextColor" format="color|reference" />
+        <attr name="labelRow" format="integer" />
+        <attr name="labelLeft" format="dimension" />
+        <attr name="labelH" format="dimension" />
+        <attr name="labelRadius" format="dimension" />
+        <attr name="labelSize" format="dimension" />
+        <attr name="labelPadding" format="dimension" />
+        <attr name="labelDivider" format="dimension" />
+        <attr name="labelTop" format="dimension" />
+    </declare-styleable>
     <declare-styleable name="RoundImageView">
         <attr name="corner_radius" />
         <attr name="corner_top_left_radius" format="dimension" />
