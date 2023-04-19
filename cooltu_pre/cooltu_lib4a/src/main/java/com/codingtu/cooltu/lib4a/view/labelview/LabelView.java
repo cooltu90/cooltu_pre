@@ -139,7 +139,8 @@ public class LabelView extends CoreLabelView {
     public void destroy() {
         super.destroy();
         this.onClickListener = null;
-        labels.clear();
+        if (labels != null)
+            labels.clear();
         labels = null;
     }
 }
