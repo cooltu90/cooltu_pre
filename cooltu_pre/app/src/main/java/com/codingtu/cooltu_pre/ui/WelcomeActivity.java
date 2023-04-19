@@ -32,7 +32,6 @@ public class WelcomeActivity extends WelcomeActivityBase {
                 t.label = Fake.nameInNet();
             }
         });
-
         lv.setLable(R.id.labelTv, ts);
     }
 
