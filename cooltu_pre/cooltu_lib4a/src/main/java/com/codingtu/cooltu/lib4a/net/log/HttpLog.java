@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cooltu.lib4j.tools.StringTool;
+
 import com.codingtu.cooltu.lib4a.CoreConfigs;
 import com.codingtu.cooltu.lib4a.log.Logs;
 
@@ -191,7 +192,7 @@ public class HttpLog {
 
 
         for (int i = 0; i < logs.size(); i++) {
-            Logs.i(CoreConfigs.configs().getDefaultLogTag() + "_API", logs.get(i));
+            Logs.i("LOG_API", logs.get(i));
         }
 
     }
