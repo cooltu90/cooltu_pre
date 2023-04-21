@@ -45,4 +45,15 @@ public abstract class BaseAdapterModel extends BaseModel {
     public void setAdapterName(String adapterName) {
         this.adapterName = adapterName;
     }
+
+
+    public String getLoadMore() {
+        String loadMore = "";
+        if ("adapter".equals(adapterName)) {
+            loadMore = "loadMore";
+        } else {
+            loadMore = adapterName + "LoadMore";
+        }
+        return loadMore;
+    }
 }

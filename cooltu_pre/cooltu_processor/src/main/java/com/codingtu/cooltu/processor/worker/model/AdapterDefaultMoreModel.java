@@ -40,7 +40,7 @@ public class AdapterDefaultMoreModel extends BaseAdapterModel implements Adapter
     public StringBuilder getOthers(JavaInfo baseInfo) {
         StringBuilder sb = getTag("forUiOthers");
         addLnTag(sb, "    protected [type] [adapter];", adapter, adapterName);
-        addLnTag(sb, "    protected void loadMore(int page) {}");
+        addLnTag(sb, "    protected void [loadMore](int page) {}", getLoadMore());
         return sb;
     }
 
@@ -52,7 +52,7 @@ public class AdapterDefaultMoreModel extends BaseAdapterModel implements Adapter
         addLnTag(sb, "        [adapter] = new [type](){", adapterName, adapter);
         addLnTag(sb, "            @Override");
         addLnTag(sb, "            protected void loadMore(int page) {");
-        addLnTag(sb, "                [baseTypeName].this.loadMore(page);", baseInfo.name);
+        addLnTag(sb, "                [baseTypeName].this.[loadMore](page);", baseInfo.name, getLoadMore());
         addLnTag(sb, "            }");
         addLnTag(sb, "        };");
         addLnTag(sb, "        [adapter].setVH([vh].class);", adapterName, vhInfo.fullName);
@@ -66,7 +66,7 @@ public class AdapterDefaultMoreModel extends BaseAdapterModel implements Adapter
     @Override
     public StringBuilder getOnDestorys(JavaInfo baseInfo) {
         StringBuilder sb = getTag("forUiOnDestorys");
-        addLnTag(sb, "        adapter = null;");
+        addLnTag(sb, "        [adapter] = null;", adapterName);
         return sb;
     }
 
