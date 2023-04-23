@@ -6,7 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
-import android.view.View;
+import android.widget.LinearLayout;
 
 import com.codingtu.cooltu.lib4a.R;
 import com.codingtu.cooltu.lib4a.act.OnDestroy;
@@ -17,7 +17,7 @@ import com.codingtu.cooltu.lib4a.view.attrs.Attrs;
 import com.codingtu.cooltu.lib4a.view.attrs.AttrsTools;
 import com.codingtu.cooltu.lib4a.view.attrs.GetAttrs;
 
-public class CoreView extends View implements OnDestroy {
+public class CoreLinearLayout extends LinearLayout implements OnDestroy {
     private int bgRadius;
     private int topLeftbgRadius;
     private int topRightbgRadius;
@@ -26,17 +26,23 @@ public class CoreView extends View implements OnDestroy {
     private int roundBgColor;
     private Paint roundPaint;
 
-    public CoreView(Context context) {
+    public CoreLinearLayout(Context context) {
         this(context, null);
     }
 
-    public CoreView(Context context, AttributeSet attrs) {
+    public CoreLinearLayout(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public CoreView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public CoreLinearLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs, defStyleAttr);
+    }
+
+    public CoreLinearLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+        init(context, attrs, defStyleAttr);
+
     }
 
     protected void init(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -53,7 +59,6 @@ public class CoreView extends View implements OnDestroy {
                 roundBgColor = attrs.getColor(R.styleable.CoreView_roundBgColor, Color.TRANSPARENT);
             }
         });
-
         if (roundBgColor != Color.TRANSPARENT) {
             roundPaint = DrawTool.getDefaultPaint();
             roundPaint.setColor(roundBgColor);

@@ -21,7 +21,6 @@ public abstract class WelcomeActivityBase extends com.codingtu.cooltu.lib4a.act.
 
     protected int fromAct;
 
-    public com.codingtu.cooltu.lib4a.view.labelview.LabelView lv;
 
 
     @Override
@@ -32,9 +31,7 @@ public abstract class WelcomeActivityBase extends com.codingtu.cooltu.lib4a.act.
         Intent data = getIntent();
         fromAct = core.tools.Pass.fromAct(data);
 
-        lv = findViewById(com.codingtu.cooltu_pre.R.id.lv);
 
-        lv.setOnClickListener(this);
 
 
 
@@ -53,21 +50,9 @@ public abstract class WelcomeActivityBase extends com.codingtu.cooltu.lib4a.act.
     public void onClick(View view) {
 
         switch (view.getId()) {
-            case com.codingtu.cooltu_pre.R.id.lv:
-                lvClick(
-
-                );
-                break;
-            case com.codingtu.cooltu_pre.R.id.labelTv:
-                labelTvClick(
-                        (com.codingtu.cooltu_pre.bean.MyLabel) view.getTag(com.codingtu.cooltu.lib4a.R.id.tag_0)
-                );
-                break;
 
         }
     }
-    protected void lvClick() {}
-    protected void labelTvClick(com.codingtu.cooltu_pre.bean.MyLabel label) {}
 
 
     public android.view.View.OnClickListener getOnClick() {

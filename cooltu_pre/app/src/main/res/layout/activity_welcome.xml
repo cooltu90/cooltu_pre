@@ -3,23 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff">
+    android:background="#000">
 
-    <com.codingtu.cooltu.lib4a.view.labelview.LabelView
-        android:id="@+id/lv"
+
+    <com.codingtu.cooltu.lib4a.view.base.CoreView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        app:labelBgColor="#ccc"
-        app:labelDivider="9.12dp"
-        app:labelH="22.08dp"
-        app:labelLeft="17dp"
-        app:labelPadding="6.72dp"
-        app:labelRadius="11dp"
-        app:labelSize="11.52sp"
-        app:labelTextColor="#fff"
-        app:labelTop="6.72dp" />
-
-
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
+        app:bg_top_left_radius="20dp"
+        app:roundBgColor="#fff" />
 
 </RelativeLayout>

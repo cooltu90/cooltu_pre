@@ -5,6 +5,29 @@
     <attr name="title" format="string" />
     <attr name="icon_size" format="dimension" />
     <attr name="corner_radius" format="dimension" />
+    <attr name="bg_radius" format="dimension" />
+    <attr name="bg_top_left_radius" format="dimension" />
+    <attr name="bg_top_right_radius" format="dimension" />
+    <attr name="bg_bottom_left_radius" format="dimension" />
+    <attr name="bg_bottom_right_radius" format="dimension" />
+    <attr name="roundBgColor" format="color|reference" />
+
+    <declare-styleable name="CoreView">
+        <attr name="bg_radius" />
+        <attr name="bg_top_left_radius" />
+        <attr name="bg_top_right_radius" />
+        <attr name="bg_bottom_left_radius" />
+        <attr name="bg_bottom_right_radius" />
+        <attr name="roundBgColor" />
+    </declare-styleable>
+    <declare-styleable name="CoreLinearLayout">
+        <attr name="bg_radius" />
+        <attr name="bg_top_left_radius" />
+        <attr name="bg_top_right_radius" />
+        <attr name="bg_bottom_left_radius" />
+        <attr name="bg_bottom_right_radius" />
+        <attr name="roundBgColor" />
+    </declare-styleable>
 
 
     <declare-styleable name="LabelView">
