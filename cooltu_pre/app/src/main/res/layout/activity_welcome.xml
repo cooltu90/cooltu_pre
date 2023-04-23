@@ -6,11 +6,11 @@
     android:background="#000">
 
 
-    <com.codingtu.cooltu.lib4a.view.base.CoreView
+    <com.codingtu.cooltu.lib4a.view.base.CoreRelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="100dp"
-        app:bg_top_left_radius="20dp"
-        app:roundBgColor="#fff" />
+        android:background="@mipmap/default_img"
+        app:bg_top_left_radius="20dp" />
 
 </RelativeLayout>

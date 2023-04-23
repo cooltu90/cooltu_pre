@@ -56,4 +56,10 @@ public class VersionInfo {
      * + 对CoreView，CoreRelativeLayout，CoreLinearLayout增加圆角背景支持
      *
      **************************************************/
+    /**************************************************
+     *
+     * v1.0.21
+     * + 对CoreView，CoreRelativeLayout，CoreLinearLayout增加圆角背景bug修改
+     *
+     **************************************************/
 }
