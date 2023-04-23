@@ -46,11 +46,11 @@ public class CoreRelativeLayout extends RelativeLayout implements OnDestroy {
         roundBgTool = new RoundBgTool();
         roundBgTool.init(context, attrs,
                 R.styleable.CoreRelativeLayout,
-                R.styleable.CoreRelativeLayout_bg_radius,
-                R.styleable.CoreRelativeLayout_bg_top_left_radius,
-                R.styleable.CoreRelativeLayout_bg_top_right_radius,
-                R.styleable.CoreRelativeLayout_bg_bottom_left_radius,
-                R.styleable.CoreRelativeLayout_bg_bottom_right_radius);
+                R.styleable.CoreRelativeLayout_android_radius,
+                R.styleable.CoreRelativeLayout_android_topLeftRadius,
+                R.styleable.CoreRelativeLayout_android_topRightRadius,
+                R.styleable.CoreRelativeLayout_android_bottomLeftRadius,
+                R.styleable.CoreRelativeLayout_android_bottomRightRadius);
     }
 
     @Override

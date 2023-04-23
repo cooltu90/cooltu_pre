@@ -41,12 +41,11 @@ public class CoreView extends View implements OnDestroy {
         roundBgTool = new RoundBgTool();
         roundBgTool.init(context, attrs,
                 R.styleable.CoreView,
-                R.styleable.CoreView_bg_radius,
-                R.styleable.CoreView_bg_top_left_radius,
-                R.styleable.CoreView_bg_top_right_radius,
-                R.styleable.CoreView_bg_bottom_left_radius,
-                R.styleable.CoreView_bg_bottom_right_radius
-        );
+                R.styleable.CoreView_android_radius,
+                R.styleable.CoreView_android_topLeftRadius,
+                R.styleable.CoreView_android_topRightRadius,
+                R.styleable.CoreView_android_bottomLeftRadius,
+                R.styleable.CoreView_android_bottomRightRadius);
 
     }
 

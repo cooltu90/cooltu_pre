@@ -13,26 +13,39 @@
     <attr name="roundBgColor" format="color|reference" />
 
     <declare-styleable name="CoreView">
-        <attr name="bg_radius" />
-        <attr name="bg_top_left_radius" />
-        <attr name="bg_top_right_radius" />
-        <attr name="bg_bottom_left_radius" />
-        <attr name="bg_bottom_right_radius" />
-        <attr name="roundBgColor" />
+        <attr name="android:radius" />
+        <attr name="android:topLeftRadius" />
+        <attr name="android:topRightRadius" />
+        <attr name="android:bottomLeftRadius" />
+        <attr name="android:bottomRightRadius" />
     </declare-styleable>
     <declare-styleable name="CoreLinearLayout">
-        <attr name="bg_radius" />
-        <attr name="bg_top_left_radius" />
-        <attr name="bg_top_right_radius" />
-        <attr name="bg_bottom_left_radius" />
-        <attr name="bg_bottom_right_radius" />
+        <attr name="android:radius" />
+        <attr name="android:topLeftRadius" />
+        <attr name="android:topRightRadius" />
+        <attr name="android:bottomLeftRadius" />
+        <attr name="android:bottomRightRadius" />
     </declare-styleable>
     <declare-styleable name="CoreRelativeLayout">
-        <attr name="bg_radius" />
-        <attr name="bg_top_left_radius" />
-        <attr name="bg_top_right_radius" />
-        <attr name="bg_bottom_left_radius" />
-        <attr name="bg_bottom_right_radius" />
+        <attr name="android:radius" />
+        <attr name="android:topLeftRadius" />
+        <attr name="android:topRightRadius" />
+        <attr name="android:bottomLeftRadius" />
+        <attr name="android:bottomRightRadius" />
+    </declare-styleable>
+    <declare-styleable name="CoreTextView">
+        <attr name="android:radius" />
+        <attr name="android:topLeftRadius" />
+        <attr name="android:topRightRadius" />
+        <attr name="android:bottomLeftRadius" />
+        <attr name="android:bottomRightRadius" />
+    </declare-styleable>
+    <declare-styleable name="CoreImageView">
+        <attr name="android:radius" />
+        <attr name="android:topLeftRadius" />
+        <attr name="android:topRightRadius" />
+        <attr name="android:bottomLeftRadius" />
+        <attr name="android:bottomRightRadius" />
     </declare-styleable>
 
     <declare-styleable name="LabelView">

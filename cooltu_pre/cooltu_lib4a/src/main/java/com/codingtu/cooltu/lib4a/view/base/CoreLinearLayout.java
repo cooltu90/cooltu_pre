@@ -54,11 +54,11 @@ public class CoreLinearLayout extends LinearLayout implements OnDestroy {
         roundBgTool = new RoundBgTool();
         roundBgTool.init(context, attrs,
                 R.styleable.CoreLinearLayout,
-                R.styleable.CoreLinearLayout_bg_radius,
-                R.styleable.CoreLinearLayout_bg_top_left_radius,
-                R.styleable.CoreLinearLayout_bg_top_right_radius,
-                R.styleable.CoreLinearLayout_bg_bottom_left_radius,
-                R.styleable.CoreLinearLayout_bg_bottom_right_radius);
+                R.styleable.CoreLinearLayout_android_radius,
+                R.styleable.CoreLinearLayout_android_topLeftRadius,
+                R.styleable.CoreLinearLayout_android_topRightRadius,
+                R.styleable.CoreLinearLayout_android_bottomLeftRadius,
+                R.styleable.CoreLinearLayout_android_bottomRightRadius);
     }
 
     @Override

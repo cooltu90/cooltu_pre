@@ -62,4 +62,10 @@ public class VersionInfo {
      * + 对CoreView，CoreRelativeLayout，CoreLinearLayout增加圆角背景bug修改
      *
      **************************************************/
+    /**************************************************
+     *
+     * v1.0.22
+     * + 对CoreView，CoreRelativeLayout，CoreLinearLayout圆角背景的xml配置参数名修改
+     *
+     **************************************************/
 }
