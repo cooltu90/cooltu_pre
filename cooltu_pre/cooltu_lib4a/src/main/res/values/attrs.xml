@@ -59,6 +59,15 @@
         <attr name="strokeWidth" />
         <attr name="strokeColor" />
     </declare-styleable>
+    <declare-styleable name="CoreEditText">
+        <attr name="android:radius" />
+        <attr name="android:topLeftRadius" />
+        <attr name="android:topRightRadius" />
+        <attr name="android:bottomLeftRadius" />
+        <attr name="android:bottomRightRadius" />
+        <attr name="strokeWidth" />
+        <attr name="strokeColor" />
+    </declare-styleable>
 
     <declare-styleable name="LabelView">
         <attr name="labelBgColor" format="color|reference" />
