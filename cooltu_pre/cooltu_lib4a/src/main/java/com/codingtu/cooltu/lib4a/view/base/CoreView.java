@@ -11,6 +11,7 @@ import android.view.View;
 import com.codingtu.cooltu.lib4a.R;
 import com.codingtu.cooltu.lib4a.act.OnDestroy;
 import com.codingtu.cooltu.lib4a.bean.LTRB;
+import com.codingtu.cooltu.lib4a.log.Logs;
 import com.codingtu.cooltu.lib4a.tools.DestoryTool;
 import com.codingtu.cooltu.lib4a.tools.DrawTool;
 import com.codingtu.cooltu.lib4a.view.attrs.Attrs;

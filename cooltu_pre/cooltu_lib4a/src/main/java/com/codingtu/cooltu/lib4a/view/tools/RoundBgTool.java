@@ -3,7 +3,6 @@ package com.codingtu.cooltu.lib4a.view.tools;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
@@ -16,7 +15,7 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.codingtu.cooltu.lib4a.R;
+import com.codingtu.cooltu.lib4a.log.Logs;
 import com.codingtu.cooltu.lib4a.tools.BitmapTool;
 import com.codingtu.cooltu.lib4a.tools.DrawTool;
 import com.codingtu.cooltu.lib4a.view.attrs.Attrs;
@@ -31,6 +30,7 @@ public class RoundBgTool {
     private int bottomLeftbgRadius;
     private int bottomRightbgRadius;
     private Paint roundPaint;
+    private Integer bgColor;
 
 
     public void init(Context context, AttributeSet set, int[] attrs,
@@ -53,13 +53,16 @@ public class RoundBgTool {
         if (background != null) {
             Bitmap bitmap = BitmapTool.createBitmap(view.getWidth(), view.getHeight());
             Canvas canvas = new Canvas(bitmap);
-            if (background instanceof ColorDrawable) {
-                roundPaint.setColor(((ColorDrawable) background).getColor());
-                drwaPath(view, canvas);
-
+            if (bgColor != null) {
+                roundPaint.setColor(bgColor);
+                drawPath(view, canvas);
+            } else if (background instanceof ColorDrawable) {
+                bgColor = ((ColorDrawable) background).getColor();
+                roundPaint.setColor(bgColor);
+                drawPath(view, canvas);
             } else if (background instanceof BitmapDrawable) {
                 Bitmap bitmap1 = ((BitmapDrawable) background).getBitmap();
-                drwaPath(view, canvas);
+                drawPath(view, canvas);
                 roundPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
                 canvas.drawBitmap(bitmap1, new Rect(0, 0, bitmap1.getWidth(), bitmap1.getHeight())
                         , new Rect(0, 0, view.getWidth(), view.getHeight()), roundPaint);
@@ -69,7 +72,7 @@ public class RoundBgTool {
         }
     }
 
-    private void drwaPath(View view, Canvas canvas) {
+    private void drawPath(View view, Canvas canvas) {
         Path path = new Path();
         path.addRoundRect(new RectF(0, 0, view.getWidth(), view.getHeight()), new float[]{
                 topLeftbgRadius, topLeftbgRadius,

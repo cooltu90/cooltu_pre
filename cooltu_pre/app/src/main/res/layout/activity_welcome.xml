@@ -4,12 +4,19 @@
     android:layout_height="match_parent"
     android:background="#000">
 
-
-    <com.codingtu.cooltu.lib4a.view.base.CoreRelativeLayout
+    <Button
+        android:id="@+id/bt"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="100dp"
-        android:background="@mipmap/default_img"
-        android:topLeftRadius="20dp" />
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true" />
+
+
+    <com.codingtu.cooltu.lib4a.view.base.CoreView
+        android:layout_centerInParent="true"
+        android:id="@+id/cv"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="#FF0000"
+        android:radius="10dp" />
 
 </RelativeLayout>

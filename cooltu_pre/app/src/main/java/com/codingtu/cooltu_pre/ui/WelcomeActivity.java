@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
+import com.codingtu.cooltu.lib4a.tools.MobileTool;
+import com.codingtu.cooltu.lib4a.tools.ViewTool;
 import com.codingtu.cooltu.processor.annotation.tools.To;
 import com.codingtu.cooltu.processor.annotation.ui.ActBase;
 import com.codingtu.cooltu.processor.annotation.ui.ClickView;
@@ -21,6 +23,19 @@ import core.actres.WelcomeActivityRes;
 @ActBase(layout = R.layout.activity_welcome)
 public class WelcomeActivity extends WelcomeActivityBase {
 
+    private int count = 0;
 
+
+    @ClickView(R.id.bt)
+    public void btClick() {
+        if (count % 2 == 0) {
+            //变小
+            ViewTool.setWH(cv, MobileTool.dpToPx(10), MobileTool.dpToPx(10));
+        } else {
+            //变大
+            ViewTool.setWH(cv, MobileTool.dpToPx(100), MobileTool.dpToPx(100));
+        }
+        count++;
+    }
 
 }

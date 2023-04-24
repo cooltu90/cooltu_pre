@@ -21,6 +21,8 @@ public abstract class WelcomeActivityBase extends com.codingtu.cooltu.lib4a.act.
 
     protected int fromAct;
 
+    public android.widget.Button bt;
+    public com.codingtu.cooltu.lib4a.view.base.CoreView cv;
 
 
     @Override
@@ -31,7 +33,10 @@ public abstract class WelcomeActivityBase extends com.codingtu.cooltu.lib4a.act.
         Intent data = getIntent();
         fromAct = core.tools.Pass.fromAct(data);
 
+        bt = findViewById(com.codingtu.cooltu_pre.R.id.bt);
+        cv = findViewById(com.codingtu.cooltu_pre.R.id.cv);
 
+        bt.setOnClickListener(this);
 
 
 
@@ -50,9 +55,15 @@ public abstract class WelcomeActivityBase extends com.codingtu.cooltu.lib4a.act.
     public void onClick(View view) {
 
         switch (view.getId()) {
+            case com.codingtu.cooltu_pre.R.id.bt:
+                btClick(
+
+                );
+                break;
 
         }
     }
+    protected void btClick() {}
 
 
     public android.view.View.OnClickListener getOnClick() {
