@@ -50,7 +50,9 @@ public class CoreRelativeLayout extends RelativeLayout implements OnDestroy {
                 R.styleable.CoreRelativeLayout_android_topLeftRadius,
                 R.styleable.CoreRelativeLayout_android_topRightRadius,
                 R.styleable.CoreRelativeLayout_android_bottomLeftRadius,
-                R.styleable.CoreRelativeLayout_android_bottomRightRadius);
+                R.styleable.CoreRelativeLayout_android_bottomRightRadius,
+                R.styleable.CoreRelativeLayout_strokeWidth,
+                R.styleable.CoreRelativeLayout_strokeColor);
     }
 
     @Override

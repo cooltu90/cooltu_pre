@@ -46,7 +46,9 @@ public class CoreView extends View implements OnDestroy {
                 R.styleable.CoreView_android_topLeftRadius,
                 R.styleable.CoreView_android_topRightRadius,
                 R.styleable.CoreView_android_bottomLeftRadius,
-                R.styleable.CoreView_android_bottomRightRadius);
+                R.styleable.CoreView_android_bottomRightRadius,
+                R.styleable.CoreView_strokeWidth,
+                R.styleable.CoreView_strokeColor);
 
     }
 

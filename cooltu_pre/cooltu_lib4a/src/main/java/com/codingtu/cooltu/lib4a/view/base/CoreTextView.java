@@ -35,7 +35,9 @@ public class CoreTextView extends androidx.appcompat.widget.AppCompatTextView im
                 R.styleable.CoreTextView_android_topLeftRadius,
                 R.styleable.CoreTextView_android_topRightRadius,
                 R.styleable.CoreTextView_android_bottomLeftRadius,
-                R.styleable.CoreTextView_android_bottomRightRadius);
+                R.styleable.CoreTextView_android_bottomRightRadius,
+                R.styleable.CoreTextView_strokeWidth,
+                R.styleable.CoreTextView_strokeColor);
     }
 
     @Override

@@ -11,6 +11,8 @@
     <attr name="bg_bottom_left_radius" format="dimension" />
     <attr name="bg_bottom_right_radius" format="dimension" />
     <attr name="roundBgColor" format="color|reference" />
+    <attr name="strokeWidth" format="dimension" />
+    <attr name="strokeColor" format="color|reference" />
 
     <declare-styleable name="CoreView">
         <attr name="android:radius" />
@@ -18,6 +20,8 @@
         <attr name="android:topRightRadius" />
         <attr name="android:bottomLeftRadius" />
         <attr name="android:bottomRightRadius" />
+        <attr name="strokeWidth" />
+        <attr name="strokeColor" />
     </declare-styleable>
     <declare-styleable name="CoreLinearLayout">
         <attr name="android:radius" />
@@ -25,6 +29,8 @@
         <attr name="android:topRightRadius" />
         <attr name="android:bottomLeftRadius" />
         <attr name="android:bottomRightRadius" />
+        <attr name="strokeWidth" />
+        <attr name="strokeColor" />
     </declare-styleable>
     <declare-styleable name="CoreRelativeLayout">
         <attr name="android:radius" />
@@ -32,6 +38,8 @@
         <attr name="android:topRightRadius" />
         <attr name="android:bottomLeftRadius" />
         <attr name="android:bottomRightRadius" />
+        <attr name="strokeWidth" />
+        <attr name="strokeColor" />
     </declare-styleable>
     <declare-styleable name="CoreTextView">
         <attr name="android:radius" />
@@ -39,6 +47,8 @@
         <attr name="android:topRightRadius" />
         <attr name="android:bottomLeftRadius" />
         <attr name="android:bottomRightRadius" />
+        <attr name="strokeWidth" />
+        <attr name="strokeColor" />
     </declare-styleable>
     <declare-styleable name="CoreImageView">
         <attr name="android:radius" />
@@ -46,6 +56,8 @@
         <attr name="android:topRightRadius" />
         <attr name="android:bottomLeftRadius" />
         <attr name="android:bottomRightRadius" />
+        <attr name="strokeWidth" />
+        <attr name="strokeColor" />
     </declare-styleable>
 
     <declare-styleable name="LabelView">

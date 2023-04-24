@@ -58,7 +58,9 @@ public class CoreLinearLayout extends LinearLayout implements OnDestroy {
                 R.styleable.CoreLinearLayout_android_topLeftRadius,
                 R.styleable.CoreLinearLayout_android_topRightRadius,
                 R.styleable.CoreLinearLayout_android_bottomLeftRadius,
-                R.styleable.CoreLinearLayout_android_bottomRightRadius);
+                R.styleable.CoreLinearLayout_android_bottomRightRadius,
+                R.styleable.CoreLinearLayout_strokeWidth,
+                R.styleable.CoreLinearLayout_strokeColor);
     }
 
     @Override

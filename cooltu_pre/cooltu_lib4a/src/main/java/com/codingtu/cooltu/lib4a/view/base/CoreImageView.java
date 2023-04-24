@@ -38,7 +38,9 @@ public class CoreImageView extends AppCompatImageView implements OnDestroy {
                 R.styleable.CoreImageView_android_topLeftRadius,
                 R.styleable.CoreImageView_android_topRightRadius,
                 R.styleable.CoreImageView_android_bottomLeftRadius,
-                R.styleable.CoreImageView_android_bottomRightRadius);
+                R.styleable.CoreImageView_android_bottomRightRadius,
+                R.styleable.CoreImageView_strokeWidth,
+                R.styleable.CoreImageView_strokeColor);
     }
 
     @Override
