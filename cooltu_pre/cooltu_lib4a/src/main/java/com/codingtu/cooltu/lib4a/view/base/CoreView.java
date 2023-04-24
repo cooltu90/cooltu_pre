@@ -38,9 +38,8 @@ public class CoreView extends View implements OnDestroy {
 
     protected void init(Context context, AttributeSet attrs, int defStyleAttr) {
         DestoryTool.onDestory(context, this);
-
         roundBgTool = new RoundBgTool();
-        roundBgTool.init(context, attrs,
+        roundBgTool.init(context, this, attrs,
                 R.styleable.CoreView,
                 R.styleable.CoreView_android_radius,
                 R.styleable.CoreView_android_topLeftRadius,
@@ -55,7 +54,7 @@ public class CoreView extends View implements OnDestroy {
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
-        roundBgTool.initBackground(this);
+        roundBgTool.initBackground();
     }
 
     @Override
