@@ -44,11 +44,10 @@ public class CoreEditText extends androidx.appcompat.widget.AppCompatEditText im
                 R.styleable.CoreEditText_strokeWidth,
                 R.styleable.CoreEditText_strokeColor);
     }
-
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
-        roundBgTool.initBackground();
+        roundBgTool.onLayout();
     }
 
     @Override

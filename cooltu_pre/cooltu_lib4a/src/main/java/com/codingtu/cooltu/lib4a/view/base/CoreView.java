@@ -57,7 +57,7 @@ public class CoreView extends View implements OnDestroy {
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
-        roundBgTool.initBackground();
+        roundBgTool.onLayout();
     }
 
     @Override

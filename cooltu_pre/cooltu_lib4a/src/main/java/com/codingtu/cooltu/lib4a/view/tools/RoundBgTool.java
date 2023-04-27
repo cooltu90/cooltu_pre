@@ -40,6 +40,7 @@ public class RoundBgTool implements OnDestroy {
     private int strokeColor;
     private Bitmap bgBitmap;
     private View view;
+    private boolean isOnLayout;
 
     public void init(Context context, View view, AttributeSet set, int[] attrs,
                      int radiusIndex, int tlIndex, int trIndex, int blIndex, int brIndex,
@@ -178,13 +179,17 @@ public class RoundBgTool implements OnDestroy {
 
     public void setBackgroundColor(int color) {
         bgColor = color;
-        initBackground();
+        if (isOnLayout) {
+            initBackground();
+        }
     }
 
     public void setBackgroundResource(int resId) {
         bgColor = null;
         bgBitmap = BitmapFactory.decodeResource(view.getResources(), resId);
-        initBackground();
+        if (isOnLayout) {
+            initBackground();
+        }
     }
 
     @Override
@@ -193,5 +198,10 @@ public class RoundBgTool implements OnDestroy {
         if (bgBitmap != null)
             bgBitmap.recycle();
         bgBitmap = null;
+    }
+
+    public void onLayout() {
+        this.isOnLayout = true;
+        initBackground();
     }
 }
