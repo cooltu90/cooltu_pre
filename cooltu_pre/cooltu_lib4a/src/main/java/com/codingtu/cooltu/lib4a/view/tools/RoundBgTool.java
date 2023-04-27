@@ -2,6 +2,7 @@ package com.codingtu.cooltu.lib4a.view.tools;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -16,14 +17,17 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.codingtu.cooltu.lib4a.act.Destroys;
+import com.codingtu.cooltu.lib4a.act.OnDestroy;
 import com.codingtu.cooltu.lib4a.bean.LTRB;
 import com.codingtu.cooltu.lib4a.tools.BitmapTool;
+import com.codingtu.cooltu.lib4a.tools.DestoryTool;
 import com.codingtu.cooltu.lib4a.tools.DrawTool;
 import com.codingtu.cooltu.lib4a.view.attrs.Attrs;
 import com.codingtu.cooltu.lib4a.view.attrs.AttrsTools;
 import com.codingtu.cooltu.lib4a.view.attrs.GetAttrs;
 
-public class RoundBgTool {
+public class RoundBgTool implements OnDestroy {
 
     private int bgRadius;
     private int topLeftbgRadius;
@@ -172,4 +176,22 @@ public class RoundBgTool {
         view.setBackground(new BitmapDrawable(bitmap));
     }
 
+    public void setBackgroundColor(int color) {
+        bgColor = color;
+        initBackground();
+    }
+
+    public void setBackgroundResource(int resId) {
+        bgColor = null;
+        bgBitmap = BitmapFactory.decodeResource(view.getResources(), resId);
+        initBackground();
+    }
+
+    @Override
+    public void destroy() {
+        view = null;
+        if (bgBitmap != null)
+            bgBitmap.recycle();
+        bgBitmap = null;
+    }
 }

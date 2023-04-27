@@ -1,6 +1,7 @@
 package com.codingtu.cooltu.lib4a.view.base;
 
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -9,6 +10,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.codingtu.cooltu.lib4a.R;
+import com.codingtu.cooltu.lib4a.act.Destroys;
 import com.codingtu.cooltu.lib4a.act.OnDestroy;
 import com.codingtu.cooltu.lib4a.bean.LTRB;
 import com.codingtu.cooltu.lib4a.log.Logs;
@@ -39,6 +41,7 @@ public class CoreView extends View implements OnDestroy {
     protected void init(Context context, AttributeSet attrs, int defStyleAttr) {
         DestoryTool.onDestory(context, this);
         roundBgTool = new RoundBgTool();
+        DestoryTool.onDestory(context, roundBgTool);
         roundBgTool.init(context, this, attrs,
                 R.styleable.CoreView,
                 R.styleable.CoreView_android_radius,
@@ -58,8 +61,18 @@ public class CoreView extends View implements OnDestroy {
     }
 
     @Override
-    public void destroy() {
+    public void setBackgroundColor(int color) {
+        roundBgTool.setBackgroundColor(color);
+    }
 
+    @Override
+    public void setBackgroundResource(int resId) {
+        roundBgTool.setBackgroundResource(resId);
+    }
+
+    @Override
+    public void destroy() {
+        roundBgTool = null;
     }
 
 }

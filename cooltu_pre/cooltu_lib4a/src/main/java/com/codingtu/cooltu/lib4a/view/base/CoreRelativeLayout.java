@@ -44,6 +44,7 @@ public class CoreRelativeLayout extends RelativeLayout implements OnDestroy {
     protected void init(Context context, AttributeSet attrs, int defStyleAttr) {
         DestoryTool.onDestory(context, this);
         roundBgTool = new RoundBgTool();
+        DestoryTool.onDestory(context, roundBgTool);
         roundBgTool.init(context,this, attrs,
                 R.styleable.CoreRelativeLayout,
                 R.styleable.CoreRelativeLayout_android_radius,
@@ -62,7 +63,17 @@ public class CoreRelativeLayout extends RelativeLayout implements OnDestroy {
     }
 
     @Override
-    public void destroy() {
+    public void setBackgroundColor(int color) {
+        roundBgTool.setBackgroundColor(color);
+    }
 
+    @Override
+    public void setBackgroundResource(int resId) {
+        roundBgTool.setBackgroundResource(resId);
+    }
+
+    @Override
+    public void destroy() {
+        roundBgTool = null;
     }
 }

@@ -1,5 +1,6 @@
 package com.codingtu.cooltu_pre.ui;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -30,10 +31,12 @@ public class WelcomeActivity extends WelcomeActivityBase {
     public void btClick() {
         if (count % 2 == 0) {
             //变小
-            ViewTool.setWH(cv, MobileTool.dpToPx(10), MobileTool.dpToPx(10));
+//            ViewTool.setWH(cv, MobileTool.dpToPx(10), MobileTool.dpToPx(10));
+            cv.setBackgroundResource(com.codingtu.cooltu.lib4a.R.mipmap.default_img);
         } else {
             //变大
-            ViewTool.setWH(cv, MobileTool.dpToPx(100), MobileTool.dpToPx(100));
+//            ViewTool.setWH(cv, MobileTool.dpToPx(100), MobileTool.dpToPx(100));
+            cv.setBackgroundColor(Color.parseColor("#ffffff"));
         }
         count++;
     }
