@@ -9,6 +9,7 @@ import java.util.Map;
 import cooltu.lib4j.json.JsonTool;
 import cooltu.lib4j.json.base.JO;
 import cooltu.lib4j.tools.StringTool;
+
 import com.codingtu.cooltu.lib4a.CoreConfigs;
 import com.codingtu.cooltu.lib4a.bean.KVS;
 import com.codingtu.cooltu.lib4a.log.Logs;
@@ -20,6 +21,7 @@ import com.codingtu.cooltu.lib4a.net.retrofit.OkHttpClientCreater;
 import com.codingtu.cooltu.lib4a.net.retrofit.RetrofitCreater;
 import com.codingtu.cooltu.lib4a.net.retrofit.RetrofitMap;
 import com.codingtu.cooltu.lib4a.tools.MediaFileTool;
+
 import okhttp3.FormBody;
 import okhttp3.HttpUrl;
 import okhttp3.MediaType;
@@ -74,7 +76,7 @@ public class NetTool {
         for (int i = 0; i < url.querySize(); i++) {
             params.add(url.queryParameterName(i), url.queryParameterValue(i));
         }
-        Logs.i("getParamsGet:" + params);
+        Logs.i("LOG_API", "getParamsGet:" + params);
         return params;
     }
 
@@ -125,7 +127,7 @@ public class NetTool {
             } catch (Exception e) {
             }
         }
-        Logs.i("getParamsPost:" + params);
+        Logs.i("LOG_API", "getParamsPost:" + params);
         return params;
     }
 
