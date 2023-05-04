@@ -23,6 +23,12 @@ public class ActStart {
 
         com.codingtu.cooltu.lib4a.tools.ActTool.startActivityForResult(act, intent, Code4Request.STEP_ONE_ACTIVITY);
     }
+    public static final void formActivity(Activity act) {
+        Intent intent = new Intent(act, com.codingtu.cooltu_pre.ui.FormActivity.class);
+        intent.putExtra(Pass.FROM_ACT,Code4Request.FORM_ACTIVITY);
+
+        com.codingtu.cooltu.lib4a.tools.ActTool.startActivityForResult(act, intent, Code4Request.FORM_ACTIVITY);
+    }
     public static final void welcomeActivity(Activity act) {
         Intent intent = new Intent(act, com.codingtu.cooltu_pre.ui.WelcomeActivity.class);
         intent.putExtra(Pass.FROM_ACT,Code4Request.WELCOME_ACTIVITY);

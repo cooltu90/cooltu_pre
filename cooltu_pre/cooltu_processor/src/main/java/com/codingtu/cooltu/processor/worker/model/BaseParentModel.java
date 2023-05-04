@@ -303,7 +303,7 @@ public abstract class BaseParentModel extends BaseModel {
     private HashMap<String, String> needLinkMap = new HashMap<>();
 
     public void addFormItem(FormItemInfo info) {
-        formItemMap.get(info.fieldType).add(info);
+        formItemMap.get(info.formItemType).add(info);
         formItemMap.get(FormType.TOTAL).add(info);
 
         if (StringTool.isNotBlank(info.linkClass)) {
@@ -318,12 +318,13 @@ public abstract class BaseParentModel extends BaseModel {
         }
 
 
-        if (info.fieldType == FormType.TEXT_VIEW || info.fieldType == FormType.EDIT_TEXT) {
+        if (info.formItemType == FormType.TEXT_VIEW || info.formItemType == FormType.EDIT_TEXT) {
             addField("BindHandler", "handler");
             return;
         }
 
-        if (info.fieldType == FormType.RADIO_GROUP) {
+        if (info.formItemType == FormType.RADIO_GROUP) {
+            addField("BindHandler", "handler");
             addField(FullName.RADIO_GROUP, info.fieldName);
             FromItemInfoForRg rgInfo = (FromItemInfoForRg) info;
             if (rgInfo.hasOnSetItem) {

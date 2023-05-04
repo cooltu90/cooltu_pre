@@ -1,6 +1,7 @@
 package com.codingtu.cooltu.processor.lib.tools;
 
 import cooltu.lib4j.tools.ClassTool;
+
 import com.codingtu.cooltu.constant.FullName;
 import com.codingtu.cooltu.processor.lib.bean.FormItemInfo;
 
@@ -20,7 +21,7 @@ public class FormTool {
         if (hasParse) {
             return TagTools.getLine("new [YesNoMethods]().toBean(msg.obj)", info.parse);
         } else {
-            return "(String) msg.obj";
+            return TagTools.getLine("([String]) msg.obj", info.fieldType);
         }
     }
 

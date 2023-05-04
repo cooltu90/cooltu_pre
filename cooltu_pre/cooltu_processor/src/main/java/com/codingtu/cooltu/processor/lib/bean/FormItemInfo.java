@@ -13,7 +13,8 @@ public class FormItemInfo {
     public IdTools.Id viewId;
     public String viewName;
     public String fieldName;
-    public int fieldType;
+    public String fieldType;
+    public int formItemType;
 
     //link相关
     public Map<Integer, IdTools.Id> idMap;

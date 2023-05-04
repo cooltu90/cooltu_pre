@@ -39,6 +39,9 @@
         <activity
             android:name="com.codingtu.cooltu_pre.ui.ThreeActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="com.codingtu.cooltu_pre.ui.FormActivity"
+            android:screenOrientation="portrait" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

@@ -7,6 +7,7 @@ import cooltu.lib4j.tools.ClassTool;
 import cooltu.lib4j.tools.CountTool;
 import cooltu.lib4j.ts.Ts;
 import cooltu.lib4j.ts.each.Each;
+
 import com.codingtu.cooltu.processor.annotation.form.FormItem;
 import com.codingtu.cooltu.processor.annotation.form.FormItemLink;
 import com.codingtu.cooltu.processor.annotation.form.FormType;
@@ -36,6 +37,7 @@ public class FormItemDeal extends BaseDeal {
         KV<String, String> parentKv = ElementTools.getFormBeanName(parentElement);
 
         info.beanField = parentKv.v + "." + fieldName;
+        info.fieldType = fieldType;
         info.prompt = formItem.prompt();
         info.parse = ClassTool.getAnnotationClass(new ClassTool.AnnotationClassGetter() {
             @Override
@@ -56,8 +58,8 @@ public class FormItemDeal extends BaseDeal {
         info.viewId = id;
         info.viewName = id.rName;
         info.fieldName = id.rName;
-        info.fieldType = formItem.type();
-        if (info.fieldType == FormType.RADIO_GROUP) {
+        info.formItemType = formItem.type();
+        if (info.formItemType == FormType.RADIO_GROUP) {
             info.fieldName = ElementTools.simpleName(element) + "Rg";
         }
         String parentType = ElementTools.getParentType(element);
