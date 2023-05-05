@@ -3,6 +3,7 @@ package com.codingtu.cooltu.processor.lib.tools;
 import cooltu.lib4j.tools.ClassTool;
 
 import com.codingtu.cooltu.constant.FullName;
+import com.codingtu.cooltu.processor.annotation.form.FormType;
 import com.codingtu.cooltu.processor.lib.bean.FormItemInfo;
 
 public class FormTool {
@@ -28,9 +29,14 @@ public class FormTool {
     public static String check(FormItemInfo info) {
         boolean hasCheck = !ClassTool.isVoid(info.check);
         if (hasCheck) {
-            return TagTools.getLine("        if (!new [YesNoMethods]().check([calibration.isEquipTimeRight])) {"
+            return TagTools.getLine("        if (!new [check]().check([field])) {"
                     , info.check, info.beanField);
         } else {
+            if (info.formItemType == FormType.RADIO_GROUP) {
+                return TagTools.getLine("        if (!new [check]().check([field])) {"
+                        , FullName.DEFAULT_RADIO_GROUP_FORM_CHECK, info.beanField);
+            }
+
             return TagTools.getLine("        if ([StringTool].isBlank([calibration.apparatusCode])) {"
                     , FullName.STRING_TOOL, info.beanField);
         }

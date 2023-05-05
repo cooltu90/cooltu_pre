@@ -170,7 +170,7 @@ public abstract class FormActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
 
 
     protected boolean checkTestForm() {
-        if (!new com.codingtu.cooltu_pre.form.RgFormCheck().check(testForm.rg)) {
+        if (!new com.codingtu.cooltu.lib4a.form.DefaultRadioGroupFormCheck().check(testForm.rg)) {
             toast("请选择");
             return false;
         }

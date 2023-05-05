@@ -13,7 +13,7 @@ import cooltu.lib4j.data.bean.CoreBean;
 @FormBean
 public class TestForm extends CoreBean {
 
-    @FormItem(viewId = R.id.rgLl, type = FormType.RADIO_GROUP, prompt = "请选择", check = RgFormCheck.class)
+    @FormItem(viewId = R.id.rgLl, type = FormType.RADIO_GROUP, prompt = "请选择")
     @FormRadioGroup(onSetItem = DefaultOnSetItem.class)
     public int rg = -1;
 }

@@ -1,10 +1,13 @@
 package com.codingtu.cooltu_pre.ui;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 
 import com.codingtu.cooltu.lib4a.log.Logs;
+import com.codingtu.cooltu.lib4a.view.combine.RadioGroup;
 import com.codingtu.cooltu.processor.annotation.form.Form;
 import com.codingtu.cooltu.processor.annotation.ui.ClickView;
 import com.codingtu.cooltu_pre.R;
@@ -27,7 +30,7 @@ public class FormActivity extends FormActivityBase {
         super.onCreate(savedInstanceState);
     }
 
-    @ClickView(value = R.id.bt,check = true)
+    @ClickView(value = R.id.bt, check = true)
     public void btClick() {
 
     }
