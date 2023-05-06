@@ -374,6 +374,8 @@ public abstract class BaseParentModel extends BaseModel {
 
                     addLnTag(bindsSb, "        [qualifiedRg] = [RadioGroup].obtain(this).setBts([typeLl])[setOnSetItem];",
                             info.fieldName, FullName.RADIO_GROUP, info.viewName, setOnSetItem);
+                    addLnTag(bindsSb, "        [hardRl].setTag(com.codingtu.cooltu.lib4a.R.id.tag_0, [diff2CheckRg]);",
+                            info.viewName, info.fieldName);
                     return false;
                 }
             });

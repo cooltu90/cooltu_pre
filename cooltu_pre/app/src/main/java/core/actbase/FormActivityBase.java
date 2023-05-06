@@ -53,6 +53,7 @@ public abstract class FormActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
 
         defaultOnSetItem = new com.codingtu.cooltu_pre.form.DefaultOnSetItem();
         rgRg = com.codingtu.cooltu.lib4a.view.combine.RadioGroup.obtain(this).setBts(rgLl).setOnSetItem(defaultOnSetItem);
+        rgLl.setTag(com.codingtu.cooltu.lib4a.R.id.tag_0, rgRg);
         initFormView();
         if (testForm == null) {
             testForm = new com.codingtu.cooltu_pre.bean.TestForm();
