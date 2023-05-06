@@ -32,11 +32,6 @@ public class FormTool {
             return TagTools.getLine("        if (!new [check]().check([field])) {"
                     , info.check, info.beanField);
         } else {
-            if (info.formItemType == FormType.RADIO_GROUP) {
-                return TagTools.getLine("        if (!new [check]().check([field])) {"
-                        , FullName.DEFAULT_RADIO_GROUP_FORM_CHECK, info.beanField);
-            }
-
             return TagTools.getLine("        if ([StringTool].isBlank([calibration.apparatusCode])) {"
                     , FullName.STRING_TOOL, info.beanField);
         }
