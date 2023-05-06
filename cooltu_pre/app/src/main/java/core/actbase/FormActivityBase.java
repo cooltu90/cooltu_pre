@@ -22,6 +22,8 @@ public abstract class FormActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
     protected int fromAct;
 
     public android.widget.LinearLayout rgLl;
+    public android.widget.SeekBar seekBar;
+    public android.widget.EditText et;
     public android.widget.TextView bt;
     public com.codingtu.cooltu_pre.bean.TestForm testForm;
     public boolean initFormBean;
@@ -39,6 +41,8 @@ public abstract class FormActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
         fromAct = core.tools.Pass.fromAct(data);
 
         rgLl = findViewById(com.codingtu.cooltu_pre.R.id.rgLl);
+        seekBar = findViewById(com.codingtu.cooltu_pre.R.id.seekBar);
+        et = findViewById(com.codingtu.cooltu_pre.R.id.et);
         bt = findViewById(com.codingtu.cooltu_pre.R.id.bt);
 
         bt.setOnClickListener(this);
@@ -55,9 +59,13 @@ public abstract class FormActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
             initFormBean = true;
         }
         handler = new BindHandler(testForm);
+        et.addTextChangedListener(new com.codingtu.cooltu.lib4a.view.textview.HandlerTextWatcher(handler,0, 0));
         rgRg.addOnSelectChange(new com.codingtu.cooltu.lib4a.view.combine.HandlerOnSelectChange(handler,2, 0));
+        seekBar.setOnSeekBarChangeListener(new com.codingtu.cooltu.lib4a.view.combine.HandlerOnSeekBarChangeListener(handler,3, 0));
         if (!initFormBean) {
+            com.codingtu.cooltu.lib4a.tools.ViewTool.setEditTextAndSelection(et, testForm.name);
             rgRg.setSelected(testForm.rg);
+            seekBar.setProgress(new com.codingtu.cooltu_pre.form.SeekBarParse().toView(testForm.time));
         }
 
         onCreateComplete();
@@ -132,10 +140,24 @@ public abstract class FormActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
         @Override
         public void handleMessage(android.os.Message msg) {
             super.handleMessage(msg);
+            if (msg.what == 0) {
+                switch (msg.arg1) {
+                    case 0:
+                        testForm.name = (java.lang.String) msg.obj;
+                        break;
+                }
+            }
             if (msg.what == 2) {
                 switch (msg.arg1) {
                     case 0:
                         testForm.rg = (int) msg.obj;
+                        break;
+                }
+            }
+            if (msg.what == 3) {
+                switch (msg.arg1) {
+                    case 0:
+                        testForm.time = new com.codingtu.cooltu_pre.form.SeekBarParse().toBean(msg.obj);
                         break;
                 }
             }
@@ -172,6 +194,10 @@ public abstract class FormActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
     protected boolean checkTestForm() {
         if (!new com.codingtu.cooltu.lib4a.form.DefaultRadioGroupFormCheck().check(testForm.rg)) {
             toast("请选择");
+            return false;
+        }
+        if (!new com.codingtu.cooltu_pre.form.SeekBarCheck().check(testForm.time)) {
+            toast("请选择时间");
             return false;
         }
         return true;

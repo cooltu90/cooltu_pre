@@ -18,6 +18,7 @@ public class FullName {
     public static final String RADIO_GROUP = "com.codingtu.cooltu.lib4a.view.combine.RadioGroup";
     public static final String HANDLER_TEXT_WATCHER = "com.codingtu.cooltu.lib4a.view.textview.HandlerTextWatcher";
     public static final String HANDLER_ON_SELECT_CHANGE = "com.codingtu.cooltu.lib4a.view.combine.HandlerOnSelectChange";
+    public static final String HANDLER_ON_SEEK_BAR_CHANGE_LISTENER = "com.codingtu.cooltu.lib4a.view.combine.HandlerOnSeekBarChangeListener";
     public static final String ACT_TOOL = "com.codingtu.cooltu.lib4a.tools.ActTool";
     public static final String NET_TOOL = "com.codingtu.cooltu.lib4a.net.NetTool";
     public static final String INFLATE_TOOL = "com.codingtu.cooltu.lib4a.tools.InflateTool";

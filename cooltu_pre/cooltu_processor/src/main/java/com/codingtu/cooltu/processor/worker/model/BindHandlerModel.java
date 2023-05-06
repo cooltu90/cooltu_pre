@@ -54,9 +54,18 @@ public class BindHandlerModel extends SubBaseModel implements BindHandlerModelIn
 
     @Override
     public void setTagFor_cases(StringBuilder sb) {
-        setTagFor_cases(sb, formItemMap.get(FormType.EDIT_TEXT), FormType.EDIT_TEXT);
-        setTagFor_cases(sb, formItemMap.get(FormType.TEXT_VIEW), FormType.TEXT_VIEW);
-        setTagFor_cases(sb, formItemMap.get(FormType.RADIO_GROUP), FormType.RADIO_GROUP);
+//        setTagFor_cases(sb, formItemMap.get(FormType.EDIT_TEXT), FormType.EDIT_TEXT);
+//        setTagFor_cases(sb, formItemMap.get(FormType.TEXT_VIEW), FormType.TEXT_VIEW);
+//        setTagFor_cases(sb, formItemMap.get(FormType.RADIO_GROUP), FormType.RADIO_GROUP);
+//        setTagFor_cases(sb, formItemMap.get(FormType.SEEK_BAR), FormType.SEEK_BAR);
+        Ts.ls(FormType.getNeedType(), new Each<Integer>() {
+            @Override
+            public boolean each(int position, Integer integer) {
+                setTagFor_cases(sb, formItemMap.get(integer), integer);
+                return false;
+            }
+        });
+
     }
 
     private void setTagFor_cases(StringBuilder sb, List<FormItemInfo> etTvItems, int index) {

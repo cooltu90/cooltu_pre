@@ -317,14 +317,9 @@ public abstract class BaseParentModel extends BaseModel {
             });
         }
 
-
-        if (info.formItemType == FormType.TEXT_VIEW || info.formItemType == FormType.EDIT_TEXT) {
-            addField("BindHandler", "handler");
-            return;
-        }
+        addField("BindHandler", "handler");
 
         if (info.formItemType == FormType.RADIO_GROUP) {
-            addField("BindHandler", "handler");
             addField(FullName.RADIO_GROUP, info.fieldName);
             FromItemInfoForRg rgInfo = (FromItemInfoForRg) info;
             if (rgInfo.hasOnSetItem) {
@@ -395,27 +390,35 @@ public abstract class BaseParentModel extends BaseModel {
             List<FormItemInfo> tvInfos = formItemMap.get(FormType.TEXT_VIEW);
             List<FormItemInfo> etInfos = formItemMap.get(FormType.EDIT_TEXT);
             List<FormItemInfo> rgInfos = formItemMap.get(FormType.RADIO_GROUP);
+            List<FormItemInfo> sbInfos = formItemMap.get(FormType.SEEK_BAR);
 
             addChange(bindsSb, etInfos, "addTextChangedListener", FullName.HANDLER_TEXT_WATCHER, FormType.EDIT_TEXT);
             addChange(bindsSb, tvInfos, "addTextChangedListener", FullName.HANDLER_TEXT_WATCHER, FormType.TEXT_VIEW);
             addChange(bindsSb, rgInfos, "addOnSelectChange", FullName.HANDLER_ON_SELECT_CHANGE, FormType.RADIO_GROUP);
+            addChange(bindsSb, sbInfos, "setOnSeekBarChangeListener", FullName.HANDLER_ON_SEEK_BAR_CHANGE_LISTENER, FormType.SEEK_BAR);
 
 
             addLnTag(bindsSb, "        if (![initFormBean]) {", FieldName.INIT_FORM_BEAN);
 
-            bindEcho(bindsSb, etInfos, "setEditTextAndSelection");
-            bindEcho(bindsSb, tvInfos, "setText");
-            Ts.ls(rgInfos, new Each<FormItemInfo>() {
-                @Override
-                public boolean each(int position, FormItemInfo info) {
-                    addLnTag(bindsSb, "            [resultRg].setSelected([calibration.result]);"
-                            , info.fieldName, FormTool.toView(info));
-                    return false;
-                }
-            });
+            bindEchoForViewTool(bindsSb, etInfos, "setEditTextAndSelection");
+            bindEchoForViewTool(bindsSb, tvInfos, "setText");
+            bindEcho(bindsSb, rgInfos, "setSelected");
+            bindEcho(bindsSb, sbInfos, "setProgress");
 
             addLnTag(bindsSb, "        }");
         }
+    }
+
+    private void bindEcho(StringBuilder sb, List<FormItemInfo> infos, String method) {
+        Ts.ls(infos, new Each<FormItemInfo>() {
+            @Override
+            public boolean each(int position, FormItemInfo info) {
+                addLnTag(sb,
+                        "            [f1].[method]([params]);", info.fieldName, method, FormTool.toView(info)
+                );
+                return false;
+            }
+        });
     }
 
     private void addChange(StringBuilder sb, List<FormItemInfo> infos, String method, String changeType, int type) {
@@ -476,7 +479,7 @@ public abstract class BaseParentModel extends BaseModel {
     }
 
 
-    private void bindEcho(StringBuilder sb, List<FormItemInfo> infos, String method) {
+    private void bindEchoForViewTool(StringBuilder sb, List<FormItemInfo> infos, String method) {
         Ts.ls(infos, new Each<FormItemInfo>() {
             @Override
             public boolean each(int position, FormItemInfo info) {

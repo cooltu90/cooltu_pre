@@ -6,9 +6,9 @@
 
     <LinearLayout
         android:id="@+id/rgLl"
-        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -33,6 +33,17 @@
             android:textColor="#000"
             android:textSize="14sp" />
     </LinearLayout>
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="150" />
+
+    <EditText
+        android:id="@+id/et"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
 
     <TextView
         android:id="@+id/bt"
