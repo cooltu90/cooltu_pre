@@ -26,11 +26,11 @@ public class FormTool {
         }
     }
 
-    public static String check(FormItemInfo info) {
+    public static String check(String beanName, FormItemInfo info) {
         boolean hasCheck = !ClassTool.isVoid(info.check);
         if (hasCheck) {
-            return TagTools.getLine("        if (!new [check]().check([field])) {"
-                    , info.check, info.beanField);
+            return TagTools.getLine("        if (!new [check]().check([xxx], [field])) {"
+                    , info.check, beanName, info.beanField);
         } else {
             return TagTools.getLine("        if ([StringTool].isBlank([calibration.apparatusCode])) {"
                     , FullName.STRING_TOOL, info.beanField);

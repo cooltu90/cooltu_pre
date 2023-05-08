@@ -513,7 +513,7 @@ public abstract class BaseParentModel extends BaseModel {
                 @Override
                 public boolean each(int position, FormItemInfo info) {
                     if (StringTool.isNotBlank(info.prompt)) {
-                        addLnTag(bindCheckSb, FormTool.check(info));
+                        addLnTag(bindCheckSb, FormTool.check(formBeanKv.v, info));
                         addLnTag(bindCheckSb, "            toast(\"[prompt]\");", info.prompt);
                         addLnTag(bindCheckSb, "            return false;");
                         addLnTag(bindCheckSb, "        }");
