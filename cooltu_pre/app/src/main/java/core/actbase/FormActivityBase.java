@@ -197,8 +197,12 @@ public abstract class FormActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
             toast("请选择");
             return false;
         }
-        if (!new com.codingtu.cooltu_pre.form.SeekBarCheck().check(testForm.time)) {
+        if (!new com.codingtu.cooltu_pre.form.SeekBarsCheck().check(testForm.time)) {
             toast("请选择时间");
+            return false;
+        }
+        if (cooltu.lib4j.tools.StringTool.isBlank(testForm.name)) {
+            toast("请输入名字");
             return false;
         }
         return true;

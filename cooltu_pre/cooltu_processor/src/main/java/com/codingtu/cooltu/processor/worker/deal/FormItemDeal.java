@@ -8,11 +8,14 @@ import cooltu.lib4j.tools.CountTool;
 import cooltu.lib4j.ts.Ts;
 import cooltu.lib4j.ts.each.Each;
 
+import com.codingtu.cooltu.processor.annotation.form.FormCheck;
 import com.codingtu.cooltu.processor.annotation.form.FormItem;
 import com.codingtu.cooltu.processor.annotation.form.FormItemLink;
+import com.codingtu.cooltu.processor.annotation.form.FormParse;
 import com.codingtu.cooltu.processor.annotation.form.FormType;
 import com.codingtu.cooltu.processor.lib.bean.FormItemInfo;
 import com.codingtu.cooltu.processor.lib.bean.FromItemInfoForRg;
+import com.codingtu.cooltu.processor.lib.log.Logs;
 import com.codingtu.cooltu.processor.lib.tools.ElementTools;
 import com.codingtu.cooltu.processor.lib.tools.IdTools;
 import com.codingtu.cooltu.processor.worker.deal.base.BaseDeal;
@@ -45,12 +48,32 @@ public class FormItemDeal extends BaseDeal {
                 return formItem.parse();
             }
         });
+
+        FormParse formParse = element.getAnnotation(FormParse.class);
+        if (formParse != null) {
+            info.parse = ClassTool.getAnnotationClass(new ClassTool.AnnotationClassGetter() {
+                @Override
+                public Object get() {
+                    return formParse.value();
+                }
+            });
+        }
+
         info.check = ClassTool.getAnnotationClass(new ClassTool.AnnotationClassGetter() {
             @Override
             public Object get() {
                 return formItem.check();
             }
         });
+        FormCheck formCheck = element.getAnnotation(FormCheck.class);
+        if (formCheck != null) {
+            info.check = ClassTool.getAnnotationClass(new ClassTool.AnnotationClassGetter() {
+                @Override
+                public Object get() {
+                    return formCheck.value();
+                }
+            });
+        }
 
         IdTools.Id id = IdTools.elementToId(element, FormItem.class, formItem.viewId());
 

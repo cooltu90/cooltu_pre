@@ -7,8 +7,8 @@ import com.codingtu.cooltu.processor.lib.tools.IdTools;
 public class FormItemInfo {
     public String beanField;
     public String prompt;
-    public String parse;
-    public String check;
+    public String parse = Void.class.getCanonicalName();
+    public String check = Void.class.getCanonicalName();
 
     public IdTools.Id viewId;
     public String viewName;

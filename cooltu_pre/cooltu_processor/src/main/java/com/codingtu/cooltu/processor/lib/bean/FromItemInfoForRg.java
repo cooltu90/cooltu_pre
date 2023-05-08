@@ -4,8 +4,10 @@ import javax.lang.model.element.Element;
 
 import cooltu.lib4j.tools.ClassTool;
 import cooltu.lib4j.tools.StringTool;
+
 import com.codingtu.cooltu.constant.FieldName;
 import com.codingtu.cooltu.processor.annotation.form.FormRadioGroup;
+import com.codingtu.cooltu.processor.annotation.form.item.RadioGroupFormItem;
 
 public class FromItemInfoForRg extends FormItemInfo {
     public String onSetItemClass;
@@ -31,5 +33,22 @@ public class FromItemInfoForRg extends FormItemInfo {
             }
         }
 
+    }
+
+    public FromItemInfoForRg(RadioGroupFormItem radioGroupFormItem) {
+        super();
+        onSetItemClass = ClassTool.getAnnotationClass(new ClassTool.AnnotationClassGetter() {
+            @Override
+            public Object get() {
+                return radioGroupFormItem.onSetItem();
+            }
+        });
+        hasOnSetItem = !ClassTool.isVoid(onSetItemClass);
+        if (hasOnSetItem) {
+            onSetItemName = radioGroupFormItem.onSetItemName();
+            if (StringTool.isBlank(onSetItemName)) {
+                onSetItemName = FieldName.DEFAULT_ON_SET_ITEM;
+            }
+        }
     }
 }
