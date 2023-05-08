@@ -57,27 +57,22 @@ public class FormBeanDeal extends BaseDeal {
         if (formEditText != null) {
             dealEditText(ve, formEditText.prompt(), formEditText.value(),
                     FormType.EDIT_TEXT);
-            return;
         }
 
         TextViewFormItem formTextView = ve.getAnnotation(TextViewFormItem.class);
         if (formTextView != null) {
             dealEditText(ve, formTextView.prompt(), formTextView.value(),
                     FormType.TEXT_VIEW);
-            return;
         }
         RadioGroupFormItem radioGroupFormItem = ve.getAnnotation(RadioGroupFormItem.class);
         if (radioGroupFormItem != null) {
             dealEditText(ve, radioGroupFormItem.prompt(), radioGroupFormItem.value(), FormType.RADIO_GROUP);
-            return;
         }
 
         SeekBarFormItem seekBarFormItem = ve.getAnnotation(SeekBarFormItem.class);
         if (seekBarFormItem != null) {
             dealEditText(ve, seekBarFormItem.prompt(), seekBarFormItem.value(), FormType.SEEK_BAR);
-            return;
         }
-
 
     }
 
