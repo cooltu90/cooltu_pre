@@ -56,27 +56,28 @@ public class FormBeanDeal extends BaseDeal {
         EditTextFormItem formEditText = ve.getAnnotation(EditTextFormItem.class);
         if (formEditText != null) {
             dealEditText(ve, formEditText.prompt(), formEditText.value(),
-                    FormType.EDIT_TEXT);
+                    FormType.EDIT_TEXT, formEditText.echoCheck());
         }
 
         TextViewFormItem formTextView = ve.getAnnotation(TextViewFormItem.class);
         if (formTextView != null) {
             dealEditText(ve, formTextView.prompt(), formTextView.value(),
-                    FormType.TEXT_VIEW);
+                    FormType.TEXT_VIEW, formTextView.echoCheck());
         }
         RadioGroupFormItem radioGroupFormItem = ve.getAnnotation(RadioGroupFormItem.class);
         if (radioGroupFormItem != null) {
-            dealEditText(ve, radioGroupFormItem.prompt(), radioGroupFormItem.value(), FormType.RADIO_GROUP);
+            dealEditText(ve, radioGroupFormItem.prompt(), radioGroupFormItem.value(), FormType.RADIO_GROUP, radioGroupFormItem.echoCheck());
         }
 
         SeekBarFormItem seekBarFormItem = ve.getAnnotation(SeekBarFormItem.class);
         if (seekBarFormItem != null) {
-            dealEditText(ve, seekBarFormItem.prompt(), seekBarFormItem.value(), FormType.SEEK_BAR);
+            dealEditText(ve, seekBarFormItem.prompt(), seekBarFormItem.value(), FormType.SEEK_BAR, seekBarFormItem.echoCheck());
         }
 
     }
 
-    private void dealEditText(VariableElement element, String prompt, int resId, int formItemType) {
+    private void dealEditText(VariableElement element,
+                              String prompt, int resId, int formItemType, boolean echoCheck) {
         FormItemInfo info = null;
         if (formItemType == FormType.RADIO_GROUP) {
             info = new FromItemInfoForRg(element.getAnnotation(RadioGroupFormItem.class));
@@ -137,6 +138,8 @@ public class FormBeanDeal extends BaseDeal {
                 info.idMap = IdTools.elementToIds(element, FormItemLink.class, info.ids);
             }
         }
+
+        info.echoCheck = echoCheck;
 
         FormItemInfo formItemInfo = info;
 

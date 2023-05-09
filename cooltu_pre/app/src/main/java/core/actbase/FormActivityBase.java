@@ -65,7 +65,9 @@ public abstract class FormActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
         seekBar.setOnSeekBarChangeListener(new com.codingtu.cooltu.lib4a.view.combine.HandlerOnSeekBarChangeListener(handler,3, 0));
         if (!initFormBean) {
             com.codingtu.cooltu.lib4a.tools.ViewTool.setEditTextAndSelection(et, testForm.name);
-            rgRg.setSelected(testForm.rg);
+            if (new com.codingtu.cooltu.lib4a.form.DefaultRadioGroupFormCheck().check(testForm, testForm.rg)) {
+                rgRg.setSelected(testForm.rg);
+            }
             seekBar.setProgress(new com.codingtu.cooltu_pre.form.SeekBarParse().toView(testForm.time));
         }
 

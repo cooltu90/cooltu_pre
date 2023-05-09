@@ -37,4 +37,15 @@ public class FormTool {
         }
     }
 
+    public static String check1(String beanName, FormItemInfo info) {
+        boolean hasCheck = !ClassTool.isVoid(info.check);
+        if (hasCheck) {
+            return TagTools.getLine("            if (new [check]().check([xxx], [field])) {"
+                    , info.check, beanName, info.beanField);
+        } else {
+            return TagTools.getLine("            if ([StringTool].isNotBlank([calibration.apparatusCode])) {"
+                    , FullName.STRING_TOOL, info.beanField);
+        }
+    }
+
 }

@@ -8,4 +8,6 @@ public @interface SeekBarFormItem {
     int value();
 
     String prompt() default "";
+
+    boolean echoCheck() default false;
 }

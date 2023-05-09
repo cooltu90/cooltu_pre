@@ -415,9 +415,17 @@ public abstract class BaseParentModel extends BaseModel {
         Ts.ls(infos, new Each<FormItemInfo>() {
             @Override
             public boolean each(int position, FormItemInfo info) {
-                addLnTag(sb,
-                        "            [f1].[method]([params]);", info.fieldName, method, FormTool.toView(info)
-                );
+                if (info.echoCheck) {
+                    addLnTag(sb, FormTool.check1(formBeanKv.v, info));
+                    addLnTag(sb,
+                            "                [f1].[method]([params]);", info.fieldName, method, FormTool.toView(info)
+                    );
+                    addLnTag(sb, "            }");
+                } else {
+                    addLnTag(sb,
+                            "            [f1].[method]([params]);", info.fieldName, method, FormTool.toView(info)
+                    );
+                }
                 return false;
             }
         });
@@ -485,9 +493,17 @@ public abstract class BaseParentModel extends BaseModel {
         Ts.ls(infos, new Each<FormItemInfo>() {
             @Override
             public boolean each(int position, FormItemInfo info) {
-                addLnTag(sb,
-                        "            [ViewTool].[setText]([taskTv], [calibration.taskName]);",
-                        FullName.VIEW_TOOL, method, info.fieldName, FormTool.toView(info));
+                if (info.echoCheck) {
+                    addLnTag(sb, FormTool.check1(formBeanKv.v, info));
+                    addLnTag(sb,
+                            "                [ViewTool].[setText]([taskTv], [calibration.taskName]);",
+                            FullName.VIEW_TOOL, method, info.fieldName, FormTool.toView(info));
+                    addLnTag(sb, "            }");
+                } else {
+                    addLnTag(sb,
+                            "            [ViewTool].[setText]([taskTv], [calibration.taskName]);",
+                            FullName.VIEW_TOOL, method, info.fieldName, FormTool.toView(info));
+                }
                 return false;
             }
         });

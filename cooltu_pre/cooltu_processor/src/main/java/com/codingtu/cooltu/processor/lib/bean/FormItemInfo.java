@@ -15,6 +15,7 @@ public class FormItemInfo {
     public String fieldName;
     public String fieldType;
     public int formItemType;
+    public boolean echoCheck;
 
     //link相关
     public Map<Integer, IdTools.Id> idMap;

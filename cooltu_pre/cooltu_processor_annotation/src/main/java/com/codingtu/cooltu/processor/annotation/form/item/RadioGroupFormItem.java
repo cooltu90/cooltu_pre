@@ -12,4 +12,6 @@ public @interface RadioGroupFormItem {
     Class onSetItem() default Void.class;
 
     String onSetItemName() default "";
+
+    boolean echoCheck() default false;
 }
