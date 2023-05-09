@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 //        ActStart.welcomeActivity(this);
-//        ActStart.formActivity(this);
-        ActStart.viewActivity(this);
+        ActStart.formActivity(this);
+//        ActStart.viewActivity(this);
     }
 }

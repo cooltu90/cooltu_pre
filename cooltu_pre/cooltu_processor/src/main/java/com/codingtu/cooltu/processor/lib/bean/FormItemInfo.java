@@ -9,6 +9,7 @@ public class FormItemInfo {
     public String prompt;
     public String parse = Void.class.getCanonicalName();
     public String check = Void.class.getCanonicalName();
+    public String parseParams = "";
 
     public IdTools.Id viewId;
     public String viewName;

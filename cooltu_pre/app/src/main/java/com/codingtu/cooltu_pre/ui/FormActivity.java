@@ -32,6 +32,6 @@ public class FormActivity extends FormActivityBase {
 
     @ClickView(value = R.id.bt, check = true)
     public void btClick() {
-
+        Logs.i("testform:" + testForm);
     }
 }

@@ -14,4 +14,8 @@ public @interface RadioGroupFormItem {
     String onSetItemName() default "";
 
     boolean echoCheck() default false;
+
+    String[] strItems() default {};
+
+
 }

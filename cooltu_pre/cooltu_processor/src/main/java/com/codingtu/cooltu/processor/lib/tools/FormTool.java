@@ -1,17 +1,22 @@
 package com.codingtu.cooltu.processor.lib.tools;
 
 import cooltu.lib4j.tools.ClassTool;
+import cooltu.lib4j.tools.CountTool;
+import cooltu.lib4j.ts.Ts;
+import cooltu.lib4j.ts.each.Each;
 
 import com.codingtu.cooltu.constant.FullName;
 import com.codingtu.cooltu.processor.annotation.form.FormType;
 import com.codingtu.cooltu.processor.lib.bean.FormItemInfo;
+import com.codingtu.cooltu.processor.lib.bean.FromItemInfoForRg;
 
 public class FormTool {
 
     public static String toView(FormItemInfo info) {
         boolean hasParse = !ClassTool.isVoid(info.parse);
         if (hasParse) {
-            return TagTools.getLine("new [YesNoMethods]().toView([calibration.result])", info.parse, info.beanField);
+            return TagTools.getLine("new [YesNoMethods]([params]).toView([calibration.result])",
+                    info.parse, info.parseParams, info.beanField);
         } else {
             return info.beanField;
         }
@@ -20,7 +25,7 @@ public class FormTool {
     public static String toBean(FormItemInfo info) {
         boolean hasParse = !ClassTool.isVoid(info.parse);
         if (hasParse) {
-            return TagTools.getLine("new [YesNoMethods]().toBean(msg.obj)", info.parse);
+            return TagTools.getLine("new [YesNoMethods]([params]).toBean(msg.obj)", info.parse, info.parseParams);
         } else {
             return TagTools.getLine("([String]) msg.obj", info.fieldType);
         }

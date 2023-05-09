@@ -65,8 +65,8 @@ public abstract class FormActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
         seekBar.setOnSeekBarChangeListener(new com.codingtu.cooltu.lib4a.view.combine.HandlerOnSeekBarChangeListener(handler,3, 0));
         if (!initFormBean) {
             com.codingtu.cooltu.lib4a.tools.ViewTool.setEditTextAndSelection(et, testForm.name);
-            if (new com.codingtu.cooltu.lib4a.form.DefaultRadioGroupFormCheck().check(testForm, testForm.rg)) {
-                rgRg.setSelected(testForm.rg);
+            if (cooltu.lib4j.tools.StringTool.isNotBlank(testForm.rg)) {
+                rgRg.setSelected(new com.codingtu.cooltu.lib4a.form.DefaultRadioGroupToString("梨1", "苹果1", "芒果1").toView(testForm.rg));
             }
             seekBar.setProgress(new com.codingtu.cooltu_pre.form.SeekBarParse().toView(testForm.time));
         }
@@ -153,7 +153,7 @@ public abstract class FormActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
             if (msg.what == 2) {
                 switch (msg.arg1) {
                     case 0:
-                        testForm.rg = (int) msg.obj;
+                        testForm.rg = new com.codingtu.cooltu.lib4a.form.DefaultRadioGroupToString("梨1", "苹果1", "芒果1").toBean(msg.obj);
                         break;
                 }
             }
@@ -195,7 +195,7 @@ public abstract class FormActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
 
 
     protected boolean checkTestForm() {
-        if (!new com.codingtu.cooltu.lib4a.form.DefaultRadioGroupFormCheck().check(testForm, testForm.rg)) {
+        if (cooltu.lib4j.tools.StringTool.isBlank(testForm.rg)) {
             toast("请选择");
             return false;
         }
