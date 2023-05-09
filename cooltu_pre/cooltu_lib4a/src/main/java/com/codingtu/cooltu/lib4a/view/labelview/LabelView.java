@@ -17,6 +17,7 @@ import com.codingtu.cooltu.lib4a.tools.ViewTool;
 import com.codingtu.cooltu.lib4a.view.attrs.Attrs;
 import com.codingtu.cooltu.lib4a.view.attrs.AttrsTools;
 import com.codingtu.cooltu.lib4a.view.attrs.GetAttrs;
+import com.codingtu.cooltu.lib4a.view.base.CoreTextView;
 import com.codingtu.cooltu.lib4a.view.textview.TagTextView;
 
 import java.util.List;

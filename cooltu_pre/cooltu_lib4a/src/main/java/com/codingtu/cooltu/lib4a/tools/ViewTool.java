@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import cooltu.lib4j.tools.StringTool;
+
 import com.codingtu.cooltu.lib4a.CoreApp;
 import com.codingtu.cooltu.lib4a.bean.WH;
 
@@ -395,6 +396,31 @@ public class ViewTool {
         Rect bounds = new Rect();
         tv.getPaint().getTextBounds(text, 0, text.length(), bounds);
         return new WH(bounds.width(), bounds.height());
+    }
+
+    /**************************************************
+     *
+     *
+     *
+     **************************************************/
+
+    public static void arrangeView(RelativeLayout rl, int perRow, int left, int top, int divider) {
+        completeView(rl, new ViewComplete() {
+            @Override
+            public void viewComplete() {
+                int currentCount = 0;
+                for (int i = 0; i < rl.getChildCount(); i++) {
+                    View view = rl.getChildAt(i);
+                    int l = left + (view.getWidth() + divider) * currentCount;
+                    int t = top + (view.getHeight() + divider) * (i / perRow);
+                    Margins.lt(view, l, t);
+                    currentCount++;
+                    if (currentCount >= perRow) {
+                        currentCount = 0;
+                    }
+                }
+            }
+        });
     }
 
 }
