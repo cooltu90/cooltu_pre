@@ -6,11 +6,9 @@ import android.graphics.BitmapRegionDecoder;
 import android.graphics.Rect;
 
 import com.codingtu.cooltu.lib4a.bean.WH;
-import com.codingtu.cooltu.lib4a.log.Logs;
 import com.codingtu.cooltu.lib4a.tools.BitmapTool;
 
 import java.io.File;
-import java.io.IOException;
 
 public class FileBitmap {
     private String path;
@@ -20,8 +18,6 @@ public class FileBitmap {
 
     private Rect cut;
     private boolean notRotate;
-
-    private int digree;
 
     public static FileBitmap obtain(String path) {
         FileBitmap cutFileImage = new FileBitmap();
@@ -64,59 +60,61 @@ public class FileBitmap {
         options.inJustDecodeBounds = true;
         BitmapFactory.decodeFile(path, options);
         options.inJustDecodeBounds = false;
-        WH oriWH = new WH(options.outWidth, options.outHeight);
 
-        if (cut == null) {
-            if (notRotate || (digree = BitmapTool.getDigree(path)) == 0) {
-                options.inSampleSize = getSize(oriWH);
-                return BitmapFactory.decodeFile(path, options);
-            }
+        int digree = 0;
+        if (!notRotate) {
+            digree = BitmapTool.getDigree(path);
+        }
 
-            options.inSampleSize = getSize((digree == 90 || digree == 270) ? swap(oriWH) : oriWH);
-            Bitmap bitmap = BitmapFactory.decodeFile(path, options);
-            Bitmap rotate = BitmapTool.rotate(bitmap, digree);
-            if (bitmap != rotate) {
-                BitmapTool.destoryBitmap(bitmap);
-            }
-            return rotate;
+        if (box == null) {
+            options.inSampleSize = getSize();
         } else {
-            if (notRotate || (digree = BitmapTool.getDigree(path)) == 0) {
-                options.inSampleSize = getSize(oriWH);
-                return cut(options, cut);
-            }
-
-            if (digree == 90) {
-                cut = new Rect(cut.top, oriWH.h - cut.right, cut.bottom, oriWH.h - cut.left);
-            } else if (digree == 180) {
-                cut = new Rect(oriWH.w - cut.right, oriWH.h - cut.bottom, oriWH.w - cut.left, oriWH.h - cut.top);
-            } else if (digree == 270) {
-                cut = new Rect(oriWH.w - cut.bottom, cut.left, oriWH.w - cut.top, cut.right);
-            }
-            options.inSampleSize = getSize((digree == 90 || digree == 270) ? swap(oriWH) : oriWH);
-            Bitmap bitmap = cut(options, cut);
-            Bitmap rotate = BitmapTool.rotate(bitmap, digree);
-            if (bitmap != rotate)
-                BitmapTool.destoryBitmap(bitmap);
-            return rotate;
+            options.inSampleSize = (digree == 0 || digree == 180) ? getSize(options.outWidth, options.outHeight) : getSize(options.outHeight, options.outWidth);
         }
+
+        Bitmap bitmap = null;
+        if (cut == null) {
+            bitmap = BitmapFactory.decodeFile(path, options);
+        } else {
+            Rect newCut = cut;
+            switch (digree) {
+                case 90:
+                    newCut = new Rect(cut.top, options.outHeight - cut.right, cut.bottom, options.outHeight - cut.left);
+                    break;
+                case 180:
+                    newCut = new Rect(options.outWidth - cut.right, options.outHeight - cut.bottom, options.outWidth - cut.left, options.outHeight - cut.top);
+                    break;
+                case 270:
+                    newCut = new Rect(options.outWidth - cut.bottom, cut.left, options.outWidth - cut.top, cut.right);
+                    break;
+            }
+            bitmap = cut(options, newCut);
+        }
+
+        if (digree == 0) {
+            return bitmap;
+        }
+
+        Bitmap rotate = BitmapTool.rotate(bitmap, digree);
+        if (bitmap != rotate) {
+            BitmapTool.destoryBitmap(bitmap);
+        }
+        return rotate;
     }
 
-    private WH swap(WH wh) {
-        return new WH(wh.h, wh.w);
+    private int getSize() {
+        return this.size <= 1 ? 1 : this.size;
     }
 
-    private int getSize(WH wh) {
-        int size = this.size <= 1 ? 1 : this.size;
-        if (box != null) {
-            if (wh.h > box.h || wh.w > box.w) {
-                if (wh.w > wh.h) {
-                    size = Math.round(wh.h / box.h);
-                } else {
-                    size = Math.round(wh.w / box.w);
-                }
+    private int getSize(int w, int h) {
+        if (h > box.h || w > box.w) {
+            if (w > h) {
+                return Math.round(h / box.h);
+            } else {
+                return Math.round(w / box.w);
             }
         }
-        return size;
+        return getSize();
     }
 
     private Bitmap cut(BitmapFactory.Options options, Rect cut) {
