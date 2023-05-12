@@ -13,6 +13,10 @@ public class VersionInfo {
      *
      * v1.0.40
      * !!!删除RoundImageView
+     * !!!BitmapTool中修改：
+     *    1、swap方法转为私有
+     *    2、删除Bitmap getBitmap(String path, int size)
+     *          Bitmap getBitmap(File file, int size)
      *
      **************************************************/
 }

@@ -1,19 +1,26 @@
 package com.codingtu.cooltu_pre;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.Manifest;
 import android.os.Bundle;
 
-import core.tools.ActStart;
+import com.codingtu.cooltu.processor.annotation.permission.Permission;
+import com.codingtu.cooltu.processor.annotation.ui.ActBase;
 
-public class MainActivity extends AppCompatActivity {
+import core.actbase.MainActivityBase;
+import core.tools.ActStart;
+import core.tools.Permissions;
+
+@ActBase(layout = R.layout.activity_main)
+public class MainActivity extends MainActivityBase {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-//        ActStart.welcomeActivity(this);
-        ActStart.formActivity(this);
-//        ActStart.viewActivity(this);
+        Permissions.check(this);
+    }
+
+    @Permission({Manifest.permission.WRITE_EXTERNAL_STORAGE})
+    public void check() {
+        ActStart.viewActivity(this);
     }
 }

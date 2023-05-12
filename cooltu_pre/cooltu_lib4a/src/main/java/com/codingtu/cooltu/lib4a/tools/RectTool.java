@@ -1,6 +1,7 @@
 package com.codingtu.cooltu.lib4a.tools;
 
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Rect;
 
 import com.codingtu.cooltu.lib4a.bean.WH;
@@ -8,12 +9,20 @@ import com.codingtu.cooltu.lib4a.log.Logs;
 
 public class RectTool {
 
+    public static void log(Rect rect) {
+        Logs.i("rect[l:" + rect.left + " r:" + rect.right + " t:" + rect.top + " b:" + rect.bottom + " w:" + rect.width() + " h:" + rect.height() + "]");
+    }
+
     public static Rect newRect(int w, int h) {
         return new Rect(0, 0, w, h);
     }
 
     public static Rect newRect(WH wh) {
         return newRect(wh.w, wh.h);
+    }
+
+    public static Rect newRect(Canvas canvas) {
+        return newRect(canvas.getWidth(), canvas.getHeight());
     }
 
     public static Rect getBitmapRect(Bitmap bitmap) {
@@ -33,7 +42,4 @@ public class RectTool {
         return rect;
     }
 
-    public static void log(Rect rect) {
-        Logs.i("rect[l:"+rect.left+" r:"+rect.right+" t:"+rect.top+" b:"+rect.bottom+" w:"+rect.width()+" h:"+rect.height()+"]");
-    }
 }

@@ -17,24 +17,20 @@ import retrofit2.adapter.rxjava2.Result;
 
 import com.codingtu.cooltu.lib4a.permission.PermissionBack;
 
-public abstract class ViewActivityBase extends com.codingtu.cooltu.lib4a.act.CoreActivity implements View.OnClickListener, NetBackI, PermissionBack {
+public abstract class MainActivityBase extends com.codingtu.cooltu.lib4a.act.CoreActivity implements View.OnClickListener, NetBackI, PermissionBack {
 
     protected int fromAct;
 
-    public com.codingtu.cooltu.lib4a.view.image.ScaleImageViewNew iv;
-    public android.widget.ImageView iv1;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(com.codingtu.cooltu_pre.R.layout.activity_view);
+        setContentView(com.codingtu.cooltu_pre.R.layout.activity_main);
         Intent data = getIntent();
         fromAct = core.tools.Pass.fromAct(data);
 
-        iv = findViewById(com.codingtu.cooltu_pre.R.id.iv);
-        iv1 = findViewById(com.codingtu.cooltu_pre.R.id.iv1);
 
 
 
@@ -79,9 +75,13 @@ public abstract class ViewActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
 
     @Override
     public void back(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == core.tools.Permissions.CODE_CHECK) {
+            check();
+        }
 
     }
 
+    public void check() {}
 
 
     @Override

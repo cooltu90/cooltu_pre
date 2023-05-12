@@ -4,39 +4,16 @@
     android:layout_height="match_parent"
     android:background="#fff">
 
-    <RelativeLayout
-        android:id="@+id/rv"
+    <com.codingtu.cooltu.lib4a.view.image.ScaleImageViewNew
+        android:id="@+id/iv"
+        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp">
+        android:layout_height="match_parent" />
 
-        <TextView
-            style="@style/view_test_tv"
-            android:text="1" />
+    <ImageView
+        android:id="@+id/iv1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
-        <TextView
-            style="@style/view_test_tv"
-            android:text="2" />
-
-        <TextView
-            style="@style/view_test_tv"
-            android:text="3" />
-
-        <TextView
-            style="@style/view_test_tv"
-            android:text="4" />
-
-        <TextView
-            style="@style/view_test_tv"
-            android:text="5" />
-
-        <TextView
-            style="@style/view_test_tv"
-            android:text="6" />
-
-        <TextView
-            style="@style/view_test_tv"
-            android:text="7" />
-    </RelativeLayout>
 
 </RelativeLayout>
