@@ -46,7 +46,8 @@ public class ViewActivity extends ViewActivityBase {
             public void viewComplete() {
                 Bitmap bitmap = FileBitmap.obtain(file)
                         .size(iv1.getWidth(), iv1.getHeight())
-                        .cut(new Rect(100, 100, 1000, 1000))
+                        .size(1)
+//                        .cut(new Rect(100, 100, 1000, 1000))
                         .bitmap();
                 iv1.setImageBitmap(bitmap);
             }
