@@ -21,6 +21,8 @@ public class FileBitmap {
     private Rect cut;
     private boolean notRotate;
 
+    private int digree;
+
     public static FileBitmap obtain(String path) {
         FileBitmap cutFileImage = new FileBitmap();
         cutFileImage.path = path;
@@ -59,37 +61,39 @@ public class FileBitmap {
 
     public Bitmap bitmap() {
         BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inSampleSize = getSize(BitmapWH.obtain(path).wh());
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(path, options);
+        options.inJustDecodeBounds = false;
+        WH oriWH = new WH(options.outWidth, options.outHeight);
+
         if (cut == null) {
-            Bitmap bitmap = BitmapFactory.decodeFile(path, options);
-            if (notRotate) {
-                return bitmap;
+            if (notRotate || (digree = BitmapTool.getDigree(path)) == 0) {
+                options.inSampleSize = getSize(oriWH);
+                return BitmapFactory.decodeFile(path, options);
             }
-            Bitmap rotate = BitmapTool.rotate(path, bitmap);
+
+            options.inSampleSize = getSize((digree == 90 || digree == 270) ? swap(oriWH) : oriWH);
+            Bitmap bitmap = BitmapFactory.decodeFile(path, options);
+            Bitmap rotate = BitmapTool.rotate(bitmap, digree);
             if (bitmap != rotate) {
                 BitmapTool.destoryBitmap(bitmap);
             }
             return rotate;
         } else {
-            if (notRotate) {
+            if (notRotate || (digree = BitmapTool.getDigree(path)) == 0) {
+                options.inSampleSize = getSize(oriWH);
                 return cut(options, cut);
             }
 
-            int digree = BitmapTool.getDigree(path);
-            if (digree == 0) {
-                return cut(options, cut);
-            }
-
-            WH wh = BitmapWH.obtain(path).notRotate().wh();
             if (digree == 90) {
-                cut = new Rect(cut.top, wh.h - cut.right, cut.bottom, wh.h - cut.left);
+                cut = new Rect(cut.top, oriWH.h - cut.right, cut.bottom, oriWH.h - cut.left);
             } else if (digree == 180) {
-                cut = new Rect(wh.w - cut.right, wh.h - cut.bottom, wh.w - cut.left, wh.h - cut.top);
+                cut = new Rect(oriWH.w - cut.right, oriWH.h - cut.bottom, oriWH.w - cut.left, oriWH.h - cut.top);
             } else if (digree == 270) {
-                cut = new Rect(wh.w - cut.bottom, cut.left, wh.w - cut.top, cut.right);
+                cut = new Rect(oriWH.w - cut.bottom, cut.left, oriWH.w - cut.top, cut.right);
             }
+            options.inSampleSize = getSize((digree == 90 || digree == 270) ? swap(oriWH) : oriWH);
             Bitmap bitmap = cut(options, cut);
-            // 旋转图片
             Bitmap rotate = BitmapTool.rotate(bitmap, digree);
             if (bitmap != rotate)
                 BitmapTool.destoryBitmap(bitmap);
@@ -97,8 +101,12 @@ public class FileBitmap {
         }
     }
 
+    private WH swap(WH wh) {
+        return new WH(wh.h, wh.w);
+    }
+
     private int getSize(WH wh) {
-        int size = 1;
+        int size = this.size <= 1 ? 1 : this.size;
         if (box != null) {
             if (wh.h > box.h || wh.w > box.w) {
                 if (wh.w > wh.h) {
