@@ -120,95 +120,7 @@ public class BitmapTool {
 
     /**************************************************
      *
-     * 分割线
-     *
-     **************************************************/
-
-    /**************************************************
-     *
-     * 通过文件直接获取Bitmap
-     *
-     **************************************************/
-    public static Bitmap getBitmap(String path) {
-        return BitmapFactory.decodeFile(path);
-    }
-
-    public static Bitmap getBitmap(File file) {
-        return getBitmap(file.getAbsolutePath());
-    }
-
-    public static Bitmap getBitmapWithRotate(String path) {
-        Bitmap bitmap = getBitmap(path);
-        Bitmap rotate = rotate(path, bitmap);
-        if (bitmap != rotate)
-            destoryBitmap(bitmap);
-        return rotate;
-    }
-
-    /**************************************************
-     *
-     * 通过文件直接获取图片的一部分区域的Bitmap
-     *
-     **************************************************/
-    public static Bitmap getBitmap(String path, Rect rect, int size) throws IOException {
-        BitmapRegionDecoder decoder = BitmapRegionDecoder.newInstance(path, false);
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-        options.inSampleSize = size;
-        return decoder.decodeRegion(rect, options);
-    }
-
-    public static Bitmap getBitmap(String path, Rect rect) throws IOException {
-        return getBitmap(path, rect, 1);
-    }
-
-
-    public static Bitmap getBitmap(File file, Rect rect, int size) throws IOException {
-        return getBitmap(file.getAbsolutePath(), rect, size);
-    }
-
-    public static Bitmap getBitmap(File file, Rect rect) throws IOException {
-        return getBitmap(file.getAbsolutePath(), rect);
-    }
-
-    public static Bitmap getBitmapWithRotate(String path, Rect rect, int size) throws IOException {
-        int digree = getDigree(path);
-        if (digree == 0) {
-            return getBitmap(path, rect, size);
-        }
-
-        WH wh = BitmapWH.obtain(path).notRotate().wh();
-        if (digree == 90) {
-            rect = new Rect(rect.top, wh.h - rect.right, rect.bottom, wh.h - rect.left);
-        } else if (digree == 180) {
-            rect = new Rect(wh.w - rect.right, wh.h - rect.bottom, wh.w - rect.left, wh.h - rect.top);
-
-        } else if (digree == 270) {
-            rect = new Rect(wh.w - rect.bottom, rect.left, wh.w - rect.top, rect.right);
-        }
-        Bitmap bitmap = getBitmap(path, rect, size);
-        // 旋转图片
-        Bitmap rotate = rotate(bitmap, digree);
-        if (bitmap != rotate)
-            destoryBitmap(bitmap);
-        return rotate;
-    }
-
-    public static Bitmap getBitmapWithRotate(File file, Rect rect, int size) throws IOException {
-        return getBitmapWithRotate(file.getAbsolutePath(), rect, size);
-    }
-
-    public static Bitmap getBitmapWithRotate(String path, Rect rect) throws IOException {
-        return getBitmapWithRotate(path, rect, 1);
-    }
-
-    public static Bitmap getBitmapWithRotate(File file, Rect rect) throws IOException {
-        return getBitmapWithRotate(file.getAbsolutePath(), rect);
-    }
-
-    /**************************************************
-     *
-     *
+     * 通过限定显示宽高来获取对应的BitmapFactory.Options的inSampleSize
      *
      **************************************************/
 
@@ -228,27 +140,6 @@ public class BitmapTool {
         options.inJustDecodeBounds = false;
         options.inSampleSize = inSampleSize;
         return options;
-    }
-
-    /**************************************************
-     *
-     * 通过文件获取指定显示区域的大小的Bimtap
-     *
-     **************************************************/
-    public static Bitmap getBitmap(String filePath, int width, int height) {
-        try {
-            FileInputStream fis = new FileInputStream(filePath);
-            BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inJustDecodeBounds = true;
-            BitmapFactory.decodeFileDescriptor(fis.getFD(), null, options);
-            return BitmapFactory.decodeFileDescriptor(fis.getFD(), null, dealOptions(options, width, height));
-        } catch (Exception ex) {
-        }
-        return null;
-    }
-
-    public static Bitmap getBitmapWithRotate(String filePath, int width, int height) {
-        return rotate(filePath, getBitmap(filePath, width, height));
     }
 
     /**************************************************
@@ -353,12 +244,11 @@ public class BitmapTool {
         return view.getDrawingCache();
     }
 
-    /***************************************
+    /**************************************************
      *
-     * 创建bitmap
+     * 创建一个空的bitmap
      *
-     ***************************************/
-
+     **************************************************/
     public static Bitmap createBitmap(int w, int h) {
         return Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
     }
@@ -373,12 +263,43 @@ public class BitmapTool {
 
     /**************************************************
      *
+     * 模糊图片
+     *
+     **************************************************/
+    public static Bitmap blur(Bitmap image) {
+        return blur(image, 1f, 25f);
+    }
+
+    public static Bitmap blur(Bitmap image, float BITMAP_SCALE, float BLUR_RADIUS) {
+        int width = Math.round(image.getWidth() * BITMAP_SCALE);
+        int height = Math.round(image.getHeight() * BITMAP_SCALE);
+        Bitmap inputBitmap = Bitmap.createScaledBitmap(image, width, height, false);
+        Bitmap outputBitmap = Bitmap.createBitmap(inputBitmap);
+        RenderScript rs = RenderScript.create(CoreApp.APP);
+        ScriptIntrinsicBlur blurScript = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
+        Allocation tmpIn = Allocation.createFromBitmap(rs, inputBitmap);
+        Allocation tmpOut = Allocation.createFromBitmap(rs, outputBitmap);
+        blurScript.setRadius(BLUR_RADIUS);
+        blurScript.setInput(tmpIn);
+        blurScript.forEach(tmpOut);
+        tmpOut.copyTo(outputBitmap);
+        return outputBitmap;
+    }
+
+    /**************************************************
+     *
      * 最终的画Bitmap方法
      *
      **************************************************/
     public static void drawBitmap(Canvas canvas, Bitmap src, Rect srcRect, Rect dstRect) {
         canvas.drawBitmap(src, srcRect, dstRect, null);
     }
+
+    /**************************************************
+     *
+     * 分割线
+     *
+     **************************************************/
 
     /**************************************************
      *
@@ -433,9 +354,8 @@ public class BitmapTool {
     public static Bitmap createBitmap(int w, int h, int color, int radius) {
         Bitmap bitmap = createBitmap(w, h);
         Canvas canvas = new Canvas(bitmap);
-        Paint paint = new Paint();
+        Paint paint = DrawTool.getDefaultPaint();
         paint.setColor(color);
-        paint.setAntiAlias(true);
         canvas.drawRoundRect(new RectF(0, 0, w, h), radius, radius, paint);
         return bitmap;
     }
@@ -495,24 +415,5 @@ public class BitmapTool {
         drawBitmap(canvas, src, RectTool.getBitmapRect(src), dstRect);
     }
 
-    public static Bitmap blur(Bitmap image) {
-        return blur(image, 1f, 25f);
-    }
-
-    public static Bitmap blur(Bitmap image, float BITMAP_SCALE, float BLUR_RADIUS) {
-        int width = Math.round(image.getWidth() * BITMAP_SCALE);
-        int height = Math.round(image.getHeight() * BITMAP_SCALE);
-        Bitmap inputBitmap = Bitmap.createScaledBitmap(image, width, height, false);
-        Bitmap outputBitmap = Bitmap.createBitmap(inputBitmap);
-        RenderScript rs = RenderScript.create(CoreApp.APP);
-        ScriptIntrinsicBlur blurScript = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
-        Allocation tmpIn = Allocation.createFromBitmap(rs, inputBitmap);
-        Allocation tmpOut = Allocation.createFromBitmap(rs, outputBitmap);
-        blurScript.setRadius(BLUR_RADIUS);
-        blurScript.setInput(tmpIn);
-        blurScript.forEach(tmpOut);
-        tmpOut.copyTo(outputBitmap);
-        return outputBitmap;
-    }
 
 }
