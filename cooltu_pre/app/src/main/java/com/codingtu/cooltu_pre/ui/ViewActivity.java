@@ -24,19 +24,5 @@ public class ViewActivity extends ViewActivityBase {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String file = SDCardTool.getSDCard() + "/testimg/5.jpg";
-
-        ViewTool.completeView(iv1, new ViewTool.ViewComplete() {
-            @Override
-            public void viewComplete() {
-                Bitmap bitmap = FileBitmap.obtain(file)
-                        .size(iv1.getWidth(), iv1.getHeight())
-                        //.notRotate()
-                        .cut(new Rect(100, 100, 1000, 1000))
-                        .bitmap();
-                iv1.setImageBitmap(bitmap);
-            }
-        });
-
-
     }
 }

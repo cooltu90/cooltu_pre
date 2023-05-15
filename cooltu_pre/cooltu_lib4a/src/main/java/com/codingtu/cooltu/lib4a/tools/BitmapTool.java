@@ -295,61 +295,35 @@ public class BitmapTool {
         canvas.drawBitmap(src, srcRect, dstRect, null);
     }
 
+
+    public static void drawBitmap(Canvas canvas, Bitmap src) {
+        drawBitmap(canvas, src, RectTool.getBitmapRect(src), RectTool.newRect(canvas));
+    }
+
+    /**************************************************
+     *
+     * 裁切Bitmap
+     *
+     **************************************************/
+    public static Bitmap cutBitmap(Bitmap src, Rect srcRect) {
+        WH wh = RectTool.getWH(srcRect);
+        Bitmap dst = createBitmap(wh);
+        drawBitmap(new Canvas(dst), src, srcRect, RectTool.newRect(wh));
+        return dst;
+    }
+
+
     /**************************************************
      *
      * 分割线
      *
      **************************************************/
 
-    /**************************************************
-     *
-     *
-     *
-     **************************************************/
-    public static void coverAllBitmap(Canvas canvas, Bitmap src) {
-        drawBitmap(canvas, src, RectTool.getBitmapRect(src), RectTool.newRect(canvas));
-    }
-
-    public static Bitmap coverAllBitmap(Bitmap src, Bitmap dst) {
-        coverAllBitmap(new Canvas(dst), src);
-        return dst;
-    }
-
-
-    /***************************************
-     *
-     * 画bitmap
-     *
-     ***************************************/
-    public static Canvas drawBitmap(Bitmap src) {
-        return drawBitmap(src, createBitmap(src));
-    }
-
-    public static Canvas drawBitmap(Bitmap src, Bitmap target) {
-        Canvas canvas = new Canvas(target);
-        drawBitmap(canvas, src);
-        return canvas;
-    }
-
-    public static void drawBitmap(Canvas canvas, Bitmap src) {
-        Rect bitmapRect = RectTool.getBitmapRect(src);
-        drawBitmap(canvas, src, bitmapRect, bitmapRect);
-    }
-
     /************************************************
      *
      * drawBitmap
      *
      ************************************************/
-
-    public static void drawBitmap(Bitmap dst, Rect dstRect, Bitmap src) {
-        drawBitmap(new Canvas(dst), src, RectTool.getBitmapRect(src), dstRect);
-    }
-
-    public static void drawBitmap(Bitmap dst, Rect dstRect, Bitmap src, Rect srcRect) {
-        drawBitmap(new Canvas(dst), src, srcRect, dstRect);
-    }
-
 
     public static Bitmap createBitmap(int w, int h, int color, int radius) {
         Bitmap bitmap = createBitmap(w, h);
@@ -359,60 +333,11 @@ public class BitmapTool {
         canvas.drawRoundRect(new RectF(0, 0, w, h), radius, radius, paint);
         return bitmap;
     }
-
-
-    public static Bitmap zoomBitmap(Bitmap src, int w, int h) {
-        Bitmap dst = createBitmap(w, h);
-        coverAllBitmap(src, dst);
-        return dst;
-    }
-
-    public static Bitmap zoomBitmap(Bitmap src, WH wh) {
-        Bitmap dst = createBitmap(wh);
-        coverAllBitmap(src, dst);
-        return dst;
-    }
-
-    public static Bitmap copy(Bitmap src) {
-        return coverAllBitmap(src, createBitmap(src.getWidth(), src.getHeight()));
-    }
-
-
-    public static Bitmap cutBitmap(Bitmap src, Rect srcRect) {
-        WH wh = RectTool.getWH(srcRect);
-        return getBitmap(createBitmap(wh), RectTool.newRect(wh), src, srcRect);
-    }
-
-    public static Bitmap coverBitmap(Bitmap dst, Bitmap src) {
-        Rect srcRect = RectTool.getBitmapRect(src);
-        drawBitmap(new Canvas(dst), src, srcRect, srcRect);
-        return dst;
-    }
-
-
-    public static Bitmap extensionBitmap(Bitmap src, int w) {
-        return extensionBitmap(src, w, w);
-    }
-
-    public static Bitmap extensionBitmap(Bitmap src, int w, int h) {
-        return coverBitmap(createBitmap(w, h), src);
-    }
-
     //////////////////////////////////////////////////
-
 
     public static Bitmap getBitmap(Bitmap dst, Rect dstRect, Bitmap src) {
         drawBitmap(new Canvas(dst), src, RectTool.getBitmapRect(src), dstRect);
         return dst;
-    }
-
-    public static Bitmap getBitmap(Bitmap dst, Rect dstRect, Bitmap src, Rect srcRect) {
-        drawBitmap(new Canvas(dst), src, srcRect, dstRect);
-        return dst;
-    }
-
-    public static void drawBitmap(Canvas canvas, Rect dstRect, Bitmap src) {
-        drawBitmap(canvas, src, RectTool.getBitmapRect(src), dstRect);
     }
 
 
