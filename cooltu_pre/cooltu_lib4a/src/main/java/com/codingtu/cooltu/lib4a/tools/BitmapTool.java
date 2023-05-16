@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapRegionDecoder;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
@@ -28,6 +29,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import com.codingtu.cooltu.lib4a.CoreApp;
+import com.codingtu.cooltu.lib4a.bean.LTRB;
 import com.codingtu.cooltu.lib4a.bean.WH;
 import com.codingtu.cooltu.lib4a.image.BitmapWH;
 import com.codingtu.cooltu.lib4a.log.Logs;
@@ -292,12 +294,40 @@ public class BitmapTool {
      *
      **************************************************/
     public static void drawBitmap(Canvas canvas, Bitmap src, Rect srcRect, Rect dstRect) {
+        canvas.drawColor(Color.WHITE);
         canvas.drawBitmap(src, srcRect, dstRect, null);
     }
 
 
     public static void drawBitmap(Canvas canvas, Bitmap src) {
         drawBitmap(canvas, src, RectTool.getBitmapRect(src), RectTool.newRect(canvas));
+    }
+
+    public static void drawBitmap(Bitmap src, Rect srcRect, Bitmap dst, Rect dstRect) {
+        drawBitmap(new Canvas(dst), src, srcRect, dstRect);
+    }
+
+    public static void drawBitmap(Bitmap src, Bitmap dst, Rect dstRect) {
+        drawBitmap(new Canvas(dst), src, RectTool.newRect(src.getWidth(), src.getHeight()), dstRect);
+    }
+
+    /**************************************************
+     *
+     * 画在中间
+     *
+     **************************************************/
+    public static Bitmap createBitmapInCenter(WH boxWH, Bitmap src) {
+        WH srcWH = BitmapTool.getBitmapWH(src);
+        WH wh = AdjustTool.inBox(boxWH, srcWH);
+        LTRB ltrb = new LTRB();
+        ltrb.lw((boxWH.w - wh.w) / 2, wh.w);
+        ltrb.th((boxWH.h - wh.h) / 2, wh.h);
+
+        Bitmap bitmap = createBitmap(boxWH);
+
+        drawBitmap(new Canvas(bitmap), src,
+                RectTool.newRect(srcWH), ltrb.toRect());
+        return bitmap;
     }
 
     /**************************************************

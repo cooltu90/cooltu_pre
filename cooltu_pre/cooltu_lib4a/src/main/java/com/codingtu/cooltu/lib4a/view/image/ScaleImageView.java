@@ -145,7 +145,6 @@ public class ScaleImageView extends CoreView {
 
         pic.setLocInView(ltrb);
         drawBitmap = BitmapTool.getBitmap(drawBitmap, ltrb.toRect(), bgBitmap);
-
         startImage = false;
         invalidate();
     }

@@ -6,7 +6,9 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import android.content.Intent;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.codingtu.cooltu.lib4a.net.bean.CoreSendParams;
 import com.codingtu.cooltu.lib4a.net.netback.NetBackI;
@@ -14,13 +16,12 @@ import okhttp3.ResponseBody;
 import retrofit2.adapter.rxjava2.Result;
 
 import com.codingtu.cooltu.lib4a.permission.PermissionBack;
-import com.codingtu.cooltu.lib4a.view.image.CoreScaleView;
 
 public abstract class ViewActivityBase extends com.codingtu.cooltu.lib4a.act.CoreActivity implements View.OnClickListener, NetBackI, PermissionBack {
 
     protected int fromAct;
 
-    public CoreScaleView iv;
+    public com.codingtu.cooltu.lib4a.view.image.DefaultScaleImageView iv;
 
 
     @Override
