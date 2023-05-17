@@ -93,27 +93,4 @@ public class DefaultScaleImageView extends CoreScaleView {
         BitmapTool.drawBitmap(oriBitmap, showInBitmap.toRect(), drawBitmap, showInView.toRect(), Color.BLACK);
         invalidate();
     }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-
-        //10,10,1000,1000
-
-        Scale scale = new Scale(this.scale);
-        double s1 = scale.getDoubleSize(500);
-        double s2 = scale.getDoubleSize(1000);
-
-        int l = (int) (locInView.l + s1);
-        int r = (int) (locInView.l + s2);
-
-        int t = (int) (locInView.t + s1);
-        int b = (int) (locInView.t + s2);
-
-        paint.setColor(Color.RED);
-        canvas.drawRect(l, t, r, b, paint);
-
-
-        paint.reset();
-    }
 }

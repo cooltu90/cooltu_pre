@@ -26,4 +26,11 @@ public class VersionInfo {
      * !!!修改BitmapTool 中 Bitmap getBitmap(Bitmap dst, Rect dstRect, Bitmap src)方法
      *
      **************************************************/
+
+    /**************************************************
+     *
+     * v1.0.42
+     * + DefaultScaleImageView中onDraw的测试代码删除
+     *
+     **************************************************/
 }
