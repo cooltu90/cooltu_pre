@@ -366,7 +366,8 @@ public class BitmapTool {
     //////////////////////////////////////////////////
 
     public static Bitmap getBitmap(Bitmap dst, Rect dstRect, Bitmap src) {
-        drawBitmap(new Canvas(dst), src, RectTool.getBitmapRect(src), dstRect, Color.WHITE);
+//        drawBitmap(new Canvas(dst), src, RectTool.getBitmapRect(src), dstRect, Color.WHITE);
+        new Canvas(dst).drawBitmap(src, RectTool.getBitmapRect(src), dstRect, null);
         return dst;
     }
 

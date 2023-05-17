@@ -22,6 +22,7 @@ public abstract class ViewActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
     protected int fromAct;
 
     public com.codingtu.cooltu.lib4a.view.image.DefaultScaleImageView iv;
+    public com.codingtu.cooltu.lib4a.view.image.ScaleImageView siv;
 
 
     @Override
@@ -33,6 +34,7 @@ public abstract class ViewActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
         fromAct = core.tools.Pass.fromAct(data);
 
         iv = findViewById(com.codingtu.cooltu_pre.R.id.iv);
+        siv = findViewById(com.codingtu.cooltu_pre.R.id.siv);
 
 
 

@@ -9,7 +9,13 @@
         android:id="@+id/iv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        />
+        android:visibility="gone"
+        android:layout_centerInParent="true" />
+
+
+    <com.codingtu.cooltu.lib4a.view.image.ScaleImageView
+        android:id="@+id/siv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </RelativeLayout>
