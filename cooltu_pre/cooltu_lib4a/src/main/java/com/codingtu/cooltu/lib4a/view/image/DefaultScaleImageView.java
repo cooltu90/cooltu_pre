@@ -23,6 +23,7 @@ public class DefaultScaleImageView extends CoreScaleView {
     private float minScale;
     private WH adjustWH;
     private LTRB adjustInView;
+    private P lastP;
 
     public DefaultScaleImageView(Context context) {
         super(context);
@@ -80,8 +81,70 @@ public class DefaultScaleImageView extends CoreScaleView {
 
 
     @Override
-    protected void onMoveSingle(MotionEvent event) {
-        super.onMoveSingle(event);
+    protected void onMoveSingle(MotionEvent event, float dx, float dy) {
+        super.onMoveSingle(event, dx, dy);
+
+        int l = (int) (locInView.l + dx);
+        int t = (int) (locInView.t + dy);
+
+        if (l > adjustInView.l) {
+            l = adjustInView.l;
+        }
+        if (t > adjustInView.t) {
+            t = adjustInView.t;
+        }
+
+        locInView.lw(l, locInView.w());
+        locInView.th(t, locInView.h());
+
+        if (locInView.r < adjustInView.r) {
+            locInView.rw(adjustInView.r, locInView.w());
+        }
+
+        if (locInView.b < adjustInView.b) {
+            locInView.bh(adjustInView.b, locInView.h());
+        }
+
+        showInView = locInView.copyOne();
+        if (showInView.l < 0) {
+            showInView.l = 0;
+        }
+
+        if (showInView.r > viewWH.w) {
+            showInView.r = viewWH.w;
+        }
+
+        if (showInView.t < 0) {
+            showInView.t = 0;
+        }
+
+        if (showInView.b > viewWH.h) {
+            showInView.b = viewWH.h;
+        }
+
+        LTRB ltrb = new LTRB();
+        if (locInView.l >= 0) {
+            ltrb.l = 0;
+        } else {
+            ltrb.l = (int) (-locInView.l / scale);
+        }
+
+
+        ltrb.r = (int) (ltrb.l + showInView.w() / scale);
+
+
+        if (locInView.t >= 0) {
+            ltrb.t = 0;
+        } else {
+            ltrb.t = (int) (-locInView.t / scale);
+        }
+
+        ltrb.b = (int) (ltrb.t + showInView.h() / scale);
+
+        BitmapTool.drawBitmap(oriBitmap, ltrb.toRect(), drawBitmap, showInView.toRect());
+
+        invalidate();
+
     }
 
     @Override
@@ -110,10 +173,6 @@ public class DefaultScaleImageView extends CoreScaleView {
 
     private void dealScale() {
 
-        Logs.i("=================================");
-
-        Logs.i("scale:" + scale);
-
         float newW = oriBitmapWH.w * scale;
         float newH = oriBitmapWH.h * scale;
 
@@ -122,14 +181,12 @@ public class DefaultScaleImageView extends CoreScaleView {
             newH = adjustWH.h;
         }
 
-        Logs.i("newW:" + newW);
-        Logs.i("newH:" + newH);
-
         int l = (int) (scaleCenterP.x - newW * (scaleCenterP.x - locInView.l) / locInView.w());
+        int t = (int) (scaleCenterP.y - newH * (scaleCenterP.y - locInView.t) / locInView.h());
+
         if (l > adjustInView.l) {
             l = adjustInView.l;
         }
-        int t = (int) (scaleCenterP.y - newH * (scaleCenterP.y - locInView.t) / locInView.h());
         if (t > adjustInView.t) {
             t = adjustInView.t;
         }
@@ -142,10 +199,8 @@ public class DefaultScaleImageView extends CoreScaleView {
         }
 
         if (locInView.b < adjustInView.b) {
-            locInView.bh(adjustInView.b,locInView.h());
+            locInView.bh(adjustInView.b, locInView.h());
         }
-
-        Logs.i("locInView:" + locInView);
 
         showInView = locInView.copyOne();
         if (showInView.l < 0) {
@@ -163,9 +218,6 @@ public class DefaultScaleImageView extends CoreScaleView {
         if (showInView.b > viewWH.h) {
             showInView.b = viewWH.h;
         }
-
-        Logs.i("showInView:" + showInView);
-
 
         LTRB ltrb = new LTRB();
         if (locInView.l >= 0) {
@@ -185,8 +237,6 @@ public class DefaultScaleImageView extends CoreScaleView {
         }
 
         ltrb.b = (int) (ltrb.t + showInView.h() / scale);
-
-        Logs.i("cut:" + ltrb);
 
         BitmapTool.drawBitmap(oriBitmap, ltrb.toRect(), drawBitmap, showInView.toRect());
 

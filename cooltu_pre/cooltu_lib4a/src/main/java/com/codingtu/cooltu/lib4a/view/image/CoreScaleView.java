@@ -27,6 +27,7 @@ public class CoreScaleView extends CoreView {
     protected float scale;
     private Integer fingers;
     private List<P> lastPs;
+    private P lastP;
 
     public CoreScaleView(Context context) {
         super(context);
@@ -77,10 +78,16 @@ public class CoreScaleView extends CoreView {
             case MotionEvent.ACTION_DOWN:
                 fingers = null;
                 lastPs = null;
+                lastP = null;
                 break;
             case MotionEvent.ACTION_MOVE:
                 if (fingers == null) {
-                    onMoveSingle(event);
+
+                    P p = getP(event);
+                    if (lastP != null) {
+                        onMoveSingle(event, p.x - lastP.x, p.y - lastP.y);
+                    }
+                    lastP = p;
                 } else if (fingers == 2 && event.getPointerCount() == 2) {
                     List<P> currentPs = getPs(event);
                     if (lastPs != null) {
@@ -113,7 +120,7 @@ public class CoreScaleView extends CoreView {
 
     }
 
-    protected void onMoveSingle(MotionEvent event) {
+    protected void onMoveSingle(MotionEvent event, float dx, float dy) {
     }
 
     protected void onMoveMulti(MotionEvent event, float scaleAdd) {
