@@ -17,6 +17,7 @@ public class VersionInfo {
      *    1、swap方法转为私有
      *    2、删除Bitmap getBitmap(String path, int size)
      *          Bitmap getBitmap(File file, int size)
+     * +增加新的缩放图片控件
      *
      **************************************************/
 }

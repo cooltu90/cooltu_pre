@@ -9,11 +9,15 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 
 import com.codingtu.cooltu.constant.TouchType;
+import com.codingtu.cooltu.lib4a.R;
 import com.codingtu.cooltu.lib4a.bean.LTRB;
 import com.codingtu.cooltu.lib4a.bean.WH;
 import com.codingtu.cooltu.lib4a.log.Logs;
 import com.codingtu.cooltu.lib4a.tools.BitmapTool;
 import com.codingtu.cooltu.lib4a.tools.DrawTool;
+import com.codingtu.cooltu.lib4a.view.attrs.Attrs;
+import com.codingtu.cooltu.lib4a.view.attrs.AttrsTools;
+import com.codingtu.cooltu.lib4a.view.attrs.GetAttrs;
 import com.codingtu.cooltu.lib4a.view.base.CoreView;
 
 import java.util.ArrayList;
@@ -21,13 +25,21 @@ import java.util.List;
 
 public class CoreScaleView extends CoreView {
 
-    private Paint paint;
+    protected Paint paint;
     protected Bitmap drawBitmap;
     protected WH viewWH;
     protected float scale;
     private Integer fingers;
     private List<P> lastPs;
     private P lastP;
+    protected float maxScale;
+    protected float minScale;
+    protected WH adjustWH;
+    protected LTRB locInView;
+    protected LTRB showInView;
+    protected LTRB showInBitmap;
+    protected P scaleCenterP;
+    protected WH oriBitmapWH;
 
     public CoreScaleView(Context context) {
         super(context);
@@ -45,6 +57,12 @@ public class CoreScaleView extends CoreView {
     protected void init(Context context, AttributeSet attrs, int defStyleAttr) {
         super.init(context, attrs, defStyleAttr);
         paint = DrawTool.getDefaultPaint();
+        AttrsTools.getAttrs(context, attrs, R.styleable.CoreScaleView, new GetAttrs() {
+            @Override
+            public void getAttrs(Attrs attrs) {
+                maxScale = attrs.getFloat(R.styleable.CoreScaleView_maxScale, 4);
+            }
+        });
     }
 
     @Override
@@ -67,8 +85,8 @@ public class CoreScaleView extends CoreView {
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (drawBitmap != null && !drawBitmap.isRecycled()) {
-            canvas.drawColor(Color.WHITE);
-            BitmapTool.drawBitmap(canvas, drawBitmap);
+            //canvas.drawColor(Color.WHITE);
+            BitmapTool.drawBitmap(canvas, drawBitmap, Color.WHITE);
         }
     }
 
@@ -117,13 +135,46 @@ public class CoreScaleView extends CoreView {
     }
 
     protected void onMoveMultiStart(MotionEvent event) {
-
+        scaleCenterP = getInAreaP(getScaleCenterP(event), showInView);
     }
 
     protected void onMoveSingle(MotionEvent event, float dx, float dy) {
+        calculateMove(locInView.w(), locInView.h(), (int) (locInView.l + dx), (int) (locInView.t + dy));
+        dealMove();
     }
 
     protected void onMoveMulti(MotionEvent event, float scaleAdd) {
+        if (scaleCenterP == null)
+            return;
+
+        scale *= scaleAdd;
+        if (scale > maxScale) {
+            scale = maxScale;
+        }
+
+        if (scale < minScale) {
+            scale = minScale;
+        }
+
+        float newW = oriBitmapWH.w * scale;
+        float newH = oriBitmapWH.h * scale;
+
+        if (newW < adjustWH.w || newH < adjustWH.h) {
+            newW = adjustWH.w;
+            newH = adjustWH.h;
+        }
+
+        int l = (int) (scaleCenterP.x - newW * (scaleCenterP.x - locInView.l) / locInView.w());
+        int t = (int) (scaleCenterP.y - newH * (scaleCenterP.y - locInView.t) / locInView.h());
+
+        calculateMove((int) newW, (int) newH, l, t);
+
+        dealMove();
+
+    }
+
+    protected void dealMove() {
+
     }
 
 
@@ -132,6 +183,70 @@ public class CoreScaleView extends CoreView {
      * 一些计算方法
      *
      **************************************************/
+
+    protected void calculateMove(int newW, int newH, int l, int t) {
+        locInView.lw(l, newW);
+        locInView.th(t, newH);
+
+        if (locInView.w() <= viewWH.w) {
+            locInView.l = (viewWH.w - locInView.w()) / 2;
+            locInView.r = locInView.l + newW;
+        } else if (locInView.l > 0 && locInView.r > viewWH.w) {
+            locInView.l = 0;
+            locInView.r = locInView.l + newW;
+        } else if (locInView.l < 0 && locInView.r < viewWH.w) {
+            locInView.r = viewWH.w;
+            locInView.l = locInView.r - newW;
+        }
+
+
+        if (locInView.h() <= viewWH.h) {
+            locInView.t = (viewWH.h - locInView.h()) / 2;
+            locInView.b = locInView.t + newH;
+        } else if (locInView.t > 0 && locInView.b > viewWH.h) {
+            locInView.t = 0;
+            locInView.b = locInView.t + newH;
+        } else if (locInView.t < 0 && locInView.b < viewWH.h) {
+            locInView.b = viewWH.h;
+            locInView.t = locInView.b - newH;
+        }
+
+        showInView = locInView.copyOne();
+        if (showInView.l < 0) {
+            showInView.l = 0;
+        }
+
+        if (showInView.r > viewWH.w) {
+            showInView.r = viewWH.w;
+        }
+
+        if (showInView.t < 0) {
+            showInView.t = 0;
+        }
+
+        if (showInView.b > viewWH.h) {
+            showInView.b = viewWH.h;
+        }
+
+        showInBitmap = new LTRB();
+        if (locInView.l >= 0) {
+            showInBitmap.l = 0;
+        } else {
+            showInBitmap.l = (int) (-locInView.l / scale);
+        }
+
+
+        showInBitmap.r = (int) (showInBitmap.l + showInView.w() / scale);
+
+
+        if (locInView.t >= 0) {
+            showInBitmap.t = 0;
+        } else {
+            showInBitmap.t = (int) (-locInView.t / scale);
+        }
+
+        showInBitmap.b = (int) (showInBitmap.t + showInView.h() / scale);
+    }
 
     protected float calculateScale(List<P> currentPs, List<P> lastPs) {
         int size = currentPs.size();

@@ -68,6 +68,9 @@
         <attr name="strokeWidth" />
         <attr name="strokeColor" />
     </declare-styleable>
+    <declare-styleable name="CoreScaleView">
+        <attr name="maxScale" format="float" />
+    </declare-styleable>
 
     <declare-styleable name="LabelView">
         <attr name="labelBgColor" format="color|reference" />

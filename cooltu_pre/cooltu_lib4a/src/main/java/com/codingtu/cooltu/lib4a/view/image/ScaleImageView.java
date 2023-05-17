@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
@@ -79,7 +80,7 @@ public class ScaleImageView extends CoreView {
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (drawBitmap != null && !drawBitmap.isRecycled()) {
-            BitmapTool.drawBitmap(canvas, drawBitmap);
+            BitmapTool.drawBitmap(canvas, drawBitmap, Color.WHITE);
         }
     }
 

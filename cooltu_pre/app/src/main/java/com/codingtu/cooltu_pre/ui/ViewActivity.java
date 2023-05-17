@@ -21,6 +21,7 @@ public class ViewActivity extends ViewActivityBase {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String file = SDCardTool.getSDCard() + "/testimg/5.jpg";
-        iv.setImageUrl(Fake.image());
+//        iv.setImageUrl(Fake.image());
+        iv.setFile(file);
     }
 }

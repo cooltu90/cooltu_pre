@@ -47,6 +47,13 @@ public class Attrs {
         }
     }
 
+    public float getFloat(int index, float defValue) {
+        if (map.get(index) != null) {
+            return ta.getFloat(index, defValue);
+        }
+        return defValue;
+    }
+
     public String getString(int index) {
         if (map.get(index) != null) {
             return ta.getString(index);

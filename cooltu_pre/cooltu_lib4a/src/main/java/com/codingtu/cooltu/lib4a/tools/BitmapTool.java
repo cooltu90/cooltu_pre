@@ -293,22 +293,22 @@ public class BitmapTool {
      * 最终的画Bitmap方法
      *
      **************************************************/
-    public static void drawBitmap(Canvas canvas, Bitmap src, Rect srcRect, Rect dstRect) {
-        canvas.drawColor(Color.WHITE);
+    public static void drawBitmap(Canvas canvas, Bitmap src, Rect srcRect, Rect dstRect, int bgColor) {
+        canvas.drawColor(bgColor);
         canvas.drawBitmap(src, srcRect, dstRect, null);
     }
 
 
-    public static void drawBitmap(Canvas canvas, Bitmap src) {
-        drawBitmap(canvas, src, RectTool.getBitmapRect(src), RectTool.newRect(canvas));
+    public static void drawBitmap(Canvas canvas, Bitmap src, int bgColor) {
+        drawBitmap(canvas, src, RectTool.getBitmapRect(src), RectTool.newRect(canvas), bgColor);
     }
 
-    public static void drawBitmap(Bitmap src, Rect srcRect, Bitmap dst, Rect dstRect) {
-        drawBitmap(new Canvas(dst), src, srcRect, dstRect);
+    public static void drawBitmap(Bitmap src, Rect srcRect, Bitmap dst, Rect dstRect, int bgColor) {
+        drawBitmap(new Canvas(dst), src, srcRect, dstRect, bgColor);
     }
 
-    public static void drawBitmap(Bitmap src, Bitmap dst, Rect dstRect) {
-        drawBitmap(new Canvas(dst), src, RectTool.newRect(src.getWidth(), src.getHeight()), dstRect);
+    public static void drawBitmap(Bitmap src, Bitmap dst, Rect dstRect, int bgColor) {
+        drawBitmap(new Canvas(dst), src, RectTool.newRect(src.getWidth(), src.getHeight()), dstRect, bgColor);
     }
 
     /**************************************************
@@ -326,7 +326,7 @@ public class BitmapTool {
         Bitmap bitmap = createBitmap(boxWH);
 
         drawBitmap(new Canvas(bitmap), src,
-                RectTool.newRect(srcWH), ltrb.toRect());
+                RectTool.newRect(srcWH), ltrb.toRect(), Color.WHITE);
         return bitmap;
     }
 
@@ -338,7 +338,7 @@ public class BitmapTool {
     public static Bitmap cutBitmap(Bitmap src, Rect srcRect) {
         WH wh = RectTool.getWH(srcRect);
         Bitmap dst = createBitmap(wh);
-        drawBitmap(new Canvas(dst), src, srcRect, RectTool.newRect(wh));
+        drawBitmap(new Canvas(dst), src, srcRect, RectTool.newRect(wh), Color.WHITE);
         return dst;
     }
 
@@ -366,7 +366,7 @@ public class BitmapTool {
     //////////////////////////////////////////////////
 
     public static Bitmap getBitmap(Bitmap dst, Rect dstRect, Bitmap src) {
-        drawBitmap(new Canvas(dst), src, RectTool.getBitmapRect(src), dstRect);
+        drawBitmap(new Canvas(dst), src, RectTool.getBitmapRect(src), dstRect, Color.WHITE);
         return dst;
     }
 
