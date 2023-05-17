@@ -40,6 +40,7 @@ public class CoreScaleView extends CoreView {
     protected LTRB showInBitmap;
     protected P scaleCenterP;
     protected WH oriBitmapWH;
+    protected int bgColor;
 
     public CoreScaleView(Context context) {
         super(context);
@@ -61,6 +62,7 @@ public class CoreScaleView extends CoreView {
             @Override
             public void getAttrs(Attrs attrs) {
                 maxScale = attrs.getFloat(R.styleable.CoreScaleView_maxScale, 4);
+                bgColor = attrs.getColor(R.styleable.CoreScaleView_android_background, Color.BLACK);
             }
         });
     }
@@ -85,8 +87,7 @@ public class CoreScaleView extends CoreView {
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (drawBitmap != null && !drawBitmap.isRecycled()) {
-            //canvas.drawColor(Color.WHITE);
-            BitmapTool.drawBitmap(canvas, drawBitmap, Color.WHITE);
+            BitmapTool.drawBitmap(canvas, drawBitmap, bgColor);
         }
     }
 

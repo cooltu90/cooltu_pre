@@ -81,7 +81,7 @@ public class DefaultScaleImageView extends CoreScaleView {
 
             BitmapTool.drawBitmap(oriBitmap,
                     drawBitmap,
-                    locInView.toRect(), Color.BLACK);
+                    locInView.toRect(), bgColor);
 
             invalidate();
         }
@@ -90,7 +90,7 @@ public class DefaultScaleImageView extends CoreScaleView {
     @Override
     protected void dealMove() {
         super.dealMove();
-        BitmapTool.drawBitmap(oriBitmap, showInBitmap.toRect(), drawBitmap, showInView.toRect(), Color.BLACK);
+        BitmapTool.drawBitmap(oriBitmap, showInBitmap.toRect(), drawBitmap, showInView.toRect(), bgColor);
         invalidate();
     }
 }

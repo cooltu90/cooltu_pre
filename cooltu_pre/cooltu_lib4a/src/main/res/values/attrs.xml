@@ -70,6 +70,7 @@
     </declare-styleable>
     <declare-styleable name="CoreScaleView">
         <attr name="maxScale" format="float" />
+        <attr name="android:background" />
     </declare-styleable>
 
     <declare-styleable name="LabelView">

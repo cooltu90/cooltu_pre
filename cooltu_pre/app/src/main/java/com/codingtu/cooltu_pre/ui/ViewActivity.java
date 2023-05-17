@@ -24,12 +24,7 @@ public class ViewActivity extends ViewActivityBase {
         super.onCreate(savedInstanceState);
 //        String file = SDCardTool.getSDCard() + "/testimg/5.jpg";
         String file="/storage/emulated/0/EnvCheckData/photos/pts_default_default_任务1.1_20230327_103405/L-08008/unhandle.jpg";
-        ViewTool.completeView(siv, new ViewTool.ViewComplete() {
-            @Override
-            public void viewComplete() {
-                siv.setImage(file);
-            }
-        });
+        iv.setFile(file);
 
     }
 
