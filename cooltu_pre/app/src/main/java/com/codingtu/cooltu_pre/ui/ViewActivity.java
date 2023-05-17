@@ -9,6 +9,7 @@ import com.codingtu.cooltu.processor.annotation.tools.To;
 import com.codingtu.cooltu.processor.annotation.ui.ActBase;
 import com.codingtu.cooltu_pre.R;
 
+import cooltu.lib4j.fake.Fake;
 import core.actbase.ViewActivityBase;
 import core.actres.ViewActivityRes;
 
@@ -20,6 +21,6 @@ public class ViewActivity extends ViewActivityBase {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String file = SDCardTool.getSDCard() + "/testimg/5.jpg";
-        iv.setFile(file);
+        iv.setImageUrl(Fake.image());
     }
 }

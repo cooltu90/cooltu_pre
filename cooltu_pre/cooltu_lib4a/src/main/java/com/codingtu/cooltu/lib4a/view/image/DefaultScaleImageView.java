@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 import com.codingtu.cooltu.lib4a.bean.LTRB;
 import com.codingtu.cooltu.lib4a.bean.WH;
 import com.codingtu.cooltu.lib4a.image.FileBitmap;
+import com.codingtu.cooltu.lib4a.image.ImageTools;
 import com.codingtu.cooltu.lib4a.tools.AdjustTool;
 import com.codingtu.cooltu.lib4a.tools.BitmapTool;
 
@@ -18,7 +19,7 @@ public class DefaultScaleImageView extends CoreScaleView {
     private LTRB locInView;
     private LTRB showInView;
     private P scaleCenterP;
-    private float maxScale = 4;
+    private float maxScale = 8;
     private float minScale;
     private WH adjustWH;
 
@@ -46,7 +47,21 @@ public class DefaultScaleImageView extends CoreScaleView {
     }
 
     public void setFile(String image) {
-        oriBitmap = FileBitmap.obtain(image).bitmap();
+        initBitmap(FileBitmap.obtain(image).bitmap());
+    }
+
+    public void setImageUrl(String imageUrl) {
+        ImageTools.getImage(imageUrl, new ImageTools.ImageBitmapGetter() {
+            @Override
+            public void callBack(Bitmap bitmap) {
+                initBitmap(bitmap);
+            }
+        });
+    }
+
+
+    private void initBitmap(Bitmap bitmap) {
+        oriBitmap = bitmap;
         oriBitmapWH = BitmapTool.getBitmapWH(oriBitmap);
         initBitmap();
     }
