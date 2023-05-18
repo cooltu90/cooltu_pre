@@ -105,6 +105,8 @@ public class CoreScaleView extends CoreView {
                     P p = getP(event);
                     if (lastP != null) {
                         onMoveSingle(event, p.x - lastP.x, p.y - lastP.y);
+                    } else {
+                        onMoveSingleStart(event);
                     }
                     lastP = p;
                 } else if (fingers == 2 && event.getPointerCount() == 2) {
@@ -133,6 +135,10 @@ public class CoreScaleView extends CoreView {
                 break;
         }
         return true;
+    }
+
+    protected void onMoveSingleStart(MotionEvent event) {
+
     }
 
     protected void onMoveMultiStart(MotionEvent event) {
