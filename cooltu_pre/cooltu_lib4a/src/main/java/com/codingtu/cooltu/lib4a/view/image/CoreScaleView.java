@@ -8,13 +8,12 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
-import com.codingtu.cooltu.constant.TouchType;
 import com.codingtu.cooltu.lib4a.R;
 import com.codingtu.cooltu.lib4a.bean.LTRB;
 import com.codingtu.cooltu.lib4a.bean.WH;
-import com.codingtu.cooltu.lib4a.log.Logs;
 import com.codingtu.cooltu.lib4a.tools.BitmapTool;
 import com.codingtu.cooltu.lib4a.tools.DrawTool;
+import com.codingtu.cooltu.lib4a.tools.HandlerTool;
 import com.codingtu.cooltu.lib4a.view.attrs.Attrs;
 import com.codingtu.cooltu.lib4a.view.attrs.AttrsTools;
 import com.codingtu.cooltu.lib4a.view.attrs.GetAttrs;
@@ -91,6 +90,8 @@ public class CoreScaleView extends CoreView {
         }
     }
 
+    private long actionDownTime;
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getActionMasked()) {
@@ -98,8 +99,12 @@ public class CoreScaleView extends CoreView {
                 fingers = null;
                 lastPs = null;
                 lastP = null;
+                actionDownTime = System.currentTimeMillis();
                 break;
             case MotionEvent.ACTION_MOVE:
+                if (System.currentTimeMillis() - actionDownTime < 150) {
+                    return true;
+                }
                 if (fingers == null) {
 
                     P p = getP(event);
@@ -122,6 +127,10 @@ public class CoreScaleView extends CoreView {
                 }
                 break;
             case MotionEvent.ACTION_UP:
+                long dt = System.currentTimeMillis() - actionDownTime;
+                if (dt < 150) {
+                    onSingleClickDeal();
+                }
                 break;
             case MotionEvent.ACTION_POINTER_DOWN:
                 if (fingers == null) {
@@ -137,8 +146,37 @@ public class CoreScaleView extends CoreView {
         return true;
     }
 
-    protected void onMoveSingleStart(MotionEvent event) {
 
+    private Long singleClickTime;
+
+    private void onSingleClickDeal() {
+        if (singleClickTime == null) {
+            singleClickTime = System.currentTimeMillis();
+            HandlerTool.getMainHandler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (singleClickTime != null) {
+                        singleClickTime = null;
+                        onSingleClick();
+                    }
+                }
+            }, 200);
+        } else {
+            long l = System.currentTimeMillis() - singleClickTime;
+            if (l < 200) {
+                singleClickTime = null;
+                onMultiClick();
+            }
+        }
+    }
+
+    protected void onSingleClick() {
+    }
+
+    protected void onMultiClick() {
+    }
+
+    protected void onMoveSingleStart(MotionEvent event) {
     }
 
     protected void onMoveMultiStart(MotionEvent event) {
