@@ -129,7 +129,7 @@ public class CoreScaleView extends CoreView {
             case MotionEvent.ACTION_UP:
                 long dt = System.currentTimeMillis() - actionDownTime;
                 if (dt < 150) {
-                    onSingleClickDeal();
+                    onSingleClickDeal(event);
                 }
                 break;
             case MotionEvent.ACTION_POINTER_DOWN:
@@ -149,7 +149,7 @@ public class CoreScaleView extends CoreView {
 
     private Long singleClickTime;
 
-    private void onSingleClickDeal() {
+    private void onSingleClickDeal(MotionEvent event) {
         if (singleClickTime == null) {
             singleClickTime = System.currentTimeMillis();
             HandlerTool.getMainHandler().postDelayed(new Runnable() {
@@ -157,7 +157,7 @@ public class CoreScaleView extends CoreView {
                 public void run() {
                     if (singleClickTime != null) {
                         singleClickTime = null;
-                        onSingleClick();
+                        onSingleClick(event);
                     }
                 }
             }, 200);
@@ -165,15 +165,15 @@ public class CoreScaleView extends CoreView {
             long l = System.currentTimeMillis() - singleClickTime;
             if (l < 200) {
                 singleClickTime = null;
-                onMultiClick();
+                onMultiClick(event);
             }
         }
     }
 
-    protected void onSingleClick() {
+    protected void onSingleClick(MotionEvent event) {
     }
 
-    protected void onMultiClick() {
+    protected void onMultiClick(MotionEvent event) {
     }
 
     protected void onMoveSingleStart(MotionEvent event) {
