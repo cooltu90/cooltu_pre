@@ -12,9 +12,11 @@ import cooltu.lib4j.tools.ClassTool;
 import cooltu.lib4j.tools.ConvertTool;
 import cooltu.lib4j.tools.CountTool;
 import cooltu.lib4j.tools.StringTool;
+
 import com.codingtu.cooltu.processor.annotation.net.Default;
 import com.codingtu.cooltu.processor.annotation.net.Param;
 import com.codingtu.cooltu.processor.lib.bean.NetMethodDeal;
+import com.codingtu.cooltu.processor.lib.log.Logs;
 import com.codingtu.cooltu.processor.lib.ls.TypeLss;
 import com.codingtu.cooltu.processor.lib.tools.ElementTools;
 import com.codingtu.cooltu.processor.modelinterface.NetMethodModelInterface;
@@ -103,6 +105,7 @@ public class NetMethodModel extends SubBaseModel implements NetMethodModelInterf
     @Override
     public void setTagFor_invokeParams(StringBuilder sb) {
         boolean isJsonBody = netMethodDeal.isJsonBody();
+
         TypeLss.ls(parameters, new TypeLss.EachTypePlus() {
             @Override
             public void each(int position, VariableElement ve, String type, String name) {
@@ -118,7 +121,14 @@ public class NetMethodModel extends SubBaseModel implements NetMethodModelInterf
             }
         });
         if (isJsonBody) {
-            addTag(sb, "                        NetTool.toJsonBody(jo.toJson())");
+            VariableElement ve = parameters.get(0);
+            String type = ElementTools.getType(ve);
+            Logs.i("type:"+type);
+            if (ClassTool.isList(type)) {
+                addTag(sb, "                        NetTool.toJsonBody(cooltu.lib4j.json.JsonTool.toJson([xx]))", ElementTools.simpleName(ve));
+            } else {
+                addTag(sb, "                        NetTool.toJsonBody(jo.toJson())");
+            }
         }
     }
 
@@ -167,16 +177,20 @@ public class NetMethodModel extends SubBaseModel implements NetMethodModelInterf
         }
 
         if (netMethodDeal.isJsonBody()) {
-            addLnTag(sb, "                [JO] jo = [JsonTool].createJO();", FullName.JO, FullName.JSON_TOOL);
-            TypeLss.ls(ee.getParameters(), new TypeLss.EachTypePlus() {
-                @Override
-                public void each(int position, VariableElement ve, String type, String name) {
-                    Param param = ve.getAnnotation(Param.class);
-                    if (param == null) {
-                        addLnTag(sb, "                jo.put(\"[taskName]\", params.[taskName]);", name, name);
+            VariableElement ve = parameters.get(0);
+            if (!ClassTool.isList(ElementTools.getType(ve))) {
+                addLnTag(sb, "                [JO] jo = [JsonTool].createJO();", FullName.JO, FullName.JSON_TOOL);
+                TypeLss.ls(ee.getParameters(), new TypeLss.EachTypePlus() {
+                    @Override
+                    public void each(int position, VariableElement ve, String type, String name) {
+                        Param param = ve.getAnnotation(Param.class);
+                        if (param == null) {
+                            addLnTag(sb, "                jo.put(\"[taskName]\", params.[taskName]);", name, name);
+                        }
                     }
-                }
-            });
+                });
+            }
+
         }
     }
 
