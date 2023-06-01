@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 import com.codingtu.cooltu.lib4a.R;
 import com.codingtu.cooltu.lib4a.bean.LTRB;
 import com.codingtu.cooltu.lib4a.bean.WH;
+import com.codingtu.cooltu.lib4a.log.Logs;
 import com.codingtu.cooltu.lib4a.tools.BitmapTool;
 import com.codingtu.cooltu.lib4a.tools.DrawTool;
 import com.codingtu.cooltu.lib4a.tools.HandlerTool;
@@ -21,6 +22,8 @@ import com.codingtu.cooltu.lib4a.view.base.CoreView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cooltu.lib4j.data.bean.CoreBean;
 
 public class CoreScaleView extends CoreView {
 
@@ -102,7 +105,7 @@ public class CoreScaleView extends CoreView {
                 actionDownTime = System.currentTimeMillis();
                 break;
             case MotionEvent.ACTION_MOVE:
-                if (System.currentTimeMillis() - actionDownTime < 150) {
+                if (System.currentTimeMillis() - actionDownTime < 100) {
                     return true;
                 }
                 if (fingers == null) {
@@ -128,7 +131,7 @@ public class CoreScaleView extends CoreView {
                 break;
             case MotionEvent.ACTION_UP:
                 long dt = System.currentTimeMillis() - actionDownTime;
-                if (dt < 150) {
+                if (dt < 100) {
                     onSingleClickDeal(event);
                 }
                 break;
@@ -152,12 +155,13 @@ public class CoreScaleView extends CoreView {
     private void onSingleClickDeal(MotionEvent event) {
         if (singleClickTime == null) {
             singleClickTime = System.currentTimeMillis();
+            P p = getP(event);
             HandlerTool.getMainHandler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     if (singleClickTime != null) {
                         singleClickTime = null;
-                        onSingleClick(event);
+                        onSingleClick(p);
                     }
                 }
             }, 200);
@@ -165,15 +169,15 @@ public class CoreScaleView extends CoreView {
             long l = System.currentTimeMillis() - singleClickTime;
             if (l < 200) {
                 singleClickTime = null;
-                onMultiClick(event);
+                onMultiClick(getP(event));
             }
         }
     }
 
-    protected void onSingleClick(MotionEvent event) {
+    protected void onSingleClick(P p) {
     }
 
-    protected void onMultiClick(MotionEvent event) {
+    protected void onMultiClick(P p) {
     }
 
     protected void onMoveSingleStart(MotionEvent event) {
@@ -352,7 +356,7 @@ public class CoreScaleView extends CoreView {
         return new P(x / (float) pointerCount, y / (float) pointerCount);
     }
 
-    public static class P {
+    public static class P extends CoreBean {
         public float x;
         public float y;
 

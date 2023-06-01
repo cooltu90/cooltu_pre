@@ -7,9 +7,10 @@
 
     <com.codingtu.cooltu.lib4a.view.image.DefaultScaleImageView
         android:id="@+id/iv"
+        android:layout_marginTop="100dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#fff"
+        android:background="#000"
         android:layout_centerInParent="true" />
 
 
