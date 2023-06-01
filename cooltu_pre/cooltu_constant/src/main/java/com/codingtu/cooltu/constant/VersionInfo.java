@@ -63,4 +63,10 @@ public class VersionInfo {
      * ！！！修改CoreScaleView中onSingleClick和onMultiClick函数的传入参数，由MotionEvent改为P类型
      *
      **************************************************/
+    /**************************************************
+     *
+     * v1.0.49
+     * + 为CoreImageView增加圆角扩展（通过setImageDrawable方法设置的图片也可以用圆角）
+     *
+     **************************************************/
 }

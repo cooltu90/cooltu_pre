@@ -21,7 +21,7 @@ public abstract class ViewActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
 
     protected int fromAct;
 
-    public com.codingtu.cooltu.lib4a.view.image.DefaultScaleImageView iv;
+    public com.codingtu.cooltu.lib4a.view.base.CoreImageView civ;
 
 
     @Override
@@ -32,8 +32,9 @@ public abstract class ViewActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
         Intent data = getIntent();
         fromAct = core.tools.Pass.fromAct(data);
 
-        iv = findViewById(com.codingtu.cooltu_pre.R.id.iv);
+        civ = findViewById(com.codingtu.cooltu_pre.R.id.civ);
 
+        civ.setOnClickListener(this);
 
 
 
@@ -52,9 +53,15 @@ public abstract class ViewActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
     public void onClick(View view) {
 
         switch (view.getId()) {
+            case com.codingtu.cooltu_pre.R.id.civ:
+                civClick(
+
+                );
+                break;
 
         }
     }
+    protected void civClick() {}
 
 
     public android.view.View.OnClickListener getOnClick() {

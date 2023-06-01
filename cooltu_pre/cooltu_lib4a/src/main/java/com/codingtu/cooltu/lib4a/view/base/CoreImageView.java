@@ -1,12 +1,15 @@
 package com.codingtu.cooltu.lib4a.view.base;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 
 import com.codingtu.cooltu.lib4a.R;
 import com.codingtu.cooltu.lib4a.act.OnDestroy;
+import com.codingtu.cooltu.lib4a.log.Logs;
 import com.codingtu.cooltu.lib4a.tools.DestoryTool;
 import com.codingtu.cooltu.lib4a.view.tools.RoundBgTool;
 
@@ -57,6 +60,11 @@ public class CoreImageView extends AppCompatImageView implements OnDestroy {
     @Override
     public void setBackgroundResource(int resId) {
         roundBgTool.setBackgroundResource(resId);
+    }
+
+    @Override
+    public void setImageDrawable(@Nullable Drawable drawable) {
+        roundBgTool.setImageDrawable(drawable);
     }
 
     @Override
