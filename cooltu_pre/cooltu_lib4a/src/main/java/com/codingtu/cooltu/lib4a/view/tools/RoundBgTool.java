@@ -177,18 +177,6 @@ public class RoundBgTool implements OnDestroy {
         view.setBackground(new BitmapDrawable(bitmap));
     }
 
-
-    public void setImageDrawable(Drawable drawable) {
-        if (drawable instanceof BitmapDrawable) {
-            bgColor = null;
-            bgBitmap = ((BitmapDrawable) drawable).getBitmap();
-        }
-
-        if (isOnLayout) {
-            initBackground();
-        }
-    }
-
     public void setBackgroundColor(int color) {
         bgColor = color;
         if (isOnLayout) {

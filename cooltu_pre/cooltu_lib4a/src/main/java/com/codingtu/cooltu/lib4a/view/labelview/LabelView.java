@@ -4,12 +4,8 @@ import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
 import android.util.TypedValue;
-import android.view.View;
-
-import androidx.annotation.Nullable;
 
 import com.codingtu.cooltu.lib4a.R;
-import com.codingtu.cooltu.lib4a.log.Logs;
 import com.codingtu.cooltu.lib4a.tools.DrawTool;
 import com.codingtu.cooltu.lib4a.tools.Margins;
 import com.codingtu.cooltu.lib4a.tools.Paddings;
@@ -17,7 +13,6 @@ import com.codingtu.cooltu.lib4a.tools.ViewTool;
 import com.codingtu.cooltu.lib4a.view.attrs.Attrs;
 import com.codingtu.cooltu.lib4a.view.attrs.AttrsTools;
 import com.codingtu.cooltu.lib4a.view.attrs.GetAttrs;
-import com.codingtu.cooltu.lib4a.view.base.CoreTextView;
 import com.codingtu.cooltu.lib4a.view.textview.TagTextView;
 
 import java.util.List;

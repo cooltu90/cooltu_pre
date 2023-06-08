@@ -20,8 +20,6 @@ import com.codingtu.cooltu.lib4a.view.tools.RoundBgTool;
 
 public class CoreRelativeLayout extends RelativeLayout implements OnDestroy {
 
-    private RoundBgTool roundBgTool;
-
     public CoreRelativeLayout(Context context) {
         this(context, null);
     }
@@ -43,37 +41,9 @@ public class CoreRelativeLayout extends RelativeLayout implements OnDestroy {
 
     protected void init(Context context, AttributeSet attrs, int defStyleAttr) {
         DestoryTool.onDestory(context, this);
-        roundBgTool = new RoundBgTool();
-        DestoryTool.onDestory(context, roundBgTool);
-        roundBgTool.init(context,this, attrs,
-                R.styleable.CoreRelativeLayout,
-                R.styleable.CoreRelativeLayout_android_radius,
-                R.styleable.CoreRelativeLayout_android_topLeftRadius,
-                R.styleable.CoreRelativeLayout_android_topRightRadius,
-                R.styleable.CoreRelativeLayout_android_bottomLeftRadius,
-                R.styleable.CoreRelativeLayout_android_bottomRightRadius,
-                R.styleable.CoreRelativeLayout_strokeWidth,
-                R.styleable.CoreRelativeLayout_strokeColor);
-    }
-
-    @Override
-    protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        super.onLayout(changed, l, t, r, b);
-        roundBgTool.onLayout();
-    }
-
-    @Override
-    public void setBackgroundColor(int color) {
-        roundBgTool.setBackgroundColor(color);
-    }
-
-    @Override
-    public void setBackgroundResource(int resId) {
-        roundBgTool.setBackgroundResource(resId);
     }
 
     @Override
     public void destroy() {
-        roundBgTool = null;
     }
 }

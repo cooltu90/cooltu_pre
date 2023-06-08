@@ -59,7 +59,16 @@
         <attr name="strokeWidth" />
         <attr name="strokeColor" />
     </declare-styleable>
-    <declare-styleable name="CoreEditText">
+    <declare-styleable name="RoundEditText">
+        <attr name="android:radius" />
+        <attr name="android:topLeftRadius" />
+        <attr name="android:topRightRadius" />
+        <attr name="android:bottomLeftRadius" />
+        <attr name="android:bottomRightRadius" />
+        <attr name="strokeWidth" />
+        <attr name="strokeColor" />
+    </declare-styleable>
+    <declare-styleable name="RoundEditText1">
         <attr name="android:radius" />
         <attr name="android:topLeftRadius" />
         <attr name="android:topRightRadius" />
@@ -84,14 +93,6 @@
         <attr name="labelPadding" format="dimension" />
         <attr name="labelDivider" format="dimension" />
         <attr name="labelTop" format="dimension" />
-    </declare-styleable>
-    <declare-styleable name="RoundImageView">
-        <attr name="corner_radius" />
-        <attr name="corner_top_left_radius" format="dimension" />
-        <attr name="corner_top_right_radius" format="dimension" />
-        <attr name="corner_bottom_left_radius" format="dimension" />
-        <attr name="corner_bottom_right_radius" format="dimension" />
-        <attr name="bg_color" format="string" />
     </declare-styleable>
 
     <declare-styleable name="LayerView">
@@ -133,6 +134,14 @@
         <attr name="bgColor" format="color|reference" />
         <attr name="lineWidth" format="dimension" />
         <attr name="corner_radius" />
+    </declare-styleable>
+
+    <declare-styleable name="RoundImageView">
+        <attr name="android:radius" />
+        <attr name="android:topLeftRadius" />
+        <attr name="android:topRightRadius" />
+        <attr name="android:bottomLeftRadius" />
+        <attr name="android:bottomRightRadius" />
     </declare-styleable>
 
 </resources>
