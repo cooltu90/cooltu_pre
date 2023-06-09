@@ -216,4 +216,10 @@ public class RoundBgTool implements OnDestroy {
         }
     }
 
+    public void setStrokeColor(int strokeColor) {
+        this.strokeColor = strokeColor;
+        if (isOnLayout) {
+            initBackground();
+        }
+    }
 }

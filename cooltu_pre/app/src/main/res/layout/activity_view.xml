@@ -5,18 +5,18 @@
     android:layout_height="match_parent"
     android:background="#fff">
 
-    <com.codingtu.cooltu.lib4a.view.labelview.LabelView
-        android:id="@+id/lbv"
-        android:layout_width="match_parent"
-        app:labelH="50dp"
-        app:labelSize="10sp"
-        app:labelDivider="10dp"
-        app:labelPadding="5dp"
-        app:labelRadius="5dp"
-        app:labelTop="10dp"
-        app:labelBgColor="#ff0000"
-        app:labelTextColor="#000"
-        android:layout_height="wrap_content" />
+    <com.codingtu.cooltu.lib4a.view.textview.TagTextView
+        android:id="@+id/ttv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="#fff"
+        android:padding="10dp"
+        android:radius="3dp"
+        android:text="12121"
+        android:textColor="#000"
+        app:strokeColor="#000"
+        app:strokeWidth="0.33dp" />
 
 
 </RelativeLayout>

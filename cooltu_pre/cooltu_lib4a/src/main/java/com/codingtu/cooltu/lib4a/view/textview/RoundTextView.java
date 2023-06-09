@@ -55,8 +55,14 @@ public class RoundTextView extends CoreTextView {
         roundBgTool.setBackgroundResource(resId);
     }
 
+    public void setStrokeColor(int strokeColor) {
+        roundBgTool.setStrokeColor(strokeColor);
+    }
+
     @Override
     public void destroy() {
         roundBgTool = null;
     }
+
+
 }

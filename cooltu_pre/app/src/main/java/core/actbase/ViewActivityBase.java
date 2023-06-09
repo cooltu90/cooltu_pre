@@ -21,7 +21,7 @@ public abstract class ViewActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
 
     protected int fromAct;
 
-    public com.codingtu.cooltu.lib4a.view.labelview.LabelView lbv;
+    public com.codingtu.cooltu.lib4a.view.textview.TagTextView ttv;
 
 
     @Override
@@ -32,7 +32,7 @@ public abstract class ViewActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
         Intent data = getIntent();
         fromAct = core.tools.Pass.fromAct(data);
 
-        lbv = findViewById(com.codingtu.cooltu_pre.R.id.lbv);
+        ttv = findViewById(com.codingtu.cooltu_pre.R.id.ttv);
 
 
 

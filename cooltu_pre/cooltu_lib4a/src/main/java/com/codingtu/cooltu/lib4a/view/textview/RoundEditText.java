@@ -60,6 +60,10 @@ public class RoundEditText extends CoreEditText {
         roundBgTool.setBackgroundResource(resId);
     }
 
+    public void setStrokeColor(int strokeColor) {
+        roundBgTool.setStrokeColor(strokeColor);
+    }
+
     @Override
     public void destroy() {
         roundBgTool = null;

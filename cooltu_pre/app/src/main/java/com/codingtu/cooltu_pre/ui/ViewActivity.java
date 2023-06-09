@@ -1,5 +1,6 @@
 package com.codingtu.cooltu_pre.ui;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -31,14 +32,8 @@ public class ViewActivity extends ViewActivityBase {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        List<MyLabel> ls = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            MyLabel label = new MyLabel();
-            label.label = Fake.name();
-            ls.add(label);
-        }
-
-        lbv.setLable(com.codingtu.cooltu.lib4a.R.id.tag_0, ls);
+        ttv.setTextColor(Color.BLUE);
+        ttv.setStrokeColor(Color.RED);
 
     }
 
