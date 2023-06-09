@@ -205,4 +205,15 @@ public class RoundBgTool implements OnDestroy {
         initBackground();
     }
 
+    public void setRadius(int radius) {
+        bgRadius = radius;
+        topLeftbgRadius = radius;
+        topRightbgRadius = radius;
+        bottomLeftbgRadius = radius;
+        bottomRightbgRadius = radius;
+        if (isOnLayout) {
+            initBackground();
+        }
+    }
+
 }

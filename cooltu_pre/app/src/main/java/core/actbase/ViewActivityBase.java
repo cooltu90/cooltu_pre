@@ -21,7 +21,7 @@ public abstract class ViewActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
 
     protected int fromAct;
 
-    public com.codingtu.cooltu.lib4a.view.image.RoundImageView civ;
+    public com.codingtu.cooltu.lib4a.view.labelview.LabelView lbv;
 
 
     @Override
@@ -32,7 +32,7 @@ public abstract class ViewActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
         Intent data = getIntent();
         fromAct = core.tools.Pass.fromAct(data);
 
-        civ = findViewById(com.codingtu.cooltu_pre.R.id.civ);
+        lbv = findViewById(com.codingtu.cooltu_pre.R.id.lbv);
 
 
 

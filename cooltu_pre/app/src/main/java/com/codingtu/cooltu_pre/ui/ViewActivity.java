@@ -13,8 +13,13 @@ import com.codingtu.cooltu.processor.annotation.tools.To;
 import com.codingtu.cooltu.processor.annotation.ui.ActBase;
 import com.codingtu.cooltu.processor.annotation.ui.ClickView;
 import com.codingtu.cooltu_pre.R;
+import com.codingtu.cooltu_pre.bean.MyLabel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import cooltu.lib4j.fake.Fake;
+import cooltu.lib4j.tools.CountTool;
 import core.actbase.ViewActivityBase;
 import core.actres.ViewActivityRes;
 
@@ -25,7 +30,16 @@ public class ViewActivity extends ViewActivityBase {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ImageTools.setImage(civ,"https://hbimg.huabanimg.com/7a790823b1a1990a87205cd1c905d856a5dd01f6419a3-CTJ6xx_fw658");
+
+        List<MyLabel> ls = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            MyLabel label = new MyLabel();
+            label.label = Fake.name();
+            ls.add(label);
+        }
+
+        lbv.setLable(com.codingtu.cooltu.lib4a.R.id.tag_0, ls);
+
     }
 
 }

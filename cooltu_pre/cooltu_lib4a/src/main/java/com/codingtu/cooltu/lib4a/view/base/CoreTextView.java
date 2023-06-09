@@ -9,7 +9,6 @@ import com.codingtu.cooltu.lib4a.tools.DestoryTool;
 import com.codingtu.cooltu.lib4a.view.tools.RoundBgTool;
 
 public class CoreTextView extends androidx.appcompat.widget.AppCompatTextView implements OnDestroy {
-    private RoundBgTool roundBgTool;
 
     public CoreTextView(Context context) {
         super(context);
@@ -28,37 +27,10 @@ public class CoreTextView extends androidx.appcompat.widget.AppCompatTextView im
 
     protected void init(Context context, AttributeSet attrs, int defStyleAttr) {
         DestoryTool.onDestory(context, this);
-        roundBgTool = new RoundBgTool();
-        DestoryTool.onDestory(context, roundBgTool);
-        roundBgTool.init(context, this, attrs,
-                R.styleable.CoreTextView,
-                R.styleable.CoreTextView_android_radius,
-                R.styleable.CoreTextView_android_topLeftRadius,
-                R.styleable.CoreTextView_android_topRightRadius,
-                R.styleable.CoreTextView_android_bottomLeftRadius,
-                R.styleable.CoreTextView_android_bottomRightRadius,
-                R.styleable.CoreTextView_strokeWidth,
-                R.styleable.CoreTextView_strokeColor);
-    }
-
-    @Override
-    protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        super.onLayout(changed, l, t, r, b);
-        roundBgTool.onLayout();
-    }
-
-    @Override
-    public void setBackgroundColor(int color) {
-        roundBgTool.setBackgroundColor(color);
-    }
-
-    @Override
-    public void setBackgroundResource(int resId) {
-        roundBgTool.setBackgroundResource(resId);
     }
 
     @Override
     public void destroy() {
-        roundBgTool = null;
+
     }
 }

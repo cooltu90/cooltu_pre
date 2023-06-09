@@ -23,8 +23,6 @@ import com.codingtu.cooltu.lib4a.view.tools.RoundBgTool;
 
 public class CoreView extends View implements OnDestroy {
 
-    private RoundBgTool roundBgTool;
-
     public CoreView(Context context) {
         this(context, null);
     }
@@ -40,39 +38,11 @@ public class CoreView extends View implements OnDestroy {
 
     protected void init(Context context, AttributeSet attrs, int defStyleAttr) {
         DestoryTool.onDestory(context, this);
-        roundBgTool = new RoundBgTool();
-        DestoryTool.onDestory(context, roundBgTool);
-        roundBgTool.init(context, this, attrs,
-                R.styleable.CoreView,
-                R.styleable.CoreView_android_radius,
-                R.styleable.CoreView_android_topLeftRadius,
-                R.styleable.CoreView_android_topRightRadius,
-                R.styleable.CoreView_android_bottomLeftRadius,
-                R.styleable.CoreView_android_bottomRightRadius,
-                R.styleable.CoreView_strokeWidth,
-                R.styleable.CoreView_strokeColor);
-
-    }
-
-    @Override
-    protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        super.onLayout(changed, l, t, r, b);
-        roundBgTool.onLayout();
-    }
-
-    @Override
-    public void setBackgroundColor(int color) {
-        roundBgTool.setBackgroundColor(color);
-    }
-
-    @Override
-    public void setBackgroundResource(int resId) {
-        roundBgTool.setBackgroundResource(resId);
     }
 
     @Override
     public void destroy() {
-        roundBgTool = null;
+
     }
 
 }

@@ -110,9 +110,10 @@ public class LabelView extends CoreLabelView {
             TagTextView ttv = new TagTextView(getContext());
             addView(ttv, ViewTool.WRAP_CONTENT, labelH);
             ttv.setText(labelStr);
-            ttv.setBgColor(labelBgColor);
+//            ttv.setBgColor(labelBgColor);
+            ttv.setBackgroundColor(labelBgColor);
             ttv.setTextColor(labelTextColor);
-            ttv.setCornerRadius(labelRadius);
+            ttv.setRadius(labelRadius);
             ttv.setTextSize(TypedValue.COMPLEX_UNIT_PX, labelSize);
             Paddings.lr(ttv, labelPadding, labelPadding);
 
