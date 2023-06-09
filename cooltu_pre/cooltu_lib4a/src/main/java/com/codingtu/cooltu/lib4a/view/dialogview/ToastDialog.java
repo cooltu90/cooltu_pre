@@ -2,6 +2,7 @@ package com.codingtu.cooltu.lib4a.view.dialogview;
 
 import android.app.Activity;
 import android.view.View;
+import android.widget.TextView;
 
 import com.codingtu.cooltu.lib4a.R;
 import com.codingtu.cooltu.lib4a.act.Destroys;
@@ -56,6 +57,10 @@ public class ToastDialog implements OnDestroy {
     public ToastDialog setContent(String text) {
         ViewTool.setText(contentTv, text);
         return this;
+    }
+
+    public String getContent() {
+        return ((TextView) contentTv).getText().toString();
     }
 
     public void show() {
