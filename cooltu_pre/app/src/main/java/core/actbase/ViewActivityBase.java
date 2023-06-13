@@ -21,6 +21,7 @@ public abstract class ViewActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
 
     protected int fromAct;
 
+    public com.codingtu.cooltu.lib4a.view.image.BigScaleImageView iv;
 
 
     @Override
@@ -31,6 +32,7 @@ public abstract class ViewActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
         Intent data = getIntent();
         fromAct = core.tools.Pass.fromAct(data);
 
+        iv = findViewById(com.codingtu.cooltu_pre.R.id.iv);
 
 
 
