@@ -27,6 +27,7 @@ import com.codingtu.cooltu.processor.annotation.ui.DefaultPass;
 import com.codingtu.cooltu.processor.annotation.ui.DefaultToastDialogLayout;
 import com.codingtu.cooltu.processor.annotation.ui.FragmentBase;
 import com.codingtu.cooltu.processor.annotation.ui.InBase;
+import com.codingtu.cooltu.processor.annotation.ui.InBaseClickView;
 import com.codingtu.cooltu.processor.annotation.ui.LongClickView;
 import com.codingtu.cooltu.processor.annotation.ui.UseDialog;
 import com.codingtu.cooltu.processor.annotation.ui.UseEditDialog;
@@ -47,6 +48,8 @@ public class SupportTypes {
                 DefaultCode.class,
                 DefaultPass.class,
                 Base.class,
+                InBase.class,
+                InBaseClickView.class,
                 DeleteAct.class,
                 RenameAct.class,
                 CreateAct.class,
@@ -56,7 +59,6 @@ public class SupportTypes {
                 FragmentBase.class,
                 BusConfig.class,
                 ResFor.class,
-                InBase.class,
                 ClickView.class,
                 LongClickView.class,
                 BusBack.class,

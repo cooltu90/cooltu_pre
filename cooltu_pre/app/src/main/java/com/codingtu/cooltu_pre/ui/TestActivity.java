@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 
 import com.codingtu.cooltu.lib4a.log.Logs;
+import com.codingtu.cooltu.processor.annotation.ui.ClickView;
 import com.codingtu.cooltu_pre.R;
 
 import core.actbase.TestActivityBase;
@@ -22,4 +23,5 @@ public class TestActivity extends TestActivityBase {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
 }

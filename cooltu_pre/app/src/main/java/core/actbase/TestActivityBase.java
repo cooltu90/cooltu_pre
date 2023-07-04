@@ -21,6 +21,7 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
 
     protected int fromAct;
 
+    public android.widget.TextView tv1;
 
 
     @Override
@@ -34,7 +35,10 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
         age = core.tools.Pass.age(data);
 
         tv = findViewById(com.codingtu.cooltu_pre.R.id.tv);
+        tv1 = findViewById(com.codingtu.cooltu_pre.R.id.tv1);
 
+        tv1.setOnClickListener(this);
+        tv.setOnClickListener(this);
 
 
 
@@ -53,6 +57,16 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
     public void onClick(View view) {
 
         switch (view.getId()) {
+            case com.codingtu.cooltu_pre.R.id.tv1:
+                tv1Click(
+
+                );
+                break;
+            case com.codingtu.cooltu_pre.R.id.tv:
+                tvClick(
+
+                );
+                break;
 
         }
     }
