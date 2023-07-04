@@ -597,7 +597,7 @@ public abstract class BaseParentModel extends BaseModel {
             public boolean each(int position, Element element) {
                 InBaseClickView clickView = element.getAnnotation(InBaseClickView.class);
                 int[] ids = clickView.value();
-                Map<Integer, IdTools.Id> idMap = IdTools.elementToIds(element, ClickView.class, ids);
+                Map<Integer, IdTools.Id> idMap = IdTools.elementToIds(element, InBaseClickView.class, ids);
 
                 for (int i = 0; i < CountTool.count(ids); i++) {
                     addLnTag(setClickSb, "        [name].setOnClickListener(this);", idMap.get(ids[i]).rName);
@@ -704,7 +704,7 @@ public abstract class BaseParentModel extends BaseModel {
 
                 InBaseClickView clickView = element.getAnnotation(InBaseClickView.class);
                 int[] ids = clickView.value();
-                Map<Integer, IdTools.Id> idMap = IdTools.elementToIds(element, ClickView.class, ids);
+                Map<Integer, IdTools.Id> idMap = IdTools.elementToIds(element, InBaseClickView.class, ids);
 
                 for (int i = 0; i < CountTool.count(ids); i++) {
                     IdTools.Id id = idMap.get(ids[i]);
