@@ -21,6 +21,5 @@ public class TestActivity extends TestActivityBase {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Logs.i("name:" + name);
     }
 }

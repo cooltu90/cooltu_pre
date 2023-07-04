@@ -31,6 +31,7 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
         Intent data = getIntent();
         fromAct = core.tools.Pass.fromAct(data);
         name = core.tools.Pass.name(data);
+        age = core.tools.Pass.age(data);
 
         tv = findViewById(com.codingtu.cooltu_pre.R.id.tv);
 

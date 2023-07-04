@@ -5,6 +5,7 @@ import android.content.Intent;
 public class Pass {
     public static final String FROM_ACT = com.codingtu.cooltu.constant.Constant.FROM_ACT;
     public static final String NAME = "name";
+    public static final String AGE = "age";
 
 
     public static final int fromAct(Intent data) {
@@ -12,6 +13,9 @@ public class Pass {
     }
     public static final String name(Intent data) {
         return data.getStringExtra(NAME);
+    }
+    public static final int age(Intent data) {
+        return data.getIntExtra(AGE, -1);
     }
 
 

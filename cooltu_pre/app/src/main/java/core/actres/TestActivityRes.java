@@ -13,5 +13,9 @@ public class TestActivityRes {
     @StartGroup
     public String name;
 
+    @StartGroup
+    public int age;
+
+
 }
 

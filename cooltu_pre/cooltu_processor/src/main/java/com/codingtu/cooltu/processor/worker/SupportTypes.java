@@ -16,6 +16,7 @@ import com.codingtu.cooltu.processor.annotation.ui.ActBack;
 import com.codingtu.cooltu.processor.annotation.ui.ActBase;
 import com.codingtu.cooltu.processor.annotation.resource.ResFor;
 import com.codingtu.cooltu.processor.annotation.ui.Adapter;
+import com.codingtu.cooltu.processor.annotation.ui.Base;
 import com.codingtu.cooltu.processor.annotation.ui.BusBack;
 import com.codingtu.cooltu.processor.annotation.ui.BusConfig;
 import com.codingtu.cooltu.processor.annotation.ui.ClickView;
@@ -45,6 +46,7 @@ public class SupportTypes {
                 DefaultEditDialogLayout.class,
                 DefaultCode.class,
                 DefaultPass.class,
+                Base.class,
                 DeleteAct.class,
                 RenameAct.class,
                 CreateAct.class,

@@ -23,6 +23,7 @@ import com.codingtu.cooltu.processor.lib.tools.NameTools;
 import com.codingtu.cooltu.processor.lib.tools.ParamTools;
 import com.codingtu.cooltu.processor.lib.tools.RenameTools;
 import com.codingtu.cooltu.processor.lib.tools.TagTools;
+import com.codingtu.cooltu.processor.worker.deal.BaseDeal;
 import com.codingtu.cooltu.processor.worker.deal.InBaseDeal;
 import com.codingtu.cooltu.processor.worker.model.base.BaseAdapterModel;
 import com.codingtu.cooltu.processor.worker.model.base.BaseModel;
@@ -216,7 +217,7 @@ public abstract class BaseParentModel extends BaseModel {
     }
 
     protected void addFieldSb(StringBuilder fieldSb, String type, String name) {
-        if (InBaseDeal.inBaseMap.get(baseClass).contains(name)) {
+        if (isInBase(baseClass, name)) {
             return;
         }
 
@@ -227,6 +228,25 @@ public abstract class BaseParentModel extends BaseModel {
         fields.put(key, key);
 
         addLnTag(fieldSb, "    public [type] [name];", type, name);
+    }
+
+    protected boolean isInBase(String type, String name) {
+        if (InBaseDeal.inBaseMap.get(type).contains(name)) {
+            return true;
+        }
+
+        List<String> bases = BaseDeal.map.get(type);
+        int count = CountTool.count(bases);
+        if (count > 0) {
+            for (int i = 0; i < count; i++) {
+                String base = bases.get(i);
+                if (isInBase(base, name)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
 
