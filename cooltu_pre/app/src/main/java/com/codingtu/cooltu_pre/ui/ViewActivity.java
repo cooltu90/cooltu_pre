@@ -2,6 +2,7 @@ package com.codingtu.cooltu_pre.ui;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.webkit.WebViewClient;
 
 import androidx.annotation.Nullable;
 

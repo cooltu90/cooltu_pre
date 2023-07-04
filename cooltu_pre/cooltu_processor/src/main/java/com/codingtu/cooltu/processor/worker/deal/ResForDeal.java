@@ -67,12 +67,6 @@ public class ResForDeal extends BaseDeal {
                         startGroups.add(ve);
                     }
 
-                    InBase inBase = ve.getAnnotation(InBase.class);
-                    if (inBase != null) {
-                        dealInBase(actFullName, ve);
-                    }
-
-
                     Adapter adapter = ve.getAnnotation(Adapter.class);
                     if (adapter != null) {
                         dealAdapter(actFullName, ve, adapter);
@@ -162,15 +156,6 @@ public class ResForDeal extends BaseDeal {
         }
 
     }
-
-
-    private void dealInBase(String classFullName, VariableElement ve) {
-        BaseParentModel baseParentModel = getBaseParentModel(classFullName);
-        if (baseParentModel != null) {
-            baseParentModel.addInBase(ElementTools.getFiledKv(ve));
-        }
-    }
-
 
     private void dealDimen(String classFullName, VariableElement element, Dimen dimen) {
         BaseParentModel baseParentModel = getBaseParentModel(classFullName);

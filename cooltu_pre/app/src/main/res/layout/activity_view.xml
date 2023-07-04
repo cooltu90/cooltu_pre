@@ -5,10 +5,10 @@
     android:layout_height="match_parent"
     android:background="#fff">
 
-    <com.codingtu.cooltu.lib4a.view.image.LargeImageView
-        android:id="@+id/iv"
+    <android.webkit.WebView
+        android:id="@+id/wv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"/>
 
 
 </RelativeLayout>

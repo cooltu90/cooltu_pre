@@ -23,6 +23,7 @@ import com.codingtu.cooltu.processor.lib.tools.NameTools;
 import com.codingtu.cooltu.processor.lib.tools.ParamTools;
 import com.codingtu.cooltu.processor.lib.tools.RenameTools;
 import com.codingtu.cooltu.processor.lib.tools.TagTools;
+import com.codingtu.cooltu.processor.worker.deal.InBaseDeal;
 import com.codingtu.cooltu.processor.worker.model.base.BaseAdapterModel;
 import com.codingtu.cooltu.processor.worker.model.base.BaseModel;
 
@@ -75,8 +76,6 @@ public abstract class BaseParentModel extends BaseModel {
     protected List<KV<String, IdTools.Id>> resKvs = new ArrayList<>();
     protected List<KV<String, IdTools.Id>> colorIdKvs = new ArrayList<>();
     protected List<KV<String, String>> colorStrKvs = new ArrayList<>();
-    protected List<String> inBases = new ArrayList<>();
-
 
     public BaseParentModel(JavaInfo info, boolean isAct) {
         super(info);
@@ -119,10 +118,6 @@ public abstract class BaseParentModel extends BaseModel {
 
     public void addLongClickView(ExecutableElement element) {
         longClickViews.add(element);
-    }
-
-    public void addInBase(KV<String, String> kv) {
-        inBases.add(kv.v);
     }
 
     public void setAdapter(BaseAdapterModel adapterModel, String uiType) {
@@ -221,7 +216,7 @@ public abstract class BaseParentModel extends BaseModel {
     }
 
     protected void addFieldSb(StringBuilder fieldSb, String type, String name) {
-        if (inBases.contains(name)) {
+        if (InBaseDeal.inBaseMap.get(baseClass).contains(name)) {
             return;
         }
 

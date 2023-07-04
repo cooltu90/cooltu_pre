@@ -10,12 +10,8 @@ import com.codingtu.cooltu.processor.annotation.resource.ResFor;
 @ResFor(TestActivity.class)
 public class TestActivityRes {
 
-    @InBase
     @StartGroup
     public String name;
-
-    @InBase
-    public TextView tv;
 
 }
 
