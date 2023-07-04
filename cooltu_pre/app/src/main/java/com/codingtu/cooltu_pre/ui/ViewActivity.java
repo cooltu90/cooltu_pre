@@ -37,34 +37,48 @@ public class ViewActivity extends ViewActivityBase {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        Map<String, String> picMap = new HashMap<>();
         //188-158 256-256
-        String key = null;
-        for (int i = 0; i < 8; i++) {
-            int count = (int) Math.pow(2, i);
-            for (int j = 0; j < count; j++) {
-                for (int k = 0; k < count; k++) {
-                    key = i + "_" + j + "_" + k;
-                    picMap.put(key, "/0gp/Map/Map/" + key);
-                }
-            }
-        }
-        BigScaleImageView.BigImage bigImage = new BigScaleImageView.BigImage();
-        for (int level = 0; level < 8; level++) {
-            int count = (int) Math.pow(2, level);
-
-            BigScaleImageView.BigImageLevel bigImageLevel = new BigScaleImageView.BigImageLevel();
-            bigImage.addLevel(level, bigImageLevel);
-
-            for (int row = 0; row < count; row++) {
-                for (int column = 0; column < count; column++) {
-                    bigImageLevel.setImage(row, column, "/0gp/Map/Map/" + level + "_" + column + "_" + row);
-                }
-            }
-        }
-
-        iv.setBigImage(bigImage);
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                int[][] nums = new int[][]{
+//                        {256, 256, 188, 158, 34, 49, 1, 1},
+//                        {512, 512, 376, 314, 68, 99, 2, 2},
+//                        {1024, 1024, 750, 626, 137, 199, 4, 4},
+//                        {2048, 2048, 1500, 1250, 274, 399, 8, 8,},
+//                        {4096, 4096, 3000, 2500, 548, 798, 16, 16},
+//                        {8192, 8192, 6000, 5000, 1096, 1596, 32, 32},
+//                        {16384, 16384, 12000, 10000, 2192, 3192, 64, 64},
+//                        {32768, 32768, 24000, 20000, 4384, 6384, 128, 128},
+//                };
+//
+//                BigScaleImageView.BigImage bigImage = new BigScaleImageView.BigImage();
+//                bigImage.setSliceWidth(256);
+//                for (int level = 0; level < 8; level++) {
+//                    int count = (int) Math.pow(2, level);
+//
+//                    int[] num = nums[level];
+//
+//                    BigScaleImageView.BigImageLevel bigImageLevel = new BigScaleImageView.BigImageLevel();
+//                    bigImageLevel.setImageWH(num[0], num[1], num[2], num[3], num[4], num[5], num[6], num[7]);
+//
+//                    bigImage.addLevel(level, bigImageLevel);
+//
+//                    for (int row = 0; row < count; row++) {
+//                        for (int column = 0; column < count; column++) {
+//                            bigImageLevel.setImage(row, column, SDCardTool.getSDCard()+"/0gp/Map/Map/" + level + "_" + column + "_" + row);
+//                        }
+//                    }
+//                }
+//
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        iv.setBigImage(bigImage);
+//                    }
+//                });
+//            }
+//        }).start();
 
     }
 

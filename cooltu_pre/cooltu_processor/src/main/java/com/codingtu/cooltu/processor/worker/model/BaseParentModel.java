@@ -75,6 +75,7 @@ public abstract class BaseParentModel extends BaseModel {
     protected List<KV<String, IdTools.Id>> resKvs = new ArrayList<>();
     protected List<KV<String, IdTools.Id>> colorIdKvs = new ArrayList<>();
     protected List<KV<String, String>> colorStrKvs = new ArrayList<>();
+    protected List<String> inBases = new ArrayList<>();
 
 
     public BaseParentModel(JavaInfo info, boolean isAct) {
@@ -118,6 +119,10 @@ public abstract class BaseParentModel extends BaseModel {
 
     public void addLongClickView(ExecutableElement element) {
         longClickViews.add(element);
+    }
+
+    public void addInBase(KV<String, String> kv) {
+        inBases.add(kv.v);
     }
 
     public void setAdapter(BaseAdapterModel adapterModel, String uiType) {
@@ -216,6 +221,10 @@ public abstract class BaseParentModel extends BaseModel {
     }
 
     protected void addFieldSb(StringBuilder fieldSb, String type, String name) {
+        if (inBases.contains(name)) {
+            return;
+        }
+
         String key = type + name;
         if (StringTool.isNotBlank(fields.get(key))) {
             return;
@@ -989,6 +998,5 @@ public abstract class BaseParentModel extends BaseModel {
             }
         });
     }
-
 
 }

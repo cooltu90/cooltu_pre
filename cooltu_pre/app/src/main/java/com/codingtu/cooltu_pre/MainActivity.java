@@ -21,7 +21,8 @@ public class MainActivity extends MainActivityBase {
 
     @Permission({Manifest.permission.WRITE_EXTERNAL_STORAGE})
     public void check() {
-        ActStart.viewActivity(this);
+//        ActStart.viewActivity(this);
+        ActStart.testActivity(this,"lisi");
         finishToNewPage();
     }
 }

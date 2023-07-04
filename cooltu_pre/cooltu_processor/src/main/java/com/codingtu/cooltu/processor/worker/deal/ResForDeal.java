@@ -21,6 +21,7 @@ import com.codingtu.cooltu.processor.annotation.resource.Dimen;
 import com.codingtu.cooltu.processor.annotation.resource.Dp;
 import com.codingtu.cooltu.processor.annotation.resource.ResFor;
 import com.codingtu.cooltu.processor.annotation.ui.Adapter;
+import com.codingtu.cooltu.processor.annotation.ui.InBase;
 import com.codingtu.cooltu.processor.annotation.ui.StartGroup;
 import com.codingtu.cooltu.processor.annotation.ui.dialog.DialogUse;
 import com.codingtu.cooltu.processor.annotation.ui.dialog.EditDialogUse;
@@ -66,36 +67,42 @@ public class ResForDeal extends BaseDeal {
                         startGroups.add(ve);
                     }
 
-                    Adapter adapter = element.getAnnotation(Adapter.class);
+                    InBase inBase = ve.getAnnotation(InBase.class);
+                    if (inBase != null) {
+                        dealInBase(actFullName, ve);
+                    }
+
+
+                    Adapter adapter = ve.getAnnotation(Adapter.class);
                     if (adapter != null) {
                         dealAdapter(actFullName, ve, adapter);
                     }
 
-                    ColorRes colorRes = element.getAnnotation(ColorRes.class);
+                    ColorRes colorRes = ve.getAnnotation(ColorRes.class);
                     if (colorRes != null) {
                         dealColorRes(actFullName, ve, colorRes);
                     }
 
-                    ColorStr colorStr = element.getAnnotation(ColorStr.class);
+                    ColorStr colorStr = ve.getAnnotation(ColorStr.class);
                     if (colorStr != null) {
                         dealColorStr(actFullName, ve, colorStr);
                     }
 
-                    Dp dp = element.getAnnotation(Dp.class);
+                    Dp dp = ve.getAnnotation(Dp.class);
                     if (dp != null) {
                         dealDp(actFullName, ve, dp);
                     }
 
-                    Dimen dimen = element.getAnnotation(Dimen.class);
+                    Dimen dimen = ve.getAnnotation(Dimen.class);
                     if (dimen != null) {
                         dealDimen(actFullName, ve, dimen);
                     }
 
-                    EditDialogUse editDialogUse = element.getAnnotation(EditDialogUse.class);
+                    EditDialogUse editDialogUse = ve.getAnnotation(EditDialogUse.class);
                     if (editDialogUse != null) {
                         dealEditDialogUse(actFullName, ve, editDialogUse);
                     }
-                    DialogUse dialogUse = element.getAnnotation(DialogUse.class);
+                    DialogUse dialogUse = ve.getAnnotation(DialogUse.class);
                     if (dialogUse != null) {
                         dealDialogUse(actFullName, ve, dialogUse);
                     }
@@ -154,6 +161,14 @@ public class ResForDeal extends BaseDeal {
             StartModel.model.addStart(actFullName, actStaticName, ikv);
         }
 
+    }
+
+
+    private void dealInBase(String classFullName, VariableElement ve) {
+        BaseParentModel baseParentModel = getBaseParentModel(classFullName);
+        if (baseParentModel != null) {
+            baseParentModel.addInBase(ElementTools.getFiledKv(ve));
+        }
     }
 
 

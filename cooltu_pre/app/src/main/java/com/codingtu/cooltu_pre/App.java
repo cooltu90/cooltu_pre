@@ -22,7 +22,7 @@ import com.codingtu.cooltu.processor.annotation.ui.DefaultEditDialogLayout;
         defaultLayout = Constants.LAYOUT_NAME_DEFAULT_TEMP
 )
 @CreateAct(
-        name = "view",
+        name = "test",
         packages = Constants.PKG_MODULE_APP + Pkg.DEFAULT_UI
 )
 @CreateAdapter(

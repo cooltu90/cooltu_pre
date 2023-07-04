@@ -17,22 +17,22 @@ import retrofit2.adapter.rxjava2.Result;
 
 import com.codingtu.cooltu.lib4a.permission.PermissionBack;
 
-public abstract class ViewActivityBase extends com.codingtu.cooltu.lib4a.act.CoreActivity implements View.OnClickListener, NetBackI, PermissionBack {
+public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTestActivity implements View.OnClickListener, NetBackI, PermissionBack {
 
     protected int fromAct;
 
-    public com.codingtu.cooltu.lib4a.view.image.LargeImageView iv;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(com.codingtu.cooltu_pre.R.layout.activity_view);
+        setContentView(com.codingtu.cooltu_pre.R.layout.activity_test);
         Intent data = getIntent();
         fromAct = core.tools.Pass.fromAct(data);
+        name = core.tools.Pass.name(data);
 
-        iv = findViewById(com.codingtu.cooltu_pre.R.id.iv);
+        tv = findViewById(com.codingtu.cooltu_pre.R.id.tv);
 
 
 

@@ -5,11 +5,10 @@
     android:layout_height="match_parent"
     android:background="#fff">
 
-    <com.codingtu.cooltu.lib4a.view.image.BigScaleImageView
+    <com.codingtu.cooltu.lib4a.view.image.LargeImageView
         android:id="@+id/iv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:maxScale="16" />
+        android:layout_height="match_parent" />
 
 
 </RelativeLayout>
