@@ -28,6 +28,7 @@ import com.codingtu.cooltu.processor.annotation.ui.DefaultToastDialogLayout;
 import com.codingtu.cooltu.processor.annotation.ui.FragmentBase;
 import com.codingtu.cooltu.processor.annotation.ui.InBase;
 import com.codingtu.cooltu.processor.annotation.ui.InBaseClickView;
+import com.codingtu.cooltu.processor.annotation.ui.InBaseStartGroup;
 import com.codingtu.cooltu.processor.annotation.ui.LongClickView;
 import com.codingtu.cooltu.processor.annotation.ui.UseDialog;
 import com.codingtu.cooltu.processor.annotation.ui.UseEditDialog;
@@ -50,6 +51,7 @@ public class SupportTypes {
                 Base.class,
                 InBase.class,
                 InBaseClickView.class,
+                InBaseStartGroup.class,
                 DeleteAct.class,
                 RenameAct.class,
                 CreateAct.class,

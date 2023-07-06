@@ -16,6 +16,5 @@ public class TestActivityRes {
     @StartGroup
     public int age;
 
-
 }
 

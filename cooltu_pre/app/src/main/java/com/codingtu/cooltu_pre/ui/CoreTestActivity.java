@@ -6,9 +6,13 @@ import com.codingtu.cooltu.lib4a.act.CoreActivity;
 import com.codingtu.cooltu.processor.annotation.ui.ClickView;
 import com.codingtu.cooltu.processor.annotation.ui.InBase;
 import com.codingtu.cooltu.processor.annotation.ui.InBaseClickView;
+import com.codingtu.cooltu.processor.annotation.ui.InBaseStartGroup;
 import com.codingtu.cooltu_pre.R;
 
 public class CoreTestActivity extends CoreActivity {
+
+    @InBaseStartGroup
+    public String id;
 
     @InBase
     public String name;
@@ -16,7 +20,7 @@ public class CoreTestActivity extends CoreActivity {
     public TextView tv;
 
 
-    @InBaseClickView(value = R.id.tv,inAct = false)
+    @InBaseClickView(value = R.id.tv, inAct = false)
     public void tvClick() {
         toast("tv");
     }
