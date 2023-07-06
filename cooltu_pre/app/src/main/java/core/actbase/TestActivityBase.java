@@ -22,6 +22,10 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
     protected int fromAct;
 
     public android.widget.TextView tv1;
+    public int color11;
+    public int color22;
+    public int dp11;
+    public int d1;
 
 
     @Override
@@ -31,10 +35,10 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
         setContentView(com.codingtu.cooltu_pre.R.layout.activity_test);
         Intent data = getIntent();
         fromAct = core.tools.Pass.fromAct(data);
-        name = core.tools.Pass.name(data);
-        age = core.tools.Pass.age(data);
         money = core.tools.Pass.money(data);
+        age = core.tools.Pass.age(data);
         id = core.tools.Pass.id(data);
+        name = core.tools.Pass.name(data);
 
         tv = findViewById(com.codingtu.cooltu_pre.R.id.tv);
         tv1 = findViewById(com.codingtu.cooltu_pre.R.id.tv1);
@@ -43,6 +47,14 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
 
 
 
+        dp11 = com.codingtu.cooltu.lib4a.tools.MobileTool.dpToPx(2.6f);
+        dp1 = com.codingtu.cooltu.lib4a.tools.MobileTool.dpToPx(2.5f);
+        d1 = com.codingtu.cooltu.lib4a.tools.ResourceTool.getDimen(com.codingtu.cooltu_pre.R.dimen.d1);
+        dp2 = com.codingtu.cooltu.lib4a.tools.ResourceTool.getDimen(com.codingtu.cooltu_pre.R.dimen.d1);
+        color22 = com.codingtu.cooltu.lib4a.tools.ResourceTool.getColor(com.codingtu.cooltu_pre.R.color.purple_200);
+        color2 = com.codingtu.cooltu.lib4a.tools.ResourceTool.getColor(com.codingtu.cooltu_pre.R.color.black);
+        color11 = android.graphics.Color.parseColor("#ffffff");
+        color1 = android.graphics.Color.parseColor("#ffffff");
 
 
         onCreateComplete();

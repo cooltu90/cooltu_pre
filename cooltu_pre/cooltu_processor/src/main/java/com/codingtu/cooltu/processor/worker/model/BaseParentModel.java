@@ -24,8 +24,6 @@ import com.codingtu.cooltu.processor.lib.tools.NameTools;
 import com.codingtu.cooltu.processor.lib.tools.ParamTools;
 import com.codingtu.cooltu.processor.lib.tools.RenameTools;
 import com.codingtu.cooltu.processor.lib.tools.TagTools;
-import com.codingtu.cooltu.processor.worker.deal.InBaseClickViewDeal;
-import com.codingtu.cooltu.processor.worker.deal.InBaseDeal;
 import com.codingtu.cooltu.processor.worker.deal.ResForBaseDeal;
 import com.codingtu.cooltu.processor.worker.model.base.BaseAdapterModel;
 import com.codingtu.cooltu.processor.worker.model.base.BaseModel;
@@ -37,7 +35,6 @@ import java.util.Map;
 
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ExecutableElement;
-import javax.lang.model.element.TypeElement;
 import javax.lang.model.element.VariableElement;
 
 import cooltu.lib4j.data.bean.JavaInfo;
@@ -92,7 +89,7 @@ public abstract class BaseParentModel extends BaseModel {
         this.baseClass = baseClass;
     }
 
-    public String getBaseClass(){
+    public String getBaseClass() {
         return baseClass;
     }
 
@@ -239,7 +236,7 @@ public abstract class BaseParentModel extends BaseModel {
     }
 
     protected boolean isInBase(String type, String name) {
-        if (InBaseDeal.inBaseMap.get(type).contains(name)) {
+        if (ResForBaseDeal.inBaseMap.get(type).contains(name)) {
             return true;
         }
 
@@ -582,44 +579,32 @@ public abstract class BaseParentModel extends BaseModel {
             public boolean each(int position, ExecutableElement element) {
                 ClickView clickView = element.getAnnotation(ClickView.class);
                 int[] ids = clickView.value();
-                boolean inAct = clickView.inAct();
                 Map<Integer, IdTools.Id> idMap = IdTools.elementToIds(element, ClickView.class, ids);
 
-                if (inAct)
-                    for (int i = 0; i < CountTool.count(ids); i++) {
-                        addLnTag(setClickSb, "        [name].setOnClickListener(this);", idMap.get(ids[i]).rName);
-                    }
+                setTagFor_setClick_1(setClickSb, ids, idMap, clickView.inAct());
 
                 return false;
             }
         });
-        setTagFor_setClick_InBase(setClickSb, baseClass);
-    }
-
-    private void setTagFor_setClick_InBase(StringBuilder setClickSb, String type) {
-        Ts.ls(InBaseClickViewDeal.map.get(type), new Each<Element>() {
+        Ts.ls(ResForBaseDeal.getTs(ResForBaseDeal.clickViewMap, baseClass), new Each<ExecutableElement>() {
             @Override
-            public boolean each(int position, Element element) {
+            public boolean each(int position, ExecutableElement element) {
                 InBaseClickView clickView = element.getAnnotation(InBaseClickView.class);
                 int[] ids = clickView.value();
                 Map<Integer, IdTools.Id> idMap = IdTools.elementToIds(element, InBaseClickView.class, ids);
 
-                if (clickView.inAct())
-                    for (int i = 0; i < CountTool.count(ids); i++) {
-                        addLnTag(setClickSb, "        [name].setOnClickListener(this);", idMap.get(ids[i]).rName);
-                    }
-                return false;
-            }
-        });
-        Ts.ls(ResForBaseDeal.baseMap.get(type), new Each<String>() {
-            @Override
-            public boolean each(int position, String base) {
-                setTagFor_setClick_InBase(setClickSb, base);
+                setTagFor_setClick_1(setClickSb, ids, idMap, clickView.inAct());
                 return false;
             }
         });
     }
 
+    private void setTagFor_setClick_1(StringBuilder setClickSb, int[] ids, Map<Integer, IdTools.Id> idMap, boolean inAct) {
+        if (inAct)
+            for (int i = 0; i < CountTool.count(ids); i++) {
+                addLnTag(setClickSb, "        [name].setOnClickListener(this);", idMap.get(ids[i]).rName);
+            }
+    }
 
     public void setTagFor_clickMethods(StringBuilder methodsSb) {
         Ts.ls(clickViews, new Each<ExecutableElement>() {
@@ -699,14 +684,10 @@ public abstract class BaseParentModel extends BaseModel {
                 return false;
             }
         });
-        setTagFor_onclicks_InBase(sb, baseClass);
-    }
 
-    private void setTagFor_onclicks_InBase(StringBuilder sb, String type) {
-        Ts.ls(InBaseClickViewDeal.map.get(type), new Each<Element>() {
+        Ts.ls(ResForBaseDeal.getTs(ResForBaseDeal.clickViewMap, baseClass), new Each<ExecutableElement>() {
             @Override
-            public boolean each(int position, Element e) {
-                ExecutableElement element = (ExecutableElement) e;
+            public boolean each(int position, ExecutableElement element) {
 
                 InBaseClickView clickView = element.getAnnotation(InBaseClickView.class);
                 int[] ids = clickView.value();
@@ -753,13 +734,8 @@ public abstract class BaseParentModel extends BaseModel {
                 return false;
             }
         });
-        Ts.ls(ResForBaseDeal.baseMap.get(type), new Each<String>() {
-            @Override
-            public boolean each(int position, String base) {
-                setTagFor_onclicks_InBase(sb, base);
-                return false;
-            }
-        });
+
+
     }
 
     public void setTagFor_onCreates(StringBuilder sb) {

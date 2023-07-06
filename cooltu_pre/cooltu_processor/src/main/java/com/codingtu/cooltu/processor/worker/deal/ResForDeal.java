@@ -5,16 +5,13 @@ import com.codingtu.cooltu.processor.annotation.resource.ColorStr;
 import com.codingtu.cooltu.processor.annotation.resource.Dimen;
 import com.codingtu.cooltu.processor.annotation.resource.Dp;
 import com.codingtu.cooltu.processor.annotation.resource.ResFor;
-import com.codingtu.cooltu.processor.annotation.resource.ResForBase;
 import com.codingtu.cooltu.processor.annotation.ui.Adapter;
-import com.codingtu.cooltu.processor.annotation.ui.InBaseStartGroup;
 import com.codingtu.cooltu.processor.annotation.ui.StartGroup;
 import com.codingtu.cooltu.processor.annotation.ui.dialog.DialogUse;
 import com.codingtu.cooltu.processor.annotation.ui.dialog.EditDialogUse;
 import com.codingtu.cooltu.processor.annotation.ui.dialog.ToastDialogUse;
 import com.codingtu.cooltu.processor.lib.bean.DialogInfo;
 import com.codingtu.cooltu.processor.lib.bean.EditDialogInfo;
-import com.codingtu.cooltu.processor.lib.log.Logs;
 import com.codingtu.cooltu.processor.lib.model.AdapterModels;
 import com.codingtu.cooltu.processor.lib.tools.ElementTools;
 import com.codingtu.cooltu.processor.lib.tools.IdTools;
@@ -42,6 +39,8 @@ import cooltu.lib4j.ts.Ts;
 import cooltu.lib4j.ts.each.Each;
 
 public class ResForDeal extends BaseDeal {
+    private BaseParentModel baseParentModel;
+
     @Override
     public void deal(Element element) {
 
@@ -54,9 +53,14 @@ public class ResForDeal extends BaseDeal {
             }
         });
 
+        baseParentModel = getBaseParentModel(actFullName);
+        if (baseParentModel == null) {
+            return;
+        }
+
         ToastDialogUse toastDialogUse = te.getAnnotation(ToastDialogUse.class);
         if (toastDialogUse != null) {
-            dealToastDialogUse(actFullName, toastDialogUse);
+            dealToastDialogUse();
         }
 
         List<VariableElement> startGroups = new ArrayList<>();
@@ -72,36 +76,36 @@ public class ResForDeal extends BaseDeal {
 
                     Adapter adapter = ve.getAnnotation(Adapter.class);
                     if (adapter != null) {
-                        dealAdapter(actFullName, ve, adapter);
+                        dealAdapter(ve, adapter);
                     }
 
                     ColorRes colorRes = ve.getAnnotation(ColorRes.class);
                     if (colorRes != null) {
-                        dealColorRes(actFullName, ve, colorRes);
+                        dealColorRes(ve, colorRes);
                     }
 
                     ColorStr colorStr = ve.getAnnotation(ColorStr.class);
                     if (colorStr != null) {
-                        dealColorStr(actFullName, ve, colorStr);
+                        dealColorStr(ve, colorStr);
                     }
 
                     Dp dp = ve.getAnnotation(Dp.class);
                     if (dp != null) {
-                        dealDp(actFullName, ve, dp);
+                        dealDp(ve, dp);
                     }
 
                     Dimen dimen = ve.getAnnotation(Dimen.class);
                     if (dimen != null) {
-                        dealDimen(actFullName, ve, dimen);
+                        dealDimen(ve, dimen);
                     }
 
                     EditDialogUse editDialogUse = ve.getAnnotation(EditDialogUse.class);
                     if (editDialogUse != null) {
-                        dealEditDialogUse(actFullName, ve, editDialogUse);
+                        dealEditDialogUse(ve, editDialogUse);
                     }
                     DialogUse dialogUse = ve.getAnnotation(DialogUse.class);
                     if (dialogUse != null) {
-                        dealDialogUse(actFullName, ve, dialogUse);
+                        dealDialogUse(ve, dialogUse);
                     }
 
                 }
@@ -109,6 +113,42 @@ public class ResForDeal extends BaseDeal {
             }
         });
         dealStartGroup(actFullName, startGroups);
+
+        String baseClass = baseParentModel.getBaseClass();
+
+        Ts.ls(ResForBaseDeal.getTs(ResForBaseDeal.colorStrMap, baseClass), new Each<VariableElement>() {
+            @Override
+            public boolean each(int position, VariableElement ve) {
+                dealColorStr(ve, ve.getAnnotation(ColorStr.class));
+                return false;
+            }
+        });
+
+        Ts.ls(ResForBaseDeal.getTs(ResForBaseDeal.colorResMap, baseClass), new Each<VariableElement>() {
+            @Override
+            public boolean each(int position, VariableElement ve) {
+                dealColorRes(ve, ve.getAnnotation(ColorRes.class));
+                return false;
+            }
+        });
+
+        Ts.ls(ResForBaseDeal.getTs(ResForBaseDeal.dpMap, baseClass), new Each<VariableElement>() {
+            @Override
+            public boolean each(int position, VariableElement ve) {
+                dealDp(ve, ve.getAnnotation(Dp.class));
+                return false;
+            }
+        });
+
+        Ts.ls(ResForBaseDeal.getTs(ResForBaseDeal.dimenMap, baseClass), new Each<VariableElement>() {
+            @Override
+            public boolean each(int position, VariableElement ve) {
+                dealDimen(ve, ve.getAnnotation(Dimen.class));
+                return false;
+            }
+        });
+
+
     }
 
     private void dealStartGroup(String actFullName, List<VariableElement> startGroups) {
@@ -117,12 +157,12 @@ public class ResForDeal extends BaseDeal {
         }
 
         ActBaseModel actBaseModel = ActBaseDeal.getActBaseModel(actFullName);
-        String baseClass = actBaseModel.getBaseClass();
-        List<Element> inBaseStartGroups = getInBaseStartGroups(baseClass);
+        startGroups.addAll(
+                ResForBaseDeal.getTs(ResForBaseDeal.startGroupMap, actBaseModel.getBaseClass()));
 
 
         String actStaticName = ConvertTool.toStaticType(NameTools.getJavaSimpleName(actFullName));
-        if (CountTool.isNull(startGroups) && CountTool.isNull(inBaseStartGroups)) {
+        if (CountTool.isNull(startGroups)) {
             //没有
             StartModel.model.addStart(actFullName, actStaticName, null);
         } else {
@@ -154,33 +194,6 @@ public class ResForDeal extends BaseDeal {
                     return false;
                 }
             });
-            Ts.ls(inBaseStartGroups, new Each<Element>() {
-                @Override
-                public boolean each(int position, Element element) {
-                    if (element instanceof VariableElement) {
-                        KV<String, String> kv = ElementTools.getFiledKv((VariableElement) element);
-                        PassModel.model.add(kv);
-
-                        int[] group = null;
-                        InBaseStartGroup startGroup = element.getAnnotation(InBaseStartGroup.class);
-                        if (startGroup != null) {
-                            group = startGroup.value();
-                        }
-                        if (CountTool.isNull(group)) {
-                            ikv.get(0).add(kv);
-                        } else {
-                            Ts.ls(group, new Each<Integer>() {
-                                @Override
-                                public boolean each(int position, Integer integer) {
-                                    ikv.get(integer).add(kv);
-                                    return false;
-                                }
-                            });
-                        }
-                    }
-                    return false;
-                }
-            });
             try {
                 actBaseModel.addStartParams(ikv);
             } catch (Exception e) {
@@ -191,108 +204,67 @@ public class ResForDeal extends BaseDeal {
 
     }
 
-    private List<Element> getInBaseStartGroups(String baseClass) {
-        List<Element> elements = InBaseStartGroupDeal.map.get(baseClass);
-        if (elements == null) {
-            elements = new ArrayList<>();
-        }
-        List<String> bases = ResForBaseDeal.baseMap.get(baseClass);
-        int count = CountTool.count(bases);
-        if (count > 0) {
-            for (int i = 0; i < count; i++) {
-                String base = bases.get(i);
-                elements.addAll(getInBaseStartGroups(base));
-            }
-        }
-        return elements;
-    }
-
-    private void dealDimen(String classFullName, VariableElement element, Dimen dimen) {
-        BaseParentModel baseParentModel = getBaseParentModel(classFullName);
+    private void dealDimen(VariableElement element, Dimen dimen) {
         IdTools.Id id = IdTools.elementToId(element, Dimen.class, dimen.value());
-        if (baseParentModel != null) {
-            baseParentModel.addDimen(ElementTools.simpleName(element), id);
-        }
+        baseParentModel.addDimen(ElementTools.simpleName(element), id);
     }
 
-    private void dealDp(String classFullName, VariableElement element, Dp dpAnno) {
-        BaseParentModel baseParentModel = getBaseParentModel(classFullName);
-        if (baseParentModel != null) {
-            baseParentModel.addDp(ElementTools.getType(element), ElementTools.simpleName(element), dpAnno.value());
-        }
+    private void dealDp(VariableElement element, Dp dpAnno) {
+        baseParentModel.addDp(ElementTools.getType(element), ElementTools.simpleName(element), dpAnno.value());
     }
 
-    private void dealColorStr(String classFullName, VariableElement element, ColorStr colorStr) {
-        BaseParentModel baseParentModel = getBaseParentModel(classFullName);
-        if (baseParentModel != null) {
-            baseParentModel.addColorStr(ElementTools.simpleName(element), colorStr.value());
-        }
+    private void dealColorStr(VariableElement element, ColorStr colorStr) {
+        baseParentModel.addColorStr(ElementTools.simpleName(element), colorStr.value());
     }
 
-    private void dealColorRes(String classFullName, VariableElement element, ColorRes colorRes) {
-        BaseParentModel baseParentModel = getBaseParentModel(classFullName);
+    private void dealColorRes(VariableElement element, ColorRes colorRes) {
         IdTools.Id id = IdTools.elementToId(element, ColorRes.class, colorRes.value());
-        if (baseParentModel != null) {
-            baseParentModel.addColorRes(ElementTools.simpleName(element), id);
-        }
+        baseParentModel.addColorRes(ElementTools.simpleName(element), id);
     }
 
-    private void dealAdapter(String classFullName, VariableElement ve, Adapter adapter) {
-        BaseParentModel baseModel = getBaseParentModel(classFullName);
-        if (baseModel != null) {
-            BaseAdapterModel adapterModel = AdapterModels.getAdapterModel(adapter.type());
-            adapterModel.setAdapter(ElementTools.getType(ve));
-            adapterModel.setRvName(adapter.rvName());
-            adapterModel.setAdapterName(ElementTools.simpleName(ve));
-            baseModel.setAdapter(adapterModel, "");
-        }
+    private void dealAdapter(VariableElement ve, Adapter adapter) {
+        BaseAdapterModel adapterModel = AdapterModels.getAdapterModel(adapter.type());
+        adapterModel.setAdapter(ElementTools.getType(ve));
+        adapterModel.setRvName(adapter.rvName());
+        adapterModel.setAdapterName(ElementTools.simpleName(ve));
+        baseParentModel.setAdapter(adapterModel, "");
     }
 
-    private void dealEditDialogUse(String actFullName, VariableElement ve, EditDialogUse use) {
-        BaseParentModel baseParentModel = getBaseParentModel(actFullName);
-        if (baseParentModel != null) {
-            EditDialogInfo info = new EditDialogInfo();
-            KV<String, String> kv = ElementTools.getFiledKv(ve);
-            info.name = kv.v;
-            info.title = use.title();
-            info.hint = use.hint();
-            info.inputType = use.inputType();
-            info.stopAnimation = use.stopAnimation();
-            info.isUseTextwatcher = use.isUseTextWatcher();
-            info.objType = ClassTool.getAnnotationClass(new ClassTool.AnnotationClassGetter() {
-                @Override
-                public Object get() {
-                    return use.objType();
-                }
-            });
-            info.reserve = use.reserve();
-            baseParentModel.addEditDialog(info);
-        }
+    private void dealEditDialogUse(VariableElement ve, EditDialogUse use) {
+        EditDialogInfo info = new EditDialogInfo();
+        KV<String, String> kv = ElementTools.getFiledKv(ve);
+        info.name = kv.v;
+        info.title = use.title();
+        info.hint = use.hint();
+        info.inputType = use.inputType();
+        info.stopAnimation = use.stopAnimation();
+        info.isUseTextwatcher = use.isUseTextWatcher();
+        info.objType = ClassTool.getAnnotationClass(new ClassTool.AnnotationClassGetter() {
+            @Override
+            public Object get() {
+                return use.objType();
+            }
+        });
+        info.reserve = use.reserve();
+        baseParentModel.addEditDialog(info);
     }
 
-    private void dealToastDialogUse(String actFullName, ToastDialogUse toastDialogUse) {
-        BaseParentModel baseParentModel = getBaseParentModel(actFullName);
-        if (baseParentModel != null) {
-            baseParentModel.addToastDialog();
-        }
+    private void dealToastDialogUse() {
+        baseParentModel.addToastDialog();
     }
 
-    private void dealDialogUse(String actFullName, VariableElement ve, DialogUse use) {
-        BaseParentModel baseParentModel = getBaseParentModel(actFullName);
-        if (baseParentModel != null) {
-            KV<String, String> kv = ElementTools.getFiledKv(ve);
-
-            DialogInfo dialogInfo = new DialogInfo();
-            dialogInfo.name = kv.v;
-            dialogInfo.title = use.title();
-            dialogInfo.content = use.content();
-            dialogInfo.objType = ClassTool.getAnnotationClass(new ClassTool.AnnotationClassGetter() {
-                @Override
-                public Object get() {
-                    return use.objType();
-                }
-            });
-            baseParentModel.addDialog(dialogInfo);
-        }
+    private void dealDialogUse(VariableElement ve, DialogUse use) {
+        KV<String, String> kv = ElementTools.getFiledKv(ve);
+        DialogInfo dialogInfo = new DialogInfo();
+        dialogInfo.name = kv.v;
+        dialogInfo.title = use.title();
+        dialogInfo.content = use.content();
+        dialogInfo.objType = ClassTool.getAnnotationClass(new ClassTool.AnnotationClassGetter() {
+            @Override
+            public Object get() {
+                return use.objType();
+            }
+        });
+        baseParentModel.addDialog(dialogInfo);
     }
 }

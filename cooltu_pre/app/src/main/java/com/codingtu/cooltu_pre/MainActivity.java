@@ -22,7 +22,7 @@ public class MainActivity extends MainActivityBase {
     @Permission({Manifest.permission.WRITE_EXTERNAL_STORAGE})
     public void check() {
 //        ActStart.viewActivity(this);
-        ActStart.testActivity(this,"lisi",10,10,"ddd");
+        ActStart.testActivity(this, 100, 10, "id", "lisi");
         finishToNewPage();
     }
 }

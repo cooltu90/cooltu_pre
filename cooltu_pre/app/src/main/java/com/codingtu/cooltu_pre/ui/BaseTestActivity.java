@@ -1,18 +1,17 @@
 package com.codingtu.cooltu_pre.ui;
 
 import com.codingtu.cooltu.processor.annotation.resource.ResForBase;
-import com.codingtu.cooltu.processor.annotation.ui.InBase;
 import com.codingtu.cooltu.processor.annotation.ui.InBaseClickView;
-import com.codingtu.cooltu.processor.annotation.ui.InBaseStartGroup;
+import com.codingtu.cooltu.processor.annotation.ui.StartGroup;
 import com.codingtu.cooltu_pre.R;
 
 @ResForBase
 public class BaseTestActivity extends CoreTestActivity {
 
-    @InBaseStartGroup
+    @StartGroup
     public long money;
 
-    @InBase
+    @StartGroup
     public int age;
 
     @InBaseClickView(R.id.tv1)

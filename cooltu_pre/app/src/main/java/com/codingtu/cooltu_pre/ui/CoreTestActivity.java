@@ -3,28 +3,38 @@ package com.codingtu.cooltu_pre.ui;
 import android.widget.TextView;
 
 import com.codingtu.cooltu.lib4a.act.CoreActivity;
+import com.codingtu.cooltu.processor.annotation.resource.ColorRes;
 import com.codingtu.cooltu.processor.annotation.resource.ColorStr;
-import com.codingtu.cooltu.processor.annotation.resource.InBaseColorStr;
+import com.codingtu.cooltu.processor.annotation.resource.Dimen;
+import com.codingtu.cooltu.processor.annotation.resource.Dp;
 import com.codingtu.cooltu.processor.annotation.resource.ResForBase;
-import com.codingtu.cooltu.processor.annotation.ui.ClickView;
 import com.codingtu.cooltu.processor.annotation.ui.InBase;
 import com.codingtu.cooltu.processor.annotation.ui.InBaseClickView;
-import com.codingtu.cooltu.processor.annotation.ui.InBaseStartGroup;
+import com.codingtu.cooltu.processor.annotation.ui.StartGroup;
 import com.codingtu.cooltu_pre.R;
 
 @ResForBase
 public class CoreTestActivity extends CoreActivity {
 
-    @InBaseStartGroup
+    @StartGroup
     public String id;
-
-    @InBase
+    @StartGroup
     public String name;
+
     @InBase
     public TextView tv;
 
-    @InBaseColorStr("#ffffff")
-    public int filterSelectedTextColor;
+    @ColorStr("#ffffff")
+    public int color1;
+
+    @ColorRes(R.color.black)
+    public int color2;
+
+    @Dp(2.5f)
+    public int dp1;
+
+    @Dimen(R.dimen.d1)
+    public int dp2;
 
     @InBaseClickView(value = R.id.tv, inAct = false)
     public void tvClick() {
