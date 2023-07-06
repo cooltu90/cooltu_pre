@@ -8,10 +8,15 @@ import com.codingtu.cooltu.processor.annotation.ui.Base;
 import com.codingtu.cooltu.processor.annotation.ui.ClickView;
 import com.codingtu.cooltu.processor.annotation.ui.InBase;
 import com.codingtu.cooltu.processor.annotation.ui.InBaseClickView;
+import com.codingtu.cooltu.processor.annotation.ui.InBaseStartGroup;
 import com.codingtu.cooltu_pre.R;
 
 @Base(CoreTestActivity.class)
 public class BaseTestActivity extends CoreTestActivity {
+
+    @InBaseStartGroup
+    public long money;
+
     @InBase
     public int age;
 

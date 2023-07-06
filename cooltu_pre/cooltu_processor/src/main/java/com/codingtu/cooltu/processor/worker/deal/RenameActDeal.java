@@ -1,5 +1,12 @@
 package com.codingtu.cooltu.processor.worker.deal;
 
+import com.codingtu.cooltu.constant.Constant;
+import com.codingtu.cooltu.constant.Pkg;
+import com.codingtu.cooltu.constant.Suffix;
+import com.codingtu.cooltu.processor.annotation.rename.RenameAct;
+import com.codingtu.cooltu.processor.lib.tools.NameTools;
+import com.codingtu.cooltu.processor.worker.deal.base.BaseDeal;
+
 import java.io.File;
 import java.util.ArrayList;
 
@@ -9,13 +16,6 @@ import cooltu.lib4j.data.bean.JavaInfo;
 import cooltu.lib4j.file.FileTool;
 import cooltu.lib4j.file.deal.FileLineDealer;
 import cooltu.lib4j.file.delete.FileDeleter;
-import com.codingtu.cooltu.constant.Constant;
-import com.codingtu.cooltu.constant.Pkg;
-import com.codingtu.cooltu.constant.Suffix;
-import com.codingtu.cooltu.processor.annotation.rename.RenameAct;
-import com.codingtu.cooltu.processor.lib.log.Logs;
-import com.codingtu.cooltu.processor.lib.tools.NameTools;
-import com.codingtu.cooltu.processor.worker.deal.base.BaseDeal;
 
 public class RenameActDeal extends BaseDeal {
     @Override
@@ -68,7 +68,6 @@ public class RenameActDeal extends BaseDeal {
         if (!oldName.equals(newName)) {
             //删除old
             JavaInfo oldActBaseInfo = NameTools.getActBaseInfo(oldName);
-            Logs.i("delete:" + oldActBaseInfo.path);
             FileDeleter.delete(oldActBaseInfo.path);
         }
         //layout

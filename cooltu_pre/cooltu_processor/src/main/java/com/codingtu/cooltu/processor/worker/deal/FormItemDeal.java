@@ -1,13 +1,5 @@
 package com.codingtu.cooltu.processor.worker.deal;
 
-import javax.lang.model.element.Element;
-
-import cooltu.lib4j.data.bean.KV;
-import cooltu.lib4j.tools.ClassTool;
-import cooltu.lib4j.tools.CountTool;
-import cooltu.lib4j.ts.Ts;
-import cooltu.lib4j.ts.each.Each;
-
 import com.codingtu.cooltu.processor.annotation.form.FormCheck;
 import com.codingtu.cooltu.processor.annotation.form.FormItem;
 import com.codingtu.cooltu.processor.annotation.form.FormItemLink;
@@ -15,11 +7,18 @@ import com.codingtu.cooltu.processor.annotation.form.FormParse;
 import com.codingtu.cooltu.processor.annotation.form.FormType;
 import com.codingtu.cooltu.processor.lib.bean.FormItemInfo;
 import com.codingtu.cooltu.processor.lib.bean.FromItemInfoForRg;
-import com.codingtu.cooltu.processor.lib.log.Logs;
 import com.codingtu.cooltu.processor.lib.tools.ElementTools;
 import com.codingtu.cooltu.processor.lib.tools.IdTools;
 import com.codingtu.cooltu.processor.worker.deal.base.BaseDeal;
 import com.codingtu.cooltu.processor.worker.model.BaseParentModel;
+
+import javax.lang.model.element.Element;
+
+import cooltu.lib4j.data.bean.KV;
+import cooltu.lib4j.tools.ClassTool;
+import cooltu.lib4j.tools.CountTool;
+import cooltu.lib4j.ts.Ts;
+import cooltu.lib4j.ts.each.Each;
 
 public class FormItemDeal extends BaseDeal {
 

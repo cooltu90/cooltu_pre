@@ -123,7 +123,6 @@ public class NetMethodModel extends SubBaseModel implements NetMethodModelInterf
         if (isJsonBody) {
             VariableElement ve = parameters.get(0);
             String type = ElementTools.getType(ve);
-            Logs.i("type:"+type);
             if (ClassTool.isList(type)) {
                 addTag(sb, "                        NetTool.toJsonBody(cooltu.lib4j.json.JsonTool.toJson([xx]))", ElementTools.simpleName(ve));
             } else {

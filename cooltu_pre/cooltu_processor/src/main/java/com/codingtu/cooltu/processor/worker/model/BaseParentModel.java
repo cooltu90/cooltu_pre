@@ -91,6 +91,10 @@ public abstract class BaseParentModel extends BaseModel {
         this.baseClass = baseClass;
     }
 
+    public String getBaseClass(){
+        return baseClass;
+    }
+
     public void setLayout(String rPkg, String layoutName) {
         this.layoutName = layoutName;
         this.rPkg = rPkg;

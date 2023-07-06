@@ -21,13 +21,13 @@ import com.codingtu.cooltu.processor.annotation.resource.Dimen;
 import com.codingtu.cooltu.processor.annotation.resource.Dp;
 import com.codingtu.cooltu.processor.annotation.resource.ResFor;
 import com.codingtu.cooltu.processor.annotation.ui.Adapter;
-import com.codingtu.cooltu.processor.annotation.ui.InBase;
 import com.codingtu.cooltu.processor.annotation.ui.StartGroup;
 import com.codingtu.cooltu.processor.annotation.ui.dialog.DialogUse;
 import com.codingtu.cooltu.processor.annotation.ui.dialog.EditDialogUse;
 import com.codingtu.cooltu.processor.annotation.ui.dialog.ToastDialogUse;
 import com.codingtu.cooltu.processor.lib.bean.DialogInfo;
 import com.codingtu.cooltu.processor.lib.bean.EditDialogInfo;
+import com.codingtu.cooltu.processor.lib.log.Logs;
 import com.codingtu.cooltu.processor.lib.model.AdapterModels;
 import com.codingtu.cooltu.processor.lib.tools.ElementTools;
 import com.codingtu.cooltu.processor.lib.tools.IdTools;
@@ -113,6 +113,11 @@ public class ResForDeal extends BaseDeal {
             return;
         }
 
+        ActBaseModel actBaseModel = ActBaseDeal.getActBaseModel(actFullName);
+        String baseClass = actBaseModel.getBaseClass();
+        List<Element> inBaseStartGroups = getInBaseStartGroups(baseClass);
+
+
         String actStaticName = ConvertTool.toStaticType(NameTools.getJavaSimpleName(actFullName));
         if (CountTool.isNull(startGroups)) {
             //没有
@@ -147,7 +152,6 @@ public class ResForDeal extends BaseDeal {
                 }
             });
             try {
-                ActBaseModel actBaseModel = ActBaseDeal.getActBaseModel(actFullName);
                 actBaseModel.addStartParams(ikv);
             } catch (Exception e) {
 
@@ -155,6 +159,22 @@ public class ResForDeal extends BaseDeal {
             StartModel.model.addStart(actFullName, actStaticName, ikv);
         }
 
+    }
+
+    private List<Element> getInBaseStartGroups(String baseClass) {
+        List<Element> elements = InBaseStartGroupDeal.map.get(baseClass);
+        if (elements == null) {
+            elements = new ArrayList<>();
+        }
+        List<String> bases = com.codingtu.cooltu.processor.worker.deal.BaseDeal.map.get(baseClass);
+        int count = CountTool.count(bases);
+        if (count > 0) {
+            for (int i = 0; i < count; i++) {
+                String base = bases.get(i);
+                elements.addAll(getInBaseStartGroups(base));
+            }
+        }
+        return elements;
     }
 
     private void dealDimen(String classFullName, VariableElement element, Dimen dimen) {
