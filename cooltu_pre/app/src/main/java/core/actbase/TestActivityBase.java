@@ -38,7 +38,6 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
         tv1 = findViewById(com.codingtu.cooltu_pre.R.id.tv1);
 
         tv1.setOnClickListener(this);
-        tv.setOnClickListener(this);
 
 
 

@@ -599,9 +599,10 @@ public abstract class BaseParentModel extends BaseModel {
                 int[] ids = clickView.value();
                 Map<Integer, IdTools.Id> idMap = IdTools.elementToIds(element, InBaseClickView.class, ids);
 
-                for (int i = 0; i < CountTool.count(ids); i++) {
-                    addLnTag(setClickSb, "        [name].setOnClickListener(this);", idMap.get(ids[i]).rName);
-                }
+                if (clickView.inAct())
+                    for (int i = 0; i < CountTool.count(ids); i++) {
+                        addLnTag(setClickSb, "        [name].setOnClickListener(this);", idMap.get(ids[i]).rName);
+                    }
                 return false;
             }
         });
@@ -693,14 +694,14 @@ public abstract class BaseParentModel extends BaseModel {
                 return false;
             }
         });
-        setTagFor_onclicks_InBase(sb,baseClass);
+        setTagFor_onclicks_InBase(sb, baseClass);
     }
 
     private void setTagFor_onclicks_InBase(StringBuilder sb, String type) {
         Ts.ls(InBaseClickViewDeal.map.get(type), new Each<Element>() {
             @Override
             public boolean each(int position, Element e) {
-                ExecutableElement element= (ExecutableElement) e;
+                ExecutableElement element = (ExecutableElement) e;
 
                 InBaseClickView clickView = element.getAnnotation(InBaseClickView.class);
                 int[] ids = clickView.value();

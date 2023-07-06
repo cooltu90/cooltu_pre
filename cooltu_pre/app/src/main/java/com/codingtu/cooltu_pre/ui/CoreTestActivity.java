@@ -16,7 +16,7 @@ public class CoreTestActivity extends CoreActivity {
     public TextView tv;
 
 
-    @InBaseClickView(R.id.tv)
+    @InBaseClickView(value = R.id.tv,inAct = false)
     public void tvClick() {
         toast("tv");
     }
