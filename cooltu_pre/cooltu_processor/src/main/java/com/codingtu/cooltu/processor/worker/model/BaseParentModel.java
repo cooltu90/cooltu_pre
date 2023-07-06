@@ -24,9 +24,9 @@ import com.codingtu.cooltu.processor.lib.tools.NameTools;
 import com.codingtu.cooltu.processor.lib.tools.ParamTools;
 import com.codingtu.cooltu.processor.lib.tools.RenameTools;
 import com.codingtu.cooltu.processor.lib.tools.TagTools;
-import com.codingtu.cooltu.processor.worker.deal.BaseDeal;
 import com.codingtu.cooltu.processor.worker.deal.InBaseClickViewDeal;
 import com.codingtu.cooltu.processor.worker.deal.InBaseDeal;
+import com.codingtu.cooltu.processor.worker.deal.ResForBaseDeal;
 import com.codingtu.cooltu.processor.worker.model.base.BaseAdapterModel;
 import com.codingtu.cooltu.processor.worker.model.base.BaseModel;
 
@@ -37,6 +37,7 @@ import java.util.Map;
 
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ExecutableElement;
+import javax.lang.model.element.TypeElement;
 import javax.lang.model.element.VariableElement;
 
 import cooltu.lib4j.data.bean.JavaInfo;
@@ -242,7 +243,7 @@ public abstract class BaseParentModel extends BaseModel {
             return true;
         }
 
-        List<String> bases = BaseDeal.map.get(type);
+        List<String> bases = ResForBaseDeal.baseMap.get(type);
         int count = CountTool.count(bases);
         if (count > 0) {
             for (int i = 0; i < count; i++) {
@@ -610,7 +611,7 @@ public abstract class BaseParentModel extends BaseModel {
                 return false;
             }
         });
-        Ts.ls(BaseDeal.map.get(type), new Each<String>() {
+        Ts.ls(ResForBaseDeal.baseMap.get(type), new Each<String>() {
             @Override
             public boolean each(int position, String base) {
                 setTagFor_setClick_InBase(setClickSb, base);
@@ -752,7 +753,7 @@ public abstract class BaseParentModel extends BaseModel {
                 return false;
             }
         });
-        Ts.ls(BaseDeal.map.get(type), new Each<String>() {
+        Ts.ls(ResForBaseDeal.baseMap.get(type), new Each<String>() {
             @Override
             public boolean each(int position, String base) {
                 setTagFor_onclicks_InBase(sb, base);

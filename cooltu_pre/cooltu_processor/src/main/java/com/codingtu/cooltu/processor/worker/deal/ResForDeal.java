@@ -1,26 +1,13 @@
 package com.codingtu.cooltu.processor.worker.deal;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.lang.model.element.Element;
-import javax.lang.model.element.TypeElement;
-import javax.lang.model.element.VariableElement;
-
-import cooltu.lib4j.data.bean.KV;
-import cooltu.lib4j.data.map.ListValueMap;
-import cooltu.lib4j.tools.ClassTool;
-import cooltu.lib4j.tools.ConvertTool;
-import cooltu.lib4j.tools.CountTool;
-import cooltu.lib4j.ts.Ts;
-import cooltu.lib4j.ts.each.Each;
-
 import com.codingtu.cooltu.processor.annotation.resource.ColorRes;
 import com.codingtu.cooltu.processor.annotation.resource.ColorStr;
 import com.codingtu.cooltu.processor.annotation.resource.Dimen;
 import com.codingtu.cooltu.processor.annotation.resource.Dp;
 import com.codingtu.cooltu.processor.annotation.resource.ResFor;
+import com.codingtu.cooltu.processor.annotation.resource.ResForBase;
 import com.codingtu.cooltu.processor.annotation.ui.Adapter;
+import com.codingtu.cooltu.processor.annotation.ui.InBaseStartGroup;
 import com.codingtu.cooltu.processor.annotation.ui.StartGroup;
 import com.codingtu.cooltu.processor.annotation.ui.dialog.DialogUse;
 import com.codingtu.cooltu.processor.annotation.ui.dialog.EditDialogUse;
@@ -39,9 +26,25 @@ import com.codingtu.cooltu.processor.worker.model.PassModel;
 import com.codingtu.cooltu.processor.worker.model.StartModel;
 import com.codingtu.cooltu.processor.worker.model.base.BaseAdapterModel;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.lang.model.element.Element;
+import javax.lang.model.element.TypeElement;
+import javax.lang.model.element.VariableElement;
+
+import cooltu.lib4j.data.bean.KV;
+import cooltu.lib4j.data.map.ListValueMap;
+import cooltu.lib4j.tools.ClassTool;
+import cooltu.lib4j.tools.ConvertTool;
+import cooltu.lib4j.tools.CountTool;
+import cooltu.lib4j.ts.Ts;
+import cooltu.lib4j.ts.each.Each;
+
 public class ResForDeal extends BaseDeal {
     @Override
     public void deal(Element element) {
+
         TypeElement te = (TypeElement) element;
         ResFor resFor = te.getAnnotation(ResFor.class);
         String actFullName = ClassTool.getAnnotationClass(new ClassTool.AnnotationClassGetter() {
@@ -119,7 +122,7 @@ public class ResForDeal extends BaseDeal {
 
 
         String actStaticName = ConvertTool.toStaticType(NameTools.getJavaSimpleName(actFullName));
-        if (CountTool.isNull(startGroups)) {
+        if (CountTool.isNull(startGroups) && CountTool.isNull(inBaseStartGroups)) {
             //没有
             StartModel.model.addStart(actFullName, actStaticName, null);
         } else {
@@ -133,6 +136,33 @@ public class ResForDeal extends BaseDeal {
 
                         int[] group = null;
                         StartGroup startGroup = element.getAnnotation(StartGroup.class);
+                        if (startGroup != null) {
+                            group = startGroup.value();
+                        }
+                        if (CountTool.isNull(group)) {
+                            ikv.get(0).add(kv);
+                        } else {
+                            Ts.ls(group, new Each<Integer>() {
+                                @Override
+                                public boolean each(int position, Integer integer) {
+                                    ikv.get(integer).add(kv);
+                                    return false;
+                                }
+                            });
+                        }
+                    }
+                    return false;
+                }
+            });
+            Ts.ls(inBaseStartGroups, new Each<Element>() {
+                @Override
+                public boolean each(int position, Element element) {
+                    if (element instanceof VariableElement) {
+                        KV<String, String> kv = ElementTools.getFiledKv((VariableElement) element);
+                        PassModel.model.add(kv);
+
+                        int[] group = null;
+                        InBaseStartGroup startGroup = element.getAnnotation(InBaseStartGroup.class);
                         if (startGroup != null) {
                             group = startGroup.value();
                         }
@@ -166,7 +196,7 @@ public class ResForDeal extends BaseDeal {
         if (elements == null) {
             elements = new ArrayList<>();
         }
-        List<String> bases = com.codingtu.cooltu.processor.worker.deal.BaseDeal.map.get(baseClass);
+        List<String> bases = ResForBaseDeal.baseMap.get(baseClass);
         int count = CountTool.count(bases);
         if (count > 0) {
             for (int i = 0; i < count; i++) {

@@ -13,6 +13,10 @@ public class InBaseStartGroupDeal extends BaseDeal {
 
     @Override
     public void deal(Element element) {
-        map.get(ElementTools.getParentType(element)).add(element);
+
+        String parentType = ElementTools.getParentType(element);
+
+        map.get(parentType).add(element);
+        InBaseDeal.inBaseMap.get(parentType).add(ElementTools.simpleName(element));
     }
 }

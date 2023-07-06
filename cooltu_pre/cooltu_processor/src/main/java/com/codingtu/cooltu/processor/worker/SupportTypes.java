@@ -12,11 +12,11 @@ import com.codingtu.cooltu.processor.annotation.net.Apis;
 import com.codingtu.cooltu.processor.annotation.net.NetBack;
 import com.codingtu.cooltu.processor.annotation.permission.Permission;
 import com.codingtu.cooltu.processor.annotation.rename.RenameAct;
+import com.codingtu.cooltu.processor.annotation.resource.ResFor;
+import com.codingtu.cooltu.processor.annotation.resource.ResForBase;
 import com.codingtu.cooltu.processor.annotation.ui.ActBack;
 import com.codingtu.cooltu.processor.annotation.ui.ActBase;
-import com.codingtu.cooltu.processor.annotation.resource.ResFor;
 import com.codingtu.cooltu.processor.annotation.ui.Adapter;
-import com.codingtu.cooltu.processor.annotation.ui.Base;
 import com.codingtu.cooltu.processor.annotation.ui.BusBack;
 import com.codingtu.cooltu.processor.annotation.ui.BusConfig;
 import com.codingtu.cooltu.processor.annotation.ui.ClickView;
@@ -48,7 +48,7 @@ public class SupportTypes {
                 DefaultEditDialogLayout.class,
                 DefaultCode.class,
                 DefaultPass.class,
-                Base.class,
+                ResForBase.class,
                 InBase.class,
                 InBaseClickView.class,
                 InBaseStartGroup.class,
