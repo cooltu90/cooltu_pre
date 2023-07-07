@@ -1,6 +1,7 @@
 package com.codingtu.cooltu.processor.worker.model;
 
 import com.codingtu.cooltu.constant.Constant;
+import com.codingtu.cooltu.constant.FullName;
 import com.codingtu.cooltu.constant.Suffix;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import cooltu.lib4j.tools.CountTool;
 import cooltu.lib4j.tools.StringTool;
 import cooltu.lib4j.ts.Ts;
 import cooltu.lib4j.ts.each.Each;
+
 import com.codingtu.cooltu.processor.annotation.ui.ActBack;
 import com.codingtu.cooltu.processor.lib.ls.EachType;
 import com.codingtu.cooltu.processor.lib.ls.TypeLss;
@@ -81,10 +83,11 @@ public class ActBackIntentModel extends SingleCoreToolsBaseModel implements ActB
                         String line = null;
                         if (ClassTool.isBaseClass(type)) {
                             line = "        intent.putExtra(Pass.[staticName], [name]);";
+                            addLnTag(sb, line, ConvertTool.toStaticType(name), name);
                         } else {
-                            line = "        intent.putExtra(Pass.[staticName], [name].toJson());";
+                            line = "        intent.putExtra(Pass.[staticName], [jsonTool].toJson([name]));";
+                            addLnTag(sb, line, ConvertTool.toStaticType(name), FullName.JSON_TOOL, name);
                         }
-                        addLnTag(sb, line, ConvertTool.toStaticType(name), name);
                     }
                 });
                 addLnTag(sb, "        return intent;");
