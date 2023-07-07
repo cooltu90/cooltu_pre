@@ -116,4 +116,21 @@ public class ResForBaseDeal extends BaseDeal {
         }
         return ts;
     }
+
+    public static boolean isInBase(String type, String fieldName) {
+        if (inBaseMap.get(type).contains(fieldName)) {
+            return true;
+        }
+        List<String> bases = baseMap.get(type);
+        int count = CountTool.count(bases);
+        if (count > 0) {
+            for (int i = 0; i < count; i++) {
+                String base = bases.get(i);
+                if (isInBase(base, fieldName)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }
