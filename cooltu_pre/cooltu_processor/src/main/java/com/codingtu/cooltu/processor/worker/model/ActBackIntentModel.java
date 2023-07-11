@@ -20,6 +20,7 @@ import cooltu.lib4j.ts.Ts;
 import cooltu.lib4j.ts.each.Each;
 
 import com.codingtu.cooltu.processor.annotation.ui.ActBack;
+import com.codingtu.cooltu.processor.annotation.ui.InBaseActBack;
 import com.codingtu.cooltu.processor.lib.ls.EachType;
 import com.codingtu.cooltu.processor.lib.ls.TypeLss;
 import com.codingtu.cooltu.processor.lib.tools.NameTools;
@@ -32,6 +33,7 @@ public class ActBackIntentModel extends SingleCoreToolsBaseModel implements ActB
     public static final ActBackIntentModel model = new ActBackIntentModel();
 
     private List<ExecutableElement> ees = new ArrayList<>();
+    private List<ExecutableElement> inBaseEes = new ArrayList<>();
     private HashMap<String, String> names = new HashMap<>();
 
     public ActBackIntentModel() {
@@ -47,55 +49,73 @@ public class ActBackIntentModel extends SingleCoreToolsBaseModel implements ActB
         ees.add(ee);
     }
 
+    public void addInBase(ExecutableElement ee) {
+        inBaseEes.add(ee);
+    }
+
     @Override
     public void setTagFor_methods(StringBuilder sb) {
         Ts.ls(ees, new Each<ExecutableElement>() {
             @Override
             public boolean each(int position, ExecutableElement ee) {
-                List<? extends VariableElement> parameters = ee.getParameters();
-                if (CountTool.isNull(parameters)) {
-                    return false;
-                }
-
-                ActBack actBack = ee.getAnnotation(ActBack.class);
-                String fullName = ClassTool.getAnnotationClass(new ClassTool.AnnotationClassGetter() {
+                return setTagFor_methods_deal(sb, ee, ClassTool.getAnnotationClass(new ClassTool.AnnotationClassGetter() {
                     @Override
                     public Object get() {
-                        return actBack.value();
+                        return ee.getAnnotation(ActBack.class).value();
                     }
-                });
-                JavaInfo javaInfo = NameTools.getJavaInfoByName(fullName);
-                String methodName = ConvertTool.toMethodType(javaInfo.name.replace(Suffix.ACTIVITY, ""));
-                String params = ParamTools.getDefaultParam(ee).getParams();
-                String id = methodName + params;
-                if (StringTool.isNotBlank(names.get(id))) {
-                    return false;
-                }
-
-                names.put(id, id);
-
-                addLnTag(sb, "    public static Intent [methodName]([params]) {", methodName, params);
-                addLnTag(sb, "        Intent intent = new Intent();");
-
-                TypeLss.ls(parameters, new EachType() {
-                    @Override
-                    public void each(int position, String type, String name) {
-                        String line = null;
-                        if (ClassTool.isBaseClass(type)) {
-                            line = "        intent.putExtra(Pass.[staticName], [name]);";
-                            addLnTag(sb, line, ConvertTool.toStaticType(name), name);
-                        } else {
-                            line = "        intent.putExtra(Pass.[staticName], [jsonTool].toJson([name]));";
-                            addLnTag(sb, line, ConvertTool.toStaticType(name), FullName.JSON_TOOL, name);
-                        }
-                    }
-                });
-                addLnTag(sb, "        return intent;");
-                addLnTag(sb, "    }");
-
-                return false;
+                }));
             }
         });
+
+        Ts.ls(inBaseEes, new Each<ExecutableElement>() {
+            @Override
+            public boolean each(int position, ExecutableElement ee) {
+                return setTagFor_methods_deal(sb, ee, ClassTool.getAnnotationClass(new ClassTool.AnnotationClassGetter() {
+                    @Override
+                    public Object get() {
+                        return ee.getAnnotation(InBaseActBack.class).value();
+                    }
+                }));
+            }
+        });
+    }
+
+    private boolean setTagFor_methods_deal(StringBuilder sb, ExecutableElement ee, String fullName) {
+        List<? extends VariableElement> parameters = ee.getParameters();
+        if (CountTool.isNull(parameters)) {
+            return false;
+        }
+
+        JavaInfo javaInfo = NameTools.getJavaInfoByName(fullName);
+        String methodName = ConvertTool.toMethodType(javaInfo.name.replace(Suffix.ACTIVITY, ""));
+        String params = ParamTools.getDefaultParam(ee).getParams();
+        String id = methodName + params;
+        if (StringTool.isNotBlank(names.get(id))) {
+            return false;
+        }
+
+        names.put(id, id);
+
+        addLnTag(sb, "    public static Intent [methodName]([params]) {", methodName, params);
+        addLnTag(sb, "        Intent intent = new Intent();");
+
+        TypeLss.ls(parameters, new EachType() {
+            @Override
+            public void each(int position, String type, String name) {
+                String line = null;
+                if (ClassTool.isBaseClass(type)) {
+                    line = "        intent.putExtra(Pass.[staticName], [name]);";
+                    addLnTag(sb, line, ConvertTool.toStaticType(name), name);
+                } else {
+                    line = "        intent.putExtra(Pass.[staticName], [jsonTool].toJson([name]));";
+                    addLnTag(sb, line, ConvertTool.toStaticType(name), FullName.JSON_TOOL, name);
+                }
+            }
+        });
+        addLnTag(sb, "        return intent;");
+        addLnTag(sb, "    }");
+
+        return false;
     }
 
 }

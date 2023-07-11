@@ -8,7 +8,9 @@ import com.codingtu.cooltu.processor.annotation.resource.ColorStr;
 import com.codingtu.cooltu.processor.annotation.resource.Dimen;
 import com.codingtu.cooltu.processor.annotation.resource.Dp;
 import com.codingtu.cooltu.processor.annotation.resource.ResForBase;
+import com.codingtu.cooltu.processor.annotation.ui.ActBack;
 import com.codingtu.cooltu.processor.annotation.ui.InBase;
+import com.codingtu.cooltu.processor.annotation.ui.InBaseActBack;
 import com.codingtu.cooltu.processor.annotation.ui.InBaseClickView;
 import com.codingtu.cooltu.processor.annotation.ui.StartGroup;
 import com.codingtu.cooltu_pre.R;
@@ -39,6 +41,11 @@ public class CoreTestActivity extends CoreActivity {
     @InBaseClickView(value = R.id.tv, inAct = false)
     public void tvClick() {
         toast("tv");
+    }
+
+    @InBaseActBack(StepOneActivity.class)
+    public void stepOneActivityBack(int age) {
+
     }
 
 }

@@ -7,6 +7,7 @@ import com.codingtu.cooltu.constant.Pkg;
 import com.codingtu.cooltu.processor.annotation.form.FormType;
 import com.codingtu.cooltu.processor.annotation.ui.BusBack;
 import com.codingtu.cooltu.processor.annotation.ui.ClickView;
+import com.codingtu.cooltu.processor.annotation.ui.InBaseActBack;
 import com.codingtu.cooltu.processor.annotation.ui.InBaseClickView;
 import com.codingtu.cooltu.processor.annotation.ui.LongClickView;
 import com.codingtu.cooltu.processor.lib.bean.ClickViewInfo;
@@ -941,6 +942,18 @@ public abstract class BaseParentModel extends BaseModel {
             @Override
             public boolean each(int position, ExecutableElement element) {
                 addModel(sb, new ActBackModel(position != 0, element));
+                return false;
+            }
+        });
+        Ts.ls(ResForBaseDeal.getTs(ResForBaseDeal.actBackMap, baseClass), new Each<ExecutableElement>() {
+            @Override
+            public boolean each(int position, ExecutableElement element) {
+                addModel(sb, new ActBackModel(!CountTool.isNull(actBackElements) || position != 0, ClassTool.getAnnotationClass(new ClassTool.AnnotationClassGetter() {
+                    @Override
+                    public Object get() {
+                        return element.getAnnotation(InBaseActBack.class).value();
+                    }
+                }), element));
                 return false;
             }
         });

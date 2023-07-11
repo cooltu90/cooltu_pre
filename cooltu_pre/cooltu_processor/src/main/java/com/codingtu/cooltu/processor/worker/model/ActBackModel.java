@@ -10,6 +10,7 @@ import javax.lang.model.element.VariableElement;
 import cooltu.lib4j.data.bean.JavaInfo;
 import cooltu.lib4j.tools.ClassTool;
 import cooltu.lib4j.tools.ConvertTool;
+
 import com.codingtu.cooltu.processor.annotation.ui.ActBack;
 import com.codingtu.cooltu.processor.lib.ls.EachType;
 import com.codingtu.cooltu.processor.lib.ls.TypeLss;
@@ -34,6 +35,13 @@ public class ActBackModel extends SubBaseModel implements ActBackModelInterface 
         });
         methodName = element.getSimpleName().toString();
         parameters = element.getParameters();
+    }
+
+    public ActBackModel(boolean hasActBack, String fromClassName, ExecutableElement element) {
+        this.hasActBack = hasActBack;
+        this.fromClassName = fromClassName;
+        this.methodName = element.getSimpleName().toString();
+        this.parameters = element.getParameters();
     }
 
     @Override

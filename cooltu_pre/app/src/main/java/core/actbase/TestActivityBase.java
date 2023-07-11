@@ -114,10 +114,17 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
     protected void onActivityResult(int requestCode, int resultCode, android.content.Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
+            if (requestCode == core.tools.Code4Request.VIEW_ACTIVITY) {
+                viewActivityBack(core.tools.Pass.name(data));
+            }
+            else if (requestCode == core.tools.Code4Request.STEP_ONE_ACTIVITY) {
+                stepOneActivityBack(core.tools.Pass.age(data));
+            }
 
         }
     }
 
+    public void viewActivityBack(java.lang.String name) {}
 
 
 

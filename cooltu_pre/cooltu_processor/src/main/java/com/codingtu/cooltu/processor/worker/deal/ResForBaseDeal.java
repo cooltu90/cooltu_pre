@@ -5,11 +5,13 @@ import com.codingtu.cooltu.processor.annotation.resource.ColorStr;
 import com.codingtu.cooltu.processor.annotation.resource.Dimen;
 import com.codingtu.cooltu.processor.annotation.resource.Dp;
 import com.codingtu.cooltu.processor.annotation.ui.InBase;
+import com.codingtu.cooltu.processor.annotation.ui.InBaseActBack;
 import com.codingtu.cooltu.processor.annotation.ui.InBaseClickView;
 import com.codingtu.cooltu.processor.annotation.ui.StartGroup;
 import com.codingtu.cooltu.processor.lib.log.Logs;
 import com.codingtu.cooltu.processor.lib.tools.ElementTools;
 import com.codingtu.cooltu.processor.worker.deal.base.BaseDeal;
+import com.codingtu.cooltu.processor.worker.model.ActBackIntentModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +36,7 @@ public class ResForBaseDeal extends BaseDeal {
     public static ListValueMap<String, VariableElement> dpMap = new ListValueMap<>();
     public static ListValueMap<String, VariableElement> dimenMap = new ListValueMap<>();
     public static ListValueMap<String, ExecutableElement> clickViewMap = new ListValueMap<>();
+    public static ListValueMap<String, ExecutableElement> actBackMap = new ListValueMap<>();
 
     @Override
     public void deal(Element element) {
@@ -94,6 +97,12 @@ public class ResForBaseDeal extends BaseDeal {
                     InBaseClickView clickView = element.getAnnotation(InBaseClickView.class);
                     if (clickView != null) {
                         clickViewMap.get(classFullName).add((ExecutableElement) element);
+                    }
+
+                    InBaseActBack actBack = element.getAnnotation(InBaseActBack.class);
+                    if (actBack != null) {
+                        actBackMap.get(classFullName).add((ExecutableElement) element);
+                        ActBackIntentModel.model.addInBase((ExecutableElement) element);
                     }
                 }
 
