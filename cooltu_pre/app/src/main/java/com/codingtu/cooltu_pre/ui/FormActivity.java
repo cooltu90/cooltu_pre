@@ -20,7 +20,7 @@ import com.codingtu.cooltu_pre.bean.TestForm;
 
 import core.actres.FormActivityRes;
 
-@To(FormActivityRes.class)
+@To(value = FormActivityRes.class,ids = R.layout.activity_form)
 @Form(TestForm.class)
 @ActBase(layout = R.layout.activity_form)
 public class FormActivity extends FormActivityBase {
