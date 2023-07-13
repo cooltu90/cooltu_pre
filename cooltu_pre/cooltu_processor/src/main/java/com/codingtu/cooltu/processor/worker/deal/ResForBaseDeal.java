@@ -114,7 +114,6 @@ public class ResForBaseDeal extends BaseDeal {
 
     public static <T> List<T> getTs(ListValueMap<String, T> map, String baseClass) {
         ArrayList<T> ts = new ArrayList<>();
-        ts.addAll(map.get(baseClass));
         List<String> bases = baseMap.get(baseClass);
         int count = CountTool.count(bases);
         if (count > 0) {
@@ -123,6 +122,7 @@ public class ResForBaseDeal extends BaseDeal {
                 ts.addAll(getTs(map, base));
             }
         }
+        ts.addAll(map.get(baseClass));
         return ts;
     }
 

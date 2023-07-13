@@ -35,10 +35,10 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
         setContentView(com.codingtu.cooltu_pre.R.layout.activity_test);
         Intent data = getIntent();
         fromAct = core.tools.Pass.fromAct(data);
-        money = core.tools.Pass.money(data);
-        age = core.tools.Pass.age(data);
         id = core.tools.Pass.id(data);
         name = core.tools.Pass.name(data);
+        money = core.tools.Pass.money(data);
+        age = core.tools.Pass.age(data);
 
         tv = findViewById(com.codingtu.cooltu_pre.R.id.tv);
         tv1 = findViewById(com.codingtu.cooltu_pre.R.id.tv1);
@@ -70,13 +70,13 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
     public void onClick(View view) {
 
         switch (view.getId()) {
-            case com.codingtu.cooltu_pre.R.id.tv1:
-                tv1Click(
+            case com.codingtu.cooltu_pre.R.id.tv:
+                tvClick(
 
                 );
                 break;
-            case com.codingtu.cooltu_pre.R.id.tv:
-                tvClick(
+            case com.codingtu.cooltu_pre.R.id.tv1:
+                tv1Click(
 
                 );
                 break;
