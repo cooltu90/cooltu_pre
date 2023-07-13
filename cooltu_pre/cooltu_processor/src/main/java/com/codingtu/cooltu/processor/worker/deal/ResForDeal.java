@@ -157,8 +157,15 @@ public class ResForDeal extends BaseDeal {
         }
 
         ActBaseModel actBaseModel = ActBaseDeal.getActBaseModel(actFullName);
-        startGroups.addAll(
-                ResForBaseDeal.getTs(ResForBaseDeal.startGroupMap, actBaseModel.getBaseClass()));
+
+
+        List<VariableElement> ts = ResForBaseDeal.getTs(ResForBaseDeal.startGroupMap, actBaseModel.getBaseClass());
+        ts.addAll(startGroups);
+
+//        startGroups.addAll(
+//                ResForBaseDeal.getTs(ResForBaseDeal.startGroupMap, actBaseModel.getBaseClass()));
+
+        startGroups = ts;
 
 
         String actStaticName = ConvertTool.toStaticType(NameTools.getJavaSimpleName(actFullName));
