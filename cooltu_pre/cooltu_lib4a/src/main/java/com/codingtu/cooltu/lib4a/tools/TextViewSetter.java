@@ -3,7 +3,7 @@ package com.codingtu.cooltu.lib4a.tools;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.util.TypedValue;
-import android.view.Gravity;
+import android.view.View;
 import android.widget.TextView;
 
 import com.codingtu.cooltu.lib4a.CoreApp;
@@ -11,6 +11,13 @@ import com.codingtu.cooltu.lib4a.CoreApp;
 public class TextViewSetter {
 
     private TextView textView;
+
+    public static TextViewSetter obtain(View view) {
+        if (view instanceof TextView) {
+            return obtain((TextView) view);
+        }
+        throw new RuntimeException("view不是TextView");
+    }
 
     public static TextViewSetter obtain(TextView textView) {
         TextViewSetter tvs = new TextViewSetter();
