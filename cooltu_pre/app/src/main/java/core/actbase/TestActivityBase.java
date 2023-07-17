@@ -22,6 +22,7 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
     protected int fromAct;
 
     public android.widget.TextView tv1;
+    public android.widget.TextView tv2;
     public int color11;
     public int color22;
     public int dp11;
@@ -42,6 +43,7 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
 
         tv = findViewById(com.codingtu.cooltu_pre.R.id.tv);
         tv1 = findViewById(com.codingtu.cooltu_pre.R.id.tv1);
+        tv2 = findViewById(com.codingtu.cooltu_pre.R.id.tv2);
 
         tv1.setOnClickListener(this);
 
