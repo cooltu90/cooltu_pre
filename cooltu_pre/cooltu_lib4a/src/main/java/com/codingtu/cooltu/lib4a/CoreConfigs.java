@@ -7,6 +7,7 @@ import android.util.Log;
 import cooltu.lib4j.config.LibConfigs;
 import cooltu.lib4j.log.LibLogs;
 
+import com.codingtu.cooltu.lib4a.connect.CoreConnectConfigs;
 import com.codingtu.cooltu.lib4a.net.retrofit.OkHttpClientCreater;
 import com.codingtu.cooltu.lib4a.net.retrofit.RetrofitCreater;
 
@@ -64,5 +65,9 @@ public abstract class CoreConfigs extends LibConfigs {
 
     public SharedPreferences pf() {
         return PreferenceManager.getDefaultSharedPreferences(CoreApp.APP);
+    }
+
+    public CoreConnectConfigs getConnectConfigs() {
+        return null;
     }
 }
