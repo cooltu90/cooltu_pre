@@ -42,9 +42,13 @@ public class ToastDialog implements OnDestroy {
     }
 
     public ToastDialog build() {
+        return build(false, false);
+    }
+
+    public ToastDialog build(boolean isHiddenWhenBackClick, boolean isHiddenWhenShadowClick) {
         rlv = new RelativeLayerView(act);
-        rlv.setHiddenWhenBackClick(false);
-        rlv.setHiddenWhenShadowClick(false);
+        rlv.setHiddenWhenBackClick(isHiddenWhenBackClick);
+        rlv.setHiddenWhenShadowClick(isHiddenWhenShadowClick);
         ViewTool.addToAct(act, rlv);
         ViewTool.gone(rlv);
         inflate = InflateTool.inflate(act, layout);
@@ -53,6 +57,15 @@ public class ToastDialog implements OnDestroy {
         ViewTool.inRelativeCenter(inflate);
         return this;
     }
+
+    public void setHiddenWhenBackClick(boolean isHiddenWhenBackClick) {
+        rlv.setHiddenWhenBackClick(isHiddenWhenBackClick);
+    }
+
+    public void setHiddenWhenShadowClick(boolean isHiddenWhenShadowClick) {
+        rlv.setHiddenWhenShadowClick(isHiddenWhenShadowClick);
+    }
+
 
     public ToastDialog setContent(String text) {
         ViewTool.setText(contentTv, text);
