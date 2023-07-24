@@ -106,6 +106,13 @@ public class DialogMethodModel extends SubBaseModel implements DialogMethodModel
             addTag(sb, ConvertTool.toMethodType(objInfo.name));
         }
     }
+
+    @Override
+    public void setTagFor_showOtherParamSign(StringBuilder sb) {
+        if (!ClassTool.isVoid(info.objType)) {
+            sb.append(" ,");
+        }
+    }
 }
 /* model_temp_start
     private [[DialogView]] [[name]];
@@ -127,7 +134,7 @@ public class DialogMethodModel extends SubBaseModel implements DialogMethodModel
         [[name]].setObject([[obj]]);
         [[name]].show();
     }
-    protected void show[[nameToClass]](String content ,[[classType]] [[classParam]]) {
+    protected void show[[nameToClass]](String content[[showOtherParamSign]][[classType]] [[classParam]]) {
         if ([[name]] == null) {
             [[name]] = new [[DialogView]]([[act]])
                     .setTitle("[[title]]")

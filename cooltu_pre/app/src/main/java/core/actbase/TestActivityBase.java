@@ -135,7 +135,7 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
 
     private com.codingtu.cooltu.lib4a.view.dialogview.Dialog dialog;
 
-    protected void showDialog(java.lang.Object object) {
+    protected void showDialog( ) {
         if (dialog == null) {
             dialog = new com.codingtu.cooltu.lib4a.view.dialogview.Dialog(getThis())
                     .setTitle("dialog")
@@ -144,15 +144,15 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
                     .setYes(new com.codingtu.cooltu.lib4a.view.dialogview.Dialog.Yes() {
                         @Override
                         public void yes(Object obj) {
-                            dialogYes(obj);
+                            dialogYes();
                         }
                     })
                     .build();
         }
-        dialog.setObject(object);
+        dialog.setObject(null);
         dialog.show();
     }
-    protected void showDialog(String content ,java.lang.Object object) {
+    protected void showDialog(String content ) {
         if (dialog == null) {
             dialog = new com.codingtu.cooltu.lib4a.view.dialogview.Dialog(getThis())
                     .setTitle("dialog")
@@ -161,18 +161,18 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
                     .setYes(new com.codingtu.cooltu.lib4a.view.dialogview.Dialog.Yes() {
                         @Override
                         public void yes(Object obj) {
-                            dialogYes(obj);
+                            dialogYes();
                         }
                     })
                     .build();
         }else{
             dialog.updateContent(content);
         }
-        dialog.setObject(object);
+        dialog.setObject(null);
         dialog.show();
     }
 
-    protected void dialogYes(java.lang.Object object) {}
+    protected void dialogYes( ) {}
 
 
 

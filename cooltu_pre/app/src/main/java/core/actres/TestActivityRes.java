@@ -28,7 +28,8 @@ public class TestActivityRes {
 
     @DialogUse(
             title = "dialog",
-            content = "xxxx"
+            content = "xxxx",
+            objType = Void.class
     )
     Dialog dialog;
 

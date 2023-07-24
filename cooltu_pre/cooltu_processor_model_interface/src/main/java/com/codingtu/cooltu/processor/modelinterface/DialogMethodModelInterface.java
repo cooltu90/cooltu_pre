@@ -27,6 +27,8 @@ public interface DialogMethodModelInterface {
 
     public void setTagFor_obj(StringBuilder sb);
 
+    public void setTagFor_showOtherParamSign(StringBuilder sb);
+
     default List<String> getTempLinesArray() {
         ArrayList<String> lines = new ArrayList<>();
         lines.add("    private [[DialogView]] [[name]];");
@@ -48,7 +50,7 @@ public interface DialogMethodModelInterface {
         lines.add("        [[name]].setObject([[obj]]);");
         lines.add("        [[name]].show();");
         lines.add("    }");
-        lines.add("    protected void show[[nameToClass]](String content ,[[classType]] [[classParam]]) {");
+        lines.add("    protected void show[[nameToClass]](String content[[showOtherParamSign]][[classType]] [[classParam]]) {");
         lines.add("        if ([[name]] == null) {");
         lines.add("            [[name]] = new [[DialogView]]([[act]])");
         lines.add("                    .setTitle(\"[[title]]\")");
