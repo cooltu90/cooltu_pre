@@ -272,16 +272,24 @@ public class BitmapTool {
         return blur(image, 1f, 25f);
     }
 
-    public static Bitmap blur(Bitmap image, float BITMAP_SCALE, float BLUR_RADIUS) {
-        int width = Math.round(image.getWidth() * BITMAP_SCALE);
-        int height = Math.round(image.getHeight() * BITMAP_SCALE);
+    public static Bitmap blur(Context context, Bitmap image) {
+        return blur(context, image, 1f, 25f);
+    }
+
+    public static Bitmap blur(Bitmap image, float bitmapScale, float blurRadius) {
+        return blur(CoreApp.APP, image, bitmapScale, blurRadius);
+    }
+
+    public static Bitmap blur(Context context, Bitmap image, float bitmapScale, float blurRadius) {
+        int width = Math.round(image.getWidth() * bitmapScale);
+        int height = Math.round(image.getHeight() * bitmapScale);
         Bitmap inputBitmap = Bitmap.createScaledBitmap(image, width, height, false);
         Bitmap outputBitmap = Bitmap.createBitmap(inputBitmap);
-        RenderScript rs = RenderScript.create(CoreApp.APP);
+        RenderScript rs = RenderScript.create(context);
         ScriptIntrinsicBlur blurScript = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
         Allocation tmpIn = Allocation.createFromBitmap(rs, inputBitmap);
         Allocation tmpOut = Allocation.createFromBitmap(rs, outputBitmap);
-        blurScript.setRadius(BLUR_RADIUS);
+        blurScript.setRadius(blurRadius);
         blurScript.setInput(tmpIn);
         blurScript.forEach(tmpOut);
         tmpOut.copyTo(outputBitmap);
