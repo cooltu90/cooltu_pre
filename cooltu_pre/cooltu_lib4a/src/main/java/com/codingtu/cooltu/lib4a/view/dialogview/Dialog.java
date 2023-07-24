@@ -23,6 +23,7 @@ public class Dialog implements View.OnClickListener, OnDestroy {
     private Object obj;
     private Yes yes;
     private int layout;
+    private View contentTv;
 
 
     public Dialog(Activity act) {
@@ -61,7 +62,7 @@ public class Dialog implements View.OnClickListener, OnDestroy {
 
         TextView titleTv = inflate.findViewById(R.id.dialogTitleTv);
         ViewTool.setText(titleTv, title);
-        TextView contentTv = inflate.findViewById(R.id.dialogContentTv);
+        contentTv = inflate.findViewById(R.id.dialogContentTv);
         ViewTool.setText(contentTv, content);
 
         yesBt = inflate.findViewById(R.id.dialogYesBt);
@@ -70,6 +71,10 @@ public class Dialog implements View.OnClickListener, OnDestroy {
         noBt.setOnClickListener(this);
         ViewTool.inRelativeCenter(inflate);
         return this;
+    }
+
+    public void updateContent(String content) {
+        ViewTool.setText(contentTv, content);
     }
 
     @Override
@@ -118,6 +123,7 @@ public class Dialog implements View.OnClickListener, OnDestroy {
         inflate = null;
         yes = null;
         obj = null;
+        contentTv = null;
         act = null;
     }
 

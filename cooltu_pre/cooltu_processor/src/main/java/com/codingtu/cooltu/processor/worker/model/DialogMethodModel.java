@@ -8,6 +8,7 @@ import java.util.List;
 import cooltu.lib4j.data.bean.JavaInfo;
 import cooltu.lib4j.tools.ClassTool;
 import cooltu.lib4j.tools.ConvertTool;
+
 import com.codingtu.cooltu.processor.lib.bean.DialogInfo;
 import com.codingtu.cooltu.processor.lib.tools.NameTools;
 import com.codingtu.cooltu.processor.modelinterface.DialogMethodModelInterface;
@@ -122,6 +123,25 @@ public class DialogMethodModel extends SubBaseModel implements DialogMethodModel
                         }
                     })
                     .build();
+        }
+        [[name]].setObject([[obj]]);
+        [[name]].show();
+    }
+    protected void show[[nameToClass]](String content ,[[classType]] [[classParam]]) {
+        if ([[name]] == null) {
+            [[name]] = new [[DialogView]]([[act]])
+                    .setTitle("[[title]]")
+                    .setContent(content)
+                    .setLayout([[layout]])
+                    .setYes(new [[DialogView]].Yes() {
+                        @Override
+                        public void yes(Object obj) {
+                            [[name]]Yes([[yesParam]]);
+                        }
+                    })
+                    .build();
+        }else{
+            [[name]].updateContent(content);
         }
         [[name]].setObject([[obj]]);
         [[name]].show();
