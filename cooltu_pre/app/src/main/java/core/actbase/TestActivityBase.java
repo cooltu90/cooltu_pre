@@ -95,9 +95,20 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
 
     @Override
     public void accept(String code, Result<ResponseBody> result, CoreSendParams params, List objs) {
+        if ("getObjBack".equals(code)) {
+            core.tools.net.back.GetObjBack back = new core.tools.net.back.GetObjBack() {
+                @Override
+                public void accept(String code, Result<ResponseBody> result, CoreSendParams params, List objs) {
+                    super.accept(code, result, params, objs);
+                    getObjBack(user);
+                }
+            };
+            back.accept(code, result, params, objs);
+        }
 
     }
 
+    public void getObjBack(com.codingtu.cooltu_pre.bean.User user1) {}
 
 
 

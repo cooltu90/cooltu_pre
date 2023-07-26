@@ -12,6 +12,7 @@ import cooltu.lib4j.tools.ConvertTool;
 import cooltu.lib4j.tools.StringTool;
 import cooltu.lib4j.ts.Ts;
 import cooltu.lib4j.ts.each.Each;
+
 import com.codingtu.cooltu.processor.lib.bean.NetMethodDeal;
 import com.codingtu.cooltu.processor.lib.tools.ElementTools;
 import com.codingtu.cooltu.processor.modelinterface.NetModelInterface;
@@ -23,7 +24,8 @@ public class NetModel extends SingleCoreToolsBaseModel implements NetModelInterf
     private List<ExecutableElement> methodElements = new ArrayList<>();
     private List<String> baseUrls = new ArrayList<>();
     private List<String> apiTypeNames = new ArrayList<>();
-    private NetMethodDeal netMethodDeal;
+//    private NetMethodDeal netMethodDeal;
+    private List<NetMethodDeal> netMethodDeals = new ArrayList<>();
 
     public NetModel() {
         super(Constant.NAME_NET);
@@ -33,7 +35,8 @@ public class NetModel extends SingleCoreToolsBaseModel implements NetModelInterf
         methodElements.add(ee);
         baseUrls.add(baseUrl);
         apiTypeNames.add(apiTypeName);
-        netMethodDeal = new NetMethodDeal(ee);
+//        netMethodDeal = new NetMethodDeal(ee);
+        netMethodDeals.add(new NetMethodDeal(ee));
     }
 
     @Override
@@ -71,6 +74,8 @@ public class NetModel extends SingleCoreToolsBaseModel implements NetModelInterf
                                 ConvertTool.toStaticType(apiTypeName), baseUrl);
                     }
                 }
+
+                NetMethodDeal netMethodDeal = netMethodDeals.get(position);
 
                 if (StringTool.isNotBlank(netMethodDeal.getMethodBaseUrl())) {
                     addLnTag(sb, "    private static final String BASE_URL_[USER_API]_[methodName] = \"[baseUrl]\";",
