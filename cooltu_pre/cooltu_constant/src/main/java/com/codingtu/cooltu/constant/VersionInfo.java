@@ -220,7 +220,8 @@ public class VersionInfo {
      *
      * v1.0.74
      * ++Net框架中的bug修改，在Apis中的方法中单独设置BaseUrl会出错。
-     *
+     * !! lib4j框架 修改ConvertTool删除float和byte数组等的转换
+     * ++ lib4j框架 增加float和byte数组等的转换类。FloatValue类等。
      *
      **************************************************/
 }
