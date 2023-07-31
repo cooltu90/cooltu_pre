@@ -1,6 +1,5 @@
 package com.codingtu.cooltu.lib4a.connect;
 
-import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattDescriptor;
@@ -8,7 +7,7 @@ import android.bluetooth.BluetoothGattService;
 import android.content.Context;
 import android.content.Intent;
 
-import com.codingtu.cooltu.lib4a.CoreConfigs;
+import com.codingtu.cooltu.lib4a.connect.device.ConnectDevice;
 import com.codingtu.cooltu.lib4a.log.Logs;
 
 import java.util.HashMap;

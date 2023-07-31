@@ -1,59 +1,47 @@
-package com.codingtu.cooltu.lib4a.connect;
+package com.codingtu.cooltu.lib4a.connect.device;
 
-import android.annotation.SuppressLint;
-import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothSocket;
-
+import com.codingtu.cooltu.lib4a.connect.ConnectStatus;
 import com.codingtu.cooltu.lib4a.log.Logs;
 
 import java.io.BufferedInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.List;
 
 import cooltu.lib4j.tools.CountTool;
+import cooltu.lib4j.ts.Ts;
 
-public abstract class ClassicBluetoothConnectDevice extends ConnectDevice {
+public abstract class SocketConnectDevice extends ConnectDevice {
 
-    private boolean isRead;
+    protected boolean isRead;
     protected OutputStream outputStream;
-    BluetoothSocket bluetoothSocket = null;
 
-    public ClassicBluetoothConnectDevice(String deviceType, String connectType, String uuid, boolean isWifi) {
+    public SocketConnectDevice(String deviceType, String connectType, String uuid, boolean isWifi) {
         super(deviceType, connectType, uuid, isWifi);
     }
 
-    public ClassicBluetoothConnectDevice(String deviceType, String connectType, String uuid, boolean isWifi, String name, String mac) {
+    public SocketConnectDevice(String deviceType, String connectType, String uuid, boolean isWifi, String name, String mac) {
         super(deviceType, connectType, uuid, isWifi, name, mac);
     }
 
     @Override
     public void connect() {
+        super.connect();
         new Thread(new Runnable() {
-            @SuppressLint("MissingPermission")
             @Override
             public void run() {
-                bluetoothSocket = null;
-                try {
-                    BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-                    BluetoothDevice device = bluetoothAdapter.getRemoteDevice(baseData.mac);
-                    bluetoothSocket = device.createRfcommSocketToServiceRecord(baseData.uuid);
-                    bluetoothSocket.connect();
-                } catch (IOException e) {
-                    Logs.e(e);
-                }
+                createSockect();
 
-                if (bluetoothSocket == null || !bluetoothSocket.isConnected()) {
+                if (isCreateFail()) {
                     sendMessage(ConnectStatus.FAIL, null);
                     return;
                 }
 
                 DataInputStream dis = null;
                 try {
-                    dis = new DataInputStream(new BufferedInputStream(bluetoothSocket.getInputStream()));
+                    dis = new DataInputStream(new BufferedInputStream(getSocketInputStream()));
                 } catch (IOException e) {
                     Logs.e(e);
                 }
@@ -64,7 +52,7 @@ public abstract class ClassicBluetoothConnectDevice extends ConnectDevice {
 
                 outputStream = null;
                 try {
-                    outputStream = bluetoothSocket.getOutputStream();
+                    outputStream = getSocketOutputStream();
                 } catch (IOException e) {
                     Logs.e(e);
                 }
@@ -77,11 +65,20 @@ public abstract class ClassicBluetoothConnectDevice extends ConnectDevice {
                 sendMessage(ConnectStatus.SUCCESS, null);
                 startRead(dis);
                 startWrite();
+
             }
         }).start();
     }
 
-    private void startRead(DataInputStream dis) {
+    protected abstract OutputStream getSocketOutputStream() throws IOException;
+
+    protected abstract InputStream getSocketInputStream() throws IOException;
+
+    protected abstract boolean isCreateFail();
+
+    protected abstract void createSockect();
+
+    protected void startRead(DataInputStream dis) {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -99,7 +96,7 @@ public abstract class ClassicBluetoothConnectDevice extends ConnectDevice {
                         byteList.add(bytes[0]);
                         try {
                             if (dis.available() == 0) {
-                                sendMessage(ConnectStatus.READ, copyData(byteList));
+                                sendMessage(ConnectStatus.READ, Ts.toArray(byteList));
                                 byteList.clear();
                             }
                         } catch (IOException e) {
@@ -114,17 +111,11 @@ public abstract class ClassicBluetoothConnectDevice extends ConnectDevice {
         }).start();
     }
 
-    private byte[] copyData(List<Byte> byteList) {
-        byte[] newBytes = new byte[CountTool.count(byteList)];
-        for (int i = 0; i < newBytes.length; i++) {
-            newBytes[i] = byteList.get(i);
-        }
-        return newBytes;
-    }
 
     protected void startWrite() {
 
     }
+
 
     public void write(int... ints) throws Exception {
         if (outputStream != null) {
@@ -139,13 +130,5 @@ public abstract class ClassicBluetoothConnectDevice extends ConnectDevice {
     public void disconnect(DisconnectFinish disconnectFinish) {
         super.disconnect(disconnectFinish);
         isRead = false;
-        if (bluetoothSocket != null) {
-            try {
-                bluetoothSocket.close();
-            } catch (Exception e) {
-
-            }
-        }
-        bluetoothSocket = null;
     }
 }

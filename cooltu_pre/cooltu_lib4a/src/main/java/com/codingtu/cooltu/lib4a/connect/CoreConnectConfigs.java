@@ -1,9 +1,7 @@
 package com.codingtu.cooltu.lib4a.connect;
 
-import android.annotation.SuppressLint;
-import android.bluetooth.BluetoothDevice;
-
 import com.codingtu.cooltu.lib4a.CoreConfigs;
+import com.codingtu.cooltu.lib4a.connect.device.ConnectDevice;
 import com.codingtu.cooltu.lib4a.tools.PfTool;
 
 import java.util.HashMap;

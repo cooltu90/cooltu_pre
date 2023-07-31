@@ -1,4 +1,4 @@
-package com.codingtu.cooltu.lib4a.connect;
+package com.codingtu.cooltu.lib4a.connect.device;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -6,6 +6,10 @@ import android.os.Message;
 
 import androidx.annotation.NonNull;
 
+import com.codingtu.cooltu.lib4a.connect.ConnectDeviceBaseData;
+import com.codingtu.cooltu.lib4a.connect.ConnectStatus;
+import com.codingtu.cooltu.lib4a.connect.ConnectTool;
+import com.codingtu.cooltu.lib4a.connect.ResponseData;
 import com.codingtu.cooltu.lib4a.log.Logs;
 
 import java.util.UUID;
@@ -84,7 +88,7 @@ public abstract class ConnectDevice extends CoreBean {
         getHandler().sendMessage(msg);
     }
 
-    protected abstract ResponseData[] parseResponseDatas(byte[] obj);
+    public abstract ResponseData[] parseResponseDatas(byte[] obj);
 
 
     public static interface DisconnectFinish {

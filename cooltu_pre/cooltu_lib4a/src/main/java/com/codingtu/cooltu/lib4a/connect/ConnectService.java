@@ -6,6 +6,8 @@ import android.os.IBinder;
 
 import androidx.annotation.Nullable;
 
+import com.codingtu.cooltu.lib4a.connect.device.ConnectDevice;
+
 import cooltu.lib4j.ts.Ts;
 import cooltu.lib4j.ts.each.MapEach;
 

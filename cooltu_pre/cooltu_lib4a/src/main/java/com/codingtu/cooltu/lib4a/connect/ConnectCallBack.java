@@ -1,5 +1,7 @@
 package com.codingtu.cooltu.lib4a.connect;
 
+import com.codingtu.cooltu.lib4a.connect.device.ConnectDevice;
+
 public interface ConnectCallBack {
     void noDevice();
 

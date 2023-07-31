@@ -1,4 +1,4 @@
-package com.codingtu.cooltu.lib4a.connect;
+package com.codingtu.cooltu.lib4a.connect.device;
 
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
@@ -10,6 +10,7 @@ import android.bluetooth.BluetoothGattDescriptor;
 import android.bluetooth.BluetoothProfile;
 
 import com.codingtu.cooltu.lib4a.CoreApp;
+import com.codingtu.cooltu.lib4a.connect.ConnectStatus;
 
 @SuppressLint("MissingPermission")
 public abstract class BleBluetoothConnectDevice extends ConnectDevice {
