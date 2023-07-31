@@ -47,16 +47,15 @@ public abstract class CoreConnectConfigs {
      *
      *
      **************************************************/
-    @SuppressLint("MissingPermission")
-    protected ConnectDevice bonded(BluetoothDevice device) {
-        ConnectDevice connectDevice = createConnectDevice(device.getName(), device.getAddress());
+    public ConnectDevice bonded(boolean isWifi, String name, String mac) {
+        ConnectDevice connectDevice = createConnectDevice(isWifi, name, mac);
         if (connectDevice != null) {
             cacheConnectDeviceBaseData(connectDevice);
         }
         return connectDevice;
     }
 
-    protected abstract ConnectDevice createConnectDevice(String name, String mac);
+    protected abstract ConnectDevice createConnectDevice(boolean isWifi, String name, String mac);
 
     private void cacheConnectDeviceBaseData(ConnectDevice connectDevice) {
         PfTool.cacheLastConnectDeviceBaseData(cacheKey(connectDevice.baseData.connectType), connectDevice.baseData);
@@ -70,7 +69,7 @@ public abstract class CoreConnectConfigs {
     public ConnectDevice getLocalCachedConnectDevice(String connectType) {
         ConnectDeviceBaseData baseData = PfTool.getLastConnectDeviceBaseData(cacheKey(connectType));
         if (baseData != null) {
-            return createConnectDevice(baseData.name, baseData.mac);
+            return createConnectDevice(baseData.isWifi, baseData.name, baseData.mac);
         }
         return null;
     }

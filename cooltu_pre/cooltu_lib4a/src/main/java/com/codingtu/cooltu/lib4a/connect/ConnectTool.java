@@ -1,10 +1,15 @@
 package com.codingtu.cooltu.lib4a.connect;
 
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothGatt;
+import android.bluetooth.BluetoothGattCharacteristic;
+import android.bluetooth.BluetoothGattDescriptor;
+import android.bluetooth.BluetoothGattService;
 import android.content.Context;
 import android.content.Intent;
 
 import com.codingtu.cooltu.lib4a.CoreConfigs;
+import com.codingtu.cooltu.lib4a.log.Logs;
 
 import java.util.HashMap;
 import java.util.List;
@@ -104,8 +109,8 @@ public class ConnectTool {
         context.startService(intent);
     }
 
-    public static ConnectDevice bonded(BluetoothDevice device) {
-        return configs().bonded(device);
+    public static ConnectDevice bonded(boolean isWifi, String name, String mac) {
+        return configs().bonded(isWifi, name, mac);
     }
 
     public static void dealMsg(ConnectDevice connectDevice, int msgType, Object obj) {
@@ -148,5 +153,35 @@ public class ConnectTool {
                 connectCallBacks.clear();
                 break;
         }
+    }
+
+    public static void logBluetoothServices(BluetoothGatt gatt) {
+        List<BluetoothGattService> services = gatt.getServices();
+        Ts.ls(services, new Each<BluetoothGattService>() {
+            @Override
+            public boolean each(int position, BluetoothGattService service) {
+                Logs.i("======================================");
+                Logs.i("sercie:" + service.getUuid().toString());
+
+                List<BluetoothGattCharacteristic> characteristics = service.getCharacteristics();
+                Ts.ls(characteristics, new Each<BluetoothGattCharacteristic>() {
+                    @Override
+                    public boolean each(int position, BluetoothGattCharacteristic characteristic) {
+                        Logs.i("    characteristic:" + characteristic.getUuid().toString());
+                        Logs.i("    characteristic getProperties:" + characteristic.getProperties());
+                        List<BluetoothGattDescriptor> descriptors = characteristic.getDescriptors();
+                        Ts.ls(descriptors, new Each<BluetoothGattDescriptor>() {
+                            @Override
+                            public boolean each(int position, BluetoothGattDescriptor descriptor) {
+                                Logs.i("        descriptor:" + descriptor.getUuid().toString());
+                                return false;
+                            }
+                        });
+                        return false;
+                    }
+                });
+                return false;
+            }
+        });
     }
 }
