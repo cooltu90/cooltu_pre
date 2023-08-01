@@ -29,7 +29,11 @@ public abstract class ConnectDevice extends CoreBean {
         this.baseData = new ConnectDeviceBaseData();
         this.baseData.deviceType = deviceType;
         this.baseData.connectType = connectType;
-        this.baseData.uuid = UUID.fromString(uuid);
+        try {
+            this.baseData.uuid = UUID.fromString(uuid);
+        } catch (Exception e) {
+
+        }
         this.baseData.isWifi = isWifi;
         this.baseData.name = name;
         this.baseData.mac = mac;
