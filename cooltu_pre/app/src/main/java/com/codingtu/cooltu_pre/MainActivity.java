@@ -1,8 +1,12 @@
 package com.codingtu.cooltu_pre;
 
 import android.Manifest;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
+
+import com.codingtu.cooltu.lib4a.connect.ConnectTool;
 import com.codingtu.cooltu.processor.annotation.permission.Permission;
 import com.codingtu.cooltu.processor.annotation.ui.ActBase;
 
@@ -19,9 +23,19 @@ public class MainActivity extends MainActivityBase {
         Permissions.check(this);
     }
 
-    @Permission({Manifest.permission.WRITE_EXTERNAL_STORAGE})
+
+    @RequiresApi(api = Build.VERSION_CODES.R)
+    @Permission({
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.CAMERA,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_WIFI_STATE,
+            Manifest.permission.CHANGE_WIFI_STATE,
+            Manifest.permission.BLUETOOTH_SCAN,
+            Manifest.permission.BLUETOOTH_CONNECT,
+    })
     public void check() {
-//        ActStart.viewActivity(this);
         ActStart.testActivity(this, "id", "lisi", 100, 10);
         finishToNewPage();
     }
