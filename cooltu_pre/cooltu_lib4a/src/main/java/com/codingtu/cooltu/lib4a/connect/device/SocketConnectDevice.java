@@ -28,7 +28,6 @@ public abstract class SocketConnectDevice extends ConnectDevice {
 
     @Override
     public void connect() {
-        super.connect();
         new Thread(new Runnable() {
             @Override
             public void run() {
