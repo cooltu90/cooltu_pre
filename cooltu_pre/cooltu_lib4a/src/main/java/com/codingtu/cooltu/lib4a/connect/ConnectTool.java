@@ -1,5 +1,6 @@
 package com.codingtu.cooltu.lib4a.connect;
 
+import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattDescriptor;
@@ -108,10 +109,6 @@ public class ConnectTool {
         context.startService(intent);
     }
 
-    public static ConnectDevice bonded(boolean isWifi, String name, String mac) {
-        return configs().bonded(isWifi, name, mac);
-    }
-
     public static void dealMsg(ConnectDevice connectDevice, int msgType, Object obj) {
         List<ConnectCallBack> connectCallBacks = callbacks().get(connectDevice.baseData.connectType);
         Ts.ls(connectCallBacks, new Each<ConnectCallBack>() {
@@ -183,4 +180,11 @@ public class ConnectTool {
             }
         });
     }
+
+    /**************************************************
+     *
+     * 蓝牙的绑定
+     *
+     **************************************************/
+
 }

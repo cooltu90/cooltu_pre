@@ -7,6 +7,10 @@ import com.codingtu.cooltu.lib4a.tools.PfTool;
 import java.util.HashMap;
 import java.util.Map;
 
+import cooltu.lib4j.ts.Ts;
+import cooltu.lib4j.ts.eachgetter.EachGetter;
+import cooltu.lib4j.ts.getter.Getter;
+
 public abstract class CoreConnectConfigs {
 
     private static CoreConnectConfigs CONFIGS;
@@ -45,15 +49,7 @@ public abstract class CoreConnectConfigs {
      *
      *
      **************************************************/
-    public ConnectDevice bonded(boolean isWifi, String name, String mac) {
-        ConnectDevice connectDevice = createConnectDevice(isWifi, name, mac);
-        if (connectDevice != null) {
-            cacheConnectDeviceBaseData(connectDevice);
-        }
-        return connectDevice;
-    }
-
-    protected abstract ConnectDevice createConnectDevice(boolean isWifi, String name, String mac);
+    protected abstract ConnectDevice createConnectDevice(ConnectDeviceBaseData baseData);
 
     private void cacheConnectDeviceBaseData(ConnectDevice connectDevice) {
         PfTool.cacheLastConnectDeviceBaseData(cacheKey(connectDevice.baseData.connectType), connectDevice.baseData);
@@ -67,10 +63,38 @@ public abstract class CoreConnectConfigs {
     public ConnectDevice getLocalCachedConnectDevice(String connectType) {
         ConnectDeviceBaseData baseData = PfTool.getLastConnectDeviceBaseData(cacheKey(connectType));
         if (baseData != null) {
-            return createConnectDevice(baseData.isWifi, baseData.name, baseData.mac);
+            return createConnectDevice(baseData);
         }
         return null;
     }
+
+    /**************************************************
+     *
+     *
+     *
+     **************************************************/
+
+    public boolean isBluetoothBondDirect(String type) {
+        return Ts.has(getBluetoothBondDirect(), new Getter<Integer, String>() {
+            @Override
+            public boolean get(Integer integer, String s) {
+                return s.equals(type);
+            }
+        });
+    }
+
+    public abstract String[] getBluetoothBondDirect();
+
+    public boolean isBluetoothBondPair(String type) {
+        return Ts.has(getBluetoothBondDirect(), new Getter<Integer, String>() {
+            @Override
+            public boolean get(Integer integer, String s) {
+                return s.equals(type);
+            }
+        });
+    }
+
+    public abstract String[] getBluetoothBondPair();
 
 
 }
