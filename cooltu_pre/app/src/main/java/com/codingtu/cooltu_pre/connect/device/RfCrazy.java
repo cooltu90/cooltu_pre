@@ -22,8 +22,6 @@ public class RfCrazy extends BleBluetoothConnectDevice {
         super(
                 ConnectDeviceType.RF_CRAZY,
                 ConnectType.UFO,
-                "6e400001-b5a3-f393-e0a9-e50e24dcca9e",
-                false,
                 name, mac);
     }
 
