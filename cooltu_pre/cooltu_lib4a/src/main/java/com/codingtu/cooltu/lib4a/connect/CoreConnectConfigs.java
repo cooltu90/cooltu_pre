@@ -51,15 +51,10 @@ public abstract class CoreConnectConfigs {
      **************************************************/
     protected abstract ConnectDevice createConnectDevice(ConnectDeviceBaseData baseData);
 
-    private void cacheConnectDeviceBaseData(ConnectDevice connectDevice) {
+    public void cacheConnectDeviceBaseData(ConnectDevice connectDevice) {
         PfTool.cacheLastConnectDeviceBaseData(cacheKey(connectDevice.baseData.connectType), connectDevice.baseData);
     }
 
-    /**************************************************
-     *
-     *
-     *
-     **************************************************/
     public ConnectDevice getLocalCachedConnectDevice(String connectType) {
         ConnectDeviceBaseData baseData = PfTool.getLastConnectDeviceBaseData(cacheKey(connectType));
         if (baseData != null) {
@@ -67,34 +62,5 @@ public abstract class CoreConnectConfigs {
         }
         return null;
     }
-
-    /**************************************************
-     *
-     *
-     *
-     **************************************************/
-
-    public boolean isBluetoothBondDirect(String type) {
-        return Ts.has(getBluetoothBondDirect(), new Getter<Integer, String>() {
-            @Override
-            public boolean get(Integer integer, String s) {
-                return s.equals(type);
-            }
-        });
-    }
-
-    public abstract String[] getBluetoothBondDirect();
-
-    public boolean isBluetoothBondPair(String type) {
-        return Ts.has(getBluetoothBondDirect(), new Getter<Integer, String>() {
-            @Override
-            public boolean get(Integer integer, String s) {
-                return s.equals(type);
-            }
-        });
-    }
-
-    public abstract String[] getBluetoothBondPair();
-
 
 }

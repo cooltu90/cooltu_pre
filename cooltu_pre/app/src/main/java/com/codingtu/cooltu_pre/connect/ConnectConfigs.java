@@ -17,15 +17,4 @@ public class ConnectConfigs extends CoreConnectConfigs {
     protected ConnectDevice createConnectDevice(ConnectDeviceBaseData baseData) {
         return null;
     }
-
-    @Override
-    public String[] getBluetoothBondDirect() {
-        return new String[]{ConnectDeviceType.EXPEC_BLUETOOTH};
-    }
-
-    @Override
-    public String[] getBluetoothBondPair() {
-        return new String[]{ConnectDeviceType.H5200};
-    }
-
 }
