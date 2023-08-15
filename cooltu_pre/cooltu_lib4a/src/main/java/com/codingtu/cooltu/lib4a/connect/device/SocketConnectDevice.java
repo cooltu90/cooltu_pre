@@ -18,12 +18,12 @@ public abstract class SocketConnectDevice extends ConnectDevice {
     protected boolean isRead;
     protected OutputStream outputStream;
 
-    public SocketConnectDevice(String deviceType, String connectType, String uuid, boolean isWifi) {
-        super(deviceType, connectType, uuid, isWifi);
+    public SocketConnectDevice(int deviceType, int connectType) {
+        super(deviceType, connectType);
     }
 
-    public SocketConnectDevice(String deviceType, String connectType, String uuid, boolean isWifi, String name, String mac) {
-        super(deviceType, connectType, uuid, isWifi, name, mac);
+    public SocketConnectDevice(int deviceType, int connectType, String name, String mac) {
+        super(deviceType, connectType, name, mac);
     }
 
     @Override

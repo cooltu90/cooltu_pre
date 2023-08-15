@@ -11,12 +11,12 @@ public abstract class WifiConnectDevice extends SocketConnectDevice {
     private OutputStream outputStream;
     private Socket socket;
 
-    public WifiConnectDevice(String deviceType, String connectType, String uuid, boolean isWifi) {
-        super(deviceType, connectType, uuid, isWifi);
+    public WifiConnectDevice(int deviceType, int connectType) {
+        super(deviceType, connectType);
     }
 
-    public WifiConnectDevice(String deviceType, String connectType, String uuid, boolean isWifi, String name, String mac) {
-        super(deviceType, connectType, uuid, isWifi, name, mac);
+    public WifiConnectDevice(int deviceType, int connectType, String name, String mac) {
+        super(deviceType, connectType, name, mac);
     }
 
     @Override

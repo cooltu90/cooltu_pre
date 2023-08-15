@@ -6,10 +6,8 @@ import cooltu.lib4j.data.bean.CoreBean;
 
 public class ConnectDeviceBaseData extends CoreBean {
 
-    public String deviceType;
-    public String connectType;
+    public int deviceType;
+    public int connectType;
     public String name;
     public String mac;
-    public UUID uuid;
-    public boolean isWifi;
 }

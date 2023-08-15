@@ -23,47 +23,47 @@ import cooltu.lib4j.ts.each.Each;
 public class ConnectTool {
 
     public static ConnectService SERVICE;
-    private static ListValueMap<String, ConnectCallBack> CALLBACKS;
-    private static Map<String, ConnectDevice> PREPARED_DEVICES;
-    private static Map<String, ConnectDevice> RUNNING_DEVICES;
+    private static ListValueMap<Integer, ConnectCallBack> CALLBACKS;
+    private static Map<Integer, ConnectDevice> PREPARED_DEVICES;
+    private static Map<Integer, ConnectDevice> RUNNING_DEVICES;
 
     private static CoreConnectConfigs configs() {
         return CoreConnectConfigs.configs();
     }
 
-    private static ListValueMap<String, ConnectCallBack> callbacks() {
+    private static ListValueMap<Integer, ConnectCallBack> callbacks() {
         if (CALLBACKS == null) {
             CALLBACKS = new ListValueMap<>();
         }
         return CALLBACKS;
     }
 
-    public static Map<String, ConnectDevice> preparedDevices() {
+    public static Map<Integer, ConnectDevice> preparedDevices() {
         if (PREPARED_DEVICES == null) {
             PREPARED_DEVICES = new HashMap<>();
         }
         return PREPARED_DEVICES;
     }
 
-    private static Map<String, ConnectDevice> runningDevices() {
+    private static Map<Integer, ConnectDevice> runningDevices() {
         if (RUNNING_DEVICES == null) {
             RUNNING_DEVICES = new HashMap<>();
         }
         return RUNNING_DEVICES;
     }
 
-    private static void addCallBack(String connectType, ConnectCallBack connectCallBack) {
+    private static void addCallBack(int connectType, ConnectCallBack connectCallBack) {
         List<ConnectCallBack> connectCallBacks = callbacks().get(connectType);
         if (!connectCallBacks.contains(connectCallBacks)) {
             connectCallBacks.add(connectCallBack);
         }
     }
 
-    private static void removeCallBack(String connectType, ConnectCallBack connectCallBack) {
+    private static void removeCallBack(int connectType, ConnectCallBack connectCallBack) {
         callbacks().get(connectType).remove(connectCallBack);
     }
 
-    public static void connect(Context context, String connectType, ConnectCallBack connectCallBack) {
+    public static void connect(Context context, int connectType, ConnectCallBack connectCallBack) {
         ConnectDevice connectDevice = runningDevices().get(connectType);
         if (connectDevice == null) {
             //没有运行的
@@ -77,7 +77,7 @@ public class ConnectTool {
         } else {
             //有运行的
             ConnectDevice connectDeviceLocal = configs().getLocalCachedConnectDevice(connectType);
-            if (connectDeviceLocal == null || connectDevice.baseData.deviceType.equals(connectDeviceLocal.baseData.deviceType)) {
+            if (connectDeviceLocal == null || connectDevice.baseData.deviceType == connectDeviceLocal.baseData.deviceType) {
                 //有正在运行的相关设备，说明连接成功
                 addCallBack(connectType, connectCallBack);
                 connectCallBack.connectSuccess(connectDevice);
@@ -92,7 +92,7 @@ public class ConnectTool {
         }
     }
 
-    private static void extracted(Context context, String connectType, ConnectCallBack connectCallBack, ConnectDevice connectDevice) {
+    private static void extracted(Context context, int connectType, ConnectCallBack connectCallBack, ConnectDevice connectDevice) {
         //本地有
         connectCallBack.connecting(connectDevice);
         addCallBack(connectType, connectCallBack);

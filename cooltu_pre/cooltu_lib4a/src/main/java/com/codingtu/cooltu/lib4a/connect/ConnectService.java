@@ -33,9 +33,9 @@ public class ConnectService extends Service {
     public void onCreate() {
         super.onCreate();
         ConnectTool.SERVICE = this;
-        Ts.ls(ConnectTool.preparedDevices(), new MapEach<String, ConnectDevice>() {
+        Ts.ls(ConnectTool.preparedDevices(), new MapEach<Integer, ConnectDevice>() {
             @Override
-            public boolean each(int position, String connectType, ConnectDevice connectDevice) {
+            public boolean each(int position, Integer connectType, ConnectDevice connectDevice) {
                 run(connectDevice);
                 return false;
             }

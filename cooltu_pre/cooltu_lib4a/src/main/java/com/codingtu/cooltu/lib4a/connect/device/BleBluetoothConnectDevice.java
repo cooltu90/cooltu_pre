@@ -16,12 +16,12 @@ import com.codingtu.cooltu.lib4a.connect.ConnectStatus;
 public abstract class BleBluetoothConnectDevice extends ConnectDevice {
     protected BluetoothGatt bluetoothGatt;
 
-    public BleBluetoothConnectDevice(String deviceType, String connectType, String uuid, boolean isWifi) {
-        super(deviceType, connectType, uuid, isWifi);
+    public BleBluetoothConnectDevice(int deviceType, int connectType) {
+        super(deviceType, connectType);
     }
 
-    public BleBluetoothConnectDevice(String deviceType, String connectType, String uuid, boolean isWifi, String name, String mac) {
-        super(deviceType, connectType, uuid, isWifi, name, mac);
+    public BleBluetoothConnectDevice(int deviceType, int connectType, String name, String mac) {
+        super(deviceType, connectType, name, mac);
     }
 
     @Override

@@ -28,9 +28,9 @@ public abstract class CoreConnectConfigs {
      *
      **************************************************/
 
-    private Map<String, String> connectLinkCacheKeyMap;
+    private Map<Integer, String> connectLinkCacheKeyMap;
 
-    public Map<String, String> connectLinkCacheKeyMap() {
+    public Map<Integer, String> connectLinkCacheKeyMap() {
         if (connectLinkCacheKeyMap == null) {
             connectLinkCacheKeyMap = new HashMap<>();
             connectLinkCacheKeyMap(connectLinkCacheKeyMap);
@@ -38,11 +38,11 @@ public abstract class CoreConnectConfigs {
         return connectLinkCacheKeyMap;
     }
 
-    public String cacheKey(String connectType) {
+    public String cacheKey(int connectType) {
         return connectLinkCacheKeyMap().get(connectType);
     }
 
-    protected abstract void connectLinkCacheKeyMap(Map<String, String> map);
+    protected abstract void connectLinkCacheKeyMap(Map<Integer, String> map);
 
     /**************************************************
      *
@@ -55,7 +55,7 @@ public abstract class CoreConnectConfigs {
         PfTool.cacheLastConnectDeviceBaseData(cacheKey(connectDevice.baseData.connectType), connectDevice.baseData);
     }
 
-    public ConnectDevice getLocalCachedConnectDevice(String connectType) {
+    public ConnectDevice getLocalCachedConnectDevice(int connectType) {
         ConnectDeviceBaseData baseData = PfTool.getLastConnectDeviceBaseData(cacheKey(connectType));
         if (baseData != null) {
             return createConnectDevice(baseData);

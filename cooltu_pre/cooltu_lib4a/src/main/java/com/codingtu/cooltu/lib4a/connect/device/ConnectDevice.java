@@ -21,20 +21,14 @@ public abstract class ConnectDevice extends CoreBean {
     public ConnectDeviceBaseData baseData;
     protected DisconnectFinish disconnectFinish;
 
-    public ConnectDevice(String deviceType, String connectType, String uuid, boolean isWifi) {
-        this(deviceType, connectType, uuid, isWifi, null, null);
+    public ConnectDevice(int deviceType, int connectType) {
+        this(deviceType, connectType, null, null);
     }
 
-    public ConnectDevice(String deviceType, String connectType, String uuid, boolean isWifi, String name, String mac) {
+    public ConnectDevice(int deviceType, int connectType, String name, String mac) {
         this.baseData = new ConnectDeviceBaseData();
         this.baseData.deviceType = deviceType;
         this.baseData.connectType = connectType;
-        try {
-            this.baseData.uuid = UUID.fromString(uuid);
-        } catch (Exception e) {
-
-        }
-        this.baseData.isWifi = isWifi;
         this.baseData.name = name;
         this.baseData.mac = mac;
     }
