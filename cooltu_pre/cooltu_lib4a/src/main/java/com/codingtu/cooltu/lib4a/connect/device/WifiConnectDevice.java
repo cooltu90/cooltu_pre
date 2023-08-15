@@ -12,8 +12,8 @@ public abstract class WifiConnectDevice extends SocketConnectDevice {
     private OutputStream outputStream;
     private Socket socket;
 
-    public WifiConnectDevice(int deviceType, int connectType, String name, String mac) {
-        super(deviceType, connectType, name, mac);
+    public WifiConnectDevice(int connectType, int deviceType, String name, String mac) {
+        super(connectType, deviceType, name, mac);
     }
 
     public WifiConnectDevice(ConnectDeviceBaseData baseData) {

@@ -16,8 +16,8 @@ import java.util.UUID;
 public abstract class ClassicBluetoothConnectDevice extends SocketConnectDevice {
     BluetoothSocket bluetoothSocket = null;
 
-    public ClassicBluetoothConnectDevice(int deviceType, int connectType, String name, String mac) {
-        super(deviceType, connectType, name, mac);
+    public ClassicBluetoothConnectDevice(int connectType, int deviceType, String name, String mac) {
+        super(connectType, deviceType, name, mac);
     }
 
     public ClassicBluetoothConnectDevice(ConnectDeviceBaseData baseData) {

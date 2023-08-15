@@ -21,7 +21,7 @@ public abstract class ConnectDevice extends CoreBean {
     public ConnectDeviceBaseData baseData;
     protected DisconnectFinish disconnectFinish;
 
-    public ConnectDevice(int deviceType, int connectType, String name, String mac) {
+    public ConnectDevice(int connectType, int deviceType, String name, String mac) {
         this.baseData = new ConnectDeviceBaseData();
         this.baseData.deviceType = deviceType;
         this.baseData.connectType = connectType;
@@ -30,7 +30,7 @@ public abstract class ConnectDevice extends CoreBean {
     }
 
     public ConnectDevice(ConnectDeviceBaseData baseData) {
-        this(baseData.deviceType, baseData.connectType, baseData.name, baseData.mac);
+        this(baseData.connectType, baseData.deviceType, baseData.name, baseData.mac);
     }
 
     public void setNameAndMac(String name, String mac) {

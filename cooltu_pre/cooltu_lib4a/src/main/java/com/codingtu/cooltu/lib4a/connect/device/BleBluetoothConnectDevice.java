@@ -17,8 +17,8 @@ import com.codingtu.cooltu.lib4a.connect.ConnectStatus;
 public abstract class BleBluetoothConnectDevice extends ConnectDevice {
     protected BluetoothGatt bluetoothGatt;
 
-    public BleBluetoothConnectDevice(int deviceType, int connectType, String name, String mac) {
-        super(deviceType, connectType, name, mac);
+    public BleBluetoothConnectDevice(int connectType, int deviceType, String name, String mac) {
+        super(connectType, deviceType, name, mac);
     }
 
     public BleBluetoothConnectDevice(ConnectDeviceBaseData baseData) {

@@ -1,5 +1,6 @@
 package com.codingtu.cooltu.lib4a.connect;
 
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCharacteristic;
@@ -10,6 +11,7 @@ import android.content.Intent;
 
 import com.codingtu.cooltu.lib4a.connect.device.ConnectDevice;
 import com.codingtu.cooltu.lib4a.log.Logs;
+import com.codingtu.cooltu.lib4a.tools.PfTool;
 
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +22,7 @@ import cooltu.lib4j.tools.CountTool;
 import cooltu.lib4j.ts.Ts;
 import cooltu.lib4j.ts.each.Each;
 
+@SuppressLint("MissingPermission")
 public class ConnectTool {
 
     public static ConnectService SERVICE;
@@ -67,7 +70,7 @@ public class ConnectTool {
         ConnectDevice connectDevice = runningDevices().get(connectType);
         if (connectDevice == null) {
             //没有运行的
-            connectDevice = configs().getLocalCachedConnectDevice(connectType);
+            connectDevice = getLocalCachedConnectDevice(connectType);
             if (connectDevice == null) {
                 //本地也没有
                 connectCallBack.noDevice();
@@ -76,7 +79,7 @@ public class ConnectTool {
             }
         } else {
             //有运行的
-            ConnectDevice connectDeviceLocal = configs().getLocalCachedConnectDevice(connectType);
+            ConnectDevice connectDeviceLocal = getLocalCachedConnectDevice(connectType);
             if (connectDeviceLocal == null || connectDevice.baseData.deviceType == connectDeviceLocal.baseData.deviceType) {
                 //有正在运行的相关设备，说明连接成功
                 addCallBack(connectType, connectCallBack);
@@ -183,8 +186,89 @@ public class ConnectTool {
 
     /**************************************************
      *
-     * 蓝牙的绑定
+     *
      *
      **************************************************/
+
+    private static Map<Integer, String> connectLinkCacheKeyMap;
+
+    private static Map<Integer, String> connectLinkCacheKeyMap() {
+        if (connectLinkCacheKeyMap == null) {
+            connectLinkCacheKeyMap = new HashMap<>();
+            CoreConnectConfigs.configs().connectLinkCacheKeyMap(connectLinkCacheKeyMap);
+        }
+        return connectLinkCacheKeyMap;
+    }
+
+    private static String cacheKey(int connectType) {
+        return connectLinkCacheKeyMap().get(connectType);
+    }
+
+    private static ConnectDevice getLocalCachedConnectDevice(int connectType) {
+        ConnectDeviceBaseData baseData = PfTool.getLastConnectDeviceBaseData(cacheKey(connectType));
+        if (baseData != null) {
+            return CoreConnectConfigs.configs().createConnectDevice(baseData);
+        }
+        return null;
+    }
+
+    public void cacheConnectDeviceBaseData(int connectType, int deviceType, String name, String mac) {
+        PfTool.cacheLastConnectDeviceBaseData(
+                cacheKey(connectType),
+                new ConnectDeviceBaseData(connectType, deviceType, name, mac));
+    }
+
+    /**************************************************
+     *
+     *
+     *
+     **************************************************/
+
+    public static interface BluetoothBondCallBack {
+        void bonded(int connectType, int deviceType, String name, String address);
+
+        void deviceNoMatch();
+
+        void bonding();
+    }
+
+
+    public static void bonded(int connectType, int deviceType, BluetoothDevice device, BluetoothBondCallBack callBack) {
+        if (isBluetoothDirectBond(connectType, deviceType)) {
+            callBack.bonded(connectType, deviceType, device.getName(), device.getAddress());
+        } else if (isBluetoothPairBond(connectType, deviceType)) {
+            if (BluetoothDevice.BOND_NONE == device.getBondState()) {
+                if (device.createBond()) {
+                    callBack.bonding();
+                }
+            } else {
+                callBack.bonded(connectType, deviceType, device.getName(), device.getAddress());
+            }
+        } else {
+            callBack.deviceNoMatch();
+        }
+    }
+
+    private static BondMethodMap bondMethodMap;
+
+    private static BondMethodMap getBondMethodMap() {
+        if (bondMethodMap == null) {
+            bondMethodMap = new BondMethodMap();
+        }
+        return bondMethodMap;
+    }
+
+    private static boolean isBluetoothDirectBond(int connectType, int deviceType) {
+        return isBluetoothBonded(connectType, deviceType, BondMethod.DIRECT);
+    }
+
+    private static boolean isBluetoothPairBond(int connectType, int deviceType) {
+        return isBluetoothBonded(connectType, deviceType, BondMethod.PAIR);
+    }
+
+
+    private static boolean isBluetoothBonded(int connectType, int deviceType, BondMethod method) {
+        return getBondMethodMap().is(connectType, deviceType, method);
+    }
 
 }

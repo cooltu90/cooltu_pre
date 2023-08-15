@@ -19,8 +19,8 @@ public abstract class SocketConnectDevice extends ConnectDevice {
     protected boolean isRead;
     protected OutputStream outputStream;
 
-    public SocketConnectDevice(int deviceType, int connectType, String name, String mac) {
-        super(deviceType, connectType, name, mac);
+    public SocketConnectDevice(int connectType, int deviceType, String name, String mac) {
+        super(connectType, deviceType, name, mac);
     }
 
     public SocketConnectDevice(ConnectDeviceBaseData baseData) {

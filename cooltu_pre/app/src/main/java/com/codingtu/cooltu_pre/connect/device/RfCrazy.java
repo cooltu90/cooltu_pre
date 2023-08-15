@@ -20,8 +20,8 @@ public class RfCrazy extends BleBluetoothConnectDevice {
 
     public RfCrazy(String name, String mac) {
         super(
-                ConnectDeviceType.RF_CRAZY,
                 ConnectType.UFO,
+                ConnectDeviceType.RF_CRAZY,
                 name, mac);
     }
 
