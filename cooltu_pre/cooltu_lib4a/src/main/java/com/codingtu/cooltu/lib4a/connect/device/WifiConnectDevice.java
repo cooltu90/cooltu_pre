@@ -1,5 +1,6 @@
 package com.codingtu.cooltu.lib4a.connect.device;
 
+import com.codingtu.cooltu.lib4a.connect.ConnectDeviceBaseData;
 import com.codingtu.cooltu.lib4a.log.Logs;
 
 import java.io.IOException;
@@ -11,12 +12,12 @@ public abstract class WifiConnectDevice extends SocketConnectDevice {
     private OutputStream outputStream;
     private Socket socket;
 
-    public WifiConnectDevice(int deviceType, int connectType) {
-        super(deviceType, connectType);
-    }
-
     public WifiConnectDevice(int deviceType, int connectType, String name, String mac) {
         super(deviceType, connectType, name, mac);
+    }
+
+    public WifiConnectDevice(ConnectDeviceBaseData baseData) {
+        super(baseData);
     }
 
     @Override

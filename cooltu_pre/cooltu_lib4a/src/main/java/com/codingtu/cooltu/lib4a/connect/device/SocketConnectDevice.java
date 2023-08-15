@@ -1,5 +1,6 @@
 package com.codingtu.cooltu.lib4a.connect.device;
 
+import com.codingtu.cooltu.lib4a.connect.ConnectDeviceBaseData;
 import com.codingtu.cooltu.lib4a.connect.ConnectStatus;
 import com.codingtu.cooltu.lib4a.log.Logs;
 
@@ -18,12 +19,12 @@ public abstract class SocketConnectDevice extends ConnectDevice {
     protected boolean isRead;
     protected OutputStream outputStream;
 
-    public SocketConnectDevice(int deviceType, int connectType) {
-        super(deviceType, connectType);
-    }
-
     public SocketConnectDevice(int deviceType, int connectType, String name, String mac) {
         super(deviceType, connectType, name, mac);
+    }
+
+    public SocketConnectDevice(ConnectDeviceBaseData baseData) {
+        super(baseData);
     }
 
     @Override

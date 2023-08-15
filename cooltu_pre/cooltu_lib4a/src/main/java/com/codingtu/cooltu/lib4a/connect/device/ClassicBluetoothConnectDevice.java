@@ -5,6 +5,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 
+import com.codingtu.cooltu.lib4a.connect.ConnectDeviceBaseData;
 import com.codingtu.cooltu.lib4a.log.Logs;
 
 import java.io.IOException;
@@ -15,12 +16,12 @@ import java.util.UUID;
 public abstract class ClassicBluetoothConnectDevice extends SocketConnectDevice {
     BluetoothSocket bluetoothSocket = null;
 
-    public ClassicBluetoothConnectDevice(int deviceType, int connectType) {
-        super(deviceType, connectType);
-    }
-
     public ClassicBluetoothConnectDevice(int deviceType, int connectType, String name, String mac) {
         super(deviceType, connectType, name, mac);
+    }
+
+    public ClassicBluetoothConnectDevice(ConnectDeviceBaseData baseData) {
+        super(baseData);
     }
 
     @SuppressLint("MissingPermission")

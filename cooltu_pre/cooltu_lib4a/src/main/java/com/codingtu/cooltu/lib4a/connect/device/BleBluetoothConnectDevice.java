@@ -10,18 +10,19 @@ import android.bluetooth.BluetoothGattDescriptor;
 import android.bluetooth.BluetoothProfile;
 
 import com.codingtu.cooltu.lib4a.CoreApp;
+import com.codingtu.cooltu.lib4a.connect.ConnectDeviceBaseData;
 import com.codingtu.cooltu.lib4a.connect.ConnectStatus;
 
 @SuppressLint("MissingPermission")
 public abstract class BleBluetoothConnectDevice extends ConnectDevice {
     protected BluetoothGatt bluetoothGatt;
 
-    public BleBluetoothConnectDevice(int deviceType, int connectType) {
-        super(deviceType, connectType);
-    }
-
     public BleBluetoothConnectDevice(int deviceType, int connectType, String name, String mac) {
         super(deviceType, connectType, name, mac);
+    }
+
+    public BleBluetoothConnectDevice(ConnectDeviceBaseData baseData) {
+        super(baseData);
     }
 
     @Override
