@@ -221,7 +221,7 @@ public class ConnectTool {
 
     private static TypeInfoMap typeInfoMap;
 
-    private static TypeInfoMap getTypeInfoMap() {
+    public static TypeInfoMap getTypeInfoMap() {
         if (typeInfoMap == null) {
             typeInfoMap = new TypeInfoMap();
         }
