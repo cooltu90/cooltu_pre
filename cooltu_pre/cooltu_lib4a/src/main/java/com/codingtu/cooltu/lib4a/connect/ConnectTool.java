@@ -212,7 +212,7 @@ public class ConnectTool {
         return null;
     }
 
-    public void cacheConnectDeviceBaseData(int connectType, int deviceType, String name, String mac) {
+    public static void cacheConnectDeviceBaseData(int connectType, int deviceType, String name, String mac) {
         PfTool.cacheLastConnectDeviceBaseData(
                 cacheKey(connectType),
                 new ConnectDeviceBaseData(connectType, deviceType, name, mac));
