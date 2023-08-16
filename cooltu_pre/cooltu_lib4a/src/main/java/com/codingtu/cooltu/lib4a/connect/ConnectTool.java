@@ -13,6 +13,7 @@ import com.codingtu.cooltu.lib4a.connect.device.ConnectDevice;
 import com.codingtu.cooltu.lib4a.log.Logs;
 import com.codingtu.cooltu.lib4a.tools.PfTool;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -207,7 +208,7 @@ public class ConnectTool {
     private static ConnectDevice getLocalCachedConnectDevice(int connectType) {
         ConnectDeviceBaseData baseData = PfTool.getLastConnectDeviceBaseData(cacheKey(connectType));
         if (baseData != null) {
-            return CoreConnectConfigs.configs().createConnectDevice(baseData);
+            return getTypeInfoMap().getConnectDevice(baseData);
         }
         return null;
     }
@@ -216,6 +217,15 @@ public class ConnectTool {
         PfTool.cacheLastConnectDeviceBaseData(
                 cacheKey(connectType),
                 new ConnectDeviceBaseData(connectType, deviceType, name, mac));
+    }
+
+    private static TypeInfoMap typeInfoMap;
+
+    private static TypeInfoMap getTypeInfoMap() {
+        if (typeInfoMap == null) {
+            typeInfoMap = new TypeInfoMap();
+        }
+        return typeInfoMap;
     }
 
     /**************************************************
@@ -249,15 +259,6 @@ public class ConnectTool {
         }
     }
 
-    private static BondMethodMap bondMethodMap;
-
-    private static BondMethodMap getBondMethodMap() {
-        if (bondMethodMap == null) {
-            bondMethodMap = new BondMethodMap();
-        }
-        return bondMethodMap;
-    }
-
     private static boolean isBluetoothDirectBond(int connectType, int deviceType) {
         return isBluetoothBonded(connectType, deviceType, BondMethod.DIRECT);
     }
@@ -268,7 +269,7 @@ public class ConnectTool {
 
 
     private static boolean isBluetoothBonded(int connectType, int deviceType, BondMethod method) {
-        return getBondMethodMap().is(connectType, deviceType, method);
+        return getTypeInfoMap().is(connectType, deviceType, method);
     }
 
 }

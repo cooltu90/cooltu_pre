@@ -5,6 +5,8 @@ import com.codingtu.cooltu.lib4a.connect.device.ConnectDevice;
 
 import java.util.Map;
 
+import cooltu.lib4j.data.map.ValueMap;
+
 public abstract class CoreConnectConfigs {
 
     private static CoreConnectConfigs CONFIGS;
@@ -29,8 +31,6 @@ public abstract class CoreConnectConfigs {
      *
      *
      **************************************************/
-    public abstract ConnectDevice createConnectDevice(ConnectDeviceBaseData baseData);
 
-    public abstract void bondMethod(BondMethodMap bondeds);
-
+    public abstract void typeInfo(TypeInfoMap typeInfoMap);
 }
