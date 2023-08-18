@@ -53,7 +53,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     implementation project(':cooltu_constant')
-    implementation 'com.github.cooltu90:cooltu4j:' + COOLTU4J_VERSION
+    implementation project(':cooltu_lib4j')
 
     //fastjson
     implementation 'com.alibaba:fastjson:1.2.51'
