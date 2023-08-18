@@ -76,7 +76,8 @@ public class FileWriter {
             FileTool.createFileDir(file);
 
             bw = FileTool.getBufferedWriter(this.file);
-            for (int i = 0; i < getter.count(); i++) {
+            int count = getter == null ? 0 : getter.count();
+            for (int i = 0; i < count; i++) {
                 bw.write(getter.get(i).toString());
                 bw.newLine();
             }

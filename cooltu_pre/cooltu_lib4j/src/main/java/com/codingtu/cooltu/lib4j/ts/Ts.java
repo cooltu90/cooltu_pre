@@ -4,6 +4,7 @@ import com.codingtu.cooltu.lib4j.data.bean.Symbol;
 import com.codingtu.cooltu.lib4j.data.map.ListValueMap;
 import com.codingtu.cooltu.lib4j.ts.each.Each;
 import com.codingtu.cooltu.lib4j.ts.each.MapEach;
+import com.codingtu.cooltu.lib4j.ts.finalgetter.FinalGetter;
 import com.codingtu.cooltu.lib4j.ts.getter.Getter;
 import com.codingtu.cooltu.lib4j.ts.getter.SameGetter;
 import com.codingtu.cooltu.lib4j.tools.CountTool;
@@ -46,6 +47,9 @@ public class Ts {
     }
 
     public static <T> EachGetter<T> tsGetter(List<? extends T> ls) {
+        if (CountTool.isNull(ls))
+            return null;
+
         return new EachGetter<T>() {
             @Override
             public T get(int position) {
@@ -60,6 +64,9 @@ public class Ts {
     }
 
     public static <T> EachGetter<T> tsGetter(T... ls) {
+        if (CountTool.isNull(ls))
+            return null;
+
         return new EachGetter<T>() {
             @Override
             public T get(int position) {
@@ -74,6 +81,9 @@ public class Ts {
     }
 
     public static EachGetter<Integer> tsGetter(int... ls) {
+        if (CountTool.isNull(ls))
+            return null;
+
         return new EachGetter<Integer>() {
             @Override
             public Integer get(int position) {
@@ -88,6 +98,8 @@ public class Ts {
     }
 
     public static EachGetter<Boolean> tsGetter(boolean... ls) {
+        if (CountTool.isNull(ls))
+            return null;
         return new EachGetter<Boolean>() {
             @Override
             public Boolean get(int position) {
@@ -102,6 +114,8 @@ public class Ts {
     }
 
     public static EachGetter<Long> tsGetter(long... ls) {
+        if (CountTool.isNull(ls))
+            return null;
         return new EachGetter<Long>() {
             @Override
             public Long get(int position) {
@@ -116,6 +130,8 @@ public class Ts {
     }
 
     public static EachGetter<Byte> tsGetter(byte... ls) {
+        if (CountTool.isNull(ls))
+            return null;
         return new EachGetter<Byte>() {
             @Override
             public Byte get(int position) {
@@ -130,6 +146,8 @@ public class Ts {
     }
 
     public static EachGetter<Double> tsGetter(double... ls) {
+        if (CountTool.isNull(ls))
+            return null;
         return new EachGetter<Double>() {
             @Override
             public Double get(int position) {
@@ -144,6 +162,8 @@ public class Ts {
     }
 
     public static EachGetter<Float> tsGetter(float... ls) {
+        if (CountTool.isNull(ls))
+            return null;
         return new EachGetter<Float>() {
             @Override
             public Float get(int position) {
@@ -158,6 +178,8 @@ public class Ts {
     }
 
     public static EachGetter<Character> tsGetter(char... ls) {
+        if (CountTool.isNull(ls))
+            return null;
         return new EachGetter<Character>() {
             @Override
             public Character get(int position) {
@@ -172,6 +194,8 @@ public class Ts {
     }
 
     public static EachGetter<Short> tsGetter(short... ls) {
+        if (CountTool.isNull(ls))
+            return null;
         return new EachGetter<Short>() {
             @Override
             public Short get(int position) {
@@ -900,7 +924,7 @@ public class Ts {
 
     public static <T> List<T> getList(EachGetter<T> getter) {
         ArrayList<T> ts = new ArrayList<T>();
-        int count = getter.count();
+        int count = getter == null ? 0 : getter.count();
         for (int i = 0; i < count; i++) {
             ts.add(getter.get(i));
         }
@@ -908,6 +932,9 @@ public class Ts {
     }
 
     public static <T> T[] getArray(EachGetter<T> getter) {
+        if (getter == null)
+            return null;
+
         int count = getter.count();
         T t = getter.get(0);
         T[] newArray = (T[]) java.lang.reflect.Array.newInstance
@@ -1136,6 +1163,43 @@ public class Ts {
 
         int compare(T o1, T o2);
 
+    }
+
+    /**************************************************
+     *
+     *
+     *
+     **************************************************/
+
+    public static <T> T findFinal(EachGetter<T> eachGetter, FinalGetter<T> finalGetter) {
+        if (eachGetter == null || finalGetter == null)
+            return null;
+
+        T last = null;
+        int count = eachGetter.count();
+        if (count > 0) {
+            for (int i = 0; i < count; i++) {
+                T now = eachGetter.get(i);
+                last = finalGetter.findFinal(last, now);
+            }
+        }
+        return last;
+    }
+
+    public static <T> T findFinal(List<T> ts, FinalGetter<T> finalGetter) {
+        return findFinal(tsGetter(ts), finalGetter);
+    }
+
+    public static <T> T findFinal(T[] ts, FinalGetter<T> finalGetter) {
+        return findFinal(tsGetter(ts), finalGetter);
+    }
+
+    public static <T> T findFinal(FinalGetter<T> finalGetter, T... ts) {
+        return findFinal(tsGetter(ts), finalGetter);
+    }
+
+    public static <T> Integer findFinal(int[] ts, FinalGetter<Integer> finalGetter) {
+        return findFinal(tsGetter(ts), finalGetter);
     }
 
 }

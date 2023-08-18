@@ -192,7 +192,7 @@ public class LibLogs {
     private static <T> void logArray(int level, String tag, EachGetter<T> getter) {
         baseLog(level, tag, "");
         baseLog(level, tag, "┌──Array────────────────────────────────────────────────────────────────────────────────");
-        if (getter.count() <= 0) {
+        if (getter == null || getter.count() <= 0) {
             baseLog(level, tag, "│\tArray is empty");
         } else {
             for (int i = 0; i < getter.count(); i++) {

@@ -18,6 +18,7 @@
             <option value="$PROJECT_DIR$/cooltu_processor" />
             <option value="$PROJECT_DIR$/cooltu_processor_annotation" />
             <option value="$PROJECT_DIR$/cooltu_processor_model_interface" />
+            <option value="$PROJECT_DIR$/cooltu_test" />
           </set>
         </option>
       </GradleProjectSettings>
