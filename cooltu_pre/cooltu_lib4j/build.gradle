@@ -1,0 +1,35 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+group = COOLTU_PKG + '.' + COOLTU_PKG_LIB4J
+version = COOLTU_VERSION
+
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                from components.java
+                groupId = COOLTU_PKG + '.' + COOLTU_PKG_LIB4J
+                artifactId = COOLTU + '_' + COOLTU_MODULE_LIB4J
+                version = COOLTU_VERSION
+            }
+        }
+    }
+}
+
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //fastjson
+    implementation 'com.alibaba:fastjson:1.2.51'
+
+}
