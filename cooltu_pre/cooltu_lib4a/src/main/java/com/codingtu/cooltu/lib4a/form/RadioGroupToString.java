@@ -1,7 +1,7 @@
 package com.codingtu.cooltu.lib4a.form;
 
-import cooltu.lib4j.ts.Ts;
-import cooltu.lib4j.ts.getter.Getter;
+import com.codingtu.cooltu.lib4j.ts.Ts;
+import com.codingtu.cooltu.lib4j.ts.getter.Getter;
 
 public abstract class RadioGroupToString implements FormParse<String, Integer> {
     @Override

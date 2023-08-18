@@ -17,7 +17,7 @@ import com.codingtu.cooltu.lib4a.view.textview.TagTextView;
 
 import java.util.List;
 
-import cooltu.lib4j.tools.CountTool;
+import com.codingtu.cooltu.lib4j.tools.CountTool;
 
 public class LabelView extends CoreLabelView {
 

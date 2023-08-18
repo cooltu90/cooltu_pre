@@ -2,7 +2,7 @@ package com.codingtu.cooltu.processor.worker.deal;
 
 import javax.lang.model.element.Element;
 
-import cooltu.lib4j.tools.ClassTool;
+import com.codingtu.cooltu.lib4j.tools.ClassTool;
 import com.codingtu.cooltu.processor.annotation.ui.Adapter;
 import com.codingtu.cooltu.processor.lib.model.AdapterModels;
 import com.codingtu.cooltu.processor.lib.tools.ElementTools;

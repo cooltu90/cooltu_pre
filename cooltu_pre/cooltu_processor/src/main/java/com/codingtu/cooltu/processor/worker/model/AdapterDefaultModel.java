@@ -4,8 +4,8 @@ import com.codingtu.cooltu.constant.Pkg;
 
 import java.util.List;
 
-import cooltu.lib4j.data.bean.JavaInfo;
-import cooltu.lib4j.tools.ConvertTool;
+import com.codingtu.cooltu.lib4j.data.bean.JavaInfo;
+import com.codingtu.cooltu.lib4j.tools.ConvertTool;
 import com.codingtu.cooltu.processor.lib.tools.NameTools;
 import com.codingtu.cooltu.processor.modelinterface.AdapterDefaultModelInterface;
 import com.codingtu.cooltu.processor.worker.model.base.BaseAdapterModel;

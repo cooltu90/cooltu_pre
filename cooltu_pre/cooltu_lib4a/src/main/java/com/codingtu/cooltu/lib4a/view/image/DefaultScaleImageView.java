@@ -2,19 +2,13 @@ package com.codingtu.cooltu.lib4a.view.image;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
 
 import com.codingtu.cooltu.lib4a.bean.LTRB;
-import com.codingtu.cooltu.lib4a.bean.WH;
 import com.codingtu.cooltu.lib4a.image.FileBitmap;
 import com.codingtu.cooltu.lib4a.image.ImageTools;
 import com.codingtu.cooltu.lib4a.tools.AdjustTool;
 import com.codingtu.cooltu.lib4a.tools.BitmapTool;
-
-import cooltu.lib4j.data.bean.Scale;
 
 public class DefaultScaleImageView extends CoreScaleView {
 

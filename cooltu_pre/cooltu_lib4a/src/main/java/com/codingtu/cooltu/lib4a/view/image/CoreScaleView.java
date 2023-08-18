@@ -22,7 +22,7 @@ import com.codingtu.cooltu.lib4a.view.base.CoreView;
 import java.util.ArrayList;
 import java.util.List;
 
-import cooltu.lib4j.data.bean.CoreBean;
+import com.codingtu.cooltu.lib4j.data.bean.CoreBean;
 
 public class CoreScaleView extends CoreView {
 

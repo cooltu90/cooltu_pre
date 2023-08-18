@@ -1,8 +1,6 @@
 package com.codingtu.cooltu.lib4a.connect;
 
-import java.util.UUID;
-
-import cooltu.lib4j.data.bean.CoreBean;
+import com.codingtu.cooltu.lib4j.data.bean.CoreBean;
 
 public class ConnectDeviceBaseData extends CoreBean {
 

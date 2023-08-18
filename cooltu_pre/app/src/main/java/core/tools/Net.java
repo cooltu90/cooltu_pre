@@ -52,7 +52,7 @@ public class Net {
             public Flowable<Result<ResponseBody>>
             create(Retrofit retrofit, CoreSendParams ps) {
                 core.tools.net.params.AddObjParams params = (core.tools.net.params.AddObjParams) ps;
-                cooltu.lib4j.json.base.JO jo = cooltu.lib4j.json.JsonTool.createJO();
+                com.codingtu.cooltu.lib4j.json.base.JO jo = com.codingtu.cooltu.lib4j.json.JsonTool.createJO();
                 jo.put("name", params.name);
                 jo.put("age", params.age);
 
@@ -74,7 +74,7 @@ public class Net {
                 core.tools.net.params.GetUserParams params = (core.tools.net.params.GetUserParams) ps;
 
                 return retrofit.create(core.tools.net.api.UserApiService.class).getUser(
-                        NetTool.toJsonBody(cooltu.lib4j.json.JsonTool.toJson(labels))
+                        NetTool.toJsonBody(com.codingtu.cooltu.lib4j.json.JsonTool.toJson(labels))
                 );
             }
         }, GET_USER, com.codingtu.cooltu.lib4a.CoreConfigs.configs().getBaseUrl(), params);

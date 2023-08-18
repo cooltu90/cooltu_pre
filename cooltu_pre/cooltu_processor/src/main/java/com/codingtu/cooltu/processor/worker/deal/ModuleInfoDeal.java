@@ -2,7 +2,7 @@ package com.codingtu.cooltu.processor.worker.deal;
 
 import javax.lang.model.element.Element;
 
-import cooltu.lib4j.tools.ClassTool;
+import com.codingtu.cooltu.lib4j.tools.ClassTool;
 import com.codingtu.cooltu.constant.Constant;
 import com.codingtu.cooltu.constant.FullName;
 import com.codingtu.cooltu.constant.Module;

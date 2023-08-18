@@ -11,6 +11,12 @@ public interface BindHandlerModelInterface {
 
     public void setTagFor_cases(StringBuilder sb);
 
+    public void setTagFor_ListValueMapFullName(StringBuilder sb);
+
+    public void setTagFor_TsFullName(StringBuilder sb);
+
+    public void setTagFor_EachFullName(StringBuilder sb);
+
     default List<String> getTempLinesArray() {
         ArrayList<String> lines = new ArrayList<>();
         lines.add("    public static class BindHandler extends android.os.Handler {");
@@ -28,11 +34,11 @@ public interface BindHandlerModelInterface {
         lines.add("        }");
         lines.add("");
         lines.add("");
-        lines.add("        private cooltu.lib4j.data.map.ListValueMap<Integer, com.codingtu.cooltu.lib4a.form.FormLink> links;");
+        lines.add("        private [[ListValueMapFullName]]<Integer, com.codingtu.cooltu.lib4a.form.FormLink> links;");
         lines.add("");
-        lines.add("        private cooltu.lib4j.data.map.ListValueMap<Integer, com.codingtu.cooltu.lib4a.form.FormLink> getLinks() {");
+        lines.add("        private [[ListValueMapFullName]]<Integer, com.codingtu.cooltu.lib4a.form.FormLink> getLinks() {");
         lines.add("            if (links == null) {");
-        lines.add("                links = new cooltu.lib4j.data.map.ListValueMap<>();");
+        lines.add("                links = new [[ListValueMapFullName]]<>();");
         lines.add("            }");
         lines.add("            return links;");
         lines.add("        }");
@@ -42,7 +48,7 @@ public interface BindHandlerModelInterface {
         lines.add("        }");
         lines.add("");
         lines.add("        private void link(int id) {");
-        lines.add("            cooltu.lib4j.ts.Ts.ls(getLinks().get(id), new cooltu.lib4j.ts.each.Each<com.codingtu.cooltu.lib4a.form.FormLink>() {");
+        lines.add("            [[TsFullName]].ls(getLinks().get(id), new [[EachFullName]]<com.codingtu.cooltu.lib4a.form.FormLink>() {");
         lines.add("                @Override");
         lines.add("                public boolean each(int position, com.codingtu.cooltu.lib4a.form.FormLink formLink) {");
         lines.add("                    formLink.link();");

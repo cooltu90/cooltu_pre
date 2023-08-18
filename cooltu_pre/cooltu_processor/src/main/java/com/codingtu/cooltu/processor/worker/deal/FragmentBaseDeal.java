@@ -3,8 +3,8 @@ package com.codingtu.cooltu.processor.worker.deal;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
 
-import cooltu.lib4j.data.bean.JavaInfo;
-import cooltu.lib4j.tools.ClassTool;
+import com.codingtu.cooltu.lib4j.data.bean.JavaInfo;
+import com.codingtu.cooltu.lib4j.tools.ClassTool;
 import com.codingtu.cooltu.constant.FullName;
 import com.codingtu.cooltu.processor.annotation.ui.FragmentBase;
 import com.codingtu.cooltu.processor.lib.model.ModelMap;

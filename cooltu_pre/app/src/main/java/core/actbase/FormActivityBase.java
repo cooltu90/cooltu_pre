@@ -65,7 +65,7 @@ public abstract class FormActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
         seekBar.setOnSeekBarChangeListener(new com.codingtu.cooltu.lib4a.view.combine.HandlerOnSeekBarChangeListener(handler,3, 0));
         if (!initFormBean) {
             com.codingtu.cooltu.lib4a.tools.ViewTool.setEditTextAndSelection(et, testForm.name);
-            if (cooltu.lib4j.tools.StringTool.isNotBlank(testForm.rg)) {
+            if (com.codingtu.cooltu.lib4j.tools.StringTool.isNotBlank(testForm.rg)) {
                 rgRg.setSelected(new com.codingtu.cooltu.lib4a.form.DefaultRadioGroupToString("梨1", "苹果1", "芒果1").toView(testForm.rg));
             }
             seekBar.setProgress(new com.codingtu.cooltu_pre.form.SeekBarParse().toView(testForm.time));
@@ -169,11 +169,11 @@ public abstract class FormActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
         }
 
 
-        private cooltu.lib4j.data.map.ListValueMap<Integer, com.codingtu.cooltu.lib4a.form.FormLink> links;
+        private com.codingtu.cooltu.lib4j.data.map.ListValueMap<Integer, com.codingtu.cooltu.lib4a.form.FormLink> links;
 
-        private cooltu.lib4j.data.map.ListValueMap<Integer, com.codingtu.cooltu.lib4a.form.FormLink> getLinks() {
+        private com.codingtu.cooltu.lib4j.data.map.ListValueMap<Integer, com.codingtu.cooltu.lib4a.form.FormLink> getLinks() {
             if (links == null) {
-                links = new cooltu.lib4j.data.map.ListValueMap<>();
+                links = new com.codingtu.cooltu.lib4j.data.map.ListValueMap<>();
             }
             return links;
         }
@@ -183,7 +183,7 @@ public abstract class FormActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
         }
 
         private void link(int id) {
-            cooltu.lib4j.ts.Ts.ls(getLinks().get(id), new cooltu.lib4j.ts.each.Each<com.codingtu.cooltu.lib4a.form.FormLink>() {
+            com.codingtu.cooltu.lib4j.ts.Ts.ls(getLinks().get(id), new com.codingtu.cooltu.lib4j.ts.each.Each<com.codingtu.cooltu.lib4a.form.FormLink>() {
                 @Override
                 public boolean each(int position, com.codingtu.cooltu.lib4a.form.FormLink formLink) {
                     formLink.link();
@@ -195,7 +195,7 @@ public abstract class FormActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
 
 
     protected boolean checkTestForm() {
-        if (cooltu.lib4j.tools.StringTool.isBlank(testForm.rg)) {
+        if (com.codingtu.cooltu.lib4j.tools.StringTool.isBlank(testForm.rg)) {
             toast("请选择");
             return false;
         }
@@ -203,7 +203,7 @@ public abstract class FormActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
             toast("请选择时间");
             return false;
         }
-        if (cooltu.lib4j.tools.StringTool.isBlank(testForm.name)) {
+        if (com.codingtu.cooltu.lib4j.tools.StringTool.isBlank(testForm.name)) {
             toast("请输入名字");
             return false;
         }

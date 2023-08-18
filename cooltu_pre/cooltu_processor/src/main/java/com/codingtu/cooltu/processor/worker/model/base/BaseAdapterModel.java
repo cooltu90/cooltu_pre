@@ -2,7 +2,7 @@ package com.codingtu.cooltu.processor.worker.model.base;
 
 import java.util.List;
 
-import cooltu.lib4j.data.bean.JavaInfo;
+import com.codingtu.cooltu.lib4j.data.bean.JavaInfo;
 
 public abstract class BaseAdapterModel extends BaseModel {
 

@@ -11,8 +11,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
-import cooltu.lib4j.tools.CountTool;
-import cooltu.lib4j.ts.Ts;
+import com.codingtu.cooltu.lib4j.tools.CountTool;
+import com.codingtu.cooltu.lib4j.ts.Ts;
 
 public abstract class SocketConnectDevice extends ConnectDevice {
 

@@ -1,11 +1,8 @@
 package com.codingtu.cooltu.lib4a.connect;
 
 import com.codingtu.cooltu.lib4a.CoreConfigs;
-import com.codingtu.cooltu.lib4a.connect.device.ConnectDevice;
 
 import java.util.Map;
-
-import cooltu.lib4j.data.map.ValueMap;
 
 public abstract class CoreConnectConfigs {
 

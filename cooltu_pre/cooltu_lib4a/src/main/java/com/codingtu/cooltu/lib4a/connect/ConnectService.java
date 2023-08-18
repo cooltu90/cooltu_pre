@@ -8,8 +8,8 @@ import androidx.annotation.Nullable;
 
 import com.codingtu.cooltu.lib4a.connect.device.ConnectDevice;
 
-import cooltu.lib4j.ts.Ts;
-import cooltu.lib4j.ts.each.MapEach;
+import com.codingtu.cooltu.lib4j.ts.Ts;
+import com.codingtu.cooltu.lib4j.ts.each.MapEach;
 
 public class ConnectService extends Service {
     /**************************************************

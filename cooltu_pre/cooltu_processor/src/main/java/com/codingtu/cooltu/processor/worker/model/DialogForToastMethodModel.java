@@ -39,6 +39,11 @@ public class DialogForToastMethodModel extends SubBaseModel implements DialogFor
     public void setTagFor_layout(StringBuilder sb) {
         addTag(sb, Constant.DEFAULT_TOAST_DIALOG_LAYOUT);
     }
+
+    @Override
+    public void setTagFor_StringToolFullName(StringBuilder sb) {
+        sb.append(FullName.STRING_TOOL);
+    }
 }
 /* model_temp_start
     private [[className]] toastDialog;
@@ -58,7 +63,7 @@ public class DialogForToastMethodModel extends SubBaseModel implements DialogFor
     }
 
     protected void toastSet(String msg) {
-        if (cooltu.lib4j.tools.StringTool.isNotBlank(msg)) {
+        if ([[StringToolFullName]].isNotBlank(msg)) {
             getToastDialog().setContent(msg);
         }
     }

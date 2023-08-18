@@ -2,7 +2,7 @@ package com.codingtu.cooltu.lib4a.net.retrofit;
 
 import java.util.HashMap;
 
-import cooltu.lib4j.tools.StringTool;
+import com.codingtu.cooltu.lib4j.tools.StringTool;
 import com.codingtu.cooltu.lib4a.CoreConfigs;
 import com.codingtu.cooltu.lib4a.net.interceptor.LogInterceptor;
 

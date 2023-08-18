@@ -3,7 +3,7 @@ package com.codingtu.cooltu.lib4a.bean;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
-import cooltu.lib4j.data.bean.CoreBean;
+import com.codingtu.cooltu.lib4j.data.bean.CoreBean;
 
 public class LTRB extends CoreBean {
     public int l;

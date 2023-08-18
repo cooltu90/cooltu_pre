@@ -3,7 +3,7 @@ package com.codingtu.cooltu.processor.worker.deal;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
 
-import cooltu.lib4j.tools.ClassTool;
+import com.codingtu.cooltu.lib4j.tools.ClassTool;
 import com.codingtu.cooltu.processor.annotation.form.Form;
 import com.codingtu.cooltu.processor.lib.model.BaseParentMap;
 import com.codingtu.cooltu.processor.worker.deal.base.BaseDeal;

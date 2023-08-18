@@ -2,8 +2,8 @@ package com.codingtu.cooltu.processor.worker.deal;
 
 import javax.lang.model.element.Element;
 
-import cooltu.lib4j.ts.Ts;
-import cooltu.lib4j.ts.each.Each;
+import com.codingtu.cooltu.lib4j.ts.Ts;
+import com.codingtu.cooltu.lib4j.ts.each.Each;
 import com.codingtu.cooltu.processor.annotation.ui.DefaultCode;
 import com.codingtu.cooltu.processor.worker.deal.base.BaseDeal;
 import com.codingtu.cooltu.processor.worker.model.Code4RequestModel;

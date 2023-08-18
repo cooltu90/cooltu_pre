@@ -4,8 +4,8 @@ import java.io.File;
 
 import javax.lang.model.element.Element;
 
-import cooltu.lib4j.data.bean.JavaInfo;
-import cooltu.lib4j.tools.ClassTool;
+import com.codingtu.cooltu.lib4j.data.bean.JavaInfo;
+import com.codingtu.cooltu.lib4j.tools.ClassTool;
 import com.codingtu.cooltu.constant.FullName;
 import com.codingtu.cooltu.constant.Pkg;
 import com.codingtu.cooltu.processor.annotation.create.CreateFragment;

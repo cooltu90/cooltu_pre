@@ -2,11 +2,10 @@ package com.codingtu.cooltu.lib4a.connect;
 
 import com.codingtu.cooltu.lib4a.connect.device.ConnectDevice;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
-import cooltu.lib4j.data.map.ValueMap;
+import com.codingtu.cooltu.lib4j.data.map.ValueMap;
 
 public class TypeInfoMap {
 

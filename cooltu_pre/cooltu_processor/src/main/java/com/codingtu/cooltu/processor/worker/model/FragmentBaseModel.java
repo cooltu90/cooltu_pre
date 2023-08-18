@@ -1,7 +1,7 @@
 package com.codingtu.cooltu.processor.worker.model;
 
-import cooltu.lib4j.data.bean.JavaInfo;
-import cooltu.lib4j.tools.StringTool;
+import com.codingtu.cooltu.lib4j.data.bean.JavaInfo;
+import com.codingtu.cooltu.lib4j.tools.StringTool;
 
 import com.codingtu.cooltu.constant.FullName;
 

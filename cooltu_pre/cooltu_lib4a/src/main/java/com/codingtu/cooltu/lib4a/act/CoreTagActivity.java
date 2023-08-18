@@ -12,9 +12,9 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.codingtu.cooltu.lib4a.R;
 import com.codingtu.cooltu.lib4a.view.combine.RadioGroup;
 
-import cooltu.lib4j.tools.CountTool;
-import cooltu.lib4j.ts.Ts;
-import cooltu.lib4j.ts.each.Each;
+import com.codingtu.cooltu.lib4j.tools.CountTool;
+import com.codingtu.cooltu.lib4j.ts.Ts;
+import com.codingtu.cooltu.lib4j.ts.each.Each;
 
 public abstract class CoreTagActivity extends CoreActivity {
 

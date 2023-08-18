@@ -1,9 +1,9 @@
 package com.codingtu.cooltu.processor.lib.tools;
 
-import cooltu.lib4j.data.bean.JavaInfo;
-import cooltu.lib4j.tools.ConvertTool;
-import cooltu.lib4j.tools.CountTool;
-import cooltu.lib4j.tools.StringTool;
+import com.codingtu.cooltu.lib4j.data.bean.JavaInfo;
+import com.codingtu.cooltu.lib4j.tools.ConvertTool;
+import com.codingtu.cooltu.lib4j.tools.CountTool;
+import com.codingtu.cooltu.lib4j.tools.StringTool;
 import com.codingtu.cooltu.constant.Constant;
 
 public class RenameTools {

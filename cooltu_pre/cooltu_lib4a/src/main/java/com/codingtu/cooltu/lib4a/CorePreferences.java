@@ -5,8 +5,8 @@ import android.content.SharedPreferences;
 import java.util.List;
 import java.util.Set;
 
-import cooltu.lib4j.data.bean.CoreBean;
-import cooltu.lib4j.json.JsonTool;
+import com.codingtu.cooltu.lib4j.data.bean.CoreBean;
+import com.codingtu.cooltu.lib4j.json.JsonTool;
 
 public class CorePreferences {
     private SharedPreferences pf;

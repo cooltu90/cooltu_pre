@@ -8,8 +8,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import java.util.HashMap;
 
-import cooltu.lib4j.ts.Ts;
-import cooltu.lib4j.ts.each.Each;
+import com.codingtu.cooltu.lib4j.ts.Ts;
+import com.codingtu.cooltu.lib4j.ts.each.Each;
 
 import com.codingtu.cooltu.lib4a.R;
 

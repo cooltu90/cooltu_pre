@@ -1,7 +1,6 @@
 package com.codingtu.cooltu.lib4a.view.dialogview;
 
 import android.app.Activity;
-import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
@@ -16,7 +15,7 @@ import com.codingtu.cooltu.lib4a.act.OnDestroy;
 import com.codingtu.cooltu.lib4a.tools.MobileTool;
 import com.codingtu.cooltu.lib4a.view.layerview.RelativeLayerView;
 
-import cooltu.lib4j.tools.StringTool;
+import com.codingtu.cooltu.lib4j.tools.StringTool;
 
 import com.codingtu.cooltu.lib4a.tools.InflateTool;
 import com.codingtu.cooltu.lib4a.tools.Margins;

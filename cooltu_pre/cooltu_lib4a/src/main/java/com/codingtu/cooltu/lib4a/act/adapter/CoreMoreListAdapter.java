@@ -10,7 +10,7 @@ import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 
-import cooltu.lib4j.tools.CountTool;
+import com.codingtu.cooltu.lib4j.tools.CountTool;
 
 public abstract class CoreMoreListAdapter<VH extends CoreAdapterVH, T> extends CoreAdapter<CoreAdapterVH> {
 

@@ -8,8 +8,8 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
-import cooltu.lib4j.ts.Ts;
-import cooltu.lib4j.ts.each.MapEach;
+import com.codingtu.cooltu.lib4j.ts.Ts;
+import com.codingtu.cooltu.lib4j.ts.each.MapEach;
 import com.codingtu.cooltu.lib4a.tools.ViewTool;
 
 public abstract class DefaultIndexActivity extends CoreIndexActivity {

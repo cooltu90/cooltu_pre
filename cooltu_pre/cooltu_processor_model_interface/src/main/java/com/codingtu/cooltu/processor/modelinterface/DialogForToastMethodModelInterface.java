@@ -11,6 +11,8 @@ public interface DialogForToastMethodModelInterface {
 
     public void setTagFor_layout(StringBuilder sb);
 
+    public void setTagFor_StringToolFullName(StringBuilder sb);
+
     default List<String> getTempLinesArray() {
         ArrayList<String> lines = new ArrayList<>();
         lines.add("    private [[className]] toastDialog;");
@@ -30,7 +32,7 @@ public interface DialogForToastMethodModelInterface {
         lines.add("    }");
         lines.add("");
         lines.add("    protected void toastSet(String msg) {");
-        lines.add("        if (cooltu.lib4j.tools.StringTool.isNotBlank(msg)) {");
+        lines.add("        if ([[StringToolFullName]].isNotBlank(msg)) {");
         lines.add("            getToastDialog().setContent(msg);");
         lines.add("        }");
         lines.add("    }");

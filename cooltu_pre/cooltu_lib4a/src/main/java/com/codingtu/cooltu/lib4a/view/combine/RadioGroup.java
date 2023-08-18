@@ -10,7 +10,7 @@ import com.codingtu.cooltu.lib4a.act.OnDestroy;
 import java.util.ArrayList;
 import java.util.List;
 
-import cooltu.lib4j.tools.CountTool;
+import com.codingtu.cooltu.lib4j.tools.CountTool;
 
 public class RadioGroup implements OnDestroy, View.OnClickListener {
     private boolean hasNull;

@@ -126,7 +126,7 @@ public abstract class WelcomeActivityBase extends com.codingtu.cooltu.lib4a.act.
     }
 
     protected void toastSet(String msg) {
-        if (cooltu.lib4j.tools.StringTool.isNotBlank(msg)) {
+        if (com.codingtu.cooltu.lib4j.tools.StringTool.isNotBlank(msg)) {
             getToastDialog().setContent(msg);
         }
     }

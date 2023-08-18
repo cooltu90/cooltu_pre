@@ -12,10 +12,10 @@ import java.util.ArrayList;
 
 import javax.lang.model.element.Element;
 
-import cooltu.lib4j.data.bean.JavaInfo;
-import cooltu.lib4j.file.FileTool;
-import cooltu.lib4j.file.deal.FileLineDealer;
-import cooltu.lib4j.file.delete.FileDeleter;
+import com.codingtu.cooltu.lib4j.data.bean.JavaInfo;
+import com.codingtu.cooltu.lib4j.file.FileTool;
+import com.codingtu.cooltu.lib4j.file.deal.FileLineDealer;
+import com.codingtu.cooltu.lib4j.file.delete.FileDeleter;
 
 public class RenameActDeal extends BaseDeal {
     @Override

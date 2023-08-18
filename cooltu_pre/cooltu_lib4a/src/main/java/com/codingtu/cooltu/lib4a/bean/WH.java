@@ -1,7 +1,7 @@
 package com.codingtu.cooltu.lib4a.bean;
 
-import cooltu.lib4j.data.bean.CoreBean;
-import cooltu.lib4j.tools.MathTool;
+import com.codingtu.cooltu.lib4j.data.bean.CoreBean;
+import com.codingtu.cooltu.lib4j.tools.MathTool;
 
 public class WH extends CoreBean {
     public int w;

@@ -8,11 +8,10 @@ import com.codingtu.cooltu.processor.annotation.form.item.RadioGroupFormItem;
 import com.codingtu.cooltu.processor.annotation.form.item.SeekBarFormItem;
 import com.codingtu.cooltu_pre.R;
 import com.codingtu.cooltu_pre.form.DefaultOnSetItem;
-import com.codingtu.cooltu_pre.form.FriutParse;
 import com.codingtu.cooltu_pre.form.SeekBarParse;
 import com.codingtu.cooltu_pre.form.SeekBarsCheck;
 
-import cooltu.lib4j.data.bean.CoreBean;
+import com.codingtu.cooltu.lib4j.data.bean.CoreBean;
 
 @FormBean
 public class TestForm extends CoreBean {

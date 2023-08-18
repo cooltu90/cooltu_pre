@@ -7,9 +7,9 @@ import java.util.List;
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.VariableElement;
 
-import cooltu.lib4j.tools.ClassTool;
-import cooltu.lib4j.tools.ConvertTool;
-import cooltu.lib4j.tools.CountTool;
+import com.codingtu.cooltu.lib4j.tools.ClassTool;
+import com.codingtu.cooltu.lib4j.tools.ConvertTool;
+import com.codingtu.cooltu.lib4j.tools.CountTool;
 import com.codingtu.cooltu.processor.lib.tools.ElementTools;
 import com.codingtu.cooltu.processor.modelinterface.ActBasePermissionBackModelInterface;
 import com.codingtu.cooltu.processor.worker.model.base.SubBaseModel;

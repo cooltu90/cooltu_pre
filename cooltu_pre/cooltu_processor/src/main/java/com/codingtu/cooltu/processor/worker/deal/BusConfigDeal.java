@@ -3,8 +3,8 @@ package com.codingtu.cooltu.processor.worker.deal;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.VariableElement;
 
-import cooltu.lib4j.data.bean.JavaInfo;
-import cooltu.lib4j.data.bean.KV;
+import com.codingtu.cooltu.lib4j.data.bean.JavaInfo;
+import com.codingtu.cooltu.lib4j.data.bean.KV;
 import com.codingtu.cooltu.processor.lib.tools.ElementTools;
 import com.codingtu.cooltu.processor.lib.tools.NameTools;
 import com.codingtu.cooltu.processor.worker.deal.base.BaseDeal;

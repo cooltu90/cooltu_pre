@@ -30,13 +30,13 @@ import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.element.VariableElement;
 
-import cooltu.lib4j.data.bean.KV;
-import cooltu.lib4j.data.map.ListValueMap;
-import cooltu.lib4j.tools.ClassTool;
-import cooltu.lib4j.tools.ConvertTool;
-import cooltu.lib4j.tools.CountTool;
-import cooltu.lib4j.ts.Ts;
-import cooltu.lib4j.ts.each.Each;
+import com.codingtu.cooltu.lib4j.data.bean.KV;
+import com.codingtu.cooltu.lib4j.data.map.ListValueMap;
+import com.codingtu.cooltu.lib4j.tools.ClassTool;
+import com.codingtu.cooltu.lib4j.tools.ConvertTool;
+import com.codingtu.cooltu.lib4j.tools.CountTool;
+import com.codingtu.cooltu.lib4j.ts.Ts;
+import com.codingtu.cooltu.lib4j.ts.each.Each;
 
 public class ResForDeal extends BaseDeal {
     private BaseParentModel baseParentModel;

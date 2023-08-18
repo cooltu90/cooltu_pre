@@ -12,8 +12,8 @@ public abstract class GetObjBack extends NetBack {
     @Override
     public void accept(String code, Result<ResponseBody> result, CoreSendParams params, List objs) {
         super.accept(code, result, params, objs);
-        if (cooltu.lib4j.tools.StringTool.isNotBlank(json)) {
-            user = cooltu.lib4j.json.JsonTool.toBean(com.codingtu.cooltu_pre.bean.User.class, json);
+        if (com.codingtu.cooltu.lib4j.tools.StringTool.isNotBlank(json)) {
+            user = com.codingtu.cooltu.lib4j.json.JsonTool.toBean(com.codingtu.cooltu_pre.bean.User.class, json);
         }
 
     }

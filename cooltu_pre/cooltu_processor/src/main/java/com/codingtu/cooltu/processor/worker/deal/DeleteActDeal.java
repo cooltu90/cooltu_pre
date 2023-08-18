@@ -5,11 +5,11 @@ import java.util.ArrayList;
 
 import javax.lang.model.element.Element;
 
-import cooltu.lib4j.data.bean.JavaInfo;
-import cooltu.lib4j.file.delete.FileDeleter;
-import cooltu.lib4j.file.read.FileReader;
-import cooltu.lib4j.file.read.ReadLine;
-import cooltu.lib4j.file.write.FileWriter;
+import com.codingtu.cooltu.lib4j.data.bean.JavaInfo;
+import com.codingtu.cooltu.lib4j.file.delete.FileDeleter;
+import com.codingtu.cooltu.lib4j.file.read.FileReader;
+import com.codingtu.cooltu.lib4j.file.read.ReadLine;
+import com.codingtu.cooltu.lib4j.file.write.FileWriter;
 import com.codingtu.cooltu.constant.Constant;
 import com.codingtu.cooltu.constant.Module;
 import com.codingtu.cooltu.processor.annotation.delete.DeleteAct;

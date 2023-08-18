@@ -4,8 +4,8 @@ import javax.annotation.processing.Messager;
 import javax.annotation.processing.ProcessingEnvironment;
 import javax.tools.Diagnostic;
 
-import cooltu.lib4j.config.LibApp;
-import cooltu.lib4j.config.LibConfigs;
+import com.codingtu.cooltu.lib4j.config.LibApp;
+import com.codingtu.cooltu.lib4j.config.LibConfigs;
 
 public class App extends LibApp {
 

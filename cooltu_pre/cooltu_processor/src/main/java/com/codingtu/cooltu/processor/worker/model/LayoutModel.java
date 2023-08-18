@@ -3,8 +3,8 @@ package com.codingtu.cooltu.processor.worker.model;
 import java.io.File;
 import java.util.List;
 
-import cooltu.lib4j.data.bean.JavaInfo;
-import cooltu.lib4j.file.read.FileReader;
+import com.codingtu.cooltu.lib4j.data.bean.JavaInfo;
+import com.codingtu.cooltu.lib4j.file.read.FileReader;
 
 import com.codingtu.cooltu.constant.Constant;
 

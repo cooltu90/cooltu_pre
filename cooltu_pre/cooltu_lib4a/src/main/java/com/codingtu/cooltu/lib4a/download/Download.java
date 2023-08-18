@@ -7,13 +7,10 @@ import android.os.Message;
 import androidx.annotation.NonNull;
 
 import com.codingtu.cooltu.constant.DownloadStatus;
-import com.codingtu.cooltu.lib4a.log.Logs;
 import com.codingtu.cooltu.lib4a.net.NetTool;
-import com.codingtu.cooltu.lib4a.net.api.API;
 import com.codingtu.cooltu.lib4a.net.api.CreateApi;
 import com.codingtu.cooltu.lib4a.net.bean.CoreSendParams;
 import com.codingtu.cooltu.lib4a.net.netback.NetBackI;
-import com.codingtu.cooltu.lib4a.tools.HandlerTool;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -23,7 +20,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.List;
 
-import cooltu.lib4j.tools.StringTool;
+import com.codingtu.cooltu.lib4j.tools.StringTool;
 import io.reactivex.Flowable;
 import okhttp3.ResponseBody;
 import retrofit2.Retrofit;

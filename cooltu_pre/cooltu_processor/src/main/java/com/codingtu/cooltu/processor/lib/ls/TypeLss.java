@@ -4,9 +4,9 @@ import java.util.List;
 
 import javax.lang.model.element.VariableElement;
 
-import cooltu.lib4j.tools.CountTool;
-import cooltu.lib4j.ts.Ts;
-import cooltu.lib4j.ts.each.Each;
+import com.codingtu.cooltu.lib4j.tools.CountTool;
+import com.codingtu.cooltu.lib4j.ts.Ts;
+import com.codingtu.cooltu.lib4j.ts.each.Each;
 import com.codingtu.cooltu.processor.lib.tools.ElementTools;
 
 public class TypeLss {

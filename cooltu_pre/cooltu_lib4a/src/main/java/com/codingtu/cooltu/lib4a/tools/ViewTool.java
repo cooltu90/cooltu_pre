@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import cooltu.lib4j.tools.StringTool;
+import com.codingtu.cooltu.lib4j.tools.StringTool;
 
 import com.codingtu.cooltu.lib4a.CoreApp;
 import com.codingtu.cooltu.lib4a.bean.WH;

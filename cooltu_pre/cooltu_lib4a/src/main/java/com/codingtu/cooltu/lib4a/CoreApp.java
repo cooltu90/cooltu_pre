@@ -4,8 +4,8 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 
-import cooltu.lib4j.config.LibApp;
-import cooltu.lib4j.config.LibConfigs;
+import com.codingtu.cooltu.lib4j.config.LibApp;
+import com.codingtu.cooltu.lib4j.config.LibConfigs;
 import com.codingtu.cooltu.lib4a.log.Logs;
 
 public abstract class CoreApp extends Application implements Thread.UncaughtExceptionHandler {

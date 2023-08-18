@@ -1,5 +1,6 @@
 package com.codingtu.cooltu.processor.worker.model;
 
+import com.codingtu.cooltu.constant.FullName;
 import com.codingtu.cooltu.processor.annotation.form.FormType;
 import com.codingtu.cooltu.processor.lib.bean.FormItemInfo;
 import com.codingtu.cooltu.processor.lib.tools.FormTool;
@@ -9,10 +10,10 @@ import com.codingtu.cooltu.processor.worker.model.base.SubBaseModel;
 import java.util.HashMap;
 import java.util.List;
 
-import cooltu.lib4j.data.map.ListValueMap;
-import cooltu.lib4j.tools.CountTool;
-import cooltu.lib4j.ts.Ts;
-import cooltu.lib4j.ts.each.Each;
+import com.codingtu.cooltu.lib4j.data.map.ListValueMap;
+import com.codingtu.cooltu.lib4j.tools.CountTool;
+import com.codingtu.cooltu.lib4j.ts.Ts;
+import com.codingtu.cooltu.lib4j.ts.each.Each;
 
 public class BindHandlerModel extends SubBaseModel implements BindHandlerModelInterface {
 
@@ -68,6 +69,21 @@ public class BindHandlerModel extends SubBaseModel implements BindHandlerModelIn
 
     }
 
+    @Override
+    public void setTagFor_ListValueMapFullName(StringBuilder sb) {
+        sb.append(FullName.LIST_VALUE_MAP);
+    }
+
+    @Override
+    public void setTagFor_TsFullName(StringBuilder sb) {
+        sb.append(FullName.TS);
+    }
+
+    @Override
+    public void setTagFor_EachFullName(StringBuilder sb) {
+        sb.append(FullName.EACH);
+    }
+
     private void setTagFor_cases(StringBuilder sb, List<FormItemInfo> etTvItems, int index) {
         if (!CountTool.isNull(etTvItems)) {
             addLnTag(sb, "            if (msg.what == [0]) {", index);
@@ -116,11 +132,11 @@ public class BindHandlerModel extends SubBaseModel implements BindHandlerModelIn
         }
 
 
-        private cooltu.lib4j.data.map.ListValueMap<Integer, com.codingtu.cooltu.lib4a.form.FormLink> links;
+        private [[ListValueMapFullName]]<Integer, com.codingtu.cooltu.lib4a.form.FormLink> links;
 
-        private cooltu.lib4j.data.map.ListValueMap<Integer, com.codingtu.cooltu.lib4a.form.FormLink> getLinks() {
+        private [[ListValueMapFullName]]<Integer, com.codingtu.cooltu.lib4a.form.FormLink> getLinks() {
             if (links == null) {
-                links = new cooltu.lib4j.data.map.ListValueMap<>();
+                links = new [[ListValueMapFullName]]<>();
             }
             return links;
         }
@@ -130,7 +146,7 @@ public class BindHandlerModel extends SubBaseModel implements BindHandlerModelIn
         }
 
         private void link(int id) {
-            cooltu.lib4j.ts.Ts.ls(getLinks().get(id), new cooltu.lib4j.ts.each.Each<com.codingtu.cooltu.lib4a.form.FormLink>() {
+            [[TsFullName]].ls(getLinks().get(id), new [[EachFullName]]<com.codingtu.cooltu.lib4a.form.FormLink>() {
                 @Override
                 public boolean each(int position, com.codingtu.cooltu.lib4a.form.FormLink formLink) {
                     formLink.link();

@@ -8,15 +8,14 @@ import java.util.List;
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.VariableElement;
 
-import cooltu.lib4j.tools.ClassTool;
-import cooltu.lib4j.tools.ConvertTool;
-import cooltu.lib4j.tools.CountTool;
-import cooltu.lib4j.tools.StringTool;
+import com.codingtu.cooltu.lib4j.tools.ClassTool;
+import com.codingtu.cooltu.lib4j.tools.ConvertTool;
+import com.codingtu.cooltu.lib4j.tools.CountTool;
+import com.codingtu.cooltu.lib4j.tools.StringTool;
 
 import com.codingtu.cooltu.processor.annotation.net.Default;
 import com.codingtu.cooltu.processor.annotation.net.Param;
 import com.codingtu.cooltu.processor.lib.bean.NetMethodDeal;
-import com.codingtu.cooltu.processor.lib.log.Logs;
 import com.codingtu.cooltu.processor.lib.ls.TypeLss;
 import com.codingtu.cooltu.processor.lib.tools.ElementTools;
 import com.codingtu.cooltu.processor.modelinterface.NetMethodModelInterface;
@@ -124,7 +123,9 @@ public class NetMethodModel extends SubBaseModel implements NetMethodModelInterf
             VariableElement ve = parameters.get(0);
             String type = ElementTools.getType(ve);
             if (ClassTool.isList(type)) {
-                addTag(sb, "                        NetTool.toJsonBody(cooltu.lib4j.json.JsonTool.toJson([xx]))", ElementTools.simpleName(ve));
+                addTag(sb, "                        NetTool.toJsonBody([JsonTool].toJson([xx]))",
+                        FullName.JSON_TOOL,
+                        ElementTools.simpleName(ve));
             } else {
                 addTag(sb, "                        NetTool.toJsonBody(jo.toJson())");
             }

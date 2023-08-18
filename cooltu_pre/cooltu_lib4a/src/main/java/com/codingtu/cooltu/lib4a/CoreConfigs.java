@@ -4,8 +4,8 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import cooltu.lib4j.config.LibConfigs;
-import cooltu.lib4j.log.LibLogs;
+import com.codingtu.cooltu.lib4j.config.LibConfigs;
+import com.codingtu.cooltu.lib4j.log.LibLogs;
 
 import com.codingtu.cooltu.lib4a.connect.CoreConnectConfigs;
 import com.codingtu.cooltu.lib4a.net.retrofit.OkHttpClientCreater;

@@ -9,7 +9,7 @@ import com.codingtu.cooltu.lib4a.act.viewholder.CoreAdapterVH;
 import java.lang.reflect.Constructor;
 import java.util.List;
 
-import cooltu.lib4j.tools.CountTool;
+import com.codingtu.cooltu.lib4j.tools.CountTool;
 
 public abstract class CoreListAdapter<VH extends CoreAdapterVH, T> extends CoreAdapter<VH> {
     protected List<T> items;

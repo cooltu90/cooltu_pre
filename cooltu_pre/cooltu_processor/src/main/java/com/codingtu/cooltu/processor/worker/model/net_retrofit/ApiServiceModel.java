@@ -5,9 +5,9 @@ import java.util.List;
 
 import javax.lang.model.element.ExecutableElement;
 
-import cooltu.lib4j.data.bean.JavaInfo;
-import cooltu.lib4j.ts.Ts;
-import cooltu.lib4j.ts.each.Each;
+import com.codingtu.cooltu.lib4j.data.bean.JavaInfo;
+import com.codingtu.cooltu.lib4j.ts.Ts;
+import com.codingtu.cooltu.lib4j.ts.each.Each;
 import com.codingtu.cooltu.processor.modelinterface.ApiServiceModelInterface;
 import com.codingtu.cooltu.processor.worker.model.base.BaseModel;
 

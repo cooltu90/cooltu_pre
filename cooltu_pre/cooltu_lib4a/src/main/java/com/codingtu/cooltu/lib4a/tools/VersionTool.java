@@ -2,7 +2,7 @@ package com.codingtu.cooltu.lib4a.tools;
 
 import android.os.Build;
 
-import cooltu.lib4j.tools.CountTool;
+import com.codingtu.cooltu.lib4j.tools.CountTool;
 
 public class VersionTool {
 

@@ -4,8 +4,8 @@ import android.annotation.SuppressLint;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import cooltu.lib4j.ts.Ts;
-import cooltu.lib4j.ts.getter.Getter;
+import com.codingtu.cooltu.lib4j.ts.Ts;
+import com.codingtu.cooltu.lib4j.ts.getter.Getter;
 
 @SuppressLint("MissingPermission")
 public class NetConnectTool {

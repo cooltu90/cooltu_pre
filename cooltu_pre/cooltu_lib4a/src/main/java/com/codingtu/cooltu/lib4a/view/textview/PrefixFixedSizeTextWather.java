@@ -5,7 +5,7 @@ import android.widget.EditText;
 import com.codingtu.cooltu.lib4a.act.Destroys;
 import com.codingtu.cooltu.lib4a.act.OnDestroy;
 
-import cooltu.lib4j.tools.StringTool;
+import com.codingtu.cooltu.lib4j.tools.StringTool;
 
 import com.codingtu.cooltu.lib4a.tools.ViewTool;
 

@@ -10,9 +10,12 @@ public class FullName {
     public static String BASE_ACT = "androidx.appcompat.app.AppCompatActivity";
     public static String BASE_FRAGMENT = "androidx.fragment.app.Fragment";
     //可变的
-    public static final String STRING_TOOL = "cooltu.lib4j.tools.StringTool";
-    public static final String JSON_TOOL = "cooltu.lib4j.json.JsonTool";
-    public static final String JO = "cooltu.lib4j.json.base.JO";
+    public static final String STRING_TOOL = "com.codingtu.cooltu.lib4j.tools.StringTool";
+    public static final String JSON_TOOL = "com.codingtu.cooltu.lib4j.json.JsonTool";
+    public static final String JO = "com.codingtu.cooltu.lib4j.json.base.JO";
+    public static final String TS = "com.codingtu.cooltu.lib4j.ts.Ts";
+    public static final String EACH = "com.codingtu.cooltu.lib4j.ts.each.Each";
+    public static final String LIST_VALUE_MAP = "com.codingtu.cooltu.lib4j.data.map.ListValueMap";
     //
     public static final String RES_FOR = "com.codingtu.cooltu.processor.annotation.resource.ResFor";
     public static final String RADIO_GROUP = "com.codingtu.cooltu.lib4a.view.combine.RadioGroup";
