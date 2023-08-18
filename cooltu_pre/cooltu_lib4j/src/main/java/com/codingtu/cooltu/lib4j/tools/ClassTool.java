@@ -90,6 +90,14 @@ public class ClassTool {
         return false;
     }
 
+    //    byte.class,
+    //    short.class,
+    //    char.class,
+    //    int.class,
+    //    long.class,
+    //    float.class,
+    //    double.class,
+    //    boolean.class
     public static final Class[] BASE_CLASSES = new Class[]{
             String.class,
             Integer.class,

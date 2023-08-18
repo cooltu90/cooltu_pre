@@ -1,23 +1,27 @@
 package com.codingtu.cooltu.test;
 
-import com.codingtu.cooltu.lib4j.ts.Ts;
-import com.codingtu.cooltu.lib4j.ts.finalgetter.FinalGetter;
+import com.codingtu.cooltu.lib4j.fake.Fake;
+import com.codingtu.cooltu.lib4j.tss.TS;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Test {
     public static void main(String[] args) {
 
         MyApp.init();
 
-        ArrayList<Integer> strings = new ArrayList<>();
-        strings.add(1);
-        strings.add(5);
-        strings.add(10);
-        strings.add(2);
-        strings.add(3);
+        String[] strs = new String[3];
+        int[] ints = new int[]{1, 3, 4};
+        List<String> names = Fake.names();
+        names.add("lisi");
 
-        int[] nums = new int[]{12, 39, 23, 42, 35, 11, 3};
+        int lisi = TS.ts(names).index(new TS.GetFilter<String>() {
+            @Override
+            public boolean get(int position, String s) {
+                return s.equals("lisi");
+            }
+        });
 
+        Logs.i(lisi);
     }
 }
