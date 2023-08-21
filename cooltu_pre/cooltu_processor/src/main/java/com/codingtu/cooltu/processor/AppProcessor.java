@@ -1,5 +1,25 @@
 package com.codingtu.cooltu.processor;
 
+import com.codingtu.cooltu.constant.Constant;
+import com.codingtu.cooltu.constant.FileType;
+import com.codingtu.cooltu.constant.Pkg;
+import com.codingtu.cooltu.constant.Suffix;
+import com.codingtu.cooltu.lib4j.data.bean.JavaInfo;
+import com.codingtu.cooltu.lib4j.file.list.FileLister;
+import com.codingtu.cooltu.lib4j.file.list.ListFile;
+import com.codingtu.cooltu.lib4j.file.read.FileReader;
+import com.codingtu.cooltu.lib4j.file.write.FileWriter;
+import com.codingtu.cooltu.lib4j.os.Os;
+import com.codingtu.cooltu.lib4j.os.Ss;
+import com.codingtu.cooltu.lib4j.tools.ClassTool;
+import com.codingtu.cooltu.lib4j.tools.CountTool;
+import com.codingtu.cooltu.processor.lib.model.ModelMap;
+import com.codingtu.cooltu.processor.lib.tools.App;
+import com.codingtu.cooltu.processor.lib.tools.IdTools;
+import com.codingtu.cooltu.processor.lib.tools.NameTools;
+import com.codingtu.cooltu.processor.lib.tools.TagTools;
+import com.codingtu.cooltu.processor.worker.SupportTypes;
+import com.codingtu.cooltu.processor.worker.deal.base.BaseDeal;
 import com.google.auto.service.AutoService;
 import com.sun.source.util.Trees;
 
@@ -16,29 +36,6 @@ import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
-
-import com.codingtu.cooltu.lib4j.data.bean.JavaInfo;
-import com.codingtu.cooltu.lib4j.file.list.FileLister;
-import com.codingtu.cooltu.lib4j.file.list.ListFile;
-import com.codingtu.cooltu.lib4j.file.read.FileReader;
-import com.codingtu.cooltu.lib4j.file.write.FileWriter;
-import com.codingtu.cooltu.lib4j.tools.ClassTool;
-import com.codingtu.cooltu.lib4j.tools.CountTool;
-import com.codingtu.cooltu.lib4j.ts.Ts;
-import com.codingtu.cooltu.lib4j.ts.each.Each;
-
-import com.codingtu.cooltu.constant.Constant;
-import com.codingtu.cooltu.constant.FileType;
-import com.codingtu.cooltu.constant.Pkg;
-import com.codingtu.cooltu.constant.Suffix;
-
-import com.codingtu.cooltu.processor.lib.model.ModelMap;
-import com.codingtu.cooltu.processor.lib.tools.App;
-import com.codingtu.cooltu.processor.lib.tools.IdTools;
-import com.codingtu.cooltu.processor.lib.tools.NameTools;
-import com.codingtu.cooltu.processor.lib.tools.TagTools;
-import com.codingtu.cooltu.processor.worker.SupportTypes;
-import com.codingtu.cooltu.processor.worker.deal.base.BaseDeal;
 
 @AutoService(Processor.class)
 public class AppProcessor extends AbstractProcessor {
@@ -104,7 +101,7 @@ public class AppProcessor extends AbstractProcessor {
         newLines.add("");
         newLines.add("public interface " + typeName + " {");
         newLines.add("");
-        Ts.ls(tags, new Each<String>() {
+        Os.os(tags).ls(new Os.EachOs<String>() {
             @Override
             public boolean each(int position, String s) {
                 //newLines.add("    public static final String " + NameTools.toStaticType(s) + " = \"" + s + "\";");
@@ -116,7 +113,7 @@ public class AppProcessor extends AbstractProcessor {
 
         newLines.add("    default List<String> getTempLinesArray() {");
         newLines.add("        ArrayList<String> lines = new ArrayList<>();");
-        Ts.ls(lines, new Each<String>() {
+        Os.os(lines).ls(new Os.EachOs<String>() {
             @Override
             public boolean each(int position, String s) {
                 newLines.add("        lines.add(\"" + s.replace("\"", "\\\"") + "\");");
@@ -137,7 +134,7 @@ public class AppProcessor extends AbstractProcessor {
 //                Names.PATH_SRC_MAIN_JAVA + NameTools.pkgToPath(Names.PKG_DEAL);
 //        File file = new File(path);
 
-        Ts.ls(SupportTypes.types(), new Each<Class>() {
+        Os.os(SupportTypes.types()).ls(new Os.EachOs<Class>() {
             @Override
             public boolean each(int position, Class aClass) {
                 supportTypes.add(aClass.getCanonicalName());
@@ -158,7 +155,7 @@ public class AppProcessor extends AbstractProcessor {
 
     @Override
     public boolean process(Set<? extends TypeElement> set, final RoundEnvironment roundEnv) {
-        Ts.ls(SupportTypes.types(), new Each<Class>() {
+        Os.os(SupportTypes.types()).ls(new Os.EachOs<Class>() {
             @Override
             public boolean each(int position, Class clazz) {
                 String className = clazz.getCanonicalName();
@@ -168,9 +165,9 @@ public class AppProcessor extends AbstractProcessor {
                 final Class dealClass = ClassTool.getClass(dealFullName);
                 if (dealClass != null) {
                     Set<Element> es = roundEnv.getElementsAnnotatedWith(annoClass);
-                    Ts.ls(es, new Each<Element>() {
+                    Ss.ss(es).ls(new Ss.EachSs<Element>() {
                         @Override
-                        public boolean each(int position, Element element) {
+                        public boolean each(Element element) {
                             try {
                                 BaseDeal deal = (BaseDeal) dealClass.newInstance();
                                 deal.dealElement(element);

@@ -1,29 +1,29 @@
-package com.codingtu.cooltu.lib4j.tts.ts;
+package com.codingtu.cooltu.lib4j.os.impl;
 
 import com.codingtu.cooltu.lib4j.data.bean.Symbol;
-import com.codingtu.cooltu.lib4j.tts.Ts;
+import com.codingtu.cooltu.lib4j.os.Os;
 
-public class SymbolTs<T extends Symbol> extends Ts<T> {
+public class SymbolOs<T extends Symbol> extends Os<T> {
 
-    protected Ts<T> ts;
+    protected Os<T> os;
 
-    public SymbolTs(Ts<T> ts) {
-        this.ts = ts;
+    public SymbolOs(Os<T> os) {
+        this.os = os;
     }
 
     @Override
     public T get(int position) {
-        return ts.get(position);
+        return os.get(position);
     }
 
     @Override
     public int count() {
-        return ts.count();
+        return os.count();
     }
 
     @Override
     public void set(int index, T target) {
-        ts.set(index, target);
+        os.set(index, target);
     }
 
     protected Filter<T> symbolFilter(T target) {

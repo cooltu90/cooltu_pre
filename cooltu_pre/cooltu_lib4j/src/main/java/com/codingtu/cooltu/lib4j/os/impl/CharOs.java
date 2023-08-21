@@ -1,13 +1,13 @@
-package com.codingtu.cooltu.lib4j.tts.ts;
+package com.codingtu.cooltu.lib4j.os.impl;
 
 import com.codingtu.cooltu.lib4j.tools.CountTool;
-import com.codingtu.cooltu.lib4j.tts.Ts;
+import com.codingtu.cooltu.lib4j.os.Os;
 
-public class CharTs extends Ts<Character> {
+public class CharOs extends Os<Character> {
 
     private char[] ts;
 
-    public CharTs(char... ts) {
+    public CharOs(char... ts) {
         this.ts = ts;
     }
 

@@ -1,15 +1,15 @@
-package com.codingtu.cooltu.lib4j.tts.ts;
+package com.codingtu.cooltu.lib4j.os.impl;
 
 import com.codingtu.cooltu.lib4j.tools.CountTool;
-import com.codingtu.cooltu.lib4j.tts.Ts;
+import com.codingtu.cooltu.lib4j.os.Os;
 
 import java.util.List;
 
-public class ListTs<T> extends Ts<T> {
+public class ListOs<T> extends Os<T> {
 
     private List<T> ts;
 
-    public ListTs(List<T> ts) {
+    public ListOs(List<T> ts) {
         this.ts = ts;
     }
 

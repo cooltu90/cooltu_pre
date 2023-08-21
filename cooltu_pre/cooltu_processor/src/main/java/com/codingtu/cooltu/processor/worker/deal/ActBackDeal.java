@@ -9,7 +9,7 @@ import javax.lang.model.element.VariableElement;
 
 import com.codingtu.cooltu.constant.FullName;
 import com.codingtu.cooltu.processor.lib.ls.EachType;
-import com.codingtu.cooltu.processor.lib.ls.TypeLss;
+import com.codingtu.cooltu.processor.lib.ls.TypeLs;
 import com.codingtu.cooltu.processor.lib.tools.NameTools;
 import com.codingtu.cooltu.processor.worker.deal.base.BaseDeal;
 import com.codingtu.cooltu.processor.worker.model.ActBackIntentModel;
@@ -22,7 +22,7 @@ public class ActBackDeal extends BaseDeal {
         TypeElement typeElement = getTypeElement(element);
 
         List<? extends VariableElement> parameters = ((ExecutableElement) element).getParameters();
-        TypeLss.ls(parameters, new EachType() {
+        TypeLs.ls(parameters, new EachType() {
             @Override
             public void each(int position, String type, String name) {
                 if (!FullName.INTENT.equals(type)) {

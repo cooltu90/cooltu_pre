@@ -13,7 +13,7 @@ import com.codingtu.cooltu.lib4j.tools.ConvertTool;
 import com.codingtu.cooltu.lib4j.tools.StringTool;
 import com.codingtu.cooltu.processor.annotation.net.NetBack;
 import com.codingtu.cooltu.processor.lib.ls.EachType;
-import com.codingtu.cooltu.processor.lib.ls.TypeLss;
+import com.codingtu.cooltu.processor.lib.ls.TypeLs;
 import com.codingtu.cooltu.processor.lib.tools.ElementTools;
 import com.codingtu.cooltu.processor.lib.tools.NameTools;
 import com.codingtu.cooltu.processor.modelinterface.ActBaseNetBackModelInterface;
@@ -61,7 +61,7 @@ public class ActBaseNetBackModel extends SubBaseModel implements ActBaseNetBackM
         String mockName = Pkg.MOCK + "." + ConvertTool.toClassType(methodBaseName) + Suffix.MOCK;
 
         //params
-        TypeLss.ls(netBackElement.getParameters(), new EachType() {
+        TypeLs.ls(netBackElement.getParameters(), new EachType() {
             @Override
             public void each(int position, String type, String name) {
                 if (position != 0) {

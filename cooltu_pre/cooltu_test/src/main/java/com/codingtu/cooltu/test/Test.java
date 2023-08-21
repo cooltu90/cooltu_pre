@@ -1,17 +1,16 @@
 package com.codingtu.cooltu.test;
 
-import com.codingtu.cooltu.lib4j.data.bean.maxmin.MaxMin;
-import com.codingtu.cooltu.lib4j.tts.Ts;
+import com.codingtu.cooltu.lib4j.os.Os;
+import com.codingtu.cooltu.lib4j.os.Ss;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 
 public class Test {
     public static void main(String[] args) {
 
         MyApp.init();
 
-        List<User> users = new ArrayList<>();
+        HashSet<User> users = new HashSet<>();
         users.add(new User("李四", 15));
         users.add(new User("赵一饭", 19));
         users.add(new User("王柳", 66));
@@ -19,17 +18,14 @@ public class Test {
         users.add(new User("孟昭阳", 34));
         users.add(new User("张三", 56));
 
-        User target = new User("张三", 56);
+        Ss.ss(users).os(new Os.EachOs<User>() {
 
-        MaxMin<User> maxMin = Ts.ts(users).maxMin(new Ts.NowMax<User>() {
             @Override
-            public boolean isNowMax(User last, User now) {
-                return now.age > last.age;
+            public boolean each(int position, User o) {
+                Logs.i("position:" + position + " " + o);
+                return false;
             }
         });
-
-        Logs.i(maxMin.max);
-        Logs.i(maxMin.min);
 
     }
 }

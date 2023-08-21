@@ -1,13 +1,13 @@
-package com.codingtu.cooltu.lib4j.tts.ts;
+package com.codingtu.cooltu.lib4j.os.impl;
 
 import com.codingtu.cooltu.lib4j.tools.CountTool;
-import com.codingtu.cooltu.lib4j.tts.Ts;
+import com.codingtu.cooltu.lib4j.os.Os;
 
-public class BooleanTs extends Ts<Boolean> {
+public class BooleanOs extends Os<Boolean> {
 
     private boolean[] ts;
 
-    public BooleanTs(boolean... ts) {
+    public BooleanOs(boolean... ts) {
         this.ts = ts;
     }
 

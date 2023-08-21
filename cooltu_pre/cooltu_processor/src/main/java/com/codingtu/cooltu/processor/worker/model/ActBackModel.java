@@ -13,7 +13,7 @@ import com.codingtu.cooltu.lib4j.tools.ConvertTool;
 
 import com.codingtu.cooltu.processor.annotation.ui.ActBack;
 import com.codingtu.cooltu.processor.lib.ls.EachType;
-import com.codingtu.cooltu.processor.lib.ls.TypeLss;
+import com.codingtu.cooltu.processor.lib.ls.TypeLs;
 import com.codingtu.cooltu.processor.lib.tools.NameTools;
 import com.codingtu.cooltu.processor.modelinterface.ActBackModelInterface;
 import com.codingtu.cooltu.processor.worker.model.base.SubBaseModel;
@@ -74,7 +74,7 @@ public class ActBackModel extends SubBaseModel implements ActBackModelInterface 
 
     @Override
     public void setTagFor_params(StringBuilder sb) {
-        TypeLss.ls(parameters, new EachType() {
+        TypeLs.ls(parameters, new EachType() {
             @Override
             public void each(int position, String type, String name) {
                 if (position != 0) {

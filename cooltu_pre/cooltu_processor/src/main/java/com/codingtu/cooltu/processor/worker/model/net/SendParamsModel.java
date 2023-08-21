@@ -7,7 +7,7 @@ import javax.lang.model.element.VariableElement;
 
 import com.codingtu.cooltu.lib4j.data.bean.JavaInfo;
 import com.codingtu.cooltu.processor.lib.ls.EachType;
-import com.codingtu.cooltu.processor.lib.ls.TypeLss;
+import com.codingtu.cooltu.processor.lib.ls.TypeLs;
 import com.codingtu.cooltu.processor.modelinterface.SendParamsModelInterface;
 import com.codingtu.cooltu.processor.worker.model.base.BaseModel;
 
@@ -33,7 +33,7 @@ public class SendParamsModel extends BaseModel implements SendParamsModelInterfa
 
     @Override
     public void setTagFor_fields(StringBuilder fieldsSb) {
-        TypeLss.ls(parameters, new EachType() {
+        TypeLs.ls(parameters, new EachType() {
             @Override
             public void each(int position, String type, String name) {
                 addLnTag(fieldsSb, "    public [type] [age];", type, name);

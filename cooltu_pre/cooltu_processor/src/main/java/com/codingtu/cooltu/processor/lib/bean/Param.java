@@ -5,14 +5,14 @@ import java.util.List;
 import javax.lang.model.element.VariableElement;
 
 import com.codingtu.cooltu.processor.lib.ls.EachType;
-import com.codingtu.cooltu.processor.lib.ls.TypeLss;
+import com.codingtu.cooltu.processor.lib.ls.TypeLs;
 
 public class Param {
     StringBuilder sb = new StringBuilder();
     StringBuilder sb1 = new StringBuilder();
 
     public Param(List<String> classes, String[] paramNames, final EachType each) {
-        TypeLss.ls(classes, paramNames, new EachType() {
+        TypeLs.ls(classes, paramNames, new EachType() {
             @Override
             public void each(int position, String type, String name) {
                 add(position, type, name);
@@ -23,7 +23,7 @@ public class Param {
     }
 
     public Param(List<? extends VariableElement> ps, final EachType eachType) {
-        TypeLss.ls(ps, new EachType() {
+        TypeLs.ls(ps, new EachType() {
             @Override
             public void each(int position, String type, String name) {
                 add(position, type, name);

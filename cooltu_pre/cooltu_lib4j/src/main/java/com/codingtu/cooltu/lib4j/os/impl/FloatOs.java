@@ -1,13 +1,13 @@
-package com.codingtu.cooltu.lib4j.tts.ts;
+package com.codingtu.cooltu.lib4j.os.impl;
 
 import com.codingtu.cooltu.lib4j.tools.CountTool;
-import com.codingtu.cooltu.lib4j.tts.Ts;
+import com.codingtu.cooltu.lib4j.os.Os;
 
-public class FloatTs extends Ts<Float> {
+public class FloatOs extends Os<Float> {
 
     private float[] ts;
 
-    public FloatTs(float... ts) {
+    public FloatOs(float... ts) {
         this.ts = ts;
     }
 

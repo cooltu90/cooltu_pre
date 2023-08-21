@@ -16,7 +16,7 @@ import com.codingtu.cooltu.lib4j.tools.StringTool;
 import com.codingtu.cooltu.processor.annotation.net.Default;
 import com.codingtu.cooltu.processor.annotation.net.Param;
 import com.codingtu.cooltu.processor.lib.bean.NetMethodDeal;
-import com.codingtu.cooltu.processor.lib.ls.TypeLss;
+import com.codingtu.cooltu.processor.lib.ls.TypeLs;
 import com.codingtu.cooltu.processor.lib.tools.ElementTools;
 import com.codingtu.cooltu.processor.modelinterface.NetMethodModelInterface;
 import com.codingtu.cooltu.processor.worker.model.base.SubBaseModel;
@@ -52,7 +52,7 @@ public class NetMethodModel extends SubBaseModel implements NetMethodModelInterf
 
     @Override
     public void setTagFor_params(StringBuilder sb) {
-        TypeLss.ls(parameters, new TypeLss.EachTypePlus() {
+        TypeLs.ls(parameters, new TypeLs.EachTypePlus() {
             private int index = 0;
 
             @Override
@@ -105,7 +105,7 @@ public class NetMethodModel extends SubBaseModel implements NetMethodModelInterf
     public void setTagFor_invokeParams(StringBuilder sb) {
         boolean isJsonBody = netMethodDeal.isJsonBody();
 
-        TypeLss.ls(parameters, new TypeLss.EachTypePlus() {
+        TypeLs.ls(parameters, new TypeLs.EachTypePlus() {
             @Override
             public void each(int position, VariableElement ve, String type, String name) {
                 Param param = ve.getAnnotation(Param.class);
@@ -147,7 +147,7 @@ public class NetMethodModel extends SubBaseModel implements NetMethodModelInterf
         }
 
 
-        TypeLss.ls(parameters, new TypeLss.EachTypePlus() {
+        TypeLs.ls(parameters, new TypeLs.EachTypePlus() {
             @Override
             public void each(int position, VariableElement ve, String type, String name) {
                 Default aDefault = ve.getAnnotation(Default.class);
@@ -180,7 +180,7 @@ public class NetMethodModel extends SubBaseModel implements NetMethodModelInterf
             VariableElement ve = parameters.get(0);
             if (!ClassTool.isList(ElementTools.getType(ve))) {
                 addLnTag(sb, "                [JO] jo = [JsonTool].createJO();", FullName.JO, FullName.JSON_TOOL);
-                TypeLss.ls(ee.getParameters(), new TypeLss.EachTypePlus() {
+                TypeLs.ls(ee.getParameters(), new TypeLs.EachTypePlus() {
                     @Override
                     public void each(int position, VariableElement ve, String type, String name) {
                         Param param = ve.getAnnotation(Param.class);

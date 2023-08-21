@@ -22,7 +22,7 @@ import com.codingtu.cooltu.lib4j.ts.each.Each;
 import com.codingtu.cooltu.processor.annotation.ui.ActBack;
 import com.codingtu.cooltu.processor.annotation.ui.InBaseActBack;
 import com.codingtu.cooltu.processor.lib.ls.EachType;
-import com.codingtu.cooltu.processor.lib.ls.TypeLss;
+import com.codingtu.cooltu.processor.lib.ls.TypeLs;
 import com.codingtu.cooltu.processor.lib.tools.NameTools;
 import com.codingtu.cooltu.processor.lib.tools.ParamTools;
 import com.codingtu.cooltu.processor.modelinterface.ActBackIntentModelInterface;
@@ -99,7 +99,7 @@ public class ActBackIntentModel extends SingleCoreToolsBaseModel implements ActB
         addLnTag(sb, "    public static Intent [methodName]([params]) {", methodName, params);
         addLnTag(sb, "        Intent intent = new Intent();");
 
-        TypeLss.ls(parameters, new EachType() {
+        TypeLs.ls(parameters, new EachType() {
             @Override
             public void each(int position, String type, String name) {
                 String line = null;

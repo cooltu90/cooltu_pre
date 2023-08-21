@@ -1,21 +1,21 @@
-package com.codingtu.cooltu.lib4j.tts;
+package com.codingtu.cooltu.lib4j.os;
 
 import com.codingtu.cooltu.lib4j.data.bean.Symbol;
 import com.codingtu.cooltu.lib4j.data.bean.maxmin.MaxMin;
 import com.codingtu.cooltu.lib4j.data.map.ListValueMap;
 import com.codingtu.cooltu.lib4j.tools.CountTool;
-import com.codingtu.cooltu.lib4j.tts.ts.ArrayTs;
-import com.codingtu.cooltu.lib4j.tts.ts.BooleanTs;
-import com.codingtu.cooltu.lib4j.tts.ts.ByteTs;
-import com.codingtu.cooltu.lib4j.tts.ts.CharTs;
-import com.codingtu.cooltu.lib4j.tts.ts.DoubleTs;
-import com.codingtu.cooltu.lib4j.tts.ts.FloatTs;
-import com.codingtu.cooltu.lib4j.tts.ts.IntTs;
-import com.codingtu.cooltu.lib4j.tts.ts.ListSymbolTs;
-import com.codingtu.cooltu.lib4j.tts.ts.ListTs;
-import com.codingtu.cooltu.lib4j.tts.ts.LongTs;
-import com.codingtu.cooltu.lib4j.tts.ts.ShortTs;
-import com.codingtu.cooltu.lib4j.tts.ts.SymbolTs;
+import com.codingtu.cooltu.lib4j.os.impl.ArrayOs;
+import com.codingtu.cooltu.lib4j.os.impl.BooleanOs;
+import com.codingtu.cooltu.lib4j.os.impl.ByteOs;
+import com.codingtu.cooltu.lib4j.os.impl.CharOs;
+import com.codingtu.cooltu.lib4j.os.impl.DoubleOs;
+import com.codingtu.cooltu.lib4j.os.impl.FloatOs;
+import com.codingtu.cooltu.lib4j.os.impl.IntOs;
+import com.codingtu.cooltu.lib4j.os.impl.ListSymbolOs;
+import com.codingtu.cooltu.lib4j.os.impl.ListOs;
+import com.codingtu.cooltu.lib4j.os.impl.LongOs;
+import com.codingtu.cooltu.lib4j.os.impl.ShortOs;
+import com.codingtu.cooltu.lib4j.os.impl.SymbolOs;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,63 +24,69 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class Ts<T> {
+public abstract class Os<O> {
 
     private int step = 1;
 
-    public abstract T get(int position);
+    public abstract O get(int position);
 
     public abstract int count();
 
-    public abstract void set(int index, T target);
+    public abstract void set(int index, O target);
 
-    public static <T extends Symbol> ListSymbolTs<T> tsSymbol(List<T> ts) {
-        return new ListSymbolTs<>(ts(ts));
+    /**************************************************
+     *
+     *
+     *
+     **************************************************/
+
+    public static <O extends Symbol> ListSymbolOs<O> tsSymbol(List<O> os) {
+        return new ListSymbolOs<>(os(os));
     }
 
-    public static <T extends Symbol> SymbolTs<T> tsSymbol(T... ts) {
-        return new SymbolTs<T>(ts(ts));
+    public static <O extends Symbol> SymbolOs<O> tsSymbol(O... os) {
+        return new SymbolOs<O>(os(os));
     }
 
-    public static <T> ListTs<T> ts(List<T> ts) {
-        return new ListTs(ts);
+    public static <T> ListOs<T> os(List<T> os) {
+        return new ListOs(os);
     }
 
 
-    public static <T> Ts<T> ts(T... ts) {
-        return new ArrayTs(ts);
+    public static <O> Os<O> os(O... os) {
+        return new ArrayOs(os);
     }
 
-    public static Ts<Byte> ts(byte... ts) {
-        return new ByteTs(ts);
+    public static Os<Byte> os(byte... os) {
+        return new ByteOs(os);
     }
 
-    public static Ts<Short> ts(short... ts) {
-        return new ShortTs(ts);
+    public static Os<Short> os(short... os) {
+        return new ShortOs(os);
     }
 
-    public static Ts<Character> ts(char... ts) {
-        return new CharTs(ts);
+    public static Os<Character> os(char... os) {
+        return new CharOs(os);
     }
 
-    public static Ts<Integer> ts(int... ts) {
-        return new IntTs(ts);
+    public static Os<Integer> os(int... os) {
+        return new IntOs(os);
     }
 
-    public static Ts<Long> ts(long... ts) {
-        return new LongTs(ts);
+    public static Os<Long> os(long... os) {
+        return new LongOs(os);
     }
 
-    public static Ts<Float> ts(float... ts) {
-        return new FloatTs(ts);
+    public static Os<Float> os(float... os) {
+        return new FloatOs(os);
     }
 
-    public static Ts<Double> ts(double... ts) {
-        return new DoubleTs(ts);
+    public static Os<Double> os(double... os) {
+        return new DoubleOs(os);
     }
 
-    public static Ts<Boolean> ts(boolean... ts) {
-        return new BooleanTs(ts);
+    public static Os<Boolean> os(boolean... os) {
+        return new BooleanOs(os);
     }
 
     /**************************************************
@@ -89,37 +95,37 @@ public abstract class Ts<T> {
      *
      **************************************************/
 
-    public interface Each<T> {
-        boolean each(int position, T t);
+    public interface EachOs<O> {
+        boolean each(int position, O o);
     }
 
-    public Ts<T> step(int step) {
+    public Os<O> step(int step) {
         this.step = step;
         return this;
     }
 
-    public void ls(Each<T> each) {
-        if (each == null) {
+    public void ls(EachOs<O> eachOs) {
+        if (eachOs == null) {
             return;
         }
 
         int count = count();
         for (int i = 0; i < count; i += step) {
-            if (each.each(i, get(i))) {
+            if (eachOs.each(i, get(i))) {
                 return;
             }
         }
     }
 
 
-    public void rls(Each<T> each) {
-        if (each == null) {
+    public void rls(EachOs<O> eachOs) {
+        if (eachOs == null) {
             return;
         }
 
         int count = count();
         for (int i = count - 1; i >= 0; i -= step) {
-            if (each.each(i, get(i))) {
+            if (eachOs.each(i, get(i))) {
                 return;
             }
         }
@@ -132,20 +138,20 @@ public abstract class Ts<T> {
      *
      **************************************************/
 
-    public interface Filter<T> {
-        boolean get(int position, T t);
+    public interface Filter<O> {
+        boolean get(int position, O o);
     }
 
-    public T get(Filter<T> filter) {
+    public O get(Filter<O> filter) {
         if (filter == null)
             return null;
 
         int count = count();
-        T t = null;
+        O o = null;
         for (int i = 0; i < count; i++) {
-            t = get(i);
-            if (filter.get(i, t)) {
-                return t;
+            o = get(i);
+            if (filter.get(i, o)) {
+                return o;
             }
         }
         return null;
@@ -156,7 +162,7 @@ public abstract class Ts<T> {
      * has
      *
      **************************************************/
-    public boolean has(Filter<T> filter) {
+    public boolean has(Filter<O> filter) {
         return get(filter) != null;
     }
 
@@ -165,14 +171,14 @@ public abstract class Ts<T> {
      * index
      *
      **************************************************/
-    public int index(Filter<T> filter) {
+    public int index(Filter<O> filter) {
         if (filter == null)
             return -1;
         int count = count();
-        T t = null;
+        O o = null;
         for (int i = 0; i < count; i++) {
-            t = get(i);
-            if (filter.get(i, t)) {
+            o = get(i);
+            if (filter.get(i, o)) {
                 return i;
             }
         }
@@ -184,7 +190,7 @@ public abstract class Ts<T> {
      * replace
      *
      **************************************************/
-    public void replace(T target, Filter<T> filter) {
+    public void replace(O target, Filter<O> filter) {
         if (target == null || filter == null)
             return;
 
@@ -204,29 +210,29 @@ public abstract class Ts<T> {
         T convert(S s);
     }
 
-    public <S> ListTs<S> convert(Convert<T, S> convert) {
-        List<S> list = new ArrayList<>();
+    public <T> ListOs<T> convert(Convert<O, T> convert) {
+        List<T> os = new ArrayList<>();
 
         if (convert == null) {
             return null;
         }
 
-        ls(new Each<T>() {
+        ls(new EachOs<O>() {
             @Override
-            public boolean each(int position, T t) {
-                S s = convert.convert(t);
-                if (s != null) {
-                    list.add(s);
+            public boolean each(int position, O o) {
+                T t = convert.convert(o);
+                if (t != null) {
+                    os.add(t);
                 }
                 return false;
             }
         });
 
-        return Ts.ts(list);
+        return Os.os(os);
     }
 
-    public List<T> toList() {
-        ArrayList<T> list = new ArrayList<>();
+    public List<O> toList() {
+        ArrayList<O> list = new ArrayList<>();
         int count = count();
         for (int i = 0; i < count; i++) {
             list.add(get(i));
@@ -234,13 +240,13 @@ public abstract class Ts<T> {
         return list;
     }
 
-    public T[] toArray() {
+    public O[] toArray() {
         int count = count();
         if (count <= 0) {
             return null;
         }
 
-        T[] newArray = (T[]) java.lang.reflect.Array.newInstance
+        O[] newArray = (O[]) java.lang.reflect.Array.newInstance
                 (get(0).getClass(), count);
         for (int i = 0; i < count; i++) {
             newArray[i] = get(i);
@@ -255,7 +261,7 @@ public abstract class Ts<T> {
         }
     }
 
-    public T last() {
+    public O last() {
         int count = count();
         return count > 0 ? get(count - 1) : null;
     }
@@ -266,12 +272,12 @@ public abstract class Ts<T> {
      *
      **************************************************/
 
-    public interface GroupSortGetter<T> {
-        String getGroup(int level, T t);
+    public interface GroupSortGetter<O> {
+        String getGroup(int level, O o);
 
         int getLevels();
 
-        int compare(T o1, T o2);
+        int compare(O o1, O o2);
 
     }
 
@@ -279,8 +285,8 @@ public abstract class Ts<T> {
         return "root";
     }
 
-    private void groupSort(List<T> container, int levels, int level, ListValueMap<String, String> categorgMap, Map<String, T> tMap, String key) {
-        Ts.ts(categorgMap.get(key)).ls(new Each<String>() {
+    private void groupSort(List<O> container, int levels, int level, ListValueMap<String, String> categorgMap, Map<String, O> tMap, String key) {
+        Os.os(categorgMap.get(key)).ls(new EachOs<String>() {
             @Override
             public boolean each(int position, String s) {
                 if (level < levels - 1) {
@@ -293,27 +299,27 @@ public abstract class Ts<T> {
         });
     }
 
-    public List<T> groupSort(GroupSortGetter<T> getter) {
+    public List<O> groupSort(GroupSortGetter<O> getter) {
         ListValueMap<String, String> totalMap = new ListValueMap<>();
-        Map<String, T> tMap = new HashMap<>();
+        Map<String, O> tMap = new HashMap<>();
 
-        List<T> ts = toList();
+        List<O> os = toList();
 
-        Collections.sort(ts, new Comparator<T>() {
+        Collections.sort(os, new Comparator<O>() {
             @Override
-            public int compare(T o1, T o2) {
+            public int compare(O o1, O o2) {
                 return getter.compare(o1, o2);
             }
         });
 
-        Ts.ts(ts).ls(new Each<T>() {
+        Os.os(os).ls(new EachOs<O>() {
             @Override
-            public boolean each(int i, T t) {
-                tMap.put(getter.getGroup(getter.getLevels() - 1, t), t);
+            public boolean each(int i, O o) {
+                tMap.put(getter.getGroup(getter.getLevels() - 1, o), o);
 
                 String[] gs = new String[getter.getLevels()];
                 for (int j = 0; j < gs.length; j++) {
-                    gs[j] = getter.getGroup(j, t);
+                    gs[j] = getter.getGroup(j, o);
                 }
 
                 List<String> list = totalMap.get(getRootGroupKey());
@@ -336,7 +342,7 @@ public abstract class Ts<T> {
             }
         });
 
-        List<T> as = new ArrayList<>();
+        List<O> as = new ArrayList<>();
         groupSort(as, getter.getLevels(), 0, totalMap, tMap, getRootGroupKey());
         return as;
     }
@@ -347,19 +353,19 @@ public abstract class Ts<T> {
      *
      **************************************************/
 
-    public interface FinalGetter<T> {
-        boolean isNow(T last, T now);
+    public interface FinalGetter<O> {
+        boolean isNow(O last, O now);
     }
 
 
-    public T findFinal(FinalGetter<T> finalGetter) {
+    public O findFinal(FinalGetter<O> finalGetter) {
         if (finalGetter == null)
             return null;
 
         int count = count();
-        T last = null;
+        O last = null;
         for (int i = 0; i < count; i++) {
-            T now = get(i);
+            O now = get(i);
             last = last == null ? now : (finalGetter.isNow(last, now) ? now : last);
         }
         return last;
@@ -371,18 +377,18 @@ public abstract class Ts<T> {
      *
      **************************************************/
 
-    public interface NowMax<T> {
-        boolean isNowMax(T last, T now);
+    public interface NowMax<O> {
+        boolean isNowMax(O last, O now);
     }
 
-    public MaxMin<T> maxMin(NowMax<T> nowMax) {
+    public MaxMin<O> maxMin(NowMax<O> nowMax) {
         if (nowMax == null)
             return null;
 
         int count = count();
-        MaxMin<T> maxMin = null;
+        MaxMin<O> maxMin = null;
         for (int i = 0; i < count; i++) {
-            T now = get(i);
+            O now = get(i);
             if (i == 0) {
                 maxMin = new MaxMin<>();
                 maxMin.max = now;

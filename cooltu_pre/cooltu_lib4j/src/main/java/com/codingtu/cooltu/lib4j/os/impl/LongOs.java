@@ -1,18 +1,18 @@
-package com.codingtu.cooltu.lib4j.tts.ts;
+package com.codingtu.cooltu.lib4j.os.impl;
 
 import com.codingtu.cooltu.lib4j.tools.CountTool;
-import com.codingtu.cooltu.lib4j.tts.Ts;
+import com.codingtu.cooltu.lib4j.os.Os;
 
-public class ByteTs extends Ts<Byte> {
+public class LongOs extends Os<Long> {
 
-    private byte[] ts;
+    private long[] ts;
 
-    public ByteTs(byte... ts) {
+    public LongOs(long... ts) {
         this.ts = ts;
     }
 
     @Override
-    public Byte get(int position) {
+    public Long get(int position) {
         return ts[position];
     }
 
@@ -22,7 +22,7 @@ public class ByteTs extends Ts<Byte> {
     }
 
     @Override
-    public void set(int index, Byte target) {
+    public void set(int index, Long target) {
         ts[index] = target;
     }
 }

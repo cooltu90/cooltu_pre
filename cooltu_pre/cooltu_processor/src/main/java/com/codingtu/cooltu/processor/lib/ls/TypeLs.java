@@ -1,15 +1,14 @@
 package com.codingtu.cooltu.processor.lib.ls;
 
+import com.codingtu.cooltu.lib4j.os.Os;
+import com.codingtu.cooltu.lib4j.tools.CountTool;
+import com.codingtu.cooltu.processor.lib.tools.ElementTools;
+
 import java.util.List;
 
 import javax.lang.model.element.VariableElement;
 
-import com.codingtu.cooltu.lib4j.tools.CountTool;
-import com.codingtu.cooltu.lib4j.ts.Ts;
-import com.codingtu.cooltu.lib4j.ts.each.Each;
-import com.codingtu.cooltu.processor.lib.tools.ElementTools;
-
-public class TypeLss {
+public class TypeLs {
     public static void ls(List<String> classes, String[] paramNames, EachType o) {
         int count = CountTool.count(paramNames);
         int offset = 0;
@@ -26,26 +25,20 @@ public class TypeLss {
     }
 
     public static void ls(List<? extends VariableElement> ps, final EachType eachType) {
-        Ts.ls(ps, new Each<VariableElement>() {
-            @Override
-            public boolean each(int position, VariableElement ve) {
-                String type = ElementTools.getType(ve);
-                String name = ElementTools.simpleName(ve);
-                eachType.each(position, type, name);
-                return false;
-            }
+        Os.os(ps).ls((position, ve) -> {
+            String type = ElementTools.getType(ve);
+            String name = ElementTools.simpleName(ve);
+            eachType.each(position, type, name);
+            return false;
         });
     }
 
     public static void ls(List<? extends VariableElement> ps, final EachTypePlus eachType) {
-        Ts.ls(ps, new Each<VariableElement>() {
-            @Override
-            public boolean each(int position, VariableElement ve) {
-                String type = ElementTools.getType(ve);
-                String name = ElementTools.simpleName(ve);
-                eachType.each(position, ve, type, name);
-                return false;
-            }
+        Os.os(ps).ls((position, ve) -> {
+            String type = ElementTools.getType(ve);
+            String name = ElementTools.simpleName(ve);
+            eachType.each(position, ve, type, name);
+            return false;
         });
     }
 

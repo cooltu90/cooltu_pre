@@ -1,10 +1,10 @@
-package com.codingtu.cooltu.lib4j.tts.ts;
+package com.codingtu.cooltu.lib4j.os.impl;
 
 import com.codingtu.cooltu.lib4j.data.bean.Symbol;
 
-public class ListSymbolTs<T extends Symbol> extends SymbolTs<T> {
+public class ListSymbolOs<T extends Symbol> extends SymbolOs<T> {
 
-    public ListSymbolTs(ListTs<T> ts) {
+    public ListSymbolOs(ListOs<T> ts) {
         super(ts);
     }
 
@@ -12,20 +12,20 @@ public class ListSymbolTs<T extends Symbol> extends SymbolTs<T> {
         if (target == null)
             return;
 
-        ((ListTs<T>) ts).replaceOrAdd(target, symbolFilter(target));
+        ((ListOs<T>) os).replaceOrAdd(target, symbolFilter(target));
     }
 
     public void delete(T target) {
         if (target == null)
             return;
 
-        ((ListTs<T>) ts).delete(symbolFilter(target));
+        ((ListOs<T>) os).delete(symbolFilter(target));
     }
 
     public void delete(String symbol) {
         if (symbol == null)
             return;
 
-        ((ListTs<T>) ts).delete(stringSymbolFilter(symbol));
+        ((ListOs<T>) os).delete(stringSymbolFilter(symbol));
     }
 }

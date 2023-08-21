@@ -1,13 +1,13 @@
-package com.codingtu.cooltu.lib4j.tts.ts;
+package com.codingtu.cooltu.lib4j.os.impl;
 
 import com.codingtu.cooltu.lib4j.tools.CountTool;
-import com.codingtu.cooltu.lib4j.tts.Ts;
+import com.codingtu.cooltu.lib4j.os.Os;
 
-public class ShortTs extends Ts<Short> {
+public class ShortOs extends Os<Short> {
 
     private short[] ts;
 
-    public ShortTs(short... ts) {
+    public ShortOs(short... ts) {
         this.ts = ts;
     }
 

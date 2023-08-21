@@ -16,7 +16,7 @@ import com.codingtu.cooltu.constant.Constant;
 import com.codingtu.cooltu.constant.FullName;
 
 import com.codingtu.cooltu.processor.lib.ls.EachType;
-import com.codingtu.cooltu.processor.lib.ls.TypeLss;
+import com.codingtu.cooltu.processor.lib.ls.TypeLs;
 import com.codingtu.cooltu.processor.modelinterface.PassModelInterface;
 import com.codingtu.cooltu.processor.worker.model.base.SingleCoreToolsBaseModel;
 
@@ -38,7 +38,7 @@ public class PassModel extends SingleCoreToolsBaseModel implements PassModelInte
     }
 
     public void add(List<String> classes, String[] paramNames) {
-        TypeLss.ls(classes, paramNames, new EachType() {
+        TypeLs.ls(classes, paramNames, new EachType() {
             @Override
             public void each(int position, String type, String name) {
                 add(type, name);

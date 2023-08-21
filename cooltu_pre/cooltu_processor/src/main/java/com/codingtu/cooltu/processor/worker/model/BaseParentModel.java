@@ -17,7 +17,7 @@ import com.codingtu.cooltu.processor.lib.bean.FormItemInfo;
 import com.codingtu.cooltu.processor.lib.bean.FromItemInfoForRg;
 import com.codingtu.cooltu.processor.lib.log.Logs;
 import com.codingtu.cooltu.processor.lib.ls.EachType;
-import com.codingtu.cooltu.processor.lib.ls.TypeLss;
+import com.codingtu.cooltu.processor.lib.ls.TypeLs;
 import com.codingtu.cooltu.processor.lib.tools.ElementTools;
 import com.codingtu.cooltu.processor.lib.tools.FormTool;
 import com.codingtu.cooltu.processor.lib.tools.IdTools;
@@ -610,7 +610,7 @@ public abstract class BaseParentModel extends BaseModel {
                 final List<? extends VariableElement> ps = info.element.getParameters();
                 final StringBuilder pSb = new StringBuilder();
                 final int[] nums = new int[1];
-                TypeLss.ls(ps, new EachType() {
+                TypeLs.ls(ps, new EachType() {
                     @Override
                     public void each(int position, String type, String name) {
                         if (position != 0) {
@@ -773,7 +773,7 @@ public abstract class BaseParentModel extends BaseModel {
 
                 final List<? extends VariableElement> ps = element.getParameters();
                 final int[] nums = new int[1];
-                TypeLss.ls(ps, new EachType() {
+                TypeLs.ls(ps, new EachType() {
                     @Override
                     public void each(int position, String type, String name) {
                         if (position != 0) {

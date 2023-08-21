@@ -10,7 +10,7 @@ import com.codingtu.cooltu.lib4j.tools.StringTool;
 import com.codingtu.cooltu.processor.annotation.net.Param;
 import com.codingtu.cooltu.processor.annotation.net.ParamType;
 import com.codingtu.cooltu.processor.lib.bean.NetMethodDeal;
-import com.codingtu.cooltu.processor.lib.ls.TypeLss;
+import com.codingtu.cooltu.processor.lib.ls.TypeLs;
 import com.codingtu.cooltu.processor.lib.tools.ElementTools;
 import com.codingtu.cooltu.processor.lib.tools.TagTools;
 import com.codingtu.cooltu.processor.modelinterface.ApiServiceMethodModelInterface;
@@ -49,7 +49,7 @@ public class ApiServiceMethodModel extends SubBaseModel implements ApiServiceMet
 
     @Override
     public void setTagFor_params(StringBuilder sb) {
-        TypeLss.ls(parameters, new TypeLss.EachTypePlus() {
+        TypeLs.ls(parameters, new TypeLs.EachTypePlus() {
             @Override
             public void each(int position, VariableElement ve, String type, String name) {
                 int paramType = ParamType.DEFAULT;

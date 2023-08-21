@@ -1,13 +1,13 @@
-package com.codingtu.cooltu.lib4j.tts.ts;
+package com.codingtu.cooltu.lib4j.os.impl;
 
 import com.codingtu.cooltu.lib4j.tools.CountTool;
-import com.codingtu.cooltu.lib4j.tts.Ts;
+import com.codingtu.cooltu.lib4j.os.Os;
 
-public class DoubleTs extends Ts<Double> {
+public class DoubleOs extends Os<Double> {
 
     private double[] ts;
 
-    public DoubleTs(double... ts) {
+    public DoubleOs(double... ts) {
         this.ts = ts;
     }
 

@@ -1,18 +1,18 @@
-package com.codingtu.cooltu.lib4j.tts.ts;
+package com.codingtu.cooltu.lib4j.os.impl;
 
 import com.codingtu.cooltu.lib4j.tools.CountTool;
-import com.codingtu.cooltu.lib4j.tts.Ts;
+import com.codingtu.cooltu.lib4j.os.Os;
 
-public class IntTs extends Ts<Integer> {
+public class ArrayOs<T> extends Os<T> {
 
-    private int[] ts;
+    private T[] ts;
 
-    public IntTs(int... ts) {
+    public ArrayOs(T... ts) {
         this.ts = ts;
     }
 
     @Override
-    public Integer get(int position) {
+    public T get(int position) {
         return ts[position];
     }
 
@@ -22,7 +22,8 @@ public class IntTs extends Ts<Integer> {
     }
 
     @Override
-    public void set(int index, Integer target) {
+    public void set(int index, T target) {
         ts[index] = target;
     }
+
 }
