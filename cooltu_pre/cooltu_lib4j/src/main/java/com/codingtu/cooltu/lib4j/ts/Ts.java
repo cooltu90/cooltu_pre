@@ -13,6 +13,7 @@ import com.codingtu.cooltu.lib4j.ts.eachgetter.EachGetter;
 
 import java.util.*;
 
+@Deprecated
 public class Ts {
 
     /**************************************************
