@@ -1,16 +1,5 @@
 package com.codingtu.cooltu.lib4j.tools;
 
-import com.codingtu.cooltu.lib4j.data.map.ListValueMap;
-import com.codingtu.cooltu.lib4j.tts.Each;
-import com.codingtu.cooltu.lib4j.tts.Ts;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 public class OsTool {
 
     public static <T> T[] objsToArrays(Object[] objs) {

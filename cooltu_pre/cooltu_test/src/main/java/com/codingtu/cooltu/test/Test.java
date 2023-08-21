@@ -1,9 +1,6 @@
 package com.codingtu.cooltu.test;
 
-import com.codingtu.cooltu.lib4j.data.bean.Ymd;
 import com.codingtu.cooltu.lib4j.data.bean.maxmin.MaxMin;
-import com.codingtu.cooltu.lib4j.tts.Convert;
-import com.codingtu.cooltu.lib4j.tts.FinalGetter;
 import com.codingtu.cooltu.lib4j.tts.Ts;
 
 import java.util.ArrayList;
@@ -24,37 +21,15 @@ public class Test {
 
         User target = new User("张三", 56);
 
-        List<String> strings = new ArrayList<>();
-        strings.add("2023-05-29");
-        strings.add("2022-07-12");
-        strings.add("2025-04-15");
-        strings.add("2025-09-18");
-
-        MaxMin<Ymd> maxMin = Ts.ts(strings).convert(new Convert<String, Ymd>() {
+        MaxMin<User> maxMin = Ts.ts(users).maxMin(new Ts.NowMax<User>() {
             @Override
-            public Ymd convert(String s) {
-                Ymd ymd = new Ymd();
-                ymd.y = Integer.parseInt(s.substring(0, 4));
-                ymd.m = Integer.parseInt(s.substring(5, 7));
-                ymd.d = Integer.parseInt(s.substring(8, 10));
-                return ymd;
-            }
-        }).maxMin(new FinalGetter<Ymd>() {
-            @Override
-            public boolean nowMax(Ymd last, Ymd now) {
-                if (now.y == last.y) {
-                    if (now.m == last.m) {
-                        return now.d > last.d;
-                    }
-                    return now.m > last.m;
-                }
-                return now.y > last.y;
+            public boolean isNowMax(User last, User now) {
+                return now.age > last.age;
             }
         });
 
-        Logs.i(maxMin.max.y + "-" + maxMin.max.m + "-" + maxMin.max.d);
-        Logs.i(maxMin.min.y + "-" + maxMin.min.m + "-" + maxMin.min.d);
-
+        Logs.i(maxMin.max);
+        Logs.i(maxMin.min);
 
     }
 }

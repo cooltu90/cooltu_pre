@@ -83,6 +83,16 @@ public abstract class Ts<T> {
         return new BooleanTs(ts);
     }
 
+    /**************************************************
+     *
+     * 遍历方法
+     *
+     **************************************************/
+
+    public interface Each<T> {
+        boolean each(int position, T t);
+    }
+
     public Ts<T> step(int step) {
         this.step = step;
         return this;
@@ -101,6 +111,7 @@ public abstract class Ts<T> {
         }
     }
 
+
     public void rls(Each<T> each) {
         if (each == null) {
             return;
@@ -114,11 +125,17 @@ public abstract class Ts<T> {
         }
     }
 
+
     /**************************************************
      *
      *
      *
      **************************************************/
+
+    public interface Filter<T> {
+        boolean get(int position, T t);
+    }
+
     public T get(Filter<T> filter) {
         if (filter == null)
             return null;
@@ -182,6 +199,11 @@ public abstract class Ts<T> {
      * convert
      *
      **************************************************/
+
+    public interface Convert<S, T> {
+        T convert(S s);
+    }
+
     public <S> ListTs<S> convert(Convert<T, S> convert) {
         List<S> list = new ArrayList<>();
 
@@ -236,6 +258,21 @@ public abstract class Ts<T> {
     public T last() {
         int count = count();
         return count > 0 ? get(count - 1) : null;
+    }
+
+    /**************************************************
+     *
+     *
+     *
+     **************************************************/
+
+    public interface GroupSortGetter<T> {
+        String getGroup(int level, T t);
+
+        int getLevels();
+
+        int compare(T o1, T o2);
+
     }
 
     private String getRootGroupKey() {
@@ -304,6 +341,16 @@ public abstract class Ts<T> {
         return as;
     }
 
+    /**************************************************
+     *
+     * findFinal
+     *
+     **************************************************/
+
+    public interface FinalGetter<T> {
+        boolean isNow(T last, T now);
+    }
+
 
     public T findFinal(FinalGetter<T> finalGetter) {
         if (finalGetter == null)
@@ -313,13 +360,23 @@ public abstract class Ts<T> {
         T last = null;
         for (int i = 0; i < count; i++) {
             T now = get(i);
-            last = last == null ? now : (finalGetter.nowMax(last, now) ? now : last);
+            last = last == null ? now : (finalGetter.isNow(last, now) ? now : last);
         }
         return last;
     }
 
-    public MaxMin<T> maxMin(FinalGetter<T> finalGetter) {
-        if (finalGetter == null)
+    /**************************************************
+     *
+     * MaxMin
+     *
+     **************************************************/
+
+    public interface NowMax<T> {
+        boolean isNowMax(T last, T now);
+    }
+
+    public MaxMin<T> maxMin(NowMax<T> nowMax) {
+        if (nowMax == null)
             return null;
 
         int count = count();
@@ -331,8 +388,8 @@ public abstract class Ts<T> {
                 maxMin.max = now;
                 maxMin.min = now;
             } else {
-                maxMin.max = finalGetter.nowMax(maxMin.max, now) ? now : maxMin.max;
-                maxMin.min = finalGetter.nowMax(maxMin.min, now) ? maxMin.min : now;
+                maxMin.max = nowMax.isNowMax(maxMin.max, now) ? now : maxMin.max;
+                maxMin.min = nowMax.isNowMax(maxMin.min, now) ? maxMin.min : now;
             }
         }
 

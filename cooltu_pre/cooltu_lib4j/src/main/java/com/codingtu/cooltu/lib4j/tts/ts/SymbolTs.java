@@ -1,7 +1,6 @@
 package com.codingtu.cooltu.lib4j.tts.ts;
 
 import com.codingtu.cooltu.lib4j.data.bean.Symbol;
-import com.codingtu.cooltu.lib4j.tts.Filter;
 import com.codingtu.cooltu.lib4j.tts.Ts;
 
 public class SymbolTs<T extends Symbol> extends Ts<T> {
