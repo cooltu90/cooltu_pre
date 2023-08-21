@@ -1,12 +1,11 @@
 package com.codingtu.cooltu.test;
 
 import com.codingtu.cooltu.lib4j.data.bean.Ymd;
+import com.codingtu.cooltu.lib4j.data.bean.maxmin.MaxMin;
 import com.codingtu.cooltu.lib4j.tts.Convert;
 import com.codingtu.cooltu.lib4j.tts.FinalGetter;
-import com.codingtu.cooltu.lib4j.tts.MaxMin;
 import com.codingtu.cooltu.lib4j.tts.Ts;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 

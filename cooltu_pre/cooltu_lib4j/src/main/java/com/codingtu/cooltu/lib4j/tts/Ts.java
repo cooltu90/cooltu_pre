@@ -1,6 +1,7 @@
 package com.codingtu.cooltu.lib4j.tts;
 
 import com.codingtu.cooltu.lib4j.data.bean.Symbol;
+import com.codingtu.cooltu.lib4j.data.bean.maxmin.MaxMin;
 import com.codingtu.cooltu.lib4j.data.map.ListValueMap;
 import com.codingtu.cooltu.lib4j.tools.CountTool;
 import com.codingtu.cooltu.lib4j.tts.ts.ArrayTs;
