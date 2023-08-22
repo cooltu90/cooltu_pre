@@ -235,4 +235,13 @@ public class Ts {
     public static <T extends Symbol> void deleteAll(String symbol, List<T> ts) {
         ts(ts).symbol().deleteAll(symbol);
     }
+
+    /**************************************************
+     *
+     *
+     *
+     **************************************************/
+    public static <T> List<T> add(T t, List<T> ts) {
+        return ts(ts).add(t).get();
+    }
 }
