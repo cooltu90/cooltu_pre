@@ -204,7 +204,7 @@ public abstract class BaseTs<T> implements Ts<T> {
         boolean isNowMax(T last, T now);
     }
 
-    public MaxMin<T> maxMin(com.codingtu.cooltu.lib4j.os.Os.NowMax<T> nowMax) {
+    public MaxMin<T> maxMin(NowMax<T> nowMax) {
         if (nowMax == null)
             return null;
 

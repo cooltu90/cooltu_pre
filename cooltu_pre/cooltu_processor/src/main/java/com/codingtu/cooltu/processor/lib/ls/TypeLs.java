@@ -1,6 +1,6 @@
 package com.codingtu.cooltu.processor.lib.ls;
 
-import com.codingtu.cooltu.lib4j.os.Os;
+import com.codingtu.cooltu.lib4j.ls.Os;
 import com.codingtu.cooltu.lib4j.tools.CountTool;
 import com.codingtu.cooltu.processor.lib.tools.ElementTools;
 
@@ -25,7 +25,7 @@ public class TypeLs {
     }
 
     public static void ls(List<? extends VariableElement> ps, final EachType eachType) {
-        Os.os(ps).ls((position, ve) -> {
+        Os.ls(ps, (position, ve) -> {
             String type = ElementTools.getType(ve);
             String name = ElementTools.simpleName(ve);
             eachType.each(position, type, name);
@@ -34,7 +34,7 @@ public class TypeLs {
     }
 
     public static void ls(List<? extends VariableElement> ps, final EachTypePlus eachType) {
-        Os.os(ps).ls((position, ve) -> {
+        Os.ls(ps, (position, ve) -> {
             String type = ElementTools.getType(ve);
             String name = ElementTools.simpleName(ve);
             eachType.each(position, ve, type, name);
