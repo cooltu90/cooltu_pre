@@ -190,16 +190,16 @@ public class Ts {
      *
      *
      **************************************************/
-    public static <T extends Symbol> void replace(T target, List<T> users) {
-        ts(users).symbol().replace(target);
+    public static <T extends Symbol> void replace(T target, List<T> ts) {
+        ts(ts).symbol().replace(target);
     }
 
-    public static <T extends Symbol> void replace(T target, T... users) {
-        ts(users).symbol().replace(target);
+    public static <T extends Symbol> void replace(T target, T... ts) {
+        ts(ts).symbol().replace(target);
     }
 
-    public static <T extends Symbol> void replaceOrAdd(T target, List<T> users) {
-        ts(users).symbol().replaceOrAdd(target);
+    public static <T extends Symbol> void replaceOrAdd(T target, List<T> ts) {
+        ts(ts).symbol().replaceOrAdd(target);
     }
 
     /**************************************************
@@ -215,4 +215,24 @@ public class Ts {
         return ts(ts).toList().get();
     }
 
+    /**************************************************
+     *
+     *
+     *
+     **************************************************/
+    public static <T extends Symbol> void delete(T target, List<T> ts) {
+        ts(ts).symbol().delete(target);
+    }
+
+    public static <T extends Symbol> void delete(String symbol, List<T> ts) {
+        ts(ts).symbol().delete(symbol);
+    }
+
+    public static <T extends Symbol> void deleteAll(T target, List<T> ts) {
+        ts(ts).symbol().deleteAll(target);
+    }
+
+    public static <T extends Symbol> void deleteAll(String symbol, List<T> ts) {
+        ts(ts).symbol().deleteAll(symbol);
+    }
 }

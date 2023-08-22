@@ -19,6 +19,10 @@ public abstract class BaseTs<T> implements TsInterface<T> {
         return new SymbolTs<>(this);
     }
 
+    public T last() {
+        return get(count() - 1);
+    }
+
     /**************************************************
      *
      *
@@ -152,7 +156,7 @@ public abstract class BaseTs<T> implements TsInterface<T> {
      **************************************************/
 
     public interface Convert<S, T> {
-        T convert(S s);
+        T convert(int index, S s);
     }
 
     public <S> TListTs<S> convert(Convert<T, S> convert) {
@@ -162,7 +166,7 @@ public abstract class BaseTs<T> implements TsInterface<T> {
         ArrayList<S> list = new ArrayList<>();
         int count = count();
         for (int i = 0; i < count; i++) {
-            S s = convert.convert(get(i));
+            S s = convert.convert(i, get(i));
             if (s != null) {
                 list.add(s);
             }

@@ -43,5 +43,12 @@ public class TArrayTs<T> extends BaseTs<T> {
         return Ts.ts(list);
     }
 
+    public void clear() {
+        int count = count();
+        for (int i = 0; i < count; i++) {
+            ts[i] = null;
+        }
+    }
+
 
 }

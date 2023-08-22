@@ -66,6 +66,28 @@ public class TListTs<T> extends BaseTs<T> {
         return Ts.ts(ts.toArray(newArray));
     }
 
+    public void delete(IsThisOne<T> isThisOne) {
+        if (isThisOne == null)
+            return;
+        int index = index(isThisOne);
+        if (index >= 0) {
+            ts.remove(index);
+        }
+    }
+
+    public void deleteAll(IsThisOne<T> isThisOne) {
+        if (isThisOne == null)
+            return;
+        List<T> ts = convert(new Convert<T, T>() {
+            @Override
+            public T convert(int index, T t) {
+                return isThisOne.isThisOne(index, t) ? null : t;
+            }
+        }).get();
+        this.ts.clear();
+        this.ts.addAll(ts);
+    }
+
     /**************************************************
      *
      * 分组排序
@@ -134,6 +156,10 @@ public class TListTs<T> extends BaseTs<T> {
 
     private String getRootGroupKey() {
         return "root";
+    }
+
+    public void add(T target) {
+        this.ts.add(target);
     }
 
     public interface GroupSortGetter<T> {
