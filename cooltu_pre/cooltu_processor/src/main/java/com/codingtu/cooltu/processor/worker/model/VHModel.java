@@ -2,19 +2,18 @@ package com.codingtu.cooltu.processor.worker.model;
 
 import com.codingtu.cooltu.constant.Constant;
 import com.codingtu.cooltu.constant.Pkg;
-
-import java.util.List;
-
 import com.codingtu.cooltu.lib4j.data.bean.JavaInfo;
 import com.codingtu.cooltu.lib4j.tools.ConvertTool;
 import com.codingtu.cooltu.lib4j.tools.StringTool;
 import com.codingtu.cooltu.lib4j.ts.Ts;
-import com.codingtu.cooltu.lib4j.ts.each.Each;
+import com.codingtu.cooltu.lib4j.ts.impl.BaseTs;
 import com.codingtu.cooltu.processor.lib.tools.IdTools;
 import com.codingtu.cooltu.processor.lib.tools.LayoutTools;
 import com.codingtu.cooltu.processor.lib.tools.NameTools;
 import com.codingtu.cooltu.processor.modelinterface.VHModelInterface;
 import com.codingtu.cooltu.processor.worker.model.base.BaseModel;
+
+import java.util.List;
 
 public class VHModel extends BaseModel implements VHModelInterface {
     private String layoutName;
@@ -41,7 +40,7 @@ public class VHModel extends BaseModel implements VHModelInterface {
      **************************************************/
     @Override
     public void setTagFor_fileds(StringBuilder fieldSb) {
-        Ts.ls(vis, new Each<LayoutTools.ViewInfo>() {
+        Ts.ls(vis, new BaseTs.EachTs<LayoutTools.ViewInfo>() {
             @Override
             public boolean each(int position, LayoutTools.ViewInfo vi) {
                 addLnTag(fieldSb, "    public [n1] [n2];", vi.name, LayoutTools.getViFieldName(vi));
@@ -62,7 +61,7 @@ public class VHModel extends BaseModel implements VHModelInterface {
 
     @Override
     public void setTagFor_findView(StringBuilder findViewSb) {
-        Ts.ls(vis, new Each<LayoutTools.ViewInfo>() {
+        Ts.ls(vis, new BaseTs.EachTs<LayoutTools.ViewInfo>() {
             @Override
             public boolean each(int position, LayoutTools.ViewInfo vi) {
                 String viParent = LayoutTools.getViParent(vi);

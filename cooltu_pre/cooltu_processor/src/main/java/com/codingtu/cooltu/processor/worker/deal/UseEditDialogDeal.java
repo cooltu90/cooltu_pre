@@ -1,18 +1,18 @@
 package com.codingtu.cooltu.processor.worker.deal;
 
-import java.util.List;
-
-import javax.lang.model.element.Element;
-import javax.lang.model.element.TypeElement;
-
 import com.codingtu.cooltu.lib4j.tools.ClassTool;
 import com.codingtu.cooltu.lib4j.ts.Ts;
-import com.codingtu.cooltu.lib4j.ts.each.Each;
+import com.codingtu.cooltu.lib4j.ts.impl.BaseTs;
 import com.codingtu.cooltu.processor.annotation.ui.UseEditDialog;
 import com.codingtu.cooltu.processor.lib.bean.EditDialogInfo;
 import com.codingtu.cooltu.processor.lib.tools.NameTools;
 import com.codingtu.cooltu.processor.worker.deal.base.BaseDeal;
 import com.codingtu.cooltu.processor.worker.model.BaseParentModel;
+
+import java.util.List;
+
+import javax.lang.model.element.Element;
+import javax.lang.model.element.TypeElement;
 
 public class UseEditDialogDeal extends BaseDeal {
     private BaseParentModel baseModel;
@@ -39,7 +39,7 @@ public class UseEditDialogDeal extends BaseDeal {
             baseModel = FragmentBaseDeal.getFragmentBaseModel((TypeElement) element);
         }
 
-        Ts.ls(names, new Each<String>() {
+        Ts.ls(names, new BaseTs.EachTs<String>() {
             @Override
             public boolean each(int i, String name) {
                 EditDialogInfo info = new EditDialogInfo();

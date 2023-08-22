@@ -113,7 +113,7 @@ public class StringTool {
      **************************************************/
     @Deprecated
     public static boolean inRange(String str, String... strs) {
-        return Ts.has(str, strs);
+        return Ts.ts(strs).has(str);
     }
 
 

@@ -2,7 +2,7 @@ package com.codingtu.cooltu.lib4a.bus;
 
 import com.codingtu.cooltu.lib4j.data.map.ListValueMap;
 import com.codingtu.cooltu.lib4j.ts.Ts;
-import com.codingtu.cooltu.lib4j.ts.each.Each;
+import com.codingtu.cooltu.lib4j.ts.impl.BaseTs;
 
 public class BusStation {
 
@@ -17,7 +17,7 @@ public class BusStation {
     }
 
     public static void send(String task, Object obj) {
-        Ts.ls(map.get(task), new Each<Bus>() {
+        Ts.ls(map.get(task), new BaseTs.EachTs<Bus>() {
             @Override
             public boolean each(int position, Bus bus) {
                 bus.back(obj);

@@ -1,6 +1,14 @@
 package com.codingtu.cooltu.processor.worker.model.net_retrofit;
 
 import com.codingtu.cooltu.constant.Constant;
+import com.codingtu.cooltu.lib4j.tools.ConvertTool;
+import com.codingtu.cooltu.lib4j.tools.StringTool;
+import com.codingtu.cooltu.lib4j.ts.Ts;
+import com.codingtu.cooltu.lib4j.ts.impl.BaseTs;
+import com.codingtu.cooltu.processor.lib.bean.NetMethodDeal;
+import com.codingtu.cooltu.processor.lib.tools.ElementTools;
+import com.codingtu.cooltu.processor.modelinterface.NetModelInterface;
+import com.codingtu.cooltu.processor.worker.model.base.SingleCoreToolsBaseModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,23 +16,13 @@ import java.util.List;
 
 import javax.lang.model.element.ExecutableElement;
 
-import com.codingtu.cooltu.lib4j.tools.ConvertTool;
-import com.codingtu.cooltu.lib4j.tools.StringTool;
-import com.codingtu.cooltu.lib4j.ts.Ts;
-import com.codingtu.cooltu.lib4j.ts.each.Each;
-
-import com.codingtu.cooltu.processor.lib.bean.NetMethodDeal;
-import com.codingtu.cooltu.processor.lib.tools.ElementTools;
-import com.codingtu.cooltu.processor.modelinterface.NetModelInterface;
-import com.codingtu.cooltu.processor.worker.model.base.SingleCoreToolsBaseModel;
-
 public class NetModel extends SingleCoreToolsBaseModel implements NetModelInterface {
 
     public static final NetModel model = new NetModel();
     private List<ExecutableElement> methodElements = new ArrayList<>();
     private List<String> baseUrls = new ArrayList<>();
     private List<String> apiTypeNames = new ArrayList<>();
-//    private NetMethodDeal netMethodDeal;
+    //    private NetMethodDeal netMethodDeal;
     private List<NetMethodDeal> netMethodDeals = new ArrayList<>();
 
     public NetModel() {
@@ -46,7 +44,7 @@ public class NetModel extends SingleCoreToolsBaseModel implements NetModelInterf
 
     @Override
     public void setTagFor_backNameFileds(StringBuilder sb) {
-        Ts.ls(methodElements, new Each<ExecutableElement>() {
+        Ts.ls(methodElements, new BaseTs.EachTs<ExecutableElement>() {
             @Override
             public boolean each(int position, ExecutableElement ee) {
                 String methodName = ElementTools.simpleName(ee);
@@ -60,7 +58,7 @@ public class NetModel extends SingleCoreToolsBaseModel implements NetModelInterf
     @Override
     public void setTagFor_baseUrls(StringBuilder sb) {
         HashMap<String, String> urlNames = new HashMap<>();
-        Ts.ls(methodElements, new Each<ExecutableElement>() {
+        Ts.ls(methodElements, new BaseTs.EachTs<ExecutableElement>() {
             @Override
             public boolean each(int position, ExecutableElement ee) {
                 String baseUrl = baseUrls.get(position);
@@ -89,7 +87,7 @@ public class NetModel extends SingleCoreToolsBaseModel implements NetModelInterf
 
     @Override
     public void setTagFor_methods(StringBuilder sb) {
-        Ts.ls(methodElements, new Each<ExecutableElement>() {
+        Ts.ls(methodElements, new BaseTs.EachTs<ExecutableElement>() {
             @Override
             public boolean each(int position, ExecutableElement ee) {
                 String baseUrl = baseUrls.get(position);

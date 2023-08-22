@@ -1,6 +1,10 @@
 package com.codingtu.cooltu.processor.worker.model;
 
 import com.codingtu.cooltu.constant.FullName;
+import com.codingtu.cooltu.lib4j.data.map.ListValueMap;
+import com.codingtu.cooltu.lib4j.tools.CountTool;
+import com.codingtu.cooltu.lib4j.ts.Ts;
+import com.codingtu.cooltu.lib4j.ts.impl.BaseTs;
 import com.codingtu.cooltu.processor.annotation.form.FormType;
 import com.codingtu.cooltu.processor.lib.bean.FormItemInfo;
 import com.codingtu.cooltu.processor.lib.tools.FormTool;
@@ -9,11 +13,6 @@ import com.codingtu.cooltu.processor.worker.model.base.SubBaseModel;
 
 import java.util.HashMap;
 import java.util.List;
-
-import com.codingtu.cooltu.lib4j.data.map.ListValueMap;
-import com.codingtu.cooltu.lib4j.tools.CountTool;
-import com.codingtu.cooltu.lib4j.ts.Ts;
-import com.codingtu.cooltu.lib4j.ts.each.Each;
 
 public class BindHandlerModel extends SubBaseModel implements BindHandlerModelInterface {
 
@@ -59,7 +58,7 @@ public class BindHandlerModel extends SubBaseModel implements BindHandlerModelIn
 //        setTagFor_cases(sb, formItemMap.get(FormType.TEXT_VIEW), FormType.TEXT_VIEW);
 //        setTagFor_cases(sb, formItemMap.get(FormType.RADIO_GROUP), FormType.RADIO_GROUP);
 //        setTagFor_cases(sb, formItemMap.get(FormType.SEEK_BAR), FormType.SEEK_BAR);
-        Ts.ls(FormType.getNeedType(), new Each<Integer>() {
+        Ts.ts(FormType.getNeedType()).ls(new BaseTs.EachTs<Integer>() {
             @Override
             public boolean each(int position, Integer integer) {
                 setTagFor_cases(sb, formItemMap.get(integer), integer);
@@ -90,7 +89,7 @@ public class BindHandlerModel extends SubBaseModel implements BindHandlerModelIn
             addLnTag(sb, "                switch (msg.arg1) {");
 
 
-            Ts.ls(etTvItems, new Each<FormItemInfo>() {
+            Ts.ls(etTvItems, new BaseTs.EachTs<FormItemInfo>() {
                 @Override
                 public boolean each(int position, FormItemInfo info) {
 

@@ -4,7 +4,7 @@ import com.codingtu.cooltu.lib4j.config.LibConfigs;
 import com.codingtu.cooltu.lib4j.tools.CountTool;
 import com.codingtu.cooltu.lib4j.tools.StringTool;
 import com.codingtu.cooltu.lib4j.ts.Ts;
-import com.codingtu.cooltu.lib4j.ts.eachgetter.EachGetter;
+import com.codingtu.cooltu.lib4j.ts.impl.BaseTs;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -114,7 +114,7 @@ public class LibLogs {
             } else if (msg instanceof Map) {
                 logMap(level, tag, (Map) msg);
             } else if (msg.getClass().isArray()) {
-                logArray(level, tag, Ts.tsGetter(msg));
+                logArray(level, tag, Ts.ts(msg));
             } else {
                 logOther(level, tag, msg);
             }
@@ -189,7 +189,7 @@ public class LibLogs {
         baseLog(level, tag, "└───────────────────────────────────────────────────────────────────────────────────────");
     }
 
-    private static <T> void logArray(int level, String tag, EachGetter<T> getter) {
+    private static <T> void logArray(int level, String tag, BaseTs<T> getter) {
         baseLog(level, tag, "");
         baseLog(level, tag, "┌──Array────────────────────────────────────────────────────────────────────────────────");
         if (getter == null || getter.count() <= 0) {

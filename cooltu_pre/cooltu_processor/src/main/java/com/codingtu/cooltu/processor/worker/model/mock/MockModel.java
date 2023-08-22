@@ -1,20 +1,19 @@
 package com.codingtu.cooltu.processor.worker.model.mock;
 
 import com.codingtu.cooltu.constant.Constant;
+import com.codingtu.cooltu.lib4j.file.read.FileReader;
+import com.codingtu.cooltu.lib4j.tools.ConvertTool;
+import com.codingtu.cooltu.lib4j.tools.StringTool;
+import com.codingtu.cooltu.lib4j.ts.Ts;
+import com.codingtu.cooltu.lib4j.ts.impl.BaseTs;
+import com.codingtu.cooltu.processor.modelinterface.MockModelInterface;
+import com.codingtu.cooltu.processor.worker.model.base.SingleCoreToolsBaseModel;
 
 import java.util.HashMap;
 import java.util.List;
 
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ExecutableElement;
-
-import com.codingtu.cooltu.lib4j.file.read.FileReader;
-import com.codingtu.cooltu.lib4j.tools.ConvertTool;
-import com.codingtu.cooltu.lib4j.tools.StringTool;
-import com.codingtu.cooltu.lib4j.ts.Ts;
-import com.codingtu.cooltu.lib4j.ts.each.Each;
-import com.codingtu.cooltu.processor.modelinterface.MockModelInterface;
-import com.codingtu.cooltu.processor.worker.model.base.SingleCoreToolsBaseModel;
 
 public class MockModel extends SingleCoreToolsBaseModel implements MockModelInterface {
     public static final MockModel model = new MockModel();
@@ -30,7 +29,7 @@ public class MockModel extends SingleCoreToolsBaseModel implements MockModelInte
         //      public static final boolean TEST_NET_ACTIVITY_GET_USER_BY_ID_BACK = false;
 
         StringBuilder fieldSb = getTag("fields");
-        Ts.ls(lines, new Each<String>() {
+        Ts.ls(lines, new BaseTs.EachTs<String>() {
             @Override
             public boolean each(int position, String s) {
                 if (s.contains("public static final boolean")) {

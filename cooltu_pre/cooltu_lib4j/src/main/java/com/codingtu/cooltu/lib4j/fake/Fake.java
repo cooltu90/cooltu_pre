@@ -1,11 +1,11 @@
 package com.codingtu.cooltu.lib4j.fake;
 
-import com.codingtu.cooltu.lib4j.ts.Ts;
-import com.codingtu.cooltu.lib4j.ts.eachgetter.EachGetter;
-
-import java.awt.*;
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.*;
+import java.util.Map;
+import java.util.Random;
 
 public class Fake {
 
@@ -102,17 +102,11 @@ public class Fake {
     }
 
     public static List<String> names(int size) {
-        return Ts.getList(new EachGetter<String>() {
-            @Override
-            public String get(int position) {
-                return name();
-            }
-
-            @Override
-            public int count() {
-                return size;
-            }
-        });
+        ArrayList<String> names = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            names.add(name());
+        }
+        return names;
     }
 
     public static List<String> namesInNet() {
@@ -120,17 +114,11 @@ public class Fake {
     }
 
     public static List<String> namesInNet(int size) {
-        return Ts.getList(new EachGetter<String>() {
-            @Override
-            public String get(int position) {
-                return nameInNet();
-            }
-
-            @Override
-            public int count() {
-                return size;
-            }
-        });
+        ArrayList<String> names = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            names.add(nameInNet());
+        }
+        return names;
     }
 
     /************************************************
@@ -181,17 +169,11 @@ public class Fake {
     }
 
     public static List<String> images(int size) {
-        return Ts.getList(new EachGetter<String>() {
-            @Override
-            public String get(int position) {
-                return image();
-            }
-
-            @Override
-            public int count() {
-                return size;
-            }
-        });
+        ArrayList<String> names = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            names.add(image());
+        }
+        return names;
     }
 
     /************************************************

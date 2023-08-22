@@ -1,5 +1,12 @@
 package com.codingtu.cooltu.processor.worker.deal;
 
+import com.codingtu.cooltu.lib4j.data.bean.KV;
+import com.codingtu.cooltu.lib4j.data.map.ListValueMap;
+import com.codingtu.cooltu.lib4j.tools.ClassTool;
+import com.codingtu.cooltu.lib4j.tools.ConvertTool;
+import com.codingtu.cooltu.lib4j.tools.CountTool;
+import com.codingtu.cooltu.lib4j.ts.Ts;
+import com.codingtu.cooltu.lib4j.ts.impl.BaseTs;
 import com.codingtu.cooltu.processor.annotation.resource.ColorRes;
 import com.codingtu.cooltu.processor.annotation.resource.ColorStr;
 import com.codingtu.cooltu.processor.annotation.resource.Dimen;
@@ -30,14 +37,6 @@ import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.element.VariableElement;
 
-import com.codingtu.cooltu.lib4j.data.bean.KV;
-import com.codingtu.cooltu.lib4j.data.map.ListValueMap;
-import com.codingtu.cooltu.lib4j.tools.ClassTool;
-import com.codingtu.cooltu.lib4j.tools.ConvertTool;
-import com.codingtu.cooltu.lib4j.tools.CountTool;
-import com.codingtu.cooltu.lib4j.ts.Ts;
-import com.codingtu.cooltu.lib4j.ts.each.Each;
-
 public class ResForDeal extends BaseDeal {
     private BaseParentModel baseParentModel;
 
@@ -64,59 +63,56 @@ public class ResForDeal extends BaseDeal {
         }
 
         List<VariableElement> startGroups = new ArrayList<>();
-        Ts.ls(te.getEnclosedElements(), new Each<Element>() {
-            @Override
-            public boolean each(int position, Element element) {
-                if (element instanceof VariableElement) {
-                    VariableElement ve = (VariableElement) element;
-                    StartGroup startGroup = ve.getAnnotation(StartGroup.class);
-                    if (startGroup != null) {
-                        startGroups.add(ve);
-                    }
-
-                    Adapter adapter = ve.getAnnotation(Adapter.class);
-                    if (adapter != null) {
-                        dealAdapter(ve, adapter);
-                    }
-
-                    ColorRes colorRes = ve.getAnnotation(ColorRes.class);
-                    if (colorRes != null) {
-                        dealColorRes(ve, colorRes);
-                    }
-
-                    ColorStr colorStr = ve.getAnnotation(ColorStr.class);
-                    if (colorStr != null) {
-                        dealColorStr(ve, colorStr);
-                    }
-
-                    Dp dp = ve.getAnnotation(Dp.class);
-                    if (dp != null) {
-                        dealDp(ve, dp);
-                    }
-
-                    Dimen dimen = ve.getAnnotation(Dimen.class);
-                    if (dimen != null) {
-                        dealDimen(ve, dimen);
-                    }
-
-                    EditDialogUse editDialogUse = ve.getAnnotation(EditDialogUse.class);
-                    if (editDialogUse != null) {
-                        dealEditDialogUse(ve, editDialogUse);
-                    }
-                    DialogUse dialogUse = ve.getAnnotation(DialogUse.class);
-                    if (dialogUse != null) {
-                        dealDialogUse(ve, dialogUse);
-                    }
-
+        Ts.ls(te.getEnclosedElements(), (position, element1) -> {
+            if (element1 instanceof VariableElement) {
+                VariableElement ve = (VariableElement) element1;
+                StartGroup startGroup = ve.getAnnotation(StartGroup.class);
+                if (startGroup != null) {
+                    startGroups.add(ve);
                 }
-                return false;
+
+                Adapter adapter = ve.getAnnotation(Adapter.class);
+                if (adapter != null) {
+                    dealAdapter(ve, adapter);
+                }
+
+                ColorRes colorRes = ve.getAnnotation(ColorRes.class);
+                if (colorRes != null) {
+                    dealColorRes(ve, colorRes);
+                }
+
+                ColorStr colorStr = ve.getAnnotation(ColorStr.class);
+                if (colorStr != null) {
+                    dealColorStr(ve, colorStr);
+                }
+
+                Dp dp = ve.getAnnotation(Dp.class);
+                if (dp != null) {
+                    dealDp(ve, dp);
+                }
+
+                Dimen dimen = ve.getAnnotation(Dimen.class);
+                if (dimen != null) {
+                    dealDimen(ve, dimen);
+                }
+
+                EditDialogUse editDialogUse = ve.getAnnotation(EditDialogUse.class);
+                if (editDialogUse != null) {
+                    dealEditDialogUse(ve, editDialogUse);
+                }
+                DialogUse dialogUse = ve.getAnnotation(DialogUse.class);
+                if (dialogUse != null) {
+                    dealDialogUse(ve, dialogUse);
+                }
+
             }
+            return false;
         });
         dealStartGroup(actFullName, startGroups);
 
         String baseClass = baseParentModel.getBaseClass();
 
-        Ts.ls(ResForBaseDeal.getTs(ResForBaseDeal.colorStrMap, baseClass), new Each<VariableElement>() {
+        Ts.ls(ResForBaseDeal.getTs(ResForBaseDeal.colorStrMap, baseClass), new BaseTs.EachTs<VariableElement>() {
             @Override
             public boolean each(int position, VariableElement ve) {
                 dealColorStr(ve, ve.getAnnotation(ColorStr.class));
@@ -124,7 +120,7 @@ public class ResForDeal extends BaseDeal {
             }
         });
 
-        Ts.ls(ResForBaseDeal.getTs(ResForBaseDeal.colorResMap, baseClass), new Each<VariableElement>() {
+        Ts.ls(ResForBaseDeal.getTs(ResForBaseDeal.colorResMap, baseClass), new BaseTs.EachTs<VariableElement>() {
             @Override
             public boolean each(int position, VariableElement ve) {
                 dealColorRes(ve, ve.getAnnotation(ColorRes.class));
@@ -132,7 +128,7 @@ public class ResForDeal extends BaseDeal {
             }
         });
 
-        Ts.ls(ResForBaseDeal.getTs(ResForBaseDeal.dpMap, baseClass), new Each<VariableElement>() {
+        Ts.ls(ResForBaseDeal.getTs(ResForBaseDeal.dpMap, baseClass), new BaseTs.EachTs<VariableElement>() {
             @Override
             public boolean each(int position, VariableElement ve) {
                 dealDp(ve, ve.getAnnotation(Dp.class));
@@ -140,7 +136,7 @@ public class ResForDeal extends BaseDeal {
             }
         });
 
-        Ts.ls(ResForBaseDeal.getTs(ResForBaseDeal.dimenMap, baseClass), new Each<VariableElement>() {
+        Ts.ls(ResForBaseDeal.getTs(ResForBaseDeal.dimenMap, baseClass), new BaseTs.EachTs<VariableElement>() {
             @Override
             public boolean each(int position, VariableElement ve) {
                 dealDimen(ve, ve.getAnnotation(Dimen.class));
@@ -174,32 +170,29 @@ public class ResForDeal extends BaseDeal {
             StartModel.model.addStart(actFullName, actStaticName, null);
         } else {
             ListValueMap<Integer, KV<String, String>> ikv = new ListValueMap<>();
-            Ts.ls(startGroups, new Each<Element>() {
-                @Override
-                public boolean each(int position, Element element) {
-                    if (element instanceof VariableElement) {
-                        KV<String, String> kv = ElementTools.getFiledKv((VariableElement) element);
-                        PassModel.model.add(kv);
+            Ts.ls(startGroups, (position, element) -> {
+                if (element instanceof VariableElement) {
+                    KV<String, String> kv = ElementTools.getFiledKv((VariableElement) element);
+                    PassModel.model.add(kv);
 
-                        int[] group = null;
-                        StartGroup startGroup = element.getAnnotation(StartGroup.class);
-                        if (startGroup != null) {
-                            group = startGroup.value();
-                        }
-                        if (CountTool.isNull(group)) {
-                            ikv.get(0).add(kv);
-                        } else {
-                            Ts.ls(group, new Each<Integer>() {
-                                @Override
-                                public boolean each(int position, Integer integer) {
-                                    ikv.get(integer).add(kv);
-                                    return false;
-                                }
-                            });
-                        }
+                    int[] group = null;
+                    StartGroup startGroup = element.getAnnotation(StartGroup.class);
+                    if (startGroup != null) {
+                        group = startGroup.value();
                     }
-                    return false;
+                    if (CountTool.isNull(group)) {
+                        ikv.get(0).add(kv);
+                    } else {
+                        Ts.ts(group).ls(new BaseTs.EachTs<Integer>() {
+                            @Override
+                            public boolean each(int position, Integer integer) {
+                                ikv.get(integer).add(kv);
+                                return false;
+                            }
+                        });
+                    }
                 }
+                return false;
             });
             try {
                 actBaseModel.addStartParams(ikv);

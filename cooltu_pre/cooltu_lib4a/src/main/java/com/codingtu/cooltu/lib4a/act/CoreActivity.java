@@ -10,11 +10,6 @@ import android.view.ViewTreeObserver;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.codingtu.cooltu.lib4j.ts.Ts;
-import com.codingtu.cooltu.lib4j.ts.each.Each;
 import com.codingtu.cooltu.lib4a.bus.Bus;
 import com.codingtu.cooltu.lib4a.bus.BusStation;
 import com.codingtu.cooltu.lib4a.permission.PermissionBack;
@@ -23,6 +18,11 @@ import com.codingtu.cooltu.lib4a.tools.ScreenAdaptationTool;
 import com.codingtu.cooltu.lib4a.tools.StatusBarTool;
 import com.codingtu.cooltu.lib4a.tools.ToastTool;
 import com.codingtu.cooltu.lib4a.tools.ViewTool;
+import com.codingtu.cooltu.lib4j.ts.Ts;
+import com.codingtu.cooltu.lib4j.ts.impl.BaseTs;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CoreActivity extends AppCompatActivity implements CoreUiInterface {
 
@@ -164,7 +164,7 @@ public class CoreActivity extends AppCompatActivity implements CoreUiInterface {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         final boolean[] b = {false};
         List<WhenKeyDown> whenKeyDowns = getWhenKeyDowns();
-        Ts.ls(whenKeyDowns, new Each<WhenKeyDown>() {
+        Ts.ls(whenKeyDowns, new BaseTs.EachTs<WhenKeyDown>() {
             @Override
             public boolean each(int position, WhenKeyDown whenKeyDown) {
                 if (whenKeyDown.onKeyDown(keyCode, event)) {
@@ -215,7 +215,7 @@ public class CoreActivity extends AppCompatActivity implements CoreUiInterface {
 
     public void onRequestPermissionsResultInCore(int requestCode, String[] permissions,
                                                  int[] grantResults) {
-        Ts.ls(getPermissionHelpers(), new Each<PermissionBack>() {
+        Ts.ls(getPermissionHelpers(), new BaseTs.EachTs<PermissionBack>() {
             @Override
             public boolean each(int position, PermissionBack helper) {
                 helper.back(requestCode, permissions, grantResults);
@@ -249,7 +249,7 @@ public class CoreActivity extends AppCompatActivity implements CoreUiInterface {
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Ts.ls(getOnActBacks(), new Each<OnActBack>() {
+        Ts.ls(getOnActBacks(), new BaseTs.EachTs<OnActBack>() {
             @Override
             public boolean each(int position, OnActBack back) {
                 back.onActivityResult(requestCode, resultCode, data);
@@ -278,7 +278,7 @@ public class CoreActivity extends AppCompatActivity implements CoreUiInterface {
 
     @Override
     public void destroyAll() {
-        Ts.ls(getOnDestroys(), new Each<OnDestroy>() {
+        Ts.ls(getOnDestroys(), new BaseTs.EachTs<OnDestroy>() {
             @Override
             public boolean each(int position, OnDestroy onDestroy) {
                 onDestroy.destroy();
@@ -300,7 +300,7 @@ public class CoreActivity extends AppCompatActivity implements CoreUiInterface {
     }
 
     private void removeBuses() {
-        Ts.ls(busMap, new Each<Bus>() {
+        Ts.ls(busMap, new BaseTs.EachTs<Bus>() {
             @Override
             public boolean each(int position, Bus bus) {
                 BusStation.remove(bus);

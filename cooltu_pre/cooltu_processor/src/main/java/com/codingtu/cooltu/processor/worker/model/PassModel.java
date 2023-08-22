@@ -1,24 +1,22 @@
 package com.codingtu.cooltu.processor.worker.model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.codingtu.cooltu.constant.Constant;
+import com.codingtu.cooltu.constant.FullName;
 import com.codingtu.cooltu.lib4j.data.bean.KV;
 import com.codingtu.cooltu.lib4j.tools.ClassTool;
 import com.codingtu.cooltu.lib4j.tools.ConvertTool;
 import com.codingtu.cooltu.lib4j.tools.StringTool;
 import com.codingtu.cooltu.lib4j.ts.Ts;
-import com.codingtu.cooltu.lib4j.ts.each.Each;
-
-import com.codingtu.cooltu.constant.Constant;
-import com.codingtu.cooltu.constant.FullName;
-
+import com.codingtu.cooltu.lib4j.ts.impl.BaseTs;
 import com.codingtu.cooltu.processor.lib.ls.EachType;
 import com.codingtu.cooltu.processor.lib.ls.TypeLs;
 import com.codingtu.cooltu.processor.modelinterface.PassModelInterface;
 import com.codingtu.cooltu.processor.worker.model.base.SingleCoreToolsBaseModel;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class PassModel extends SingleCoreToolsBaseModel implements PassModelInterface {
 
@@ -56,7 +54,7 @@ public class PassModel extends SingleCoreToolsBaseModel implements PassModelInte
 
     @Override
     public void setTagFor_fields(StringBuilder fieldsSb) {
-        Ts.ls(kvs, new Each<KV<String, String>>() {
+        Ts.ls(kvs, new BaseTs.EachTs<KV<String, String>>() {
             @Override
             public boolean each(int position, KV<String, String> kv) {
                 String value = nameMap.get(kv.v);
@@ -75,7 +73,7 @@ public class PassModel extends SingleCoreToolsBaseModel implements PassModelInte
 
     @Override
     public void setTagFor_methods(StringBuilder methodsSb) {
-        Ts.ls(kvs, new Each<KV<String, String>>() {
+        Ts.ls(kvs, new BaseTs.EachTs<KV<String, String>>() {
             @Override
             public boolean each(int position, KV<String, String> kv) {
                 String type = kv.k;

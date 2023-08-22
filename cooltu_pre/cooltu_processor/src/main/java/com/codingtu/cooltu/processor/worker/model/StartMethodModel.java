@@ -1,20 +1,19 @@
 package com.codingtu.cooltu.processor.worker.model;
 
 import com.codingtu.cooltu.constant.FullName;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import com.codingtu.cooltu.lib4j.data.bean.KV;
 import com.codingtu.cooltu.lib4j.tools.ClassTool;
 import com.codingtu.cooltu.lib4j.tools.ConvertTool;
 import com.codingtu.cooltu.lib4j.tools.CountTool;
 import com.codingtu.cooltu.lib4j.tools.StringTool;
 import com.codingtu.cooltu.lib4j.ts.Ts;
-import com.codingtu.cooltu.lib4j.ts.each.Each;
+import com.codingtu.cooltu.lib4j.ts.impl.BaseTs;
 import com.codingtu.cooltu.processor.lib.tools.RenameTools;
 import com.codingtu.cooltu.processor.modelinterface.StartMethodModelInterface;
 import com.codingtu.cooltu.processor.worker.model.base.SubBaseModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class StartMethodModel extends SubBaseModel implements StartMethodModelInterface {
@@ -53,7 +52,7 @@ public class StartMethodModel extends SubBaseModel implements StartMethodModelIn
     public void setTagFor_methodParams(StringBuilder sb) {
         StringBuilder paramSb = new StringBuilder();
         if (!CountTool.isNull(kvs)) {
-            Ts.ls(kvs, new Each<KV<String, String>>() {
+            Ts.ls(kvs, new BaseTs.EachTs<KV<String, String>>() {
                 @Override
                 public boolean each(int position, KV<String, String> kv) {
                     if (position != 0) {
@@ -90,7 +89,7 @@ public class StartMethodModel extends SubBaseModel implements StartMethodModelIn
 
     @Override
     public void setTagFor_params(StringBuilder sb) {
-        Ts.ls(kvs, new Each<KV<String, String>>() {
+        Ts.ls(kvs, new BaseTs.EachTs<KV<String, String>>() {
             @Override
             public boolean each(int position, KV<String, String> kv) {
                 if (ClassTool.isBaseClass(kv.k)) {

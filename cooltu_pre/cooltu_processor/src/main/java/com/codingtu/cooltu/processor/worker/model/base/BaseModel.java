@@ -1,24 +1,23 @@
 package com.codingtu.cooltu.processor.worker.model.base;
 
 import com.codingtu.cooltu.constant.Constant;
-
-import java.io.File;
-import java.lang.reflect.Method;
-import java.util.List;
-import java.util.Map;
-
 import com.codingtu.cooltu.lib4j.data.bean.JavaInfo;
 import com.codingtu.cooltu.lib4j.data.map.StringBuilderValueMap;
 import com.codingtu.cooltu.lib4j.file.read.FileReader;
 import com.codingtu.cooltu.lib4j.file.write.FileWriter;
 import com.codingtu.cooltu.lib4j.tools.CountTool;
 import com.codingtu.cooltu.lib4j.ts.Ts;
-import com.codingtu.cooltu.lib4j.ts.each.Each;
+import com.codingtu.cooltu.lib4j.ts.impl.BaseTs;
 import com.codingtu.cooltu.processor.lib.log.Logs;
 import com.codingtu.cooltu.processor.lib.model.ModelMap;
 import com.codingtu.cooltu.processor.lib.tools.NameTools;
 import com.codingtu.cooltu.processor.lib.tools.TagTools;
 import com.codingtu.cooltu.processor.worker.ModelType;
+
+import java.io.File;
+import java.lang.reflect.Method;
+import java.util.List;
+import java.util.Map;
 
 public class BaseModel {
     public boolean isForce;
@@ -69,7 +68,7 @@ public class BaseModel {
 
     protected void dealAllSetTagMethod() {
         Method[] methods = getClass().getMethods();
-        Ts.ls(methods, new Each<Method>() {
+        Ts.ls(methods, new BaseTs.EachTs<Method>() {
             @Override
             public boolean each(int position, Method method) {
                 String name = method.getName();
@@ -115,7 +114,7 @@ public class BaseModel {
     }
 
     protected void addModel(StringBuilder sb, BaseModel model) {
-        Ts.ls(model.getLines(), new Each<String>() {
+        Ts.ls(model.getLines(), new BaseTs.EachTs<String>() {
             @Override
             public boolean each(int position, String s) {
                 addLnTag(sb, s);
@@ -129,12 +128,9 @@ public class BaseModel {
     }
 
     protected void addModels(StringBuilder sb, List<? extends BaseModel> models) {
-        Ts.ls(models, new Each<BaseModel>() {
-            @Override
-            public boolean each(int position, BaseModel baseModel) {
-                addModel(sb, baseModel);
-                return false;
-            }
+        Ts.ls(models, (position, baseModel) -> {
+            addModel(sb, baseModel);
+            return false;
         });
     }
 

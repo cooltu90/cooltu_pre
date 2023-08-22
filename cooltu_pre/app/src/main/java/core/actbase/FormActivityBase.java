@@ -183,7 +183,7 @@ public abstract class FormActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
         }
 
         private void link(int id) {
-            com.codingtu.cooltu.lib4j.ts.Ts.ls(getLinks().get(id), new com.codingtu.cooltu.lib4j.ts.each.Each<com.codingtu.cooltu.lib4a.form.FormLink>() {
+            com.codingtu.cooltu.lib4j.ts.Ts.ls(getLinks().get(id), new com.codingtu.cooltu.lib4j.ts.impl.BaseTs.EachTs<com.codingtu.cooltu.lib4a.form.FormLink>() {
                 @Override
                 public boolean each(int position, com.codingtu.cooltu.lib4a.form.FormLink formLink) {
                     formLink.link();

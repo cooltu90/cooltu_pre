@@ -3,22 +3,13 @@ package com.codingtu.cooltu.processor.worker.model;
 import com.codingtu.cooltu.constant.Constant;
 import com.codingtu.cooltu.constant.FullName;
 import com.codingtu.cooltu.constant.Suffix;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import javax.lang.model.element.ExecutableElement;
-import javax.lang.model.element.VariableElement;
-
 import com.codingtu.cooltu.lib4j.data.bean.JavaInfo;
 import com.codingtu.cooltu.lib4j.tools.ClassTool;
 import com.codingtu.cooltu.lib4j.tools.ConvertTool;
 import com.codingtu.cooltu.lib4j.tools.CountTool;
 import com.codingtu.cooltu.lib4j.tools.StringTool;
 import com.codingtu.cooltu.lib4j.ts.Ts;
-import com.codingtu.cooltu.lib4j.ts.each.Each;
-
+import com.codingtu.cooltu.lib4j.ts.impl.BaseTs;
 import com.codingtu.cooltu.processor.annotation.ui.ActBack;
 import com.codingtu.cooltu.processor.annotation.ui.InBaseActBack;
 import com.codingtu.cooltu.processor.lib.ls.EachType;
@@ -27,6 +18,13 @@ import com.codingtu.cooltu.processor.lib.tools.NameTools;
 import com.codingtu.cooltu.processor.lib.tools.ParamTools;
 import com.codingtu.cooltu.processor.modelinterface.ActBackIntentModelInterface;
 import com.codingtu.cooltu.processor.worker.model.base.SingleCoreToolsBaseModel;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import javax.lang.model.element.ExecutableElement;
+import javax.lang.model.element.VariableElement;
 
 public class ActBackIntentModel extends SingleCoreToolsBaseModel implements ActBackIntentModelInterface {
 
@@ -55,7 +53,7 @@ public class ActBackIntentModel extends SingleCoreToolsBaseModel implements ActB
 
     @Override
     public void setTagFor_methods(StringBuilder sb) {
-        Ts.ls(ees, new Each<ExecutableElement>() {
+        Ts.ls(ees, new BaseTs.EachTs<ExecutableElement>() {
             @Override
             public boolean each(int position, ExecutableElement ee) {
                 return setTagFor_methods_deal(sb, ee, ClassTool.getAnnotationClass(new ClassTool.AnnotationClassGetter() {
@@ -67,7 +65,7 @@ public class ActBackIntentModel extends SingleCoreToolsBaseModel implements ActB
             }
         });
 
-        Ts.ls(inBaseEes, new Each<ExecutableElement>() {
+        Ts.ls(inBaseEes, new BaseTs.EachTs<ExecutableElement>() {
             @Override
             public boolean each(int position, ExecutableElement ee) {
                 return setTagFor_methods_deal(sb, ee, ClassTool.getAnnotationClass(new ClassTool.AnnotationClassGetter() {

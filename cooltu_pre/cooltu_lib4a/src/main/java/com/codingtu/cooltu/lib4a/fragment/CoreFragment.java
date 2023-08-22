@@ -10,12 +10,11 @@ import com.codingtu.cooltu.lib4a.bus.Bus;
 import com.codingtu.cooltu.lib4a.bus.BusStation;
 import com.codingtu.cooltu.lib4a.permission.PermissionBack;
 import com.codingtu.cooltu.lib4a.tools.ToastTool;
+import com.codingtu.cooltu.lib4j.ts.Ts;
+import com.codingtu.cooltu.lib4j.ts.impl.BaseTs;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.codingtu.cooltu.lib4j.ts.Ts;
-import com.codingtu.cooltu.lib4j.ts.each.Each;
 
 public class CoreFragment extends Fragment implements CoreUiInterface {
 
@@ -83,7 +82,7 @@ public class CoreFragment extends Fragment implements CoreUiInterface {
     }
 
     private void removeBuses() {
-        Ts.ls(busMap, new Each<Bus>() {
+        Ts.ls(busMap, new BaseTs.EachTs<Bus>() {
             @Override
             public boolean each(int position, Bus bus) {
                 BusStation.remove(bus);

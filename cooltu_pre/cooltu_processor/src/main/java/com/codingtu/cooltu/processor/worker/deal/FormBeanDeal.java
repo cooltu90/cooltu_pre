@@ -1,25 +1,21 @@
 package com.codingtu.cooltu.processor.worker.deal;
 
-import javax.lang.model.element.Element;
-import javax.lang.model.element.VariableElement;
-
+import com.codingtu.cooltu.constant.FieldName;
+import com.codingtu.cooltu.constant.FullName;
 import com.codingtu.cooltu.lib4j.data.bean.KV;
 import com.codingtu.cooltu.lib4j.tools.ClassTool;
 import com.codingtu.cooltu.lib4j.tools.CountTool;
 import com.codingtu.cooltu.lib4j.ts.Ts;
-import com.codingtu.cooltu.lib4j.ts.each.Each;
-
-import com.codingtu.cooltu.constant.FieldName;
-import com.codingtu.cooltu.constant.FullName;
+import com.codingtu.cooltu.lib4j.ts.impl.BaseTs;
 import com.codingtu.cooltu.processor.annotation.form.FormCheck;
 import com.codingtu.cooltu.processor.annotation.form.FormItem;
 import com.codingtu.cooltu.processor.annotation.form.FormItemLink;
 import com.codingtu.cooltu.processor.annotation.form.FormParse;
 import com.codingtu.cooltu.processor.annotation.form.FormType;
 import com.codingtu.cooltu.processor.annotation.form.item.EditTextFormItem;
+import com.codingtu.cooltu.processor.annotation.form.item.RadioGroupFormItem;
 import com.codingtu.cooltu.processor.annotation.form.item.SeekBarFormItem;
 import com.codingtu.cooltu.processor.annotation.form.item.TextViewFormItem;
-import com.codingtu.cooltu.processor.annotation.form.item.RadioGroupFormItem;
 import com.codingtu.cooltu.processor.lib.bean.FormItemInfo;
 import com.codingtu.cooltu.processor.lib.bean.FromItemInfoForRg;
 import com.codingtu.cooltu.processor.lib.tools.ElementTools;
@@ -27,12 +23,15 @@ import com.codingtu.cooltu.processor.lib.tools.IdTools;
 import com.codingtu.cooltu.processor.worker.deal.base.BaseDeal;
 import com.codingtu.cooltu.processor.worker.model.BaseParentModel;
 
+import javax.lang.model.element.Element;
+import javax.lang.model.element.VariableElement;
+
 public class FormBeanDeal extends BaseDeal {
 
     @Override
     public void deal(Element element) {
         KV<String, String> kv = ElementTools.getFormBeanName(element);
-        Ts.ls(FormDeal.map.get(kv.k), new Each<BaseParentModel>() {
+        Ts.ls(FormDeal.map.get(kv.k), new BaseTs.EachTs<BaseParentModel>() {
             @Override
             public boolean each(int position, BaseParentModel baseParentModel) {
                 baseParentModel.addFormBean(kv.k, kv.v);
@@ -41,14 +40,11 @@ public class FormBeanDeal extends BaseDeal {
             }
         });
 
-        Ts.ls(element.getEnclosedElements(), new Each<Element>() {
-            @Override
-            public boolean each(int position, Element element) {
-                if (element instanceof VariableElement) {
-                    dealElement((VariableElement) element);
-                }
-                return false;
+        Ts.ls(element.getEnclosedElements(), (position, element1) -> {
+            if (element1 instanceof VariableElement) {
+                dealElement((VariableElement) element1);
             }
+            return false;
         });
     }
 
@@ -143,7 +139,7 @@ public class FormBeanDeal extends BaseDeal {
 
         FormItemInfo formItemInfo = info;
 
-        Ts.ls(FormDeal.map.get(parentType), new Each<BaseParentModel>() {
+        Ts.ls(FormDeal.map.get(parentType), new BaseTs.EachTs<BaseParentModel>() {
             @Override
             public boolean each(int position, BaseParentModel baseParentModel) {
                 baseParentModel.addFormItem(formItemInfo);

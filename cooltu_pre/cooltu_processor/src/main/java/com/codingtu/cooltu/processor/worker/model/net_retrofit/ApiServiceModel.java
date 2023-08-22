@@ -1,15 +1,15 @@
 package com.codingtu.cooltu.processor.worker.model.net_retrofit;
 
+import com.codingtu.cooltu.lib4j.data.bean.JavaInfo;
+import com.codingtu.cooltu.lib4j.ts.Ts;
+import com.codingtu.cooltu.lib4j.ts.impl.BaseTs;
+import com.codingtu.cooltu.processor.modelinterface.ApiServiceModelInterface;
+import com.codingtu.cooltu.processor.worker.model.base.BaseModel;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.lang.model.element.ExecutableElement;
-
-import com.codingtu.cooltu.lib4j.data.bean.JavaInfo;
-import com.codingtu.cooltu.lib4j.ts.Ts;
-import com.codingtu.cooltu.lib4j.ts.each.Each;
-import com.codingtu.cooltu.processor.modelinterface.ApiServiceModelInterface;
-import com.codingtu.cooltu.processor.worker.model.base.BaseModel;
 
 public class ApiServiceModel extends BaseModel implements ApiServiceModelInterface {
 
@@ -36,7 +36,7 @@ public class ApiServiceModel extends BaseModel implements ApiServiceModelInterfa
 
     @Override
     public void setTagFor_methods(StringBuilder sb) {
-        Ts.ls(apiMethodElments, new Each<ExecutableElement>() {
+        Ts.ls(apiMethodElments, new BaseTs.EachTs<ExecutableElement>() {
             @Override
             public boolean each(int position, ExecutableElement ee) {
                 addModel(sb, new ApiServiceMethodModel(ee));

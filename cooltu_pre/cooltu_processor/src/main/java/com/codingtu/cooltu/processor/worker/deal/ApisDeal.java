@@ -1,13 +1,9 @@
 package com.codingtu.cooltu.processor.worker.deal;
 
-import javax.lang.model.element.Element;
-import javax.lang.model.element.ExecutableElement;
-
 import com.codingtu.cooltu.lib4j.data.bean.JavaInfo;
 import com.codingtu.cooltu.lib4j.tools.ConvertTool;
 import com.codingtu.cooltu.lib4j.tools.CountTool;
 import com.codingtu.cooltu.lib4j.ts.Ts;
-import com.codingtu.cooltu.lib4j.ts.each.Each;
 import com.codingtu.cooltu.processor.annotation.net.Apis;
 import com.codingtu.cooltu.processor.annotation.tools.To;
 import com.codingtu.cooltu.processor.lib.tools.ElementTools;
@@ -19,6 +15,9 @@ import com.codingtu.cooltu.processor.worker.model.net_retrofit.ApiServiceModel;
 import com.codingtu.cooltu.processor.worker.model.net_retrofit.NetBackModel;
 import com.codingtu.cooltu.processor.worker.model.net_retrofit.NetMethodModel;
 import com.codingtu.cooltu.processor.worker.model.net_retrofit.NetModel;
+
+import javax.lang.model.element.Element;
+import javax.lang.model.element.ExecutableElement;
 
 /**************************************************
  *
@@ -44,25 +43,22 @@ public class ApisDeal extends BaseDeal {
         JavaInfo info = NameTools.getApiServiceInfo(apiTypeName);
         ApiServiceModel apiServiceModel = new ApiServiceModel(info);
 
-        Ts.ls(element.getEnclosedElements(), new Each<Element>() {
-            @Override
-            public boolean each(int position, Element element) {
-                ExecutableElement ee = (ExecutableElement) element;
-                //XxxxApiService
-                apiServiceModel.addMethod(ee);
-                //Net
-                NetModel.model.add(ee, baseUrl, apiTypeName);
+        Ts.ls(element.getEnclosedElements(), (position, element1) -> {
+            ExecutableElement ee = (ExecutableElement) element1;
+            //XxxxApiService
+            apiServiceModel.addMethod(ee);
+            //Net
+            NetModel.model.add(ee, baseUrl, apiTypeName);
 
-                String classTypeName = ConvertTool.toClassType(ElementTools.simpleName(ee));
-                //XxxxSendParams
-                if (!CountTool.isNull(ee.getParameters())) {
-                    new SendParamsModel(NameTools.getSendParamsInfo(classTypeName), ee);
-                }
-                //XxxxNetBack
-                new NetBackModel(NameTools.getNetBackInfo(classTypeName), ee);
-
-                return false;
+            String classTypeName = ConvertTool.toClassType(ElementTools.simpleName(ee));
+            //XxxxSendParams
+            if (!CountTool.isNull(ee.getParameters())) {
+                new SendParamsModel(NameTools.getSendParamsInfo(classTypeName), ee);
             }
+            //XxxxNetBack
+            new NetBackModel(NameTools.getNetBackInfo(classTypeName), ee);
+
+            return false;
         });
     }
 }

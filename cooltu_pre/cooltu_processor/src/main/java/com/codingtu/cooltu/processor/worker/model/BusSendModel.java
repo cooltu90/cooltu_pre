@@ -1,18 +1,17 @@
 package com.codingtu.cooltu.processor.worker.model;
 
 import com.codingtu.cooltu.constant.Constant;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import com.codingtu.cooltu.lib4j.data.bean.JavaInfo;
 import com.codingtu.cooltu.lib4j.data.bean.KV;
 import com.codingtu.cooltu.lib4j.tools.ClassTool;
 import com.codingtu.cooltu.lib4j.ts.Ts;
-import com.codingtu.cooltu.lib4j.ts.each.Each;
+import com.codingtu.cooltu.lib4j.ts.impl.BaseTs;
 import com.codingtu.cooltu.processor.lib.tools.NameTools;
 import com.codingtu.cooltu.processor.modelinterface.BusSendModelInterface;
 import com.codingtu.cooltu.processor.worker.model.base.SingleCoreToolsBaseModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BusSendModel extends SingleCoreToolsBaseModel implements BusSendModelInterface {
 
@@ -35,7 +34,7 @@ public class BusSendModel extends SingleCoreToolsBaseModel implements BusSendMod
 
     @Override
     public void setTagFor_methods(StringBuilder sb) {
-        Ts.ls(kvs, new Each<KV<String, String>>() {
+        Ts.ls(kvs, new BaseTs.EachTs<KV<String, String>>() {
             @Override
             public boolean each(int position, KV<String, String> kv) {
                 JavaInfo busInfo = NameTools.getBusInfo(kv.v);

@@ -1,5 +1,10 @@
 package com.codingtu.cooltu.processor.worker.deal;
 
+import com.codingtu.cooltu.lib4j.data.bean.KV;
+import com.codingtu.cooltu.lib4j.tools.ClassTool;
+import com.codingtu.cooltu.lib4j.tools.CountTool;
+import com.codingtu.cooltu.lib4j.ts.Ts;
+import com.codingtu.cooltu.lib4j.ts.impl.BaseTs;
 import com.codingtu.cooltu.processor.annotation.form.FormCheck;
 import com.codingtu.cooltu.processor.annotation.form.FormItem;
 import com.codingtu.cooltu.processor.annotation.form.FormItemLink;
@@ -13,12 +18,6 @@ import com.codingtu.cooltu.processor.worker.deal.base.BaseDeal;
 import com.codingtu.cooltu.processor.worker.model.BaseParentModel;
 
 import javax.lang.model.element.Element;
-
-import com.codingtu.cooltu.lib4j.data.bean.KV;
-import com.codingtu.cooltu.lib4j.tools.ClassTool;
-import com.codingtu.cooltu.lib4j.tools.CountTool;
-import com.codingtu.cooltu.lib4j.ts.Ts;
-import com.codingtu.cooltu.lib4j.ts.each.Each;
 
 public class FormItemDeal extends BaseDeal {
 
@@ -102,7 +101,7 @@ public class FormItemDeal extends BaseDeal {
 
         FormItemInfo formItemInfo = info;
 
-        Ts.ls(FormDeal.map.get(parentType), new Each<BaseParentModel>() {
+        Ts.ls(FormDeal.map.get(parentType), new BaseTs.EachTs<BaseParentModel>() {
             @Override
             public boolean each(int position, BaseParentModel baseParentModel) {
                 baseParentModel.addFormItem(formItemInfo);

@@ -1,5 +1,8 @@
 package com.codingtu.cooltu.processor.worker.deal;
 
+import com.codingtu.cooltu.lib4j.data.map.ListValueMap;
+import com.codingtu.cooltu.lib4j.tools.CountTool;
+import com.codingtu.cooltu.lib4j.ts.Ts;
 import com.codingtu.cooltu.processor.annotation.resource.ColorRes;
 import com.codingtu.cooltu.processor.annotation.resource.ColorStr;
 import com.codingtu.cooltu.processor.annotation.resource.Dimen;
@@ -19,11 +22,6 @@ import javax.lang.model.element.Element;
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.element.VariableElement;
-
-import com.codingtu.cooltu.lib4j.data.map.ListValueMap;
-import com.codingtu.cooltu.lib4j.tools.CountTool;
-import com.codingtu.cooltu.lib4j.ts.Ts;
-import com.codingtu.cooltu.lib4j.ts.each.Each;
 
 public class ResForBaseDeal extends BaseDeal {
 
@@ -51,62 +49,59 @@ public class ResForBaseDeal extends BaseDeal {
 
         baseMap.get(classFullName).add(parentClass);
 
-        Ts.ls(te.getEnclosedElements(), new Each<Element>() {
-            @Override
-            public boolean each(int position, Element element) {
-                if (element instanceof VariableElement) {
-                    VariableElement ve = (VariableElement) element;
-                    StartGroup startGroup = ve.getAnnotation(StartGroup.class);
-                    if (startGroup != null) {
-                        startGroupMap.get(classFullName).add(ve);
-                        inBaseMap.get(classFullName).add(ElementTools.simpleName(ve));
-                    }
-
-                    InBase inBase = ve.getAnnotation(InBase.class);
-                    if (inBase != null) {
-                        inBaseMap.get(classFullName).add(ElementTools.simpleName(ve));
-                    }
-
-                    ColorStr colorStr = ve.getAnnotation(ColorStr.class);
-                    if (colorStr != null) {
-                        colorStrMap.get(classFullName).add(ve);
-                        inBaseMap.get(classFullName).add(ElementTools.simpleName(ve));
-                    }
-
-                    ColorRes colorRes = ve.getAnnotation(ColorRes.class);
-                    if (colorRes != null) {
-                        colorResMap.get(classFullName).add(ve);
-                        inBaseMap.get(classFullName).add(ElementTools.simpleName(ve));
-                    }
-
-                    Dp dp = ve.getAnnotation(Dp.class);
-                    if (dp != null) {
-                        dpMap.get(classFullName).add(ve);
-                        inBaseMap.get(classFullName).add(ElementTools.simpleName(ve));
-                    }
-
-                    Dimen dimen = ve.getAnnotation(Dimen.class);
-                    if (dimen != null) {
-                        dimenMap.get(classFullName).add(ve);
-                        inBaseMap.get(classFullName).add(ElementTools.simpleName(ve));
-                    }
+        Ts.ls(te.getEnclosedElements(), (position, element1) -> {
+            if (element1 instanceof VariableElement) {
+                VariableElement ve = (VariableElement) element1;
+                StartGroup startGroup = ve.getAnnotation(StartGroup.class);
+                if (startGroup != null) {
+                    startGroupMap.get(classFullName).add(ve);
+                    inBaseMap.get(classFullName).add(ElementTools.simpleName(ve));
                 }
 
-                if (element instanceof ExecutableElement) {
-                    InBaseClickView clickView = element.getAnnotation(InBaseClickView.class);
-                    if (clickView != null) {
-                        clickViewMap.get(classFullName).add((ExecutableElement) element);
-                    }
-
-                    InBaseActBack actBack = element.getAnnotation(InBaseActBack.class);
-                    if (actBack != null) {
-                        actBackMap.get(classFullName).add((ExecutableElement) element);
-                        ActBackIntentModel.model.addInBase((ExecutableElement) element);
-                    }
+                InBase inBase = ve.getAnnotation(InBase.class);
+                if (inBase != null) {
+                    inBaseMap.get(classFullName).add(ElementTools.simpleName(ve));
                 }
 
-                return false;
+                ColorStr colorStr = ve.getAnnotation(ColorStr.class);
+                if (colorStr != null) {
+                    colorStrMap.get(classFullName).add(ve);
+                    inBaseMap.get(classFullName).add(ElementTools.simpleName(ve));
+                }
+
+                ColorRes colorRes = ve.getAnnotation(ColorRes.class);
+                if (colorRes != null) {
+                    colorResMap.get(classFullName).add(ve);
+                    inBaseMap.get(classFullName).add(ElementTools.simpleName(ve));
+                }
+
+                Dp dp = ve.getAnnotation(Dp.class);
+                if (dp != null) {
+                    dpMap.get(classFullName).add(ve);
+                    inBaseMap.get(classFullName).add(ElementTools.simpleName(ve));
+                }
+
+                Dimen dimen = ve.getAnnotation(Dimen.class);
+                if (dimen != null) {
+                    dimenMap.get(classFullName).add(ve);
+                    inBaseMap.get(classFullName).add(ElementTools.simpleName(ve));
+                }
             }
+
+            if (element1 instanceof ExecutableElement) {
+                InBaseClickView clickView = element1.getAnnotation(InBaseClickView.class);
+                if (clickView != null) {
+                    clickViewMap.get(classFullName).add((ExecutableElement) element1);
+                }
+
+                InBaseActBack actBack = element1.getAnnotation(InBaseActBack.class);
+                if (actBack != null) {
+                    actBackMap.get(classFullName).add((ExecutableElement) element1);
+                    ActBackIntentModel.model.addInBase((ExecutableElement) element1);
+                }
+            }
+
+            return false;
         });
 
     }

@@ -1,9 +1,5 @@
 package com.codingtu.cooltu.lib4j.data.bean;
 
-import com.codingtu.cooltu.lib4j.ts.Ts;
-
-import java.util.List;
-
 public class Ymd implements Comparable {
 
     public int y;

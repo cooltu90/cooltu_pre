@@ -1,17 +1,16 @@
 package com.codingtu.cooltu.processor.lib.bean;
 
-import javax.lang.model.element.Element;
-
+import com.codingtu.cooltu.constant.FieldName;
+import com.codingtu.cooltu.constant.FullName;
 import com.codingtu.cooltu.lib4j.tools.ClassTool;
 import com.codingtu.cooltu.lib4j.tools.CountTool;
 import com.codingtu.cooltu.lib4j.tools.StringTool;
 import com.codingtu.cooltu.lib4j.ts.Ts;
-import com.codingtu.cooltu.lib4j.ts.each.Each;
-
-import com.codingtu.cooltu.constant.FieldName;
-import com.codingtu.cooltu.constant.FullName;
+import com.codingtu.cooltu.lib4j.ts.impl.BaseTs;
 import com.codingtu.cooltu.processor.annotation.form.FormRadioGroup;
 import com.codingtu.cooltu.processor.annotation.form.item.RadioGroupFormItem;
+
+import javax.lang.model.element.Element;
 
 public class FromItemInfoForRg extends FormItemInfo {
     public String onSetItemClass;
@@ -58,7 +57,7 @@ public class FromItemInfoForRg extends FormItemInfo {
         if (!CountTool.isNull(radioGroupFormItem.strItems())) {
             parse = FullName.DEFAULT_RADIO_GROUP_TO_STRING;
             StringBuilder sb = new StringBuilder();
-            Ts.ls(radioGroupFormItem.strItems(), new Each<String>() {
+            Ts.ls(radioGroupFormItem.strItems(), new BaseTs.EachTs<String>() {
                 @Override
                 public boolean each(int position, String s) {
                     if (position != 0) {

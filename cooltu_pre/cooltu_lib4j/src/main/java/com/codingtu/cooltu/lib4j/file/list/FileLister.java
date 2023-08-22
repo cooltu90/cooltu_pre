@@ -1,8 +1,8 @@
 package com.codingtu.cooltu.lib4j.file.list;
 
-import com.codingtu.cooltu.lib4j.ts.Ts;
-import com.codingtu.cooltu.lib4j.ts.each.Each;
 import com.codingtu.cooltu.lib4j.tools.CountTool;
+import com.codingtu.cooltu.lib4j.ts.Ts;
+import com.codingtu.cooltu.lib4j.ts.impl.BaseTs;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -36,7 +36,7 @@ public class FileLister {
 
 
     public void listOnce(ListFile listFile) {
-        Ts.ls(dirFile.listFiles(), new Each<File>() {
+        Ts.ls(dirFile.listFiles(), new BaseTs.EachTs<File>() {
             @Override
             public boolean each(int position, File file) {
                 listFile.list(file);

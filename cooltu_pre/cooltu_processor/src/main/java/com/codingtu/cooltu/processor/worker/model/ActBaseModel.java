@@ -1,13 +1,5 @@
 package com.codingtu.cooltu.processor.worker.model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.lang.model.element.ExecutableElement;
-import javax.lang.model.element.VariableElement;
-
 import com.codingtu.cooltu.lib4j.data.bean.JavaInfo;
 import com.codingtu.cooltu.lib4j.data.bean.KV;
 import com.codingtu.cooltu.lib4j.data.map.ListValueMap;
@@ -15,11 +7,19 @@ import com.codingtu.cooltu.lib4j.tools.ClassTool;
 import com.codingtu.cooltu.lib4j.tools.CountTool;
 import com.codingtu.cooltu.lib4j.tools.StringTool;
 import com.codingtu.cooltu.lib4j.ts.Ts;
-import com.codingtu.cooltu.lib4j.ts.each.Each;
-import com.codingtu.cooltu.lib4j.ts.each.MapEach;
+import com.codingtu.cooltu.lib4j.ts.impl.BaseTs;
+import com.codingtu.cooltu.lib4j.ts.impl.MapTs;
 import com.codingtu.cooltu.processor.lib.tools.ElementTools;
 import com.codingtu.cooltu.processor.modelinterface.ActBaseModelInterface;
 import com.codingtu.cooltu.processor.worker.ModelType;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.lang.model.element.ExecutableElement;
+import javax.lang.model.element.VariableElement;
 
 public class ActBaseModel extends BaseParentModel implements ActBaseModelInterface {
 
@@ -72,10 +72,10 @@ public class ActBaseModel extends BaseParentModel implements ActBaseModelInterfa
         super.setTagFor_field(fieldSb);
         if (!CountTool.isNull(startParams)) {
             StringBuilder startDatasSb = getTag("startDatas");
-            Ts.ls(startParams, new MapEach<Integer, List<KV<String, String>>>() {
+            Ts.ts(startParams).ls(new MapTs.MapEach<Integer, List<KV<String, String>>>() {
                 @Override
-                public boolean each(int position, Integer integer, List<KV<String, String>> kvs) {
-                    Ts.ls(kvs, new Each<KV<String, String>>() {
+                public boolean each(Integer integer, List<KV<String, String>> kvs) {
+                    Ts.ls(kvs, new BaseTs.EachTs<KV<String, String>>() {
                         @Override
                         public boolean each(int position, KV<String, String> kv) {
                             if (!startFieldMap.containsKey(kv.v)) {
@@ -94,7 +94,7 @@ public class ActBaseModel extends BaseParentModel implements ActBaseModelInterfa
 
     @Override
     public void setTagFor_permissionMethods(StringBuilder sb) {
-        Ts.ls(permissionElements, new Each<ExecutableElement>() {
+        Ts.ls(permissionElements, new BaseTs.EachTs<ExecutableElement>() {
             @Override
             public boolean each(int position, ExecutableElement element) {
                 List<? extends VariableElement> ves = element.getParameters();
@@ -117,7 +117,7 @@ public class ActBaseModel extends BaseParentModel implements ActBaseModelInterfa
 
     @Override
     public void setTagFor_permissions(StringBuilder sb) {
-        Ts.ls(permissionElements, new Each<ExecutableElement>() {
+        Ts.ls(permissionElements, new BaseTs.EachTs<ExecutableElement>() {
             @Override
             public boolean each(int position, ExecutableElement element) {
                 addModel(sb, new ActBasePermissionBackModel(position != 0, element));

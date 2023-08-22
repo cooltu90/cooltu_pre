@@ -1,20 +1,19 @@
 package com.codingtu.cooltu.processor.worker.model;
 
 import com.codingtu.cooltu.constant.Constant;
-
-import java.util.HashMap;
-import java.util.List;
-
 import com.codingtu.cooltu.lib4j.data.bean.KV;
 import com.codingtu.cooltu.lib4j.data.map.ListValueMap;
 import com.codingtu.cooltu.lib4j.tools.ConvertTool;
 import com.codingtu.cooltu.lib4j.tools.CountTool;
 import com.codingtu.cooltu.lib4j.ts.Ts;
-import com.codingtu.cooltu.lib4j.ts.each.Each;
-import com.codingtu.cooltu.lib4j.ts.each.MapEach;
+import com.codingtu.cooltu.lib4j.ts.impl.BaseTs;
+import com.codingtu.cooltu.lib4j.ts.impl.MapTs;
 import com.codingtu.cooltu.processor.lib.tools.NameTools;
 import com.codingtu.cooltu.processor.modelinterface.StartModelInterface;
 import com.codingtu.cooltu.processor.worker.model.base.SingleCoreToolsBaseModel;
+
+import java.util.HashMap;
+import java.util.List;
 
 public class StartModel extends SingleCoreToolsBaseModel implements StartModelInterface {
     public static final StartModel model = new StartModel();
@@ -34,9 +33,9 @@ public class StartModel extends SingleCoreToolsBaseModel implements StartModelIn
     public void addStart(String actFullName, String actStaticName, ListValueMap<Integer, KV<String, String>> ikv) {
         METHODS_MAP.put(actFullName, ikv);
         if (ikv != null) {
-            Ts.ls(ikv, new MapEach<Integer, List<KV<String, String>>>() {
+            Ts.ts(ikv).ls(new MapTs.MapEach<Integer, List<KV<String, String>>>() {
                 @Override
-                public boolean each(int position, Integer integer, List<KV<String, String>> kvs) {
+                public boolean each(Integer integer, List<KV<String, String>> kvs) {
                     METHODS_MAP1.get(actFullName).add(kvs);
                     return false;
                 }
@@ -50,11 +49,11 @@ public class StartModel extends SingleCoreToolsBaseModel implements StartModelIn
     @Override
     public void setTagFor_methods(StringBuilder sb) {
 
-        Ts.ls(METHODS_MAP1, new MapEach<String, List<List<KV<String, String>>>>() {
+        Ts.ts(METHODS_MAP1).ls(new MapTs.MapEach<String, List<List<KV<String, String>>>>() {
             @Override
-            public boolean each(int position, String actFullName, List<List<KV<String, String>>> lists) {
+            public boolean each(String actFullName, List<List<KV<String, String>>> lists) {
                 String actStaticName = ConvertTool.toStaticType(NameTools.getJavaSimpleName(actFullName));
-                Ts.ls(lists, new Each<List<KV<String, String>>>() {
+                Ts.ls(lists, new BaseTs.EachTs<List<KV<String, String>>>() {
                     @Override
                     public boolean each(int position, List<KV<String, String>> kvs) {
                         if (CountTool.isNull(kvs)) {

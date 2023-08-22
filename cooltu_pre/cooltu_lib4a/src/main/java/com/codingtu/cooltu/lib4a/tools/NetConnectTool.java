@@ -5,7 +5,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import com.codingtu.cooltu.lib4j.ts.Ts;
-import com.codingtu.cooltu.lib4j.ts.getter.Getter;
+import com.codingtu.cooltu.lib4j.ts.impl.BaseTs;
 
 @SuppressLint("MissingPermission")
 public class NetConnectTool {
@@ -13,9 +13,10 @@ public class NetConnectTool {
     public static boolean isConnect() {
         ConnectivityManager manager = SystemTool.getConnectivityManager();
         NetworkInfo[] allNetworkInfo = manager.getAllNetworkInfo();
-        return Ts.has(allNetworkInfo, new Getter<Integer, NetworkInfo>() {
+
+        return Ts.ts(allNetworkInfo).has(new BaseTs.IsThisOne<NetworkInfo>() {
             @Override
-            public boolean get(Integer integer, NetworkInfo networkInfo) {
+            public boolean isThisOne(int position, NetworkInfo networkInfo) {
                 return networkInfo.getState() == NetworkInfo.State.CONNECTED;
             }
         });

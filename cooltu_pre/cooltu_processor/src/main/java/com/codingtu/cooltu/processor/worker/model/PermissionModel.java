@@ -2,19 +2,18 @@ package com.codingtu.cooltu.processor.worker.model;
 
 import com.codingtu.cooltu.constant.Constant;
 import com.codingtu.cooltu.constant.FullName;
+import com.codingtu.cooltu.lib4j.tools.ConvertTool;
+import com.codingtu.cooltu.lib4j.ts.Ts;
+import com.codingtu.cooltu.lib4j.ts.impl.BaseTs;
+import com.codingtu.cooltu.processor.annotation.permission.Permission;
+import com.codingtu.cooltu.processor.lib.tools.ElementTools;
+import com.codingtu.cooltu.processor.modelinterface.PermissionModelInterface;
+import com.codingtu.cooltu.processor.worker.model.base.SingleCoreToolsBaseModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.lang.model.element.ExecutableElement;
-
-import com.codingtu.cooltu.lib4j.tools.ConvertTool;
-import com.codingtu.cooltu.lib4j.ts.Ts;
-import com.codingtu.cooltu.lib4j.ts.each.Each;
-import com.codingtu.cooltu.processor.annotation.permission.Permission;
-import com.codingtu.cooltu.processor.lib.tools.ElementTools;
-import com.codingtu.cooltu.processor.modelinterface.PermissionModelInterface;
-import com.codingtu.cooltu.processor.worker.model.base.SingleCoreToolsBaseModel;
 
 public class PermissionModel extends SingleCoreToolsBaseModel implements PermissionModelInterface {
 
@@ -35,7 +34,7 @@ public class PermissionModel extends SingleCoreToolsBaseModel implements Permiss
 
     @Override
     public void setTagFor_fields(StringBuilder fieldsSb) {
-        Ts.ls(elements, new Each<ExecutableElement>() {
+        Ts.ls(elements, new BaseTs.EachTs<ExecutableElement>() {
             @Override
             public boolean each(int position, ExecutableElement element) {
                 addLnTag(fieldsSb,
@@ -49,7 +48,7 @@ public class PermissionModel extends SingleCoreToolsBaseModel implements Permiss
 
     @Override
     public void setTagFor_methods(StringBuilder methodsSb) {
-        Ts.ls(elements, new Each<ExecutableElement>() {
+        Ts.ls(elements, new BaseTs.EachTs<ExecutableElement>() {
             @Override
             public boolean each(int position, ExecutableElement element) {
                 String simpleName = ElementTools.simpleName(element);
@@ -57,7 +56,7 @@ public class PermissionModel extends SingleCoreToolsBaseModel implements Permiss
                 Permission permission = element.getAnnotation(Permission.class);
                 String[] value = permission.value();
                 StringBuilder sb = new StringBuilder();
-                Ts.ls(value, new Each<String>() {
+                Ts.ls(value, new BaseTs.EachTs<String>() {
                     @Override
                     public boolean each(int position, String s) {
                         sb.append(", \"").append(s).append("\"");

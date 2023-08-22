@@ -12,15 +12,14 @@ import android.content.Intent;
 import com.codingtu.cooltu.lib4a.connect.device.ConnectDevice;
 import com.codingtu.cooltu.lib4a.log.Logs;
 import com.codingtu.cooltu.lib4a.tools.PfTool;
+import com.codingtu.cooltu.lib4j.data.map.ListValueMap;
+import com.codingtu.cooltu.lib4j.tools.CountTool;
+import com.codingtu.cooltu.lib4j.ts.Ts;
+import com.codingtu.cooltu.lib4j.ts.impl.BaseTs;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.codingtu.cooltu.lib4j.data.map.ListValueMap;
-import com.codingtu.cooltu.lib4j.tools.CountTool;
-import com.codingtu.cooltu.lib4j.ts.Ts;
-import com.codingtu.cooltu.lib4j.ts.each.Each;
 
 @SuppressLint("MissingPermission")
 public class ConnectTool {
@@ -114,7 +113,7 @@ public class ConnectTool {
 
     public static void dealMsg(ConnectDevice connectDevice, int msgType, Object obj) {
         List<ConnectCallBack> connectCallBacks = callbacks().get(connectDevice.baseData.connectType);
-        Ts.ls(connectCallBacks, new Each<ConnectCallBack>() {
+        Ts.ls(connectCallBacks, new BaseTs.EachTs<ConnectCallBack>() {
             @Override
             public boolean each(int position, ConnectCallBack connectCallBack) {
                 switch (msgType) {
@@ -156,20 +155,20 @@ public class ConnectTool {
 
     public static void logBluetoothServices(BluetoothGatt gatt) {
         List<BluetoothGattService> services = gatt.getServices();
-        Ts.ls(services, new Each<BluetoothGattService>() {
+        Ts.ls(services, new BaseTs.EachTs<BluetoothGattService>() {
             @Override
             public boolean each(int position, BluetoothGattService service) {
                 Logs.i("======================================");
                 Logs.i("sercie:" + service.getUuid().toString());
 
                 List<BluetoothGattCharacteristic> characteristics = service.getCharacteristics();
-                Ts.ls(characteristics, new Each<BluetoothGattCharacteristic>() {
+                Ts.ls(characteristics, new BaseTs.EachTs<BluetoothGattCharacteristic>() {
                     @Override
                     public boolean each(int position, BluetoothGattCharacteristic characteristic) {
                         Logs.i("    characteristic:" + characteristic.getUuid().toString());
                         Logs.i("    characteristic getProperties:" + characteristic.getProperties());
                         List<BluetoothGattDescriptor> descriptors = characteristic.getDescriptors();
-                        Ts.ls(descriptors, new Each<BluetoothGattDescriptor>() {
+                        Ts.ls(descriptors, new BaseTs.EachTs<BluetoothGattDescriptor>() {
                             @Override
                             public boolean each(int position, BluetoothGattDescriptor descriptor) {
                                 Logs.i("        descriptor:" + descriptor.getUuid().toString());

@@ -1,19 +1,19 @@
 package com.codingtu.cooltu.processor.lib.tools;
 
+import com.codingtu.cooltu.lib4j.tools.StringTool;
+import com.codingtu.cooltu.lib4j.ts.Ts;
+import com.codingtu.cooltu.lib4j.ts.impl.BaseTs;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.codingtu.cooltu.lib4j.tools.StringTool;
-import com.codingtu.cooltu.lib4j.ts.Ts;
-import com.codingtu.cooltu.lib4j.ts.each.Each;
-
 public class TagTools {
 
     public static List<String> getLines(final Map<String, StringBuilder> tags, List<String> readLines) {
         final ArrayList<String> lines = new ArrayList<String>();
-        Ts.ls(readLines, new Each<String>() {
+        Ts.ls(readLines, new BaseTs.EachTs<String>() {
             @Override
             public boolean each(int position, String line) {
                 lines.add(getLine(tags, line));
@@ -84,7 +84,7 @@ public class TagTools {
 
     public static List<String> getTags(List<String> lines) {
         ArrayList<String> tags = new ArrayList<>();
-        Ts.ls(lines, new Each<String>() {
+        Ts.ls(lines, new BaseTs.EachTs<String>() {
             @Override
             public boolean each(int position, String line) {
                 getTag(tags, line);

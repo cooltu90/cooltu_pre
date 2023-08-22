@@ -1,7 +1,8 @@
 package com.codingtu.cooltu.test;
 
 import com.codingtu.cooltu.lib4j.data.bean.maxmin.MaxMin;
-import com.codingtu.cooltu.lib4j.os.Os;
+import com.codingtu.cooltu.lib4j.ts.Ts;
+import com.codingtu.cooltu.lib4j.ts.impl.BaseTs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,12 +32,12 @@ public class Test {
         User target = new User("张三", 12);
 
 
-        MaxMin<Integer> maxMin = Os.os(users).convert(new Os.Convert<User, Integer>() {
+        MaxMin<Integer> maxMin = Ts.ts(users).convert(new BaseTs.Convert<User, Integer>() {
             @Override
             public Integer convert(User user) {
                 return user.age;
             }
-        }).maxMin(new Os.NowMax<Integer>() {
+        }).maxMin(new BaseTs.NowMax<Integer>() {
             @Override
             public boolean isNowMax(Integer last, Integer now) {
                 return now > last;

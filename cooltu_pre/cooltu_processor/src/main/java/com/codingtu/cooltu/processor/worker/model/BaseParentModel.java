@@ -4,6 +4,15 @@ import com.codingtu.cooltu.constant.Constant;
 import com.codingtu.cooltu.constant.FieldName;
 import com.codingtu.cooltu.constant.FullName;
 import com.codingtu.cooltu.constant.Pkg;
+import com.codingtu.cooltu.lib4j.data.bean.JavaInfo;
+import com.codingtu.cooltu.lib4j.data.bean.KV;
+import com.codingtu.cooltu.lib4j.data.map.ListValueMap;
+import com.codingtu.cooltu.lib4j.tools.ClassTool;
+import com.codingtu.cooltu.lib4j.tools.ConvertTool;
+import com.codingtu.cooltu.lib4j.tools.CountTool;
+import com.codingtu.cooltu.lib4j.tools.StringTool;
+import com.codingtu.cooltu.lib4j.ts.Ts;
+import com.codingtu.cooltu.lib4j.ts.impl.BaseTs;
 import com.codingtu.cooltu.processor.annotation.form.FormType;
 import com.codingtu.cooltu.processor.annotation.ui.BusBack;
 import com.codingtu.cooltu.processor.annotation.ui.ClickView;
@@ -37,17 +46,6 @@ import java.util.Map;
 
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.VariableElement;
-
-import com.codingtu.cooltu.lib4j.data.bean.JavaInfo;
-import com.codingtu.cooltu.lib4j.data.bean.KV;
-import com.codingtu.cooltu.lib4j.data.map.ListValueMap;
-import com.codingtu.cooltu.lib4j.tools.ClassTool;
-import com.codingtu.cooltu.lib4j.tools.ConvertTool;
-import com.codingtu.cooltu.lib4j.tools.CountTool;
-import com.codingtu.cooltu.lib4j.tools.StringTool;
-import com.codingtu.cooltu.lib4j.ts.Ts;
-import com.codingtu.cooltu.lib4j.ts.each.Each;
-import com.codingtu.cooltu.lib4j.ts.getter.Getter;
 
 public abstract class BaseParentModel extends BaseModel {
 
@@ -99,7 +97,7 @@ public abstract class BaseParentModel extends BaseModel {
         this.rPkg = rPkg;
         layoutId = new IdTools.Id(rPkg, Constant.R_TYPE_LAYOUT, layoutName);
         vis = LayoutTools.read(layoutId.rName, null);
-        Ts.ls(vis, new Each<LayoutTools.ViewInfo>() {
+        Ts.ls(vis, new BaseTs.EachTs<LayoutTools.ViewInfo>() {
             @Override
             public boolean each(int position, LayoutTools.ViewInfo vi) {
                 if (StringTool.isNotBlank(vi.tag)) {
@@ -255,7 +253,7 @@ public abstract class BaseParentModel extends BaseModel {
     }
 
     public void setTagFor_findView(StringBuilder findViewSb) {
-        Ts.ls(vis, new Each<LayoutTools.ViewInfo>() {
+        Ts.ls(vis, new BaseTs.EachTs<LayoutTools.ViewInfo>() {
             @Override
             public boolean each(int position, LayoutTools.ViewInfo vi) {
                 String viParent = LayoutTools.getViParent(vi);
@@ -273,7 +271,7 @@ public abstract class BaseParentModel extends BaseModel {
     protected abstract String getFindViewByIdParent(String viParent);
 
     public void setTagFor_netMethos(StringBuilder sb) {
-        Ts.ls(netBackElements, new Each<ExecutableElement>() {
+        Ts.ls(netBackElements, new BaseTs.EachTs<ExecutableElement>() {
             @Override
             public boolean each(int position, ExecutableElement element) {
                 addModel(sb, new ActBaseNetBackModel(position != 0, element));
@@ -284,7 +282,7 @@ public abstract class BaseParentModel extends BaseModel {
 
 
     public void setTagFor_netBackMethods(StringBuilder sb) {
-        Ts.ls(netBackElements, new Each<ExecutableElement>() {
+        Ts.ls(netBackElements, new BaseTs.EachTs<ExecutableElement>() {
             @Override
             public boolean each(int position, ExecutableElement element) {
                 addLnTag(sb,
@@ -318,7 +316,7 @@ public abstract class BaseParentModel extends BaseModel {
         formItemMap.get(FormType.TOTAL).add(info);
 
         if (StringTool.isNotBlank(info.linkClass)) {
-            Ts.ls(info.ids, new Each<Integer>() {
+            Ts.ts(info.ids).ls(new BaseTs.EachTs<Integer>() {
                 @Override
                 public boolean each(int position, Integer integer) {
                     String id = info.idMap.get(integer).toString();
@@ -347,14 +345,14 @@ public abstract class BaseParentModel extends BaseModel {
 
 
             HashMap<String, String> map111 = new HashMap<>();
-            Ts.ls(formItemMap.get(FormType.RADIO_GROUP), new Each<FormItemInfo>() {
+            Ts.ls(formItemMap.get(FormType.RADIO_GROUP), new BaseTs.EachTs<FormItemInfo>() {
                 @Override
                 public boolean each(int position, FormItemInfo info) {
                     FromItemInfoForRg rgInfo = (FromItemInfoForRg) info;
                     if (rgInfo.hasOnSetItem) {
-                        KV<String, String> kv = Ts.get(otherFields, new Getter<Integer, KV<String, String>>() {
+                        KV<String, String> kv = Ts.ts(otherFields).get(new BaseTs.IsThisOne<KV<String, String>>() {
                             @Override
-                            public boolean get(Integer key, KV<String, String> kv) {
+                            public boolean isThisOne(int position, KV<String, String> kv) {
                                 if (kv.v.equals(rgInfo.onSetItemName)) {
                                     return true;
                                 }
@@ -423,7 +421,7 @@ public abstract class BaseParentModel extends BaseModel {
     }
 
     private void bindEcho(StringBuilder sb, List<FormItemInfo> infos, String method) {
-        Ts.ls(infos, new Each<FormItemInfo>() {
+        Ts.ls(infos, new BaseTs.EachTs<FormItemInfo>() {
             @Override
             public boolean each(int position, FormItemInfo info) {
                 if (info.echoCheck) {
@@ -443,7 +441,7 @@ public abstract class BaseParentModel extends BaseModel {
     }
 
     private void addChange(StringBuilder sb, List<FormItemInfo> infos, String method, String changeType, int type) {
-        Ts.ls(infos, new Each<FormItemInfo>() {
+        Ts.ls(infos, new BaseTs.EachTs<FormItemInfo>() {
             @Override
             public boolean each(int position, FormItemInfo info) {
                 addLnTag(sb,
@@ -463,7 +461,7 @@ public abstract class BaseParentModel extends BaseModel {
 
                     ArrayList<String> lines = new ArrayList<>();
                     StringBuilder viewSb = new StringBuilder();
-                    Ts.ls(info.ids, new Each<Integer>() {
+                    Ts.ts(info.ids).ls(new BaseTs.EachTs<Integer>() {
                         @Override
                         public boolean each(int position, Integer integer) {
                             try {
@@ -484,7 +482,7 @@ public abstract class BaseParentModel extends BaseModel {
                     });
 
                     addLnTag(sb, "                .setSrcs([srcs]);", viewSb.toString());
-                    Ts.ls(lines, new Each<String>() {
+                    Ts.ls(lines, new BaseTs.EachTs<String>() {
                         @Override
                         public boolean each(int position, String line) {
                             addLnTag(sb, line);
@@ -501,7 +499,7 @@ public abstract class BaseParentModel extends BaseModel {
 
 
     private void bindEchoForViewTool(StringBuilder sb, List<FormItemInfo> infos, String method) {
-        Ts.ls(infos, new Each<FormItemInfo>() {
+        Ts.ls(infos, new BaseTs.EachTs<FormItemInfo>() {
             @Override
             public boolean each(int position, FormItemInfo info) {
                 if (info.echoCheck) {
@@ -536,7 +534,7 @@ public abstract class BaseParentModel extends BaseModel {
         if (formBeanKv != null) {
             addLnTag(bindCheckSb, "    protected boolean check[User]() {", ConvertTool.toClassType(formBeanKv.v));
 
-            Ts.ls(formItemMap.get(FormType.TOTAL), new Each<FormItemInfo>() {
+            Ts.ls(formItemMap.get(FormType.TOTAL), new BaseTs.EachTs<FormItemInfo>() {
                 @Override
                 public boolean each(int position, FormItemInfo info) {
                     if (StringTool.isNotBlank(info.prompt)) {
@@ -569,7 +567,7 @@ public abstract class BaseParentModel extends BaseModel {
 
 
     public void setTagFor_clickMethods(StringBuilder methodsSb) {
-        Ts.ls(clickViews, new Each<ExecutableElement>() {
+        Ts.ls(clickViews, new BaseTs.EachTs<ExecutableElement>() {
             @Override
             public boolean each(int position, ExecutableElement element) {
                 addLnTag(methodsSb,
@@ -643,7 +641,7 @@ public abstract class BaseParentModel extends BaseModel {
     }
 
     private void clickViewDeal(StringBuilder sb, ClickViewDealer dealer) {
-        Ts.ls(clickViews, new Each<ExecutableElement>() {
+        Ts.ls(clickViews, new BaseTs.EachTs<ExecutableElement>() {
             @Override
             public boolean each(int position, ExecutableElement element) {
                 dealer.deal(sb, new ClickViewInfo(element, element.getAnnotation(ClickView.class)));
@@ -651,7 +649,7 @@ public abstract class BaseParentModel extends BaseModel {
             }
         });
 
-        Ts.ls(ResForBaseDeal.getTs(ResForBaseDeal.clickViewMap, baseClass), new Each<ExecutableElement>() {
+        Ts.ls(ResForBaseDeal.getTs(ResForBaseDeal.clickViewMap, baseClass), new BaseTs.EachTs<ExecutableElement>() {
             @Override
             public boolean each(int position, ExecutableElement element) {
                 dealer.deal(sb, new ClickViewInfo(element, element.getAnnotation(InBaseClickView.class)));
@@ -666,7 +664,7 @@ public abstract class BaseParentModel extends BaseModel {
 
 
     public void setTagFor_onCreates(StringBuilder sb) {
-        Ts.ls(adapters, new Each<BaseAdapterModel>() {
+        Ts.ls(adapters, new BaseTs.EachTs<BaseAdapterModel>() {
             @Override
             public boolean each(int position, BaseAdapterModel adapterModel) {
                 addLnTag(sb, adapterModel.getOnCreates(info).toString());
@@ -676,7 +674,7 @@ public abstract class BaseParentModel extends BaseModel {
     }
 
     public void setTagFor_onDestroys(StringBuilder sb) {
-        Ts.ls(adapters, new Each<BaseAdapterModel>() {
+        Ts.ls(adapters, new BaseTs.EachTs<BaseAdapterModel>() {
             @Override
             public boolean each(int position, BaseAdapterModel adapterModel) {
                 addLnTag(sb, adapterModel.getOnDestorys(info).toString());
@@ -687,7 +685,7 @@ public abstract class BaseParentModel extends BaseModel {
 
 
     public void setTagFor_others(StringBuilder sb) {
-        Ts.ls(adapters, new Each<BaseAdapterModel>() {
+        Ts.ls(adapters, new BaseTs.EachTs<BaseAdapterModel>() {
             @Override
             public boolean each(int position, BaseAdapterModel adapterModel) {
                 addLnTag(sb, adapterModel.getOthers(info).toString());
@@ -700,7 +698,7 @@ public abstract class BaseParentModel extends BaseModel {
     }
 
     public void setTagFor_dialogs(StringBuilder sb) {
-        Ts.ls(dialogInfos, new Each<DialogInfo>() {
+        Ts.ls(dialogInfos, new BaseTs.EachTs<DialogInfo>() {
             @Override
             public boolean each(int position, DialogInfo info) {
                 addModel(sb, new DialogMethodModel(info, isAct));
@@ -717,7 +715,7 @@ public abstract class BaseParentModel extends BaseModel {
 
 
     public void setTagFor_editDialog(StringBuilder sb) {
-        Ts.ls(editDialogInfos, new Each<EditDialogInfo>() {
+        Ts.ls(editDialogInfos, new BaseTs.EachTs<EditDialogInfo>() {
             @Override
             public boolean each(int position, EditDialogInfo info) {
                 addModel(sb, new DialogForEditMethodModel(info, isAct));
@@ -740,7 +738,7 @@ public abstract class BaseParentModel extends BaseModel {
         addLnTag(sb, "    public boolean onLongClick(View view) {");
         addLnTag(sb, "        switch (view.getId()) {");
 
-        Ts.ls(longClickViews, new Each<ExecutableElement>() {
+        Ts.ls(longClickViews, new BaseTs.EachTs<ExecutableElement>() {
             @Override
             public boolean each(int position, ExecutableElement element) {
 
@@ -811,7 +809,7 @@ public abstract class BaseParentModel extends BaseModel {
     }
 
     public void setTagFor_onLongClickMethods(StringBuilder sb) {
-        Ts.ls(longClickViews, new Each<ExecutableElement>() {
+        Ts.ls(longClickViews, new BaseTs.EachTs<ExecutableElement>() {
             @Override
             public boolean each(int position, ExecutableElement element) {
                 addLnTag(sb,
@@ -824,7 +822,7 @@ public abstract class BaseParentModel extends BaseModel {
     }
 
     public void setTagFor_setLongClick(StringBuilder sb) {
-        Ts.ls(longClickViews, new Each<ExecutableElement>() {
+        Ts.ls(longClickViews, new BaseTs.EachTs<ExecutableElement>() {
             @Override
             public boolean each(int position, ExecutableElement element) {
                 LongClickView clickView = element.getAnnotation(LongClickView.class);
@@ -843,7 +841,7 @@ public abstract class BaseParentModel extends BaseModel {
     }
 
     public void setTagFor_field(StringBuilder sb) {
-        Ts.ls(vis, new Each<LayoutTools.ViewInfo>() {
+        Ts.ls(vis, new BaseTs.EachTs<LayoutTools.ViewInfo>() {
             @Override
             public boolean each(int position, LayoutTools.ViewInfo vi) {
                 addFieldSb(sb, vi.name, LayoutTools.getViFieldName(vi));
@@ -856,7 +854,7 @@ public abstract class BaseParentModel extends BaseModel {
             addFieldSb(sb, "BindHandler", "handler");
         }
 
-        Ts.ls(otherFields, new Each<KV<String, String>>() {
+        Ts.ls(otherFields, new BaseTs.EachTs<KV<String, String>>() {
             @Override
             public boolean each(int position, KV<String, String> kv) {
                 addFieldSb(sb, kv.k, kv.v);
@@ -866,7 +864,7 @@ public abstract class BaseParentModel extends BaseModel {
     }
 
     public void setTagFor_resources(StringBuilder sb) {
-        Ts.ls(dpKvs, new Each<KV<String, Float>>() {
+        Ts.ls(dpKvs, new BaseTs.EachTs<KV<String, Float>>() {
             @Override
             public boolean each(int position, KV<String, Float> kv) {
                 String type = dpTypes.get(position);
@@ -886,7 +884,7 @@ public abstract class BaseParentModel extends BaseModel {
             }
         });
 
-        Ts.ls(resKvs, new Each<KV<String, IdTools.Id>>() {
+        Ts.ls(resKvs, new BaseTs.EachTs<KV<String, IdTools.Id>>() {
             @Override
             public boolean each(int position, KV<String, IdTools.Id> kv) {
                 addLnTag(sb, "        [name] = [ResourceTool].getDimen([id]);",
@@ -898,7 +896,7 @@ public abstract class BaseParentModel extends BaseModel {
             }
         });
 
-        Ts.ls(colorIdKvs, new Each<KV<String, IdTools.Id>>() {
+        Ts.ls(colorIdKvs, new BaseTs.EachTs<KV<String, IdTools.Id>>() {
             @Override
             public boolean each(int position, KV<String, IdTools.Id> kv) {
                 addLnTag(sb, "        [bgColor] = [ResourceTool].getColor([r]);",
@@ -909,7 +907,7 @@ public abstract class BaseParentModel extends BaseModel {
             }
         });
 
-        Ts.ls(colorStrKvs, new Each<KV<String, String>>() {
+        Ts.ls(colorStrKvs, new BaseTs.EachTs<KV<String, String>>() {
             @Override
             public boolean each(int position, KV<String, String> kv) {
                 addLnTag(sb, "        [fgColor] = [Color].parseColor(\"[color]\");",
@@ -924,7 +922,7 @@ public abstract class BaseParentModel extends BaseModel {
     }
 
     public void setTagFor_resultMethos(StringBuilder sb) {
-        Ts.ls(actBackElements, new Each<ExecutableElement>() {
+        Ts.ls(actBackElements, new BaseTs.EachTs<ExecutableElement>() {
             @Override
             public boolean each(int position, ExecutableElement element) {
                 addLnTag(
@@ -938,14 +936,14 @@ public abstract class BaseParentModel extends BaseModel {
     }
 
     public void setTagFor_results(StringBuilder sb) {
-        Ts.ls(actBackElements, new Each<ExecutableElement>() {
+        Ts.ls(actBackElements, new BaseTs.EachTs<ExecutableElement>() {
             @Override
             public boolean each(int position, ExecutableElement element) {
                 addModel(sb, new ActBackModel(position != 0, element));
                 return false;
             }
         });
-        Ts.ls(ResForBaseDeal.getTs(ResForBaseDeal.actBackMap, baseClass), new Each<ExecutableElement>() {
+        Ts.ls(ResForBaseDeal.getTs(ResForBaseDeal.actBackMap, baseClass), new BaseTs.EachTs<ExecutableElement>() {
             @Override
             public boolean each(int position, ExecutableElement element) {
                 addModel(sb, new ActBackModel(!CountTool.isNull(actBackElements) || position != 0, ClassTool.getAnnotationClass(new ClassTool.AnnotationClassGetter() {
@@ -960,7 +958,7 @@ public abstract class BaseParentModel extends BaseModel {
     }
 
     public void setTagFor_addBus(StringBuilder sb) {
-        Ts.ls(busBackElements, new Each<ExecutableElement>() {
+        Ts.ls(busBackElements, new BaseTs.EachTs<ExecutableElement>() {
             @Override
             public boolean each(int position, ExecutableElement ee) {
                 BusBack busBack = ee.getAnnotation(BusBack.class);
@@ -1002,7 +1000,7 @@ public abstract class BaseParentModel extends BaseModel {
 
 
     public void setTagFor_busBackMethods(StringBuilder sb) {
-        Ts.ls(busBackElements, new Each<ExecutableElement>() {
+        Ts.ls(busBackElements, new BaseTs.EachTs<ExecutableElement>() {
             @Override
             public boolean each(int position, ExecutableElement ee) {
 
