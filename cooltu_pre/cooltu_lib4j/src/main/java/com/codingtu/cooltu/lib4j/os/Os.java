@@ -57,6 +57,8 @@ public abstract class Os<O> {
         return new ArrayOs(os);
     }
 
+    //byte short char int long float double boolean
+
     public static Os<Byte> os(byte... os) {
         return new ByteOs(os);
     }

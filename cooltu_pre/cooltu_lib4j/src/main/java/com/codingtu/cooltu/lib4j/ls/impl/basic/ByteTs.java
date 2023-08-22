@@ -1,9 +1,9 @@
 package com.codingtu.cooltu.lib4j.ls.impl.basic;
 
-import com.codingtu.cooltu.lib4j.ls.impl.Ts;
+import com.codingtu.cooltu.lib4j.ls.impl.BaseTs;
 import com.codingtu.cooltu.lib4j.tools.CountTool;
 
-public class ByteTs implements Ts<Byte> {
+public class ByteTs extends BaseTs<Byte> {
 
     private byte[] ts;
 

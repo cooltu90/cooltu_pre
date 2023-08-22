@@ -1,9 +1,9 @@
 package com.codingtu.cooltu.lib4j.ls.impl.basic;
 
-import com.codingtu.cooltu.lib4j.ls.impl.Ts;
+import com.codingtu.cooltu.lib4j.ls.impl.BaseTs;
 import com.codingtu.cooltu.lib4j.tools.CountTool;
 
-public class TArrayTs<T> implements Ts<T> {
+public class TArrayTs<T> extends BaseTs<T> {
 
     private T[] ts;
 
@@ -25,4 +25,5 @@ public class TArrayTs<T> implements Ts<T> {
     public void set(int index, T target) {
         ts[index] = target;
     }
+
 }

@@ -1,9 +1,9 @@
 package com.codingtu.cooltu.lib4j.ls.impl.basic;
 
-import com.codingtu.cooltu.lib4j.ls.impl.Ts;
+import com.codingtu.cooltu.lib4j.ls.impl.BaseTs;
 import com.codingtu.cooltu.lib4j.tools.CountTool;
 
-public class BooleanTs implements Ts<Boolean> {
+public class BooleanTs extends BaseTs<Boolean> {
 
     private boolean[] ts;
 
@@ -25,4 +25,5 @@ public class BooleanTs implements Ts<Boolean> {
     public void set(int index, Boolean target) {
         ts[index] = target;
     }
+
 }

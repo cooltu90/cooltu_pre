@@ -1,10 +1,10 @@
 package com.codingtu.cooltu.lib4j.ls.impl.basic;
 
 
-import com.codingtu.cooltu.lib4j.ls.impl.Ts;
+import com.codingtu.cooltu.lib4j.ls.impl.BaseTs;
 import com.codingtu.cooltu.lib4j.tools.CountTool;
 
-public class LongTs implements Ts<Long> {
+public class LongTs extends BaseTs<Long> {
 
     private long[] ts;
 
@@ -26,4 +26,5 @@ public class LongTs implements Ts<Long> {
     public void set(int index, Long target) {
         ts[index] = target;
     }
+
 }

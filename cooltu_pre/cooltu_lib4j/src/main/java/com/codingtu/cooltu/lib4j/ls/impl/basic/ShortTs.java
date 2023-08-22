@@ -1,9 +1,9 @@
 package com.codingtu.cooltu.lib4j.ls.impl.basic;
 
-import com.codingtu.cooltu.lib4j.ls.impl.Ts;
+import com.codingtu.cooltu.lib4j.ls.impl.BaseTs;
 import com.codingtu.cooltu.lib4j.tools.CountTool;
 
-public class ShortTs implements Ts<Short> {
+public class ShortTs extends BaseTs<Short> {
 
     private short[] ts;
 
@@ -25,4 +25,5 @@ public class ShortTs implements Ts<Short> {
     public void set(int index, Short target) {
         ts[index] = target;
     }
+
 }

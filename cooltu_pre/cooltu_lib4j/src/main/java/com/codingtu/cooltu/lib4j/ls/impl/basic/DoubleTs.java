@@ -1,10 +1,10 @@
 package com.codingtu.cooltu.lib4j.ls.impl.basic;
 
 
-import com.codingtu.cooltu.lib4j.ls.impl.Ts;
+import com.codingtu.cooltu.lib4j.ls.impl.BaseTs;
 import com.codingtu.cooltu.lib4j.tools.CountTool;
 
-public class DoubleTs implements Ts<Double> {
+public class DoubleTs extends BaseTs<Double> {
 
     private double[] ts;
 
@@ -26,4 +26,5 @@ public class DoubleTs implements Ts<Double> {
     public void set(int index, Double target) {
         ts[index] = target;
     }
+
 }
