@@ -1,6 +1,7 @@
 package com.codingtu.cooltu.lib4j.ts.impl;
 
 import com.codingtu.cooltu.lib4j.data.bean.maxmin.MaxMin;
+import com.codingtu.cooltu.lib4j.tools.CountTool;
 import com.codingtu.cooltu.lib4j.ts.Ts;
 import com.codingtu.cooltu.lib4j.ts.impl.basic.TListTs;
 
@@ -17,10 +18,6 @@ public abstract class BaseTs<T> implements TsInterface<T> {
 
     public SymbolTs<T> symbol() {
         return new SymbolTs<>(this);
-    }
-
-    public T last() {
-        return get(count() - 1);
     }
 
     /**************************************************
@@ -227,6 +224,17 @@ public abstract class BaseTs<T> implements TsInterface<T> {
         }
 
         return maxMin;
+    }
+
+    /**************************************************
+     *
+     *
+     *
+     **************************************************/
+
+    public T last() {
+        int count = count();
+        return count > 0 ? get(count - 1) : null;
     }
 
 }

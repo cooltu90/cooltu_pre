@@ -158,8 +158,12 @@ public class TListTs<T> extends BaseTs<T> {
         return "root";
     }
 
-    public void add(T target) {
-        this.ts.add(target);
+    public TListTs<T> add(T target) {
+        if (ts == null) {
+            ts = new ArrayList<>();
+        }
+        ts.add(target);
+        return this;
     }
 
     public interface GroupSortGetter<T> {
