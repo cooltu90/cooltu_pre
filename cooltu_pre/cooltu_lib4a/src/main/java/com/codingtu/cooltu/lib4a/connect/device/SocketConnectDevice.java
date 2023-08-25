@@ -112,7 +112,7 @@ public abstract class SocketConnectDevice extends ConnectDevice {
         }).start();
     }
 
-    public static byte[] copyData(List<Byte> byteList) {
+    protected byte[] copyData(List<Byte> byteList) {
         byte[] newBytes = new byte[CountTool.count(byteList)];
         for (int i = 0; i < newBytes.length; i++) {
             newBytes[i] = byteList.get(i);
@@ -126,6 +126,7 @@ public abstract class SocketConnectDevice extends ConnectDevice {
     }
 
 
+    @Override
     public void write(int... ints) throws Exception {
         if (outputStream != null) {
             for (int i = 0; i < CountTool.count(ints); i++) {

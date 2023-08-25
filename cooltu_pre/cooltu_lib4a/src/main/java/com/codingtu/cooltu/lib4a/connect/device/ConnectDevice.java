@@ -13,6 +13,7 @@ import com.codingtu.cooltu.lib4a.connect.ResponseData;
 import com.codingtu.cooltu.lib4a.log.Logs;
 
 import com.codingtu.cooltu.lib4j.data.bean.CoreBean;
+import com.codingtu.cooltu.lib4j.tools.CountTool;
 
 public abstract class ConnectDevice extends CoreBean {
 
@@ -93,5 +94,9 @@ public abstract class ConnectDevice extends CoreBean {
 
     public void disconnect(DisconnectFinish disconnectFinish) {
         this.disconnectFinish = disconnectFinish;
+    }
+
+    public void write(int... ints) throws Exception {
+
     }
 }
