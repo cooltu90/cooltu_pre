@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.codingtu.cooltu.lib4j.tools.CountTool;
 import com.codingtu.cooltu.lib4j.ts.Ts;
@@ -96,7 +97,7 @@ public abstract class SocketConnectDevice extends ConnectDevice {
                         byteList.add(bytes[0]);
                         try {
                             if (dis.available() == 0) {
-                                sendMessage(ConnectStatus.READ, Ts.toArray(byteList));
+                                sendMessage(ConnectStatus.READ, copyData(byteList));
                                 byteList.clear();
                             }
                         } catch (IOException e) {
@@ -109,6 +110,14 @@ public abstract class SocketConnectDevice extends ConnectDevice {
                 sendMessage(ConnectStatus.DISCONNECT, null);
             }
         }).start();
+    }
+
+    public static byte[] copyData(List<Byte> byteList) {
+        byte[] newBytes = new byte[CountTool.count(byteList)];
+        for (int i = 0; i < newBytes.length; i++) {
+            newBytes[i] = byteList.get(i);
+        }
+        return newBytes;
     }
 
 
