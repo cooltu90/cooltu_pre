@@ -61,7 +61,7 @@ public class ConnectTool {
         }
     }
 
-    private static void removeCallBack(int connectType, ConnectCallBack connectCallBack) {
+    public static void removeCallBack(int connectType, ConnectCallBack connectCallBack) {
         callbacks().get(connectType).remove(connectCallBack);
     }
 
