@@ -6,6 +6,7 @@ import com.codingtu.cooltu.lib4a.log.Logs;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 
 public abstract class WifiConnectDevice extends SocketConnectDevice {
@@ -23,8 +24,11 @@ public abstract class WifiConnectDevice extends SocketConnectDevice {
     @Override
     protected void createSockect() {
         try {
-            socket = new Socket(getIp(), getPort());
-            socket.setSoTimeout(3000);
+//            socket = new Socket(getIp(), getPort());
+//            socket.setSoTimeout(3000);
+            socket = new Socket();
+            socket.setSoTimeout(3000); // if you like
+            socket.connect(new InetSocketAddress(getIp(), getPort()), 3000);
         } catch (IOException e) {
             Logs.e(e);
         }
