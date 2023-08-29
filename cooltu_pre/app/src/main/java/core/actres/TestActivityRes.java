@@ -1,8 +1,10 @@
 package core.actres;
 
+import android.view.ViewDebug;
 import android.widget.TextView;
 
 import com.codingtu.cooltu.lib4a.view.dialogview.Dialog;
+import com.codingtu.cooltu.lib4a.view.dialogview.EditDialog;
 import com.codingtu.cooltu.processor.annotation.resource.ColorRes;
 import com.codingtu.cooltu.processor.annotation.resource.ColorStr;
 import com.codingtu.cooltu.processor.annotation.resource.Dimen;
@@ -10,6 +12,7 @@ import com.codingtu.cooltu.processor.annotation.resource.Dp;
 import com.codingtu.cooltu.processor.annotation.ui.InBase;
 import com.codingtu.cooltu.processor.annotation.ui.StartGroup;
 import com.codingtu.cooltu.processor.annotation.ui.dialog.DialogUse;
+import com.codingtu.cooltu.processor.annotation.ui.dialog.EditDialogUse;
 import com.codingtu.cooltu_pre.R;
 import com.codingtu.cooltu_pre.ui.TestActivity;
 import com.codingtu.cooltu.processor.annotation.resource.ResFor;
@@ -32,6 +35,15 @@ public class TestActivityRes {
             objType = Void.class
     )
     Dialog dialog;
+
+
+    @EditDialogUse(
+            title = "提示",
+            hint = "请输入",
+            reserve = true,
+            objType = Void.class
+    )
+    EditDialog editDialog;
 
 }
 

@@ -47,6 +47,7 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
         tv2 = findViewById(com.codingtu.cooltu_pre.R.id.tv2);
         et = findViewById(com.codingtu.cooltu_pre.R.id.et);
 
+        tv.setOnClickListener(this);
         tv1.setOnClickListener(this);
 
 
@@ -95,20 +96,9 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
 
     @Override
     public void accept(String code, Result<ResponseBody> result, CoreSendParams params, List objs) {
-        if ("getObjBack".equals(code)) {
-            core.tools.net.back.GetObjBack back = new core.tools.net.back.GetObjBack() {
-                @Override
-                public void accept(String code, Result<ResponseBody> result, CoreSendParams params, List objs) {
-                    super.accept(code, result, params, objs);
-                    getObjBack(user);
-                }
-            };
-            back.accept(code, result, params, objs);
-        }
 
     }
 
-    public void getObjBack(com.codingtu.cooltu_pre.bean.User user1) {}
 
 
 
@@ -186,6 +176,35 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
     protected void dialogYes( ) {}
 
 
+
+
+    private com.codingtu.cooltu.lib4a.view.dialogview.EditDialog editDialog;
+
+    protected void showEditDialog(String text ) {
+        if (editDialog == null)
+            editDialog = new com.codingtu.cooltu.lib4a.view.dialogview.EditDialog(getThis())
+                    .setTitle("提示")
+                    .setHint("请输入")
+                    .setInputType(1)
+                    .setLayout(com.codingtu.cooltu.lib4a.R.layout.default_dialog_edit)
+                    .setReserveOriValue(true)
+                    .setYes(new com.codingtu.cooltu.lib4a.view.dialogview.EditDialog.Yes() {
+                        @Override
+                        public boolean yes(String text, Object obj) {
+                            return editDialogYes(text);
+                        }
+                    })
+                    .build();
+        editDialog.setEditText(text);
+        editDialog.setObject(null);
+        editDialog.show();
+    }
+
+    
+
+    protected boolean editDialogYes(String text ) {
+        return false;
+    }
 
 
 

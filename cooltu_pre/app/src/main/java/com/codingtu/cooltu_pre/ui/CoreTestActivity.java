@@ -13,6 +13,7 @@ import com.codingtu.cooltu.processor.annotation.ui.InBase;
 import com.codingtu.cooltu.processor.annotation.ui.InBaseActBack;
 import com.codingtu.cooltu.processor.annotation.ui.InBaseClickView;
 import com.codingtu.cooltu.processor.annotation.ui.StartGroup;
+import com.codingtu.cooltu.processor.lib.log.Logs;
 import com.codingtu.cooltu_pre.R;
 
 @ResForBase
@@ -38,9 +39,8 @@ public class CoreTestActivity extends CoreActivity {
     @Dimen(R.dimen.d1)
     public int dp2;
 
-    @InBaseClickView(value = R.id.tv, inAct = false)
+    @InBaseClickView(value = R.id.tv)
     public void tvClick() {
-        toast("tv");
     }
 
     @InBaseActBack(StepOneActivity.class)
