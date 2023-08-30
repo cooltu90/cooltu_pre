@@ -12,11 +12,14 @@ import com.codingtu.cooltu.processor.annotation.ui.InBase;
 import com.codingtu.cooltu.processor.annotation.ui.InBaseActBack;
 import com.codingtu.cooltu.processor.annotation.ui.InBaseClickView;
 import com.codingtu.cooltu.processor.annotation.ui.StartGroup;
+import com.codingtu.cooltu.processor.annotation.ui.dialog.EditDialogUse;
 import com.codingtu.cooltu.processor.annotation.ui.dialog.NoticeDialogUse;
 import com.codingtu.cooltu.processor.annotation.ui.dialog.ToastDialogUse;
+import com.codingtu.cooltu.processor.lib.bean.EditDialogInfo;
 import com.codingtu.cooltu.processor.lib.log.Logs;
 import com.codingtu.cooltu.processor.lib.tools.ElementTools;
 import com.codingtu.cooltu.processor.worker.deal.base.BaseDeal;
+import com.codingtu.cooltu.processor.worker.deal.base.BaseResForDeal;
 import com.codingtu.cooltu.processor.worker.model.ActBackIntentModel;
 
 import java.util.ArrayList;
@@ -29,7 +32,7 @@ import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.element.VariableElement;
 
-public class ResForBaseDeal extends BaseDeal {
+public class ResForBaseDeal extends BaseResForDeal {
 
     public static ListValueMap<String, String> baseMap = new ListValueMap<>();
     public static ListValueMap<String, String> inBaseMap = new ListValueMap<>();
@@ -38,6 +41,7 @@ public class ResForBaseDeal extends BaseDeal {
     public static ListValueMap<String, VariableElement> colorResMap = new ListValueMap<>();
     public static ListValueMap<String, VariableElement> dpMap = new ListValueMap<>();
     public static ListValueMap<String, VariableElement> dimenMap = new ListValueMap<>();
+    public static ListValueMap<String, EditDialogInfo> editDialogMap = new ListValueMap<>();
     public static ListValueMap<String, ExecutableElement> clickViewMap = new ListValueMap<>();
     public static ListValueMap<String, ExecutableElement> actBackMap = new ListValueMap<>();
     public static Map<String, String> toastDialogUseMap = new HashMap<>();
@@ -103,6 +107,13 @@ public class ResForBaseDeal extends BaseDeal {
                     dimenMap.get(classFullName).add(ve);
                     inBaseMap.get(classFullName).add(ElementTools.simpleName(ve));
                 }
+
+                EditDialogUse editDialogUse = ve.getAnnotation(EditDialogUse.class);
+                if (editDialogUse != null) {
+                    editDialogMap.get(classFullName).add(toEditDialogInfo(ve, editDialogUse));
+                    inBaseMap.get(classFullName).add(ElementTools.simpleName(ve));
+                }
+
             }
 
             if (element1 instanceof ExecutableElement) {

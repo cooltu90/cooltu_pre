@@ -23,6 +23,7 @@ public abstract class WelcomeActivityBase extends com.codingtu.cooltu.lib4a.act.
 
     public android.widget.Button bt;
     public com.codingtu.cooltu.lib4a.view.base.CoreView cv;
+    public com.codingtu.cooltu.lib4a.view.dialogview.EditDialog ed;
 
 
     @Override
@@ -155,8 +156,6 @@ public abstract class WelcomeActivityBase extends com.codingtu.cooltu.lib4a.act.
 
 
 
-
-    private com.codingtu.cooltu.lib4a.view.dialogview.EditDialog ed;
 
     protected void showEd(String text ) {
         if (ed == null)

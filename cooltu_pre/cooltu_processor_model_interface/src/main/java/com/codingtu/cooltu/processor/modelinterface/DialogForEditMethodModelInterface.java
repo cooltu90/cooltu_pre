@@ -5,15 +5,15 @@ import java.util.List;
 
 public interface DialogForEditMethodModelInterface {
 
-    public void setTagFor_className(StringBuilder sb);
-
-    public void setTagFor_name(StringBuilder sb);
-
     public void setTagFor_nameClassType(StringBuilder sb);
 
     public void setTagFor_classType(StringBuilder sb);
 
     public void setTagFor_classParam(StringBuilder sb);
+
+    public void setTagFor_name(StringBuilder sb);
+
+    public void setTagFor_className(StringBuilder sb);
 
     public void setTagFor_act(StringBuilder sb);
 
@@ -37,8 +37,6 @@ public interface DialogForEditMethodModelInterface {
 
     default List<String> getTempLinesArray() {
         ArrayList<String> lines = new ArrayList<>();
-        lines.add("    private [[className]] [[name]];");
-        lines.add("");
         lines.add("    protected void show[[nameClassType]](String text[[classType]] [[classParam]]) {");
         lines.add("        if ([[name]] == null)");
         lines.add("            [[name]] = new [[className]].Builder([[act]])");

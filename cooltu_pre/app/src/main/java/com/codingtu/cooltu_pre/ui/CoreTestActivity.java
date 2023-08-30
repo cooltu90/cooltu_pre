@@ -3,6 +3,7 @@ package com.codingtu.cooltu_pre.ui;
 import android.widget.TextView;
 
 import com.codingtu.cooltu.lib4a.act.CoreActivity;
+import com.codingtu.cooltu.lib4a.view.dialogview.EditDialog;
 import com.codingtu.cooltu.processor.annotation.resource.ColorRes;
 import com.codingtu.cooltu.processor.annotation.resource.ColorStr;
 import com.codingtu.cooltu.processor.annotation.resource.Dimen;
@@ -13,6 +14,7 @@ import com.codingtu.cooltu.processor.annotation.ui.InBase;
 import com.codingtu.cooltu.processor.annotation.ui.InBaseActBack;
 import com.codingtu.cooltu.processor.annotation.ui.InBaseClickView;
 import com.codingtu.cooltu.processor.annotation.ui.StartGroup;
+import com.codingtu.cooltu.processor.annotation.ui.dialog.EditDialogUse;
 import com.codingtu.cooltu.processor.annotation.ui.dialog.ToastDialogUse;
 import com.codingtu.cooltu.processor.lib.log.Logs;
 import com.codingtu.cooltu_pre.R;
@@ -39,6 +41,12 @@ public class CoreTestActivity extends CoreActivity {
 
     @Dimen(R.dimen.d1)
     public int dp2;
+
+    @EditDialogUse(
+            title = "提示",
+            hint = "请输入"
+    )
+    protected EditDialog ed2;
 
     @InBaseClickView(value = R.id.tv)
     public void tvClick() {

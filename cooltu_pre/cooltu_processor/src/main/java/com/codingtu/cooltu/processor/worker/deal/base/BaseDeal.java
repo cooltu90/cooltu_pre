@@ -3,8 +3,13 @@ package com.codingtu.cooltu.processor.worker.deal.base;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.TypeElement;
+import javax.lang.model.element.VariableElement;
 
 import com.codingtu.cooltu.constant.Constant;
+import com.codingtu.cooltu.lib4j.data.bean.KV;
+import com.codingtu.cooltu.lib4j.tools.ClassTool;
+import com.codingtu.cooltu.processor.annotation.ui.dialog.EditDialogUse;
+import com.codingtu.cooltu.processor.lib.bean.EditDialogInfo;
 import com.codingtu.cooltu.processor.lib.tools.ElementTools;
 import com.codingtu.cooltu.processor.lib.tools.NameTools;
 import com.codingtu.cooltu.processor.worker.deal.ActBaseDeal;

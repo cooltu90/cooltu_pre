@@ -25,6 +25,7 @@ import com.codingtu.cooltu.processor.lib.tools.ElementTools;
 import com.codingtu.cooltu.processor.lib.tools.IdTools;
 import com.codingtu.cooltu.processor.lib.tools.NameTools;
 import com.codingtu.cooltu.processor.worker.deal.base.BaseDeal;
+import com.codingtu.cooltu.processor.worker.deal.base.BaseResForDeal;
 import com.codingtu.cooltu.processor.worker.model.ActBaseModel;
 import com.codingtu.cooltu.processor.worker.model.BaseParentModel;
 import com.codingtu.cooltu.processor.worker.model.PassModel;
@@ -38,7 +39,7 @@ import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.element.VariableElement;
 
-public class ResForDeal extends BaseDeal {
+public class ResForDeal extends BaseResForDeal {
     private BaseParentModel baseParentModel;
 
     @Override
@@ -237,22 +238,7 @@ public class ResForDeal extends BaseDeal {
     }
 
     private void dealEditDialogUse(VariableElement ve, EditDialogUse use) {
-        EditDialogInfo info = new EditDialogInfo();
-        KV<String, String> kv = ElementTools.getFiledKv(ve);
-        info.name = kv.v;
-        info.title = use.title();
-        info.hint = use.hint();
-        info.inputType = use.inputType();
-        info.stopAnimation = use.stopAnimation();
-        info.isUseTextwatcher = use.isUseTextWatcher();
-        info.objType = ClassTool.getAnnotationClass(new ClassTool.AnnotationClassGetter() {
-            @Override
-            public Object get() {
-                return use.objType();
-            }
-        });
-        //info.reserve = use.reserve();
-        baseParentModel.addEditDialog(info);
+        baseParentModel.addEditDialog(toEditDialogInfo(ve, use));
     }
 
     private void dealToastDialogUse() {
@@ -264,17 +250,6 @@ public class ResForDeal extends BaseDeal {
     }
 
     private void dealDialogUse(VariableElement ve, DialogUse use) {
-        KV<String, String> kv = ElementTools.getFiledKv(ve);
-        DialogInfo dialogInfo = new DialogInfo();
-        dialogInfo.name = kv.v;
-        dialogInfo.title = use.title();
-        dialogInfo.content = use.content();
-        dialogInfo.objType = ClassTool.getAnnotationClass(new ClassTool.AnnotationClassGetter() {
-            @Override
-            public Object get() {
-                return use.objType();
-            }
-        });
-        baseParentModel.addDialog(dialogInfo);
+        baseParentModel.addDialog(toDialogInfo(ve, use));
     }
 }

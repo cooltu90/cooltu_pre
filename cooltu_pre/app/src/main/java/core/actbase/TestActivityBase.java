@@ -28,6 +28,7 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
     public int color22;
     public int dp11;
     public int d1;
+    public com.codingtu.cooltu.lib4a.view.dialogview.EditDialog editDialog;
 
 
     @Override
@@ -190,8 +191,6 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
     }
 
 
-    private com.codingtu.cooltu.lib4a.view.dialogview.EditDialog editDialog;
-
     protected void showEditDialog(String text ) {
         if (editDialog == null)
             editDialog = new com.codingtu.cooltu.lib4a.view.dialogview.EditDialog.Builder(getThis())
@@ -214,6 +213,58 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
     
 
     protected boolean editDialogYes(String text ) {
+        return false;
+    }
+
+
+    protected void showEd2(String text ) {
+        if (ed2 == null)
+            ed2 = new com.codingtu.cooltu.lib4a.view.dialogview.EditDialog.Builder(getThis())
+                    .setTitle("提示")
+                    .setHint("请输入")
+                    .setInputType(1)
+                    .setLayout(com.codingtu.cooltu.lib4a.R.layout.default_dialog_edit)
+                    .setYes(new com.codingtu.cooltu.lib4a.view.dialogview.EditDialog.Yes() {
+                        @Override
+                        public boolean yes(String text, Object obj) {
+                            return ed2Yes(text);
+                        }
+                    })
+                    .build();
+        ed2.setEditText(text);
+        ed2.setObject(null);
+        ed2.show();
+    }
+
+    
+
+    protected boolean ed2Yes(String text ) {
+        return false;
+    }
+
+
+    protected void showEd1(String text ) {
+        if (ed1 == null)
+            ed1 = new com.codingtu.cooltu.lib4a.view.dialogview.EditDialog.Builder(getThis())
+                    .setTitle("提示")
+                    .setHint("请输入")
+                    .setInputType(1)
+                    .setLayout(com.codingtu.cooltu.lib4a.R.layout.default_dialog_edit)
+                    .setYes(new com.codingtu.cooltu.lib4a.view.dialogview.EditDialog.Yes() {
+                        @Override
+                        public boolean yes(String text, Object obj) {
+                            return ed1Yes(text);
+                        }
+                    })
+                    .build();
+        ed1.setEditText(text);
+        ed1.setObject(null);
+        ed1.show();
+    }
+
+    
+
+    protected boolean ed1Yes(String text ) {
         return false;
     }
 

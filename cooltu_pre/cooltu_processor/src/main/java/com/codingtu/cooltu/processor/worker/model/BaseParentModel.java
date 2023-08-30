@@ -140,6 +140,7 @@ public abstract class BaseParentModel extends BaseModel {
 
     public void addEditDialog(EditDialogInfo info) {
         if (!editDialogInfos.contains(info)) {
+            addField(FullName.EDIT_DIALOG_VIEW, info.name);
             editDialogInfos.add(info);
         }
     }
@@ -726,10 +727,13 @@ public abstract class BaseParentModel extends BaseModel {
 
 
     public void setTagFor_editDialog(StringBuilder sb) {
+        editDialogInfos.addAll(ResForBaseDeal.getTs(ResForBaseDeal.editDialogMap, baseClass));
         Ts.ls(editDialogInfos, new BaseTs.EachTs<EditDialogInfo>() {
             @Override
             public boolean each(int position, EditDialogInfo info) {
-                addModel(sb, new DialogForEditMethodModel(info, isAct));
+                if (info != null) {
+                    addModel(sb, new DialogForEditMethodModel(info, isAct));
+                }
                 return false;
             }
         });

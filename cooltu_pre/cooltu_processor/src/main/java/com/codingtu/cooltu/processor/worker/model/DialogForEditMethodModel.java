@@ -135,8 +135,6 @@ public class DialogForEditMethodModel extends SubBaseModel implements DialogForE
     }
 }
 /* model_temp_start
-    private [[className]] [[name]];
-
     protected void show[[nameClassType]](String text[[classType]] [[classParam]]) {
         if ([[name]] == null)
             [[name]] = new [[className]].Builder([[act]])
