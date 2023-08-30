@@ -38,6 +38,13 @@ public class TestActivityRes {
     )
     Dialog dialog;
 
+    @DialogUse(
+            title = "dialog",
+            content = "xxxx",
+            objType = Void.class
+    )
+    Dialog dialog1;
+
 
     @EditDialogUse(
             title = "提示",

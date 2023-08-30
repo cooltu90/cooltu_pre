@@ -12,9 +12,11 @@ import com.codingtu.cooltu.processor.annotation.ui.InBase;
 import com.codingtu.cooltu.processor.annotation.ui.InBaseActBack;
 import com.codingtu.cooltu.processor.annotation.ui.InBaseClickView;
 import com.codingtu.cooltu.processor.annotation.ui.StartGroup;
+import com.codingtu.cooltu.processor.annotation.ui.dialog.DialogUse;
 import com.codingtu.cooltu.processor.annotation.ui.dialog.EditDialogUse;
 import com.codingtu.cooltu.processor.annotation.ui.dialog.NoticeDialogUse;
 import com.codingtu.cooltu.processor.annotation.ui.dialog.ToastDialogUse;
+import com.codingtu.cooltu.processor.lib.bean.DialogInfo;
 import com.codingtu.cooltu.processor.lib.bean.EditDialogInfo;
 import com.codingtu.cooltu.processor.lib.log.Logs;
 import com.codingtu.cooltu.processor.lib.tools.ElementTools;
@@ -42,6 +44,7 @@ public class ResForBaseDeal extends BaseResForDeal {
     public static ListValueMap<String, VariableElement> dpMap = new ListValueMap<>();
     public static ListValueMap<String, VariableElement> dimenMap = new ListValueMap<>();
     public static ListValueMap<String, EditDialogInfo> editDialogMap = new ListValueMap<>();
+    public static ListValueMap<String, DialogInfo> dialogMap = new ListValueMap<>();
     public static ListValueMap<String, ExecutableElement> clickViewMap = new ListValueMap<>();
     public static ListValueMap<String, ExecutableElement> actBackMap = new ListValueMap<>();
     public static Map<String, String> toastDialogUseMap = new HashMap<>();
@@ -111,6 +114,12 @@ public class ResForBaseDeal extends BaseResForDeal {
                 EditDialogUse editDialogUse = ve.getAnnotation(EditDialogUse.class);
                 if (editDialogUse != null) {
                     editDialogMap.get(classFullName).add(toEditDialogInfo(ve, editDialogUse));
+                    inBaseMap.get(classFullName).add(ElementTools.simpleName(ve));
+                }
+
+                DialogUse dialogUse = ve.getAnnotation(DialogUse.class);
+                if (dialogUse != null) {
+                    dialogMap.get(classFullName).add(toDialogInfo(ve, dialogUse));
                     inBaseMap.get(classFullName).add(ElementTools.simpleName(ve));
                 }
 

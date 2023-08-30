@@ -115,8 +115,6 @@ public class DialogMethodModel extends SubBaseModel implements DialogMethodModel
     }
 }
 /* model_temp_start
-    private [[DialogView]] [[name]];
-
     protected void show[[nameToClass]]([[classType]] [[classParam]]) {
         if ([[name]] == null) {
             [[name]] = new [[DialogView]]([[act]])

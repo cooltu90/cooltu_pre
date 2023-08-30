@@ -28,6 +28,8 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
     public int color22;
     public int dp11;
     public int d1;
+    public com.codingtu.cooltu.lib4a.view.dialogview.Dialog dialog;
+    public com.codingtu.cooltu.lib4a.view.dialogview.Dialog dialog1;
     public com.codingtu.cooltu.lib4a.view.dialogview.EditDialog editDialog;
 
 
@@ -135,8 +137,6 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
 
 
 
-    private com.codingtu.cooltu.lib4a.view.dialogview.Dialog dialog;
-
     protected void showDialog( ) {
         if (dialog == null) {
             dialog = new com.codingtu.cooltu.lib4a.view.dialogview.Dialog(getThis())
@@ -175,6 +175,82 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
     }
 
     protected void dialogYes( ) {}
+    protected void showDialog1( ) {
+        if (dialog1 == null) {
+            dialog1 = new com.codingtu.cooltu.lib4a.view.dialogview.Dialog(getThis())
+                    .setTitle("dialog")
+                    .setContent("xxxx")
+                    .setLayout(com.codingtu.cooltu.lib4a.R.layout.default_dialog)
+                    .setYes(new com.codingtu.cooltu.lib4a.view.dialogview.Dialog.Yes() {
+                        @Override
+                        public void yes(Object obj) {
+                            dialog1Yes();
+                        }
+                    })
+                    .build();
+        }
+        dialog1.setObject(null);
+        dialog1.show();
+    }
+    protected void showDialog1(String content ) {
+        if (dialog1 == null) {
+            dialog1 = new com.codingtu.cooltu.lib4a.view.dialogview.Dialog(getThis())
+                    .setTitle("dialog")
+                    .setContent(content)
+                    .setLayout(com.codingtu.cooltu.lib4a.R.layout.default_dialog)
+                    .setYes(new com.codingtu.cooltu.lib4a.view.dialogview.Dialog.Yes() {
+                        @Override
+                        public void yes(Object obj) {
+                            dialog1Yes();
+                        }
+                    })
+                    .build();
+        }else{
+            dialog1.updateContent(content);
+        }
+        dialog1.setObject(null);
+        dialog1.show();
+    }
+
+    protected void dialog1Yes( ) {}
+    protected void showDialog3( ) {
+        if (dialog3 == null) {
+            dialog3 = new com.codingtu.cooltu.lib4a.view.dialogview.Dialog(getThis())
+                    .setTitle("dialog")
+                    .setContent("xxxx")
+                    .setLayout(com.codingtu.cooltu.lib4a.R.layout.default_dialog)
+                    .setYes(new com.codingtu.cooltu.lib4a.view.dialogview.Dialog.Yes() {
+                        @Override
+                        public void yes(Object obj) {
+                            dialog3Yes();
+                        }
+                    })
+                    .build();
+        }
+        dialog3.setObject(null);
+        dialog3.show();
+    }
+    protected void showDialog3(String content ) {
+        if (dialog3 == null) {
+            dialog3 = new com.codingtu.cooltu.lib4a.view.dialogview.Dialog(getThis())
+                    .setTitle("dialog")
+                    .setContent(content)
+                    .setLayout(com.codingtu.cooltu.lib4a.R.layout.default_dialog)
+                    .setYes(new com.codingtu.cooltu.lib4a.view.dialogview.Dialog.Yes() {
+                        @Override
+                        public void yes(Object obj) {
+                            dialog3Yes();
+                        }
+                    })
+                    .build();
+        }else{
+            dialog3.updateContent(content);
+        }
+        dialog3.setObject(null);
+        dialog3.show();
+    }
+
+    protected void dialog3Yes( ) {}
 
 
 

@@ -5,15 +5,15 @@ import java.util.List;
 
 public interface DialogMethodModelInterface {
 
-    public void setTagFor_DialogView(StringBuilder sb);
-
-    public void setTagFor_name(StringBuilder sb);
-
     public void setTagFor_nameToClass(StringBuilder sb);
 
     public void setTagFor_classType(StringBuilder sb);
 
     public void setTagFor_classParam(StringBuilder sb);
+
+    public void setTagFor_name(StringBuilder sb);
+
+    public void setTagFor_DialogView(StringBuilder sb);
 
     public void setTagFor_act(StringBuilder sb);
 
@@ -31,8 +31,6 @@ public interface DialogMethodModelInterface {
 
     default List<String> getTempLinesArray() {
         ArrayList<String> lines = new ArrayList<>();
-        lines.add("    private [[DialogView]] [[name]];");
-        lines.add("");
         lines.add("    protected void show[[nameToClass]]([[classType]] [[classParam]]) {");
         lines.add("        if ([[name]] == null) {");
         lines.add("            [[name]] = new [[DialogView]]([[act]])");

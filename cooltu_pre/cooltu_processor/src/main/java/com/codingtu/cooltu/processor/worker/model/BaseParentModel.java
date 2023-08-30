@@ -133,6 +133,7 @@ public abstract class BaseParentModel extends BaseModel {
 
     public void addDialog(DialogInfo info) {
         if (!dialogInfos.contains(info)) {
+            addField(FullName.DIALOG_VIEW, info.name);
             dialogInfos.add(info);
         }
     }
@@ -703,16 +704,6 @@ public abstract class BaseParentModel extends BaseModel {
             addLnTag(sb, "    protected void initFormView() {}");
     }
 
-    public void setTagFor_dialogs(StringBuilder sb) {
-        Ts.ls(dialogInfos, new BaseTs.EachTs<DialogInfo>() {
-            @Override
-            public boolean each(int position, DialogInfo info) {
-                addModel(sb, new DialogMethodModel(info, isAct));
-                return false;
-            }
-        });
-    }
-
     public void setTagFor_toastDialog(StringBuilder sb) {
         if (isToastDialog || !CountTool.isNull(ResForBaseDeal.getTs(ResForBaseDeal.toastDialogUseMap, baseClass))) {
             addModel(sb, new DialogForToastMethodModel(isAct));
@@ -723,6 +714,20 @@ public abstract class BaseParentModel extends BaseModel {
         if (isNoticeDialog || !CountTool.isNull(ResForBaseDeal.getTs(ResForBaseDeal.noticeDialogUseMap, baseClass))) {
             addModel(sb, new DialogForNoticeMethodModel(isAct));
         }
+    }
+
+
+    public void setTagFor_dialogs(StringBuilder sb) {
+        dialogInfos.addAll(ResForBaseDeal.getTs(ResForBaseDeal.dialogMap, baseClass));
+        Ts.ls(dialogInfos, new BaseTs.EachTs<DialogInfo>() {
+            @Override
+            public boolean each(int position, DialogInfo info) {
+                if (info != null) {
+                    addModel(sb, new DialogMethodModel(info, isAct));
+                }
+                return false;
+            }
+        });
     }
 
 
