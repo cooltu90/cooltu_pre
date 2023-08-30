@@ -4,22 +4,14 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
-import com.codingtu.cooltu.lib4a.constant.InputType;
-import com.codingtu.cooltu.lib4a.log.Logs;
-import com.codingtu.cooltu.processor.annotation.net.NetBack;
-import com.codingtu.cooltu.processor.annotation.ui.ClickView;
 import com.codingtu.cooltu_pre.R;
 
 import core.actbase.TestActivityBase;
 
 import com.codingtu.cooltu.processor.annotation.tools.To;
 import com.codingtu.cooltu.processor.annotation.ui.ActBase;
-import com.codingtu.cooltu_pre.bean.User;
-import com.codingtu.cooltu_pre.view.MyEditDialogView;
 
 import core.actres.TestActivityRes;
-import core.tools.Mocks;
-import core.tools.Net;
 
 @To(TestActivityRes.class)
 @ActBase(layout = R.layout.activity_test, baseClass = BaseTestActivity.class)
@@ -34,7 +26,7 @@ public class TestActivity extends TestActivityBase {
     @Override
     public void tvClick() {
         super.tvClick();
-//        toast("sdsdfs");
+
         showEditDialog("");
     }
 }

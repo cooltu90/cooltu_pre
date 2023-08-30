@@ -41,7 +41,7 @@ public interface DialogForEditMethodModelInterface {
         lines.add("");
         lines.add("    protected void show[[nameClassType]](String text[[classType]] [[classParam]]) {");
         lines.add("        if ([[name]] == null)");
-        lines.add("            [[name]] = new [[className]]([[act]])");
+        lines.add("            [[name]] = new [[className]].Builder([[act]])");
         lines.add("                    .setTitle(\"[[title]]\")");
         lines.add("                    .setHint(\"[[hint]]\")");
         lines.add("                    .setInputType([[inputType]])");

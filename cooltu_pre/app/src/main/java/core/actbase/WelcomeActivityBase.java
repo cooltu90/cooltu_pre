@@ -125,23 +125,32 @@ public abstract class WelcomeActivityBase extends com.codingtu.cooltu.lib4a.act.
         td.show();
     }
 
-    protected void toastSet(String msg) {
-        if (com.codingtu.cooltu.lib4j.tools.StringTool.isNotBlank(msg)) {
-            getToastDialog().setContent(msg);
-        }
+    protected void toastShow(long time, String msg, com.codingtu.cooltu.lib4a.view.layerview.listener.OnHiddenFinished onHiddenFinished) {
+        toastShow(msg);
+        com.codingtu.cooltu.lib4a.tools.HandlerTool.getMainHandler().postDelayed(new java.lang.Runnable() {
+            @Override
+            public void run() {
+                getToastDialog().hidden(onHiddenFinished);
+            }
+        }, time);
     }
 
-    protected void toastHidden(String msg, long time, com.codingtu.cooltu.lib4a.view.layerview.listener.OnHiddenFinished onHiddenFinished) {
-        toastSet(msg);
-        com.codingtu.cooltu.lib4a.tools.HandlerTool.getMainHandler().postDelayed(() -> getToastDialog().hidden(onHiddenFinished), time);
+    protected void toastShow(long time, String msg) {
+        toastShow(time, msg, null);
     }
 
-    protected void toastHidden(String msg, com.codingtu.cooltu.lib4a.view.layerview.listener.OnHiddenFinished onHiddenFinished) {
-        toastHidden(msg, 1000, onHiddenFinished);
+    protected void toastHidden(long time, String msg, com.codingtu.cooltu.lib4a.view.layerview.listener.OnHiddenFinished onHiddenFinished) {
+        getToastDialog().setContent(msg);
+        com.codingtu.cooltu.lib4a.tools.HandlerTool.getMainHandler().postDelayed(new java.lang.Runnable() {
+            @Override
+            public void run() {
+                getToastDialog().hidden(onHiddenFinished);
+            }
+        }, time);
     }
 
-    protected void toastHidden(String msg) {
-        toastHidden(msg, null);
+    protected void toastHidden(long time, String msg) {
+        toastHidden(time, msg, null);
     }
 
 
@@ -149,7 +158,7 @@ public abstract class WelcomeActivityBase extends com.codingtu.cooltu.lib4a.act.
 
     protected void showEd(String text ) {
         if (ed == null)
-            ed = new com.codingtu.cooltu.lib4a.view.dialogview.EditDialog(getThis())
+            ed = new com.codingtu.cooltu.lib4a.view.dialogview.EditDialog.Builder(getThis())
                     .setTitle("xxx")
                     .setHint("xxx")
                     .setInputType(1)

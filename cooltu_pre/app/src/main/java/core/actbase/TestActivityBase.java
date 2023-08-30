@@ -176,18 +176,60 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
     protected void dialogYes( ) {}
 
 
+    private com.codingtu.cooltu.lib4a.view.dialogview.ToastDialog toastDialog;
+
+    protected com.codingtu.cooltu.lib4a.view.dialogview.ToastDialog getToastDialog() {
+        if (toastDialog == null)
+            toastDialog = new com.codingtu.cooltu.lib4a.view.dialogview.ToastDialog(getThis())
+                    .setLayout(com.codingtu.cooltu.lib4a.R.layout.default_dialog_toast)
+                    .build();
+        return toastDialog;
+    }
+
+    protected void toastShow(String msg) {
+        com.codingtu.cooltu.lib4a.view.dialogview.ToastDialog td = getToastDialog();
+        td.setContent(msg);
+        td.show();
+    }
+
+    protected void toastShow(long time, String msg, com.codingtu.cooltu.lib4a.view.layerview.listener.OnHiddenFinished onHiddenFinished) {
+        toastShow(msg);
+        com.codingtu.cooltu.lib4a.tools.HandlerTool.getMainHandler().postDelayed(new java.lang.Runnable() {
+            @Override
+            public void run() {
+                getToastDialog().hidden(onHiddenFinished);
+            }
+        }, time);
+    }
+
+    protected void toastShow(long time, String msg) {
+        toastShow(time, msg, null);
+    }
+
+    protected void toastHidden(long time, String msg, com.codingtu.cooltu.lib4a.view.layerview.listener.OnHiddenFinished onHiddenFinished) {
+        getToastDialog().setContent(msg);
+        com.codingtu.cooltu.lib4a.tools.HandlerTool.getMainHandler().postDelayed(new java.lang.Runnable() {
+            @Override
+            public void run() {
+                getToastDialog().hidden(onHiddenFinished);
+            }
+        }, time);
+    }
+
+    protected void toastHidden(long time, String msg) {
+        toastHidden(time, msg, null);
+    }
 
 
     private com.codingtu.cooltu.lib4a.view.dialogview.EditDialog editDialog;
 
     protected void showEditDialog(String text ) {
         if (editDialog == null)
-            editDialog = new com.codingtu.cooltu.lib4a.view.dialogview.EditDialog(getThis())
+            editDialog = new com.codingtu.cooltu.lib4a.view.dialogview.EditDialog.Builder(getThis())
                     .setTitle("提示")
                     .setHint("请输入")
                     .setInputType(1)
                     .setLayout(com.codingtu.cooltu.lib4a.R.layout.default_dialog_edit)
-                    .stopAnimation()
                     .setYes(new com.codingtu.cooltu.lib4a.view.dialogview.EditDialog.Yes() {
                         @Override
                         public boolean yes(String text, Object obj) {
@@ -200,7 +242,7 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
         editDialog.show();
     }
 
-    
+
 
     protected boolean editDialogYes(String text ) {
         return false;

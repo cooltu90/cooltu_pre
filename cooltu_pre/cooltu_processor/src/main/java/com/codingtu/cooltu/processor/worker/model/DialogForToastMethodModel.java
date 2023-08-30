@@ -41,9 +41,15 @@ public class DialogForToastMethodModel extends SubBaseModel implements DialogFor
     }
 
     @Override
-    public void setTagFor_StringToolFullName(StringBuilder sb) {
-        sb.append(FullName.STRING_TOOL);
+    public void setTagFor_OnHiddenFinishedFullName(StringBuilder sb) {
+        sb.append(FullName.ON_HIDDEN_FINISHED);
     }
+
+    @Override
+    public void setTagFor_HandlerToolFullName(StringBuilder sb) {
+        sb.append(FullName.HANDLER_TOOL);
+    }
+
 }
 /* model_temp_start
     private [[className]] toastDialog;
@@ -62,22 +68,31 @@ public class DialogForToastMethodModel extends SubBaseModel implements DialogFor
         td.show();
     }
 
-    protected void toastSet(String msg) {
-        if ([[StringToolFullName]].isNotBlank(msg)) {
-            getToastDialog().setContent(msg);
-        }
+    protected void toastShow(long time, String msg, [[OnHiddenFinishedFullName]] onHiddenFinished) {
+        toastShow(msg);
+        [[HandlerToolFullName]].getMainHandler().postDelayed(new java.lang.Runnable() {
+            @Override
+            public void run() {
+                getToastDialog().hidden(onHiddenFinished);
+            }
+        }, time);
     }
 
-    protected void toastHidden(String msg, long time, com.codingtu.cooltu.lib4a.view.layerview.listener.OnHiddenFinished onHiddenFinished) {
-        toastSet(msg);
-        com.codingtu.cooltu.lib4a.tools.HandlerTool.getMainHandler().postDelayed(() -> getToastDialog().hidden(onHiddenFinished), time);
+    protected void toastShow(long time, String msg) {
+        toastShow(time, msg, null);
     }
 
-    protected void toastHidden(String msg, com.codingtu.cooltu.lib4a.view.layerview.listener.OnHiddenFinished onHiddenFinished) {
-        toastHidden(msg, 1000, onHiddenFinished);
+    protected void toastHidden(long time, String msg, [[OnHiddenFinishedFullName]] onHiddenFinished) {
+        getToastDialog().setContent(msg);
+        [[HandlerToolFullName]].getMainHandler().postDelayed(new java.lang.Runnable() {
+            @Override
+            public void run() {
+                getToastDialog().hidden(onHiddenFinished);
+            }
+        }, time);
     }
 
-    protected void toastHidden(String msg) {
-        toastHidden(msg, null);
+    protected void toastHidden(long time, String msg) {
+        toastHidden(time, msg, null);
     }
 model_temp_end */

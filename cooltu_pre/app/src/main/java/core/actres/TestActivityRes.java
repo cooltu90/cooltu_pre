@@ -13,10 +13,12 @@ import com.codingtu.cooltu.processor.annotation.ui.InBase;
 import com.codingtu.cooltu.processor.annotation.ui.StartGroup;
 import com.codingtu.cooltu.processor.annotation.ui.dialog.DialogUse;
 import com.codingtu.cooltu.processor.annotation.ui.dialog.EditDialogUse;
+import com.codingtu.cooltu.processor.annotation.ui.dialog.ToastDialogUse;
 import com.codingtu.cooltu_pre.R;
 import com.codingtu.cooltu_pre.ui.TestActivity;
 import com.codingtu.cooltu.processor.annotation.resource.ResFor;
 
+@ToastDialogUse
 @ResFor(TestActivity.class)
 public class TestActivityRes {
 
@@ -39,9 +41,7 @@ public class TestActivityRes {
 
     @EditDialogUse(
             title = "提示",
-            hint = "请输入",
-            stopAnimation = true,
-            objType = Void.class
+            hint = "请输入"
     )
     EditDialog editDialog;
 

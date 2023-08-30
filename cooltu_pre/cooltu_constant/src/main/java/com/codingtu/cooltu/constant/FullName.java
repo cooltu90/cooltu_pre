@@ -35,6 +35,8 @@ public class FullName {
     public static final String BUS_BACK = "com.codingtu.cooltu.lib4a.bus.BusBack";
     public static final String FORM_LINK = "com.codingtu.cooltu.lib4a.form.FormLink";
     public static final String DEFAULT_RADIO_GROUP_TO_STRING = "com.codingtu.cooltu.lib4a.form.DefaultRadioGroupToString";
+    public static final String ON_HIDDEN_FINISHED = "com.codingtu.cooltu.lib4a.view.layerview.listener.OnHiddenFinished";
+    public static final String HANDLER_TOOL = "com.codingtu.cooltu.lib4a.tools.HandlerTool";
     //不变的
     public static final String INT = "int";
     public static final String FLOAT = "float";

@@ -11,7 +11,9 @@ public interface DialogForToastMethodModelInterface {
 
     public void setTagFor_layout(StringBuilder sb);
 
-    public void setTagFor_StringToolFullName(StringBuilder sb);
+    public void setTagFor_OnHiddenFinishedFullName(StringBuilder sb);
+
+    public void setTagFor_HandlerToolFullName(StringBuilder sb);
 
     default List<String> getTempLinesArray() {
         ArrayList<String> lines = new ArrayList<>();
@@ -31,23 +33,32 @@ public interface DialogForToastMethodModelInterface {
         lines.add("        td.show();");
         lines.add("    }");
         lines.add("");
-        lines.add("    protected void toastSet(String msg) {");
-        lines.add("        if ([[StringToolFullName]].isNotBlank(msg)) {");
-        lines.add("            getToastDialog().setContent(msg);");
-        lines.add("        }");
+        lines.add("    protected void toastShow(long time, String msg, [[OnHiddenFinishedFullName]] onHiddenFinished) {");
+        lines.add("        toastShow(msg);");
+        lines.add("        [[HandlerToolFullName]].getMainHandler().postDelayed(new java.lang.Runnable() {");
+        lines.add("            @Override");
+        lines.add("            public void run() {");
+        lines.add("                getToastDialog().hidden(onHiddenFinished);");
+        lines.add("            }");
+        lines.add("        }, time);");
         lines.add("    }");
         lines.add("");
-        lines.add("    protected void toastHidden(String msg, long time, com.codingtu.cooltu.lib4a.view.layerview.listener.OnHiddenFinished onHiddenFinished) {");
-        lines.add("        toastSet(msg);");
-        lines.add("        com.codingtu.cooltu.lib4a.tools.HandlerTool.getMainHandler().postDelayed(() -> getToastDialog().hidden(onHiddenFinished), time);");
+        lines.add("    protected void toastShow(long time, String msg) {");
+        lines.add("        toastShow(time, msg, null);");
         lines.add("    }");
         lines.add("");
-        lines.add("    protected void toastHidden(String msg, com.codingtu.cooltu.lib4a.view.layerview.listener.OnHiddenFinished onHiddenFinished) {");
-        lines.add("        toastHidden(msg, 1000, onHiddenFinished);");
+        lines.add("    protected void toastHidden(long time, String msg, [[OnHiddenFinishedFullName]] onHiddenFinished) {");
+        lines.add("        getToastDialog().setContent(msg);");
+        lines.add("        [[HandlerToolFullName]].getMainHandler().postDelayed(new java.lang.Runnable() {");
+        lines.add("            @Override");
+        lines.add("            public void run() {");
+        lines.add("                getToastDialog().hidden(onHiddenFinished);");
+        lines.add("            }");
+        lines.add("        }, time);");
         lines.add("    }");
         lines.add("");
-        lines.add("    protected void toastHidden(String msg) {");
-        lines.add("        toastHidden(msg, null);");
+        lines.add("    protected void toastHidden(long time, String msg) {");
+        lines.add("        toastHidden(time, msg, null);");
         lines.add("    }");
         return lines;
     }

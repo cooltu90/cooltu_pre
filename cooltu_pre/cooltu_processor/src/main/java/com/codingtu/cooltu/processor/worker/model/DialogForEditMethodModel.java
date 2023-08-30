@@ -93,11 +93,6 @@ public class DialogForEditMethodModel extends SubBaseModel implements DialogForE
         addTag(sb, Constant.DEFAULT_EDIT_DIALOG_LAYOUT);
     }
 
-//    @Override
-//    public void setTagFor_reserve(StringBuilder sb) {
-//        sb.append(info.reserve);
-//    }
-
     @Override
     public void setTagFor_stopAnimation(StringBuilder sb) {
         if (info.stopAnimation) {
@@ -144,7 +139,7 @@ public class DialogForEditMethodModel extends SubBaseModel implements DialogForE
 
     protected void show[[nameClassType]](String text[[classType]] [[classParam]]) {
         if ([[name]] == null)
-            [[name]] = new [[className]]([[act]])
+            [[name]] = new [[className]].Builder([[act]])
                     .setTitle("[[title]]")
                     .setHint("[[hint]]")
                     .setInputType([[inputType]])
