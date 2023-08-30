@@ -41,6 +41,7 @@ public class TestActivityRes {
             title = "提示",
             hint = "请输入",
             reserve = true,
+            stopAnimation = true,
             objType = Void.class
     )
     EditDialog editDialog;
