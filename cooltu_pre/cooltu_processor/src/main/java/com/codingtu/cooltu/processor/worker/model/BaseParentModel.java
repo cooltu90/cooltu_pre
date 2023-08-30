@@ -70,6 +70,7 @@ public abstract class BaseParentModel extends BaseModel {
     protected List<EditDialogInfo> editDialogInfos = new ArrayList<>();
 
     protected boolean isToastDialog;
+    protected boolean isNoticeDialog;
     protected List<KV<String, String>> otherFields = new ArrayList<>();
     //resource
     protected List<KV<String, Float>> dpKvs = new ArrayList<>();
@@ -145,6 +146,10 @@ public abstract class BaseParentModel extends BaseModel {
 
     public void addToastDialog() {
         isToastDialog = true;
+    }
+
+    public void addNoticeDialog() {
+        isNoticeDialog = true;
     }
 
     public void addDp(String type, String name, float dp) {
@@ -710,6 +715,12 @@ public abstract class BaseParentModel extends BaseModel {
     public void setTagFor_toastDialog(StringBuilder sb) {
         if (isToastDialog) {
             addModel(sb, new DialogForToastMethodModel(isAct));
+        }
+    }
+
+    public void setTagFor_noticeDialog(StringBuilder sb) {
+        if (isNoticeDialog) {
+            addModel(sb, new DialogForNoticeMethodModel(isAct));
         }
     }
 

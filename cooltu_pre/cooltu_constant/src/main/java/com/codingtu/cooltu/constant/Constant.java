@@ -67,6 +67,7 @@ public class Constant {
     //package
     public static String DEFAULT_DIALOG_LAYOUT = "com.codingtu.cooltu.lib4a.R.layout.default_dialog";
     public static String DEFAULT_TOAST_DIALOG_LAYOUT = "com.codingtu.cooltu.lib4a.R.layout.default_dialog_toast";
+    public static String DEFAULT_NOTICE_DIALOG_LAYOUT = "com.codingtu.cooltu.lib4a.R.layout.default_dialog_notice";
     public static String DEFAULT_EDIT_DIALOG_LAYOUT = "com.codingtu.cooltu.lib4a.R.layout.default_dialog_edit";
     public static String DEFAULT_TEMP_LAYOUT;
 

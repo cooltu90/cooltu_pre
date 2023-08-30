@@ -61,6 +61,8 @@ public interface ActBaseModelInterface {
 
     public void setTagFor_toastDialog(StringBuilder sb);
 
+    public void setTagFor_noticeDialog(StringBuilder sb);
+
     public void setTagFor_editDialog(StringBuilder sb);
 
     public void setTagFor_onLongClick(StringBuilder sb);
@@ -172,6 +174,8 @@ public interface ActBaseModelInterface {
         lines.add("[[dialogs]]");
         lines.add("");
         lines.add("[[toastDialog]]");
+        lines.add("");
+        lines.add("[[noticeDialog]]");
         lines.add("");
         lines.add("[[editDialog]]");
         lines.add("");

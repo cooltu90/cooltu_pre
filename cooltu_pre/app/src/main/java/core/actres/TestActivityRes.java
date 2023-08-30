@@ -13,12 +13,14 @@ import com.codingtu.cooltu.processor.annotation.ui.InBase;
 import com.codingtu.cooltu.processor.annotation.ui.StartGroup;
 import com.codingtu.cooltu.processor.annotation.ui.dialog.DialogUse;
 import com.codingtu.cooltu.processor.annotation.ui.dialog.EditDialogUse;
+import com.codingtu.cooltu.processor.annotation.ui.dialog.NoticeDialogUse;
 import com.codingtu.cooltu.processor.annotation.ui.dialog.ToastDialogUse;
 import com.codingtu.cooltu_pre.R;
 import com.codingtu.cooltu_pre.ui.TestActivity;
 import com.codingtu.cooltu.processor.annotation.resource.ResFor;
 
 @ToastDialogUse
+@NoticeDialogUse
 @ResFor(TestActivity.class)
 public class TestActivityRes {
 

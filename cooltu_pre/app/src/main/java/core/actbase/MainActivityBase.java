@@ -113,4 +113,6 @@ public abstract class MainActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
 
 
 
+
+
 }

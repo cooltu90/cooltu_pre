@@ -123,6 +123,8 @@ public class [[name]] extends [[base]] implements View.OnClickListener, NetBackI
 
 [[toastDialog]]
 
+[[noticeDialog]]
+
 [[editDialog]]
 
 [[onLongClick]]

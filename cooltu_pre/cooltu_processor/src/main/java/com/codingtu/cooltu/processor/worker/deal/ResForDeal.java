@@ -16,6 +16,7 @@ import com.codingtu.cooltu.processor.annotation.ui.Adapter;
 import com.codingtu.cooltu.processor.annotation.ui.StartGroup;
 import com.codingtu.cooltu.processor.annotation.ui.dialog.DialogUse;
 import com.codingtu.cooltu.processor.annotation.ui.dialog.EditDialogUse;
+import com.codingtu.cooltu.processor.annotation.ui.dialog.NoticeDialogUse;
 import com.codingtu.cooltu.processor.annotation.ui.dialog.ToastDialogUse;
 import com.codingtu.cooltu.processor.lib.bean.DialogInfo;
 import com.codingtu.cooltu.processor.lib.bean.EditDialogInfo;
@@ -60,6 +61,11 @@ public class ResForDeal extends BaseDeal {
         ToastDialogUse toastDialogUse = te.getAnnotation(ToastDialogUse.class);
         if (toastDialogUse != null) {
             dealToastDialogUse();
+        }
+
+        NoticeDialogUse noticeDialogUse = te.getAnnotation(NoticeDialogUse.class);
+        if (noticeDialogUse != null) {
+            dealNoticeDialogUse();
         }
 
         List<VariableElement> startGroups = new ArrayList<>();
@@ -251,6 +257,10 @@ public class ResForDeal extends BaseDeal {
 
     private void dealToastDialogUse() {
         baseParentModel.addToastDialog();
+    }
+
+    private void dealNoticeDialogUse() {
+        baseParentModel.addNoticeDialog();
     }
 
     private void dealDialogUse(VariableElement ve, DialogUse use) {

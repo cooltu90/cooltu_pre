@@ -221,6 +221,18 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
     }
 
 
+    private com.codingtu.cooltu.lib4a.view.dialogview.NoticeDialog noticeDialog;
+
+    protected void noticeShow(String msg) {
+        if (noticeDialog == null)
+            noticeDialog = new com.codingtu.cooltu.lib4a.view.dialogview.NoticeDialog(getThis())
+                    .setLayout(com.codingtu.cooltu.lib4a.R.layout.default_dialog_notice)
+                    .build();
+        noticeDialog.setContent(msg);
+        noticeDialog.show();
+    }
+
+
     private com.codingtu.cooltu.lib4a.view.dialogview.EditDialog editDialog;
 
     protected void showEditDialog(String text ) {
@@ -242,7 +254,7 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
         editDialog.show();
     }
 
-
+    
 
     protected boolean editDialogYes(String text ) {
         return false;

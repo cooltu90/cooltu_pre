@@ -23,12 +23,11 @@ import com.codingtu.cooltu.processor.annotation.ui.ClickView;
 import com.codingtu.cooltu.processor.annotation.ui.DefaultCode;
 import com.codingtu.cooltu.processor.annotation.ui.DefaultDialogLayout;
 import com.codingtu.cooltu.processor.annotation.ui.DefaultEditDialogLayout;
+import com.codingtu.cooltu.processor.annotation.ui.DefaultNoticeDialogLayout;
 import com.codingtu.cooltu.processor.annotation.ui.DefaultPass;
 import com.codingtu.cooltu.processor.annotation.ui.DefaultToastDialogLayout;
 import com.codingtu.cooltu.processor.annotation.ui.FragmentBase;
 import com.codingtu.cooltu.processor.annotation.ui.LongClickView;
-import com.codingtu.cooltu.processor.annotation.ui.UseDialog;
-import com.codingtu.cooltu.processor.annotation.ui.UseEditDialog;
 import com.codingtu.cooltu.processor.annotation.ui.VH;
 
 /**************************************************
@@ -42,6 +41,7 @@ public class SupportTypes {
                 ModuleInfo.class,
                 DefaultDialogLayout.class,
                 DefaultToastDialogLayout.class,
+                DefaultNoticeDialogLayout.class,
                 DefaultEditDialogLayout.class,
                 DefaultCode.class,
                 DefaultPass.class,
@@ -63,8 +63,6 @@ public class SupportTypes {
                 FormItem.class,
                 NetBack.class,
                 ActBack.class,
-                UseDialog.class,
-                UseEditDialog.class,
                 Permission.class,
                 Adapter.class,
                 VH.class,

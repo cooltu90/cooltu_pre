@@ -111,4 +111,6 @@ public abstract class ViewActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
 
 
 
+
+
 }

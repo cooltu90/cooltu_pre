@@ -114,7 +114,6 @@ public class ActBaseModel extends BaseParentModel implements ActBaseModelInterfa
         });
     }
 
-
     @Override
     public void setTagFor_permissions(StringBuilder sb) {
         Ts.ls(permissionElements, new BaseTs.EachTs<ExecutableElement>() {
@@ -229,6 +228,8 @@ public abstract class [[name]] extends [[base]] implements View.OnClickListener,
 [[dialogs]]
 
 [[toastDialog]]
+
+[[noticeDialog]]
 
 [[editDialog]]
 

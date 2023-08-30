@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
+import com.codingtu.cooltu.lib4a.view.dialogview.NoticeDialog;
 import com.codingtu.cooltu_pre.R;
 
 import core.actbase.TestActivityBase;
@@ -26,7 +27,17 @@ public class TestActivity extends TestActivityBase {
     @Override
     public void tvClick() {
         super.tvClick();
+        noticeShow("下载完毕了");
+    }
 
-        showEditDialog("");
+    private NoticeDialog noticeDialog;
+
+    protected void noticeShow(String msg) {
+        if (noticeDialog == null)
+            noticeDialog = new NoticeDialog(getThis())
+                    .setLayout(com.codingtu.cooltu.lib4a.R.layout.default_dialog_notice)
+                    .build();
+        noticeDialog.setContent(msg);
+        noticeDialog.show();
     }
 }

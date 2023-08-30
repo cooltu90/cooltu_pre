@@ -28,6 +28,7 @@ public class FullName {
     public static final String PERMISSION_TOOL = "com.codingtu.cooltu.lib4a.permission.PermissionTool";
     public static final String DIALOG_VIEW = "com.codingtu.cooltu.lib4a.view.dialogview.Dialog";
     public static final String TOAST_DIALOG_VIEW = "com.codingtu.cooltu.lib4a.view.dialogview.ToastDialog";
+    public static final String NOTICE_DIALOG_VIEW = "com.codingtu.cooltu.lib4a.view.dialogview.NoticeDialog";
     public static final String EDIT_DIALOG_VIEW = "com.codingtu.cooltu.lib4a.view.dialogview.EditDialog";
     public static final String RESOURCE_TOOL = "com.codingtu.cooltu.lib4a.tools.ResourceTool";
     public static final String MOBILE_TOOL = "com.codingtu.cooltu.lib4a.tools.MobileTool";
