@@ -3,6 +3,7 @@ package com.codingtu.cooltu.processor.worker.deal;
 import com.codingtu.cooltu.lib4j.data.map.ListValueMap;
 import com.codingtu.cooltu.lib4j.tools.CountTool;
 import com.codingtu.cooltu.lib4j.ts.Ts;
+import com.codingtu.cooltu.lib4j.ts.impl.BaseTs;
 import com.codingtu.cooltu.processor.annotation.resource.ColorRes;
 import com.codingtu.cooltu.processor.annotation.resource.ColorStr;
 import com.codingtu.cooltu.processor.annotation.resource.Dimen;
@@ -11,12 +12,16 @@ import com.codingtu.cooltu.processor.annotation.ui.InBase;
 import com.codingtu.cooltu.processor.annotation.ui.InBaseActBack;
 import com.codingtu.cooltu.processor.annotation.ui.InBaseClickView;
 import com.codingtu.cooltu.processor.annotation.ui.StartGroup;
+import com.codingtu.cooltu.processor.annotation.ui.dialog.ToastDialogUse;
+import com.codingtu.cooltu.processor.lib.log.Logs;
 import com.codingtu.cooltu.processor.lib.tools.ElementTools;
 import com.codingtu.cooltu.processor.worker.deal.base.BaseDeal;
 import com.codingtu.cooltu.processor.worker.model.ActBackIntentModel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ExecutableElement;
@@ -34,6 +39,7 @@ public class ResForBaseDeal extends BaseDeal {
     public static ListValueMap<String, VariableElement> dimenMap = new ListValueMap<>();
     public static ListValueMap<String, ExecutableElement> clickViewMap = new ListValueMap<>();
     public static ListValueMap<String, ExecutableElement> actBackMap = new ListValueMap<>();
+    public static Map<String, String> toastDialogUseMap = new HashMap<>();
 
     @Override
     public void deal(Element element) {
@@ -48,6 +54,11 @@ public class ResForBaseDeal extends BaseDeal {
         String parentClass = te.getSuperclass().toString();
 
         baseMap.get(classFullName).add(parentClass);
+
+        ToastDialogUse toastDialogUse = te.getAnnotation(ToastDialogUse.class);
+        if (toastDialogUse != null) {
+            toastDialogUseMap.put(classFullName, classFullName);
+        }
 
         Ts.ls(te.getEnclosedElements(), (position, element1) -> {
             if (element1 instanceof VariableElement) {
@@ -119,6 +130,24 @@ public class ResForBaseDeal extends BaseDeal {
         ts.addAll(map.get(baseClass));
         return ts;
     }
+
+    public static <T> List<T> getTs(Map<String, T> map, String baseClass) {
+        ArrayList<T> ts = new ArrayList<>();
+        List<String> bases = baseMap.get(baseClass);
+        int count = CountTool.count(bases);
+        if (count > 0) {
+            for (int i = 0; i < count; i++) {
+                String base = bases.get(i);
+                ts.addAll(getTs(map, base));
+            }
+        }
+        T t = map.get(baseClass);
+        if (t != null) {
+            ts.add(t);
+        }
+        return ts;
+    }
+
 
     public static boolean isInBase(String type, String fieldName) {
         if (inBaseMap.get(type).contains(fieldName)) {

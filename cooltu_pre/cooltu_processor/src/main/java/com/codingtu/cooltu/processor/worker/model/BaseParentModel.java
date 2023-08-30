@@ -713,7 +713,8 @@ public abstract class BaseParentModel extends BaseModel {
     }
 
     public void setTagFor_toastDialog(StringBuilder sb) {
-        if (isToastDialog) {
+        List<String> ts = ResForBaseDeal.getTs(ResForBaseDeal.toastDialogUseMap, baseClass);
+        if (isToastDialog || !CountTool.isNull(ts)) {
             addModel(sb, new DialogForToastMethodModel(isAct));
         }
     }

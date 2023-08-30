@@ -176,49 +176,6 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
     protected void dialogYes( ) {}
 
 
-    private com.codingtu.cooltu.lib4a.view.dialogview.ToastDialog toastDialog;
-
-    protected com.codingtu.cooltu.lib4a.view.dialogview.ToastDialog getToastDialog() {
-        if (toastDialog == null)
-            toastDialog = new com.codingtu.cooltu.lib4a.view.dialogview.ToastDialog(getThis())
-                    .setLayout(com.codingtu.cooltu.lib4a.R.layout.default_dialog_toast)
-                    .build();
-        return toastDialog;
-    }
-
-    protected void toastShow(String msg) {
-        com.codingtu.cooltu.lib4a.view.dialogview.ToastDialog td = getToastDialog();
-        td.setContent(msg);
-        td.show();
-    }
-
-    protected void toastShow(long time, String msg, com.codingtu.cooltu.lib4a.view.layerview.listener.OnHiddenFinished onHiddenFinished) {
-        toastShow(msg);
-        com.codingtu.cooltu.lib4a.tools.HandlerTool.getMainHandler().postDelayed(new java.lang.Runnable() {
-            @Override
-            public void run() {
-                getToastDialog().hidden(onHiddenFinished);
-            }
-        }, time);
-    }
-
-    protected void toastShow(long time, String msg) {
-        toastShow(time, msg, null);
-    }
-
-    protected void toastHidden(long time, String msg, com.codingtu.cooltu.lib4a.view.layerview.listener.OnHiddenFinished onHiddenFinished) {
-        getToastDialog().setContent(msg);
-        com.codingtu.cooltu.lib4a.tools.HandlerTool.getMainHandler().postDelayed(new java.lang.Runnable() {
-            @Override
-            public void run() {
-                getToastDialog().hidden(onHiddenFinished);
-            }
-        }, time);
-    }
-
-    protected void toastHidden(long time, String msg) {
-        toastHidden(time, msg, null);
-    }
 
 
     private com.codingtu.cooltu.lib4a.view.dialogview.NoticeDialog noticeDialog;

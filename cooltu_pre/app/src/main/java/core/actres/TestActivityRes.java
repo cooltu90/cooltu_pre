@@ -19,7 +19,6 @@ import com.codingtu.cooltu_pre.R;
 import com.codingtu.cooltu_pre.ui.TestActivity;
 import com.codingtu.cooltu.processor.annotation.resource.ResFor;
 
-@ToastDialogUse
 @NoticeDialogUse
 @ResFor(TestActivity.class)
 public class TestActivityRes {
