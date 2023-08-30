@@ -93,10 +93,10 @@ public class DialogForEditMethodModel extends SubBaseModel implements DialogForE
         addTag(sb, Constant.DEFAULT_EDIT_DIALOG_LAYOUT);
     }
 
-    @Override
-    public void setTagFor_reserve(StringBuilder sb) {
-        sb.append(info.reserve);
-    }
+//    @Override
+//    public void setTagFor_reserve(StringBuilder sb) {
+//        sb.append(info.reserve);
+//    }
 
     @Override
     public void setTagFor_stopAnimation(StringBuilder sb) {
@@ -148,8 +148,7 @@ public class DialogForEditMethodModel extends SubBaseModel implements DialogForE
                     .setTitle("[[title]]")
                     .setHint("[[hint]]")
                     .setInputType([[inputType]])
-                    .setLayout([[layout]])[[textwatcher]]
-                    .setReserveOriValue([[reserve]])[[stopAnimation]]
+                    .setLayout([[layout]])[[textwatcher]][[stopAnimation]]
                     .setYes(new [[className]].Yes() {
                         @Override
                         public boolean yes(String text, Object obj) {

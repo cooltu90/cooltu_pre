@@ -245,7 +245,7 @@ public class ResForDeal extends BaseDeal {
                 return use.objType();
             }
         });
-        info.reserve = use.reserve();
+        //info.reserve = use.reserve();
         baseParentModel.addEditDialog(info);
     }
 

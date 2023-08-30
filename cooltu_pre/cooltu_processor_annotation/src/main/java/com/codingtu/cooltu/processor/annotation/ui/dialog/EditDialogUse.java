@@ -18,9 +18,6 @@ public @interface EditDialogUse {
     //输入框的输入类型
     int inputType() default 1;
 
-    //是否储存上次输入的值
-    boolean reserve() default true;
-
     boolean stopAnimation() default false;
 
     //传递的值类型

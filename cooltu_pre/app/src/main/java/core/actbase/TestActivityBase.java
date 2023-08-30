@@ -187,7 +187,6 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
                     .setHint("请输入")
                     .setInputType(1)
                     .setLayout(com.codingtu.cooltu.lib4a.R.layout.default_dialog_edit)
-                    .setReserveOriValue(true)
                     .stopAnimation()
                     .setYes(new com.codingtu.cooltu.lib4a.view.dialogview.EditDialog.Yes() {
                         @Override

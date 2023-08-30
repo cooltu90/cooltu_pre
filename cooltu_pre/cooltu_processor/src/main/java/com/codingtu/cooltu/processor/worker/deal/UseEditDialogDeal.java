@@ -47,7 +47,7 @@ public class UseEditDialogDeal extends BaseDeal {
                 info.title = titles[i];
                 info.hint = hints[i];
                 info.inputType = inputTypes[i];
-                info.reserve = reserves[i];
+                //info.reserve = reserves[i];
                 info.objType = objTypes.get(i);
                 baseModel.addEditDialog(info);
                 return false;

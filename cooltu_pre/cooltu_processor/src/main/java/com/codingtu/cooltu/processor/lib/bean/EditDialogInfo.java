@@ -7,7 +7,7 @@ public class EditDialogInfo {
     public String title;
     public String hint;
     public int inputType;
-    public boolean reserve;
+    //public boolean reserve;
     public boolean stopAnimation;
     public String objType;
     public boolean isUseTextwatcher;

@@ -37,7 +37,6 @@ public class EditDialog implements OnDestroy, View.OnClickListener {
     private String hint;
     private Integer inputType;
     private Yes yes;
-    private boolean isReserveOriValue;
     private String lastText;
     private Object obj;
     private boolean isStopAnimation;
@@ -83,11 +82,6 @@ public class EditDialog implements OnDestroy, View.OnClickListener {
 
     public EditDialog setInputType(int inputType) {
         this.inputType = inputType;
-        return this;
-    }
-
-    public EditDialog setReserveOriValue(boolean reserveOriValue) {
-        isReserveOriValue = reserveOriValue;
         return this;
     }
 
@@ -143,11 +137,6 @@ public class EditDialog implements OnDestroy, View.OnClickListener {
                     }
                     String text = et.getText().toString();
                     if (yes.yes(text, obj)) {
-                        if (isReserveOriValue) {
-                            if (!StringTool.isBlank(text)) {
-                                lastText = text;
-                            }
-                        }
                         rlv.hidden();
                     }
                     return true;
@@ -164,8 +153,6 @@ public class EditDialog implements OnDestroy, View.OnClickListener {
         yesBt = inflate.findViewById(R.id.editDialogYesBt);
         yesBt.setOnClickListener(this);
         noBt.setOnClickListener(this);
-
-        isReserveOriValue = true;
 
         rlv.setLayerListener(new LayerListener() {
             @Override
@@ -240,11 +227,6 @@ public class EditDialog implements OnDestroy, View.OnClickListener {
         }
         String text = et.getText().toString();
         if (yes.yes(text, obj)) {
-            if (isReserveOriValue) {
-                if (!StringTool.isBlank(text)) {
-                    lastText = text;
-                }
-            }
             rlv.hidden();
         }
     }

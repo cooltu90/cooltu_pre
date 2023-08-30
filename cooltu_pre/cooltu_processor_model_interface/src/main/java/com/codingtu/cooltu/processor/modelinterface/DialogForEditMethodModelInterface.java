@@ -27,8 +27,6 @@ public interface DialogForEditMethodModelInterface {
 
     public void setTagFor_textwatcher(StringBuilder sb);
 
-    public void setTagFor_reserve(StringBuilder sb);
-
     public void setTagFor_stopAnimation(StringBuilder sb);
 
     public void setTagFor_yesParam(StringBuilder sb);
@@ -47,8 +45,7 @@ public interface DialogForEditMethodModelInterface {
         lines.add("                    .setTitle(\"[[title]]\")");
         lines.add("                    .setHint(\"[[hint]]\")");
         lines.add("                    .setInputType([[inputType]])");
-        lines.add("                    .setLayout([[layout]])[[textwatcher]]");
-        lines.add("                    .setReserveOriValue([[reserve]])[[stopAnimation]]");
+        lines.add("                    .setLayout([[layout]])[[textwatcher]][[stopAnimation]]");
         lines.add("                    .setYes(new [[className]].Yes() {");
         lines.add("                        @Override");
         lines.add("                        public boolean yes(String text, Object obj) {");

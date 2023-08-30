@@ -155,7 +155,6 @@ public abstract class WelcomeActivityBase extends com.codingtu.cooltu.lib4a.act.
                     .setInputType(1)
                     .setLayout(com.codingtu.cooltu.lib4a.R.layout.default_dialog_edit)
                     .setTextWatcher(getEdTextWatcher())
-                    .setReserveOriValue(true)
                     .setYes(new com.codingtu.cooltu.lib4a.view.dialogview.EditDialog.Yes() {
                         @Override
                         public boolean yes(String text, Object obj) {
