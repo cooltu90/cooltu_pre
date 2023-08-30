@@ -12,6 +12,7 @@ import com.codingtu.cooltu.processor.annotation.ui.InBase;
 import com.codingtu.cooltu.processor.annotation.ui.InBaseActBack;
 import com.codingtu.cooltu.processor.annotation.ui.InBaseClickView;
 import com.codingtu.cooltu.processor.annotation.ui.StartGroup;
+import com.codingtu.cooltu.processor.annotation.ui.dialog.NoticeDialogUse;
 import com.codingtu.cooltu.processor.annotation.ui.dialog.ToastDialogUse;
 import com.codingtu.cooltu.processor.lib.log.Logs;
 import com.codingtu.cooltu.processor.lib.tools.ElementTools;
@@ -40,6 +41,7 @@ public class ResForBaseDeal extends BaseDeal {
     public static ListValueMap<String, ExecutableElement> clickViewMap = new ListValueMap<>();
     public static ListValueMap<String, ExecutableElement> actBackMap = new ListValueMap<>();
     public static Map<String, String> toastDialogUseMap = new HashMap<>();
+    public static Map<String, String> noticeDialogUseMap = new HashMap<>();
 
     @Override
     public void deal(Element element) {
@@ -58,6 +60,10 @@ public class ResForBaseDeal extends BaseDeal {
         ToastDialogUse toastDialogUse = te.getAnnotation(ToastDialogUse.class);
         if (toastDialogUse != null) {
             toastDialogUseMap.put(classFullName, classFullName);
+        }
+        NoticeDialogUse noticeDialogUse = te.getAnnotation(NoticeDialogUse.class);
+        if (noticeDialogUse != null) {
+            noticeDialogUseMap.put(classFullName, classFullName);
         }
 
         Ts.ls(te.getEnclosedElements(), (position, element1) -> {

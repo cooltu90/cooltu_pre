@@ -30,14 +30,4 @@ public class TestActivity extends TestActivityBase {
         noticeShow("下载完毕了");
     }
 
-    private NoticeDialog noticeDialog;
-
-    protected void noticeShow(String msg) {
-        if (noticeDialog == null)
-            noticeDialog = new NoticeDialog(getThis())
-                    .setLayout(com.codingtu.cooltu.lib4a.R.layout.default_dialog_notice)
-                    .build();
-        noticeDialog.setContent(msg);
-        noticeDialog.show();
-    }
 }

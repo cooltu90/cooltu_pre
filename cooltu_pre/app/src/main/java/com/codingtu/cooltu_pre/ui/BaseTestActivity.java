@@ -3,9 +3,11 @@ package com.codingtu.cooltu_pre.ui;
 import com.codingtu.cooltu.processor.annotation.resource.ResForBase;
 import com.codingtu.cooltu.processor.annotation.ui.InBaseClickView;
 import com.codingtu.cooltu.processor.annotation.ui.StartGroup;
+import com.codingtu.cooltu.processor.annotation.ui.dialog.NoticeDialogUse;
 import com.codingtu.cooltu.processor.annotation.ui.dialog.ToastDialogUse;
 import com.codingtu.cooltu_pre.R;
 
+@NoticeDialogUse
 @ResForBase
 public class BaseTestActivity extends CoreTestActivity {
 
