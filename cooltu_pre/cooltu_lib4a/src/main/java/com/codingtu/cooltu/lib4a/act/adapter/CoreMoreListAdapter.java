@@ -106,8 +106,9 @@ public abstract class CoreMoreListAdapter<VH extends CoreAdapterVH, T> extends C
             this.items.addAll(items);
 
         notifyDataSetChanged();
-
-        page++;
+        
+        if (hasMore)
+            page++;
     }
 
     //获取数据
