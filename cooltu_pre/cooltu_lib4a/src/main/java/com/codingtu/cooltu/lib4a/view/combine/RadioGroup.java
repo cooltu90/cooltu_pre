@@ -19,6 +19,7 @@ public class RadioGroup implements OnDestroy, View.OnClickListener {
     private int[] bgs;
     private List<OnSelectChange> onSelectChanges;
     private OnSetItem onSetItem;
+    private boolean isForbidden;
 
     public RadioGroup() {
 
@@ -47,6 +48,12 @@ public class RadioGroup implements OnDestroy, View.OnClickListener {
         this.hasNull = hasNull;
         return this;
     }
+
+    public RadioGroup isForbidden(boolean isForbidden) {
+        this.isForbidden = isForbidden;
+        return this;
+    }
+
 
     public RadioGroup setBgs(int... bgs) {
         this.bgs = bgs;
@@ -145,8 +152,10 @@ public class RadioGroup implements OnDestroy, View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        int index = (int) v.getTag(R.id.tag_0);
-        setSelected(index);
+        if (!isForbidden) {
+            int index = (int) v.getTag(R.id.tag_0);
+            setSelected(index);
+        }
     }
 
 
