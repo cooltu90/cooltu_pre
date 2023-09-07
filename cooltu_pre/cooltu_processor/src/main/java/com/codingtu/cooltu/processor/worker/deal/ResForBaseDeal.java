@@ -1,5 +1,6 @@
 package com.codingtu.cooltu.processor.worker.deal;
 
+import com.codingtu.cooltu.constant.FullName;
 import com.codingtu.cooltu.lib4j.data.map.ListValueMap;
 import com.codingtu.cooltu.lib4j.tools.CountTool;
 import com.codingtu.cooltu.lib4j.ts.Ts;
@@ -19,10 +20,13 @@ import com.codingtu.cooltu.processor.annotation.ui.dialog.ToastDialogUse;
 import com.codingtu.cooltu.processor.lib.bean.DialogInfo;
 import com.codingtu.cooltu.processor.lib.bean.EditDialogInfo;
 import com.codingtu.cooltu.processor.lib.log.Logs;
+import com.codingtu.cooltu.processor.lib.ls.EachType;
+import com.codingtu.cooltu.processor.lib.ls.TypeLs;
 import com.codingtu.cooltu.processor.lib.tools.ElementTools;
 import com.codingtu.cooltu.processor.worker.deal.base.BaseDeal;
 import com.codingtu.cooltu.processor.worker.deal.base.BaseResForDeal;
 import com.codingtu.cooltu.processor.worker.model.ActBackIntentModel;
+import com.codingtu.cooltu.processor.worker.model.PassModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -135,6 +139,17 @@ public class ResForBaseDeal extends BaseResForDeal {
                 if (actBack != null) {
                     actBackMap.get(classFullName).add((ExecutableElement) element1);
                     ActBackIntentModel.model.addInBase((ExecutableElement) element1);
+
+                    List<? extends VariableElement> parameters = ((ExecutableElement) element1).getParameters();
+                    TypeLs.ls(parameters, new EachType() {
+                        @Override
+                        public void each(int position, String type, String name) {
+                            if (!FullName.INTENT.equals(type)) {
+                                PassModel.model.add(type, name);
+                            }
+                        }
+                    });
+
                 }
             }
 
