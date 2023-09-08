@@ -22,6 +22,7 @@ public class Dialog implements View.OnClickListener, OnDestroy {
     private View inflate;
     private Object obj;
     private Yes yes;
+    private OnBtClick onBtClick;
     private int layout;
     private View contentTv;
     private String leftBtText;
@@ -52,6 +53,11 @@ public class Dialog implements View.OnClickListener, OnDestroy {
 
     public Dialog setYes(Yes yes) {
         this.yes = yes;
+        return this;
+    }
+
+    public Dialog setOnBtClick(OnBtClick onBtClick) {
+        this.onBtClick = onBtClick;
         return this;
     }
 
@@ -134,6 +140,7 @@ public class Dialog implements View.OnClickListener, OnDestroy {
         rlv = null;
         inflate = null;
         yes = null;
+        onBtClick = null;
         obj = null;
         contentTv = null;
         act = null;
@@ -146,5 +153,11 @@ public class Dialog implements View.OnClickListener, OnDestroy {
 
     public static interface Yes {
         public void yes(Object obj);
+    }
+
+    public static interface OnBtClick {
+        public void onLeftClick(Object obj);
+
+        public void onRightClick(Object obj);
     }
 }

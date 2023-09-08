@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.Nullable;
-
 import android.content.Intent;
 
 import java.util.HashMap;
@@ -13,7 +12,6 @@ import java.util.Map;
 
 import com.codingtu.cooltu.lib4a.net.bean.CoreSendParams;
 import com.codingtu.cooltu.lib4a.net.netback.NetBackI;
-
 import okhttp3.ResponseBody;
 import retrofit2.adapter.rxjava2.Result;
 
@@ -54,6 +52,7 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
 
         tv.setOnClickListener(this);
         tv1.setOnClickListener(this);
+
 
 
         dp11 = com.codingtu.cooltu.lib4a.tools.MobileTool.dpToPx(2.6f);
@@ -104,6 +103,8 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
     }
 
 
+
+
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -114,6 +115,7 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
     public void back(int requestCode, String[] permissions, int[] grantResults) {
 
     }
+
 
 
     @Override
@@ -128,13 +130,18 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
     }
 
 
-    protected void showDialog() {
+
+
+
+
+
+
+
+    protected void showDialog( ) {
         if (dialog == null) {
             dialog = new com.codingtu.cooltu.lib4a.view.dialogview.Dialog(getThis())
                     .setTitle("dialog")
                     .setContent("xxxx")
-                    .setLeftBtText("")
-                    .setRighBtText("")
                     .setLayout(com.codingtu.cooltu.lib4a.R.layout.default_dialog)
                     .setYes(new com.codingtu.cooltu.lib4a.view.dialogview.Dialog.Yes() {
                         @Override
@@ -147,8 +154,7 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
         dialog.setObject(null);
         dialog.show();
     }
-
-    protected void showDialog(String content) {
+    protected void showDialog(String content ) {
         if (dialog == null) {
             dialog = new com.codingtu.cooltu.lib4a.view.dialogview.Dialog(getThis())
                     .setTitle("dialog")
@@ -161,17 +167,15 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
                         }
                     })
                     .build();
-        } else {
+        }else{
             dialog.updateContent(content);
         }
         dialog.setObject(null);
         dialog.show();
     }
 
-    protected void dialogYes() {
-    }
-
-    protected void showDialog1() {
+    protected void dialogYes( ) {}
+    protected void showDialog1( ) {
         if (dialog1 == null) {
             dialog1 = new com.codingtu.cooltu.lib4a.view.dialogview.Dialog(getThis())
                     .setTitle("dialog")
@@ -188,8 +192,7 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
         dialog1.setObject(null);
         dialog1.show();
     }
-
-    protected void showDialog1(String content) {
+    protected void showDialog1(String content ) {
         if (dialog1 == null) {
             dialog1 = new com.codingtu.cooltu.lib4a.view.dialogview.Dialog(getThis())
                     .setTitle("dialog")
@@ -202,17 +205,15 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
                         }
                     })
                     .build();
-        } else {
+        }else{
             dialog1.updateContent(content);
         }
         dialog1.setObject(null);
         dialog1.show();
     }
 
-    protected void dialog1Yes() {
-    }
-
-    protected void showDialog3() {
+    protected void dialog1Yes( ) {}
+    protected void showDialog3( ) {
         if (dialog3 == null) {
             dialog3 = new com.codingtu.cooltu.lib4a.view.dialogview.Dialog(getThis())
                     .setTitle("dialog")
@@ -229,8 +230,7 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
         dialog3.setObject(null);
         dialog3.show();
     }
-
-    protected void showDialog3(String content) {
+    protected void showDialog3(String content ) {
         if (dialog3 == null) {
             dialog3 = new com.codingtu.cooltu.lib4a.view.dialogview.Dialog(getThis())
                     .setTitle("dialog")
@@ -243,15 +243,16 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
                         }
                     })
                     .build();
-        } else {
+        }else{
             dialog3.updateContent(content);
         }
         dialog3.setObject(null);
         dialog3.show();
     }
 
-    protected void dialog3Yes() {
-    }
+    protected void dialog3Yes( ) {}
+
+
 
 
     private com.codingtu.cooltu.lib4a.view.dialogview.NoticeDialog noticeDialog;
@@ -266,7 +267,7 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
     }
 
 
-    protected void showEditDialog(String text) {
+    protected void showEditDialog(String text ) {
         if (editDialog == null)
             editDialog = new com.codingtu.cooltu.lib4a.view.dialogview.EditDialog.Builder(getThis())
                     .setTitle("提示")
@@ -285,13 +286,14 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
         editDialog.show();
     }
 
+    
 
-    protected boolean editDialogYes(String text) {
+    protected boolean editDialogYes(String text ) {
         return false;
     }
 
 
-    protected void showEd2(String text) {
+    protected void showEd2(String text ) {
         if (ed2 == null)
             ed2 = new com.codingtu.cooltu.lib4a.view.dialogview.EditDialog.Builder(getThis())
                     .setTitle("提示")
@@ -310,13 +312,14 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
         ed2.show();
     }
 
+    
 
-    protected boolean ed2Yes(String text) {
+    protected boolean ed2Yes(String text ) {
         return false;
     }
 
 
-    protected void showEd1(String text) {
+    protected void showEd1(String text ) {
         if (ed1 == null)
             ed1 = new com.codingtu.cooltu.lib4a.view.dialogview.EditDialog.Builder(getThis())
                     .setTitle("提示")
@@ -335,10 +338,20 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
         ed1.show();
     }
 
+    
 
-    protected boolean ed1Yes(String text) {
+    protected boolean ed1Yes(String text ) {
         return false;
     }
+
+
+
+
+
+
+
+
+
 
 
 }
