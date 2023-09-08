@@ -83,6 +83,16 @@ public class DialogMethodModel extends SubBaseModel implements DialogMethodModel
     }
 
     @Override
+    public void setTagFor_leftBtText(StringBuilder sb) {
+        sb.append(info.leftBtText);
+    }
+
+    @Override
+    public void setTagFor_rightBtText(StringBuilder sb) {
+        sb.append(info.rightBtText);
+    }
+
+    @Override
     public void setTagFor_layout(StringBuilder sb) {
         addTag(sb, Constant.DEFAULT_DIALOG_LAYOUT);
     }
@@ -120,11 +130,24 @@ public class DialogMethodModel extends SubBaseModel implements DialogMethodModel
             [[name]] = new [[DialogView]]([[act]])
                     .setTitle("[[title]]")
                     .setContent("[[content]]")
+                    .setLeftBtText("[[leftBtText]]")
+                    .setRighBtText("[[rightBtText]]")
                     .setLayout([[layout]])
                     .setYes(new [[DialogView]].Yes() {
                         @Override
                         public void yes(Object obj) {
                             [[name]]Yes([[yesParam]]);
+                        }
+                    })
+                    .setOnBtClick(new [[DialogView]].OnBtClick() {
+                        @Override
+                        public void onLeftClick(Object obj) {
+
+                        }
+
+                        @Override
+                        public void onRightClick(Object obj) {
+
                         }
                     })
                     .build();
@@ -137,11 +160,24 @@ public class DialogMethodModel extends SubBaseModel implements DialogMethodModel
             [[name]] = new [[DialogView]]([[act]])
                     .setTitle("[[title]]")
                     .setContent(content)
+                    .setLeftBtText("[[leftBtText]]")
+                    .setRighBtText("[[rightBtText]]")
                     .setLayout([[layout]])
                     .setYes(new [[DialogView]].Yes() {
                         @Override
                         public void yes(Object obj) {
                             [[name]]Yes([[yesParam]]);
+                        }
+                    })
+                    .setOnBtClick(new [[DialogView]].OnBtClick() {
+                        @Override
+                        public void onLeftClick(Object obj) {
+
+                        }
+
+                        @Override
+                        public void onRightClick(Object obj) {
+
                         }
                     })
                     .build();

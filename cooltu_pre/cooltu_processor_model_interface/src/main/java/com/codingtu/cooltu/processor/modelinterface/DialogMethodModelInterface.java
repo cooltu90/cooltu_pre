@@ -21,6 +21,10 @@ public interface DialogMethodModelInterface {
 
     public void setTagFor_content(StringBuilder sb);
 
+    public void setTagFor_leftBtText(StringBuilder sb);
+
+    public void setTagFor_rightBtText(StringBuilder sb);
+
     public void setTagFor_layout(StringBuilder sb);
 
     public void setTagFor_yesParam(StringBuilder sb);
@@ -36,11 +40,24 @@ public interface DialogMethodModelInterface {
         lines.add("            [[name]] = new [[DialogView]]([[act]])");
         lines.add("                    .setTitle(\"[[title]]\")");
         lines.add("                    .setContent(\"[[content]]\")");
+        lines.add("                    .setLeftBtText(\"[[leftBtText]]\")");
+        lines.add("                    .setRighBtText(\"[[rightBtText]]\")");
         lines.add("                    .setLayout([[layout]])");
         lines.add("                    .setYes(new [[DialogView]].Yes() {");
         lines.add("                        @Override");
         lines.add("                        public void yes(Object obj) {");
         lines.add("                            [[name]]Yes([[yesParam]]);");
+        lines.add("                        }");
+        lines.add("                    })");
+        lines.add("                    .setOnBtClick(new [[DialogView]].OnBtClick() {");
+        lines.add("                        @Override");
+        lines.add("                        public void onLeftClick(Object obj) {");
+        lines.add("");
+        lines.add("                        }");
+        lines.add("");
+        lines.add("                        @Override");
+        lines.add("                        public void onRightClick(Object obj) {");
+        lines.add("");
         lines.add("                        }");
         lines.add("                    })");
         lines.add("                    .build();");
@@ -53,11 +70,24 @@ public interface DialogMethodModelInterface {
         lines.add("            [[name]] = new [[DialogView]]([[act]])");
         lines.add("                    .setTitle(\"[[title]]\")");
         lines.add("                    .setContent(content)");
+        lines.add("                    .setLeftBtText(\"[[leftBtText]]\")");
+        lines.add("                    .setRighBtText(\"[[rightBtText]]\")");
         lines.add("                    .setLayout([[layout]])");
         lines.add("                    .setYes(new [[DialogView]].Yes() {");
         lines.add("                        @Override");
         lines.add("                        public void yes(Object obj) {");
         lines.add("                            [[name]]Yes([[yesParam]]);");
+        lines.add("                        }");
+        lines.add("                    })");
+        lines.add("                    .setOnBtClick(new [[DialogView]].OnBtClick() {");
+        lines.add("                        @Override");
+        lines.add("                        public void onLeftClick(Object obj) {");
+        lines.add("");
+        lines.add("                        }");
+        lines.add("");
+        lines.add("                        @Override");
+        lines.add("                        public void onRightClick(Object obj) {");
+        lines.add("");
         lines.add("                        }");
         lines.add("                    })");
         lines.add("                    .build();");

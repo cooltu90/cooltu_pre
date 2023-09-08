@@ -142,11 +142,24 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
             dialog = new com.codingtu.cooltu.lib4a.view.dialogview.Dialog(getThis())
                     .setTitle("dialog")
                     .setContent("xxxx")
+                    .setLeftBtText("删除1")
+                    .setRighBtText("更新")
                     .setLayout(com.codingtu.cooltu.lib4a.R.layout.default_dialog)
                     .setYes(new com.codingtu.cooltu.lib4a.view.dialogview.Dialog.Yes() {
                         @Override
                         public void yes(Object obj) {
                             dialogYes();
+                        }
+                    })
+                    .setOnBtClick(new com.codingtu.cooltu.lib4a.view.dialogview.Dialog.OnBtClick() {
+                        @Override
+                        public void onLeftClick(Object obj) {
+
+                        }
+
+                        @Override
+                        public void onRightClick(Object obj) {
+
                         }
                     })
                     .build();
@@ -159,11 +172,24 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
             dialog = new com.codingtu.cooltu.lib4a.view.dialogview.Dialog(getThis())
                     .setTitle("dialog")
                     .setContent(content)
+                    .setLeftBtText("删除1")
+                    .setRighBtText("更新")
                     .setLayout(com.codingtu.cooltu.lib4a.R.layout.default_dialog)
                     .setYes(new com.codingtu.cooltu.lib4a.view.dialogview.Dialog.Yes() {
                         @Override
                         public void yes(Object obj) {
                             dialogYes();
+                        }
+                    })
+                    .setOnBtClick(new com.codingtu.cooltu.lib4a.view.dialogview.Dialog.OnBtClick() {
+                        @Override
+                        public void onLeftClick(Object obj) {
+
+                        }
+
+                        @Override
+                        public void onRightClick(Object obj) {
+
                         }
                     })
                     .build();
@@ -180,11 +206,24 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
             dialog1 = new com.codingtu.cooltu.lib4a.view.dialogview.Dialog(getThis())
                     .setTitle("dialog")
                     .setContent("xxxx")
+                    .setLeftBtText("取消")
+                    .setRighBtText("确定")
                     .setLayout(com.codingtu.cooltu.lib4a.R.layout.default_dialog)
                     .setYes(new com.codingtu.cooltu.lib4a.view.dialogview.Dialog.Yes() {
                         @Override
                         public void yes(Object obj) {
                             dialog1Yes();
+                        }
+                    })
+                    .setOnBtClick(new com.codingtu.cooltu.lib4a.view.dialogview.Dialog.OnBtClick() {
+                        @Override
+                        public void onLeftClick(Object obj) {
+
+                        }
+
+                        @Override
+                        public void onRightClick(Object obj) {
+
                         }
                     })
                     .build();
@@ -197,11 +236,24 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
             dialog1 = new com.codingtu.cooltu.lib4a.view.dialogview.Dialog(getThis())
                     .setTitle("dialog")
                     .setContent(content)
+                    .setLeftBtText("取消")
+                    .setRighBtText("确定")
                     .setLayout(com.codingtu.cooltu.lib4a.R.layout.default_dialog)
                     .setYes(new com.codingtu.cooltu.lib4a.view.dialogview.Dialog.Yes() {
                         @Override
                         public void yes(Object obj) {
                             dialog1Yes();
+                        }
+                    })
+                    .setOnBtClick(new com.codingtu.cooltu.lib4a.view.dialogview.Dialog.OnBtClick() {
+                        @Override
+                        public void onLeftClick(Object obj) {
+
+                        }
+
+                        @Override
+                        public void onRightClick(Object obj) {
+
                         }
                     })
                     .build();
@@ -218,11 +270,24 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
             dialog3 = new com.codingtu.cooltu.lib4a.view.dialogview.Dialog(getThis())
                     .setTitle("dialog")
                     .setContent("xxxx")
+                    .setLeftBtText("取消")
+                    .setRighBtText("确定")
                     .setLayout(com.codingtu.cooltu.lib4a.R.layout.default_dialog)
                     .setYes(new com.codingtu.cooltu.lib4a.view.dialogview.Dialog.Yes() {
                         @Override
                         public void yes(Object obj) {
                             dialog3Yes();
+                        }
+                    })
+                    .setOnBtClick(new com.codingtu.cooltu.lib4a.view.dialogview.Dialog.OnBtClick() {
+                        @Override
+                        public void onLeftClick(Object obj) {
+
+                        }
+
+                        @Override
+                        public void onRightClick(Object obj) {
+
                         }
                     })
                     .build();
@@ -235,11 +300,24 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
             dialog3 = new com.codingtu.cooltu.lib4a.view.dialogview.Dialog(getThis())
                     .setTitle("dialog")
                     .setContent(content)
+                    .setLeftBtText("取消")
+                    .setRighBtText("确定")
                     .setLayout(com.codingtu.cooltu.lib4a.R.layout.default_dialog)
                     .setYes(new com.codingtu.cooltu.lib4a.view.dialogview.Dialog.Yes() {
                         @Override
                         public void yes(Object obj) {
                             dialog3Yes();
+                        }
+                    })
+                    .setOnBtClick(new com.codingtu.cooltu.lib4a.view.dialogview.Dialog.OnBtClick() {
+                        @Override
+                        public void onLeftClick(Object obj) {
+
+                        }
+
+                        @Override
+                        public void onRightClick(Object obj) {
+
                         }
                     })
                     .build();

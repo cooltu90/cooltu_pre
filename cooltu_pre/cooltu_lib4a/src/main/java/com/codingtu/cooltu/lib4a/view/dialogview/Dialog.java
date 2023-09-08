@@ -83,10 +83,12 @@ public class Dialog implements View.OnClickListener, OnDestroy {
         contentTv = inflate.findViewById(R.id.dialogContentTv);
         ViewTool.setText(contentTv, content);
 
-        rightBt = inflate.findViewById(R.id.dialogRightBt);
         leftBt = inflate.findViewById(R.id.dialogLeftBt);
-        rightBt.setOnClickListener(this);
+        rightBt = inflate.findViewById(R.id.dialogRightBt);
+        ViewTool.setText(leftBt, leftBtText);
+        ViewTool.setText(rightBt, rightBtText);
         leftBt.setOnClickListener(this);
+        rightBt.setOnClickListener(this);
         ViewTool.inRelativeCenter(inflate);
         return this;
     }

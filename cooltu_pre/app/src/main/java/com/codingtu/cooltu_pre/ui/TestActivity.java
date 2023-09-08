@@ -27,7 +27,7 @@ public class TestActivity extends TestActivityBase {
     @Override
     public void tvClick() {
         super.tvClick();
-        showEditDialog("sss");
+        showDialog();
     }
 
 }
