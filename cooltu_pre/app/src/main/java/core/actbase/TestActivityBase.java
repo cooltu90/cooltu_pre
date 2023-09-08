@@ -137,7 +137,7 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
 
 
 
-    protected void showDialog( ) {
+    protected void showDialog(com.codingtu.cooltu_pre.bean.User user) {
         if (dialog == null) {
             dialog = new com.codingtu.cooltu.lib4a.view.dialogview.Dialog(getThis())
                     .setTitle("dialog")
@@ -145,29 +145,23 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
                     .setLeftBtText("删除1")
                     .setRighBtText("更新")
                     .setLayout(com.codingtu.cooltu.lib4a.R.layout.default_dialog)
-                    .setYes(new com.codingtu.cooltu.lib4a.view.dialogview.Dialog.Yes() {
-                        @Override
-                        public void yes(Object obj) {
-                            dialogYes();
-                        }
-                    })
                     .setOnBtClick(new com.codingtu.cooltu.lib4a.view.dialogview.Dialog.OnBtClick() {
                         @Override
                         public void onLeftClick(Object obj) {
-
+                            dialogLeft(obj != null ? (com.codingtu.cooltu_pre.bean.User) obj : null);
                         }
 
                         @Override
                         public void onRightClick(Object obj) {
-
+                            dialogRight(obj != null ? (com.codingtu.cooltu_pre.bean.User) obj : null);
                         }
                     })
                     .build();
         }
-        dialog.setObject(null);
+        dialog.setObject(user);
         dialog.show();
     }
-    protected void showDialog(String content ) {
+    protected void showDialog(String content ,com.codingtu.cooltu_pre.bean.User user) {
         if (dialog == null) {
             dialog = new com.codingtu.cooltu.lib4a.view.dialogview.Dialog(getThis())
                     .setTitle("dialog")
@@ -175,32 +169,29 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
                     .setLeftBtText("删除1")
                     .setRighBtText("更新")
                     .setLayout(com.codingtu.cooltu.lib4a.R.layout.default_dialog)
-                    .setYes(new com.codingtu.cooltu.lib4a.view.dialogview.Dialog.Yes() {
-                        @Override
-                        public void yes(Object obj) {
-                            dialogYes();
-                        }
-                    })
                     .setOnBtClick(new com.codingtu.cooltu.lib4a.view.dialogview.Dialog.OnBtClick() {
                         @Override
                         public void onLeftClick(Object obj) {
-
+                            dialogLeft(obj != null ? (com.codingtu.cooltu_pre.bean.User) obj : null);
                         }
 
                         @Override
                         public void onRightClick(Object obj) {
-
+                            dialogRight(obj != null ? (com.codingtu.cooltu_pre.bean.User) obj : null);
                         }
                     })
                     .build();
         }else{
             dialog.updateContent(content);
         }
-        dialog.setObject(null);
+        dialog.setObject(user);
         dialog.show();
     }
 
-    protected void dialogYes( ) {}
+    protected void dialogLeft(com.codingtu.cooltu_pre.bean.User user) {}
+    protected void dialogRight(com.codingtu.cooltu_pre.bean.User user) {}
+
+
     protected void showDialog1( ) {
         if (dialog1 == null) {
             dialog1 = new com.codingtu.cooltu.lib4a.view.dialogview.Dialog(getThis())
@@ -209,21 +200,15 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
                     .setLeftBtText("取消")
                     .setRighBtText("确定")
                     .setLayout(com.codingtu.cooltu.lib4a.R.layout.default_dialog)
-                    .setYes(new com.codingtu.cooltu.lib4a.view.dialogview.Dialog.Yes() {
-                        @Override
-                        public void yes(Object obj) {
-                            dialog1Yes();
-                        }
-                    })
                     .setOnBtClick(new com.codingtu.cooltu.lib4a.view.dialogview.Dialog.OnBtClick() {
                         @Override
                         public void onLeftClick(Object obj) {
-
+                            dialog1Left();
                         }
 
                         @Override
                         public void onRightClick(Object obj) {
-
+                            dialog1Right();
                         }
                     })
                     .build();
@@ -239,21 +224,15 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
                     .setLeftBtText("取消")
                     .setRighBtText("确定")
                     .setLayout(com.codingtu.cooltu.lib4a.R.layout.default_dialog)
-                    .setYes(new com.codingtu.cooltu.lib4a.view.dialogview.Dialog.Yes() {
-                        @Override
-                        public void yes(Object obj) {
-                            dialog1Yes();
-                        }
-                    })
                     .setOnBtClick(new com.codingtu.cooltu.lib4a.view.dialogview.Dialog.OnBtClick() {
                         @Override
                         public void onLeftClick(Object obj) {
-
+                            dialog1Left();
                         }
 
                         @Override
                         public void onRightClick(Object obj) {
-
+                            dialog1Right();
                         }
                     })
                     .build();
@@ -264,7 +243,10 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
         dialog1.show();
     }
 
-    protected void dialog1Yes( ) {}
+    protected void dialog1Left( ) {}
+    protected void dialog1Right( ) {}
+
+
     protected void showDialog3( ) {
         if (dialog3 == null) {
             dialog3 = new com.codingtu.cooltu.lib4a.view.dialogview.Dialog(getThis())
@@ -273,21 +255,15 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
                     .setLeftBtText("取消")
                     .setRighBtText("确定")
                     .setLayout(com.codingtu.cooltu.lib4a.R.layout.default_dialog)
-                    .setYes(new com.codingtu.cooltu.lib4a.view.dialogview.Dialog.Yes() {
-                        @Override
-                        public void yes(Object obj) {
-                            dialog3Yes();
-                        }
-                    })
                     .setOnBtClick(new com.codingtu.cooltu.lib4a.view.dialogview.Dialog.OnBtClick() {
                         @Override
                         public void onLeftClick(Object obj) {
-
+                            dialog3Left();
                         }
 
                         @Override
                         public void onRightClick(Object obj) {
-
+                            dialog3Right();
                         }
                     })
                     .build();
@@ -303,21 +279,15 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
                     .setLeftBtText("取消")
                     .setRighBtText("确定")
                     .setLayout(com.codingtu.cooltu.lib4a.R.layout.default_dialog)
-                    .setYes(new com.codingtu.cooltu.lib4a.view.dialogview.Dialog.Yes() {
-                        @Override
-                        public void yes(Object obj) {
-                            dialog3Yes();
-                        }
-                    })
                     .setOnBtClick(new com.codingtu.cooltu.lib4a.view.dialogview.Dialog.OnBtClick() {
                         @Override
                         public void onLeftClick(Object obj) {
-
+                            dialog3Left();
                         }
 
                         @Override
                         public void onRightClick(Object obj) {
-
+                            dialog3Right();
                         }
                     })
                     .build();
@@ -328,7 +298,10 @@ public abstract class TestActivityBase extends com.codingtu.cooltu_pre.ui.BaseTe
         dialog3.show();
     }
 
-    protected void dialog3Yes( ) {}
+    protected void dialog3Left( ) {}
+    protected void dialog3Right( ) {}
+
+
 
 
 

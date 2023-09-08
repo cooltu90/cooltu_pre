@@ -133,21 +133,15 @@ public class DialogMethodModel extends SubBaseModel implements DialogMethodModel
                     .setLeftBtText("[[leftBtText]]")
                     .setRighBtText("[[rightBtText]]")
                     .setLayout([[layout]])
-                    .setYes(new [[DialogView]].Yes() {
-                        @Override
-                        public void yes(Object obj) {
-                            [[name]]Yes([[yesParam]]);
-                        }
-                    })
                     .setOnBtClick(new [[DialogView]].OnBtClick() {
                         @Override
                         public void onLeftClick(Object obj) {
-
+                            [[name]]Left([[yesParam]]);
                         }
 
                         @Override
                         public void onRightClick(Object obj) {
-
+                            [[name]]Right([[yesParam]]);
                         }
                     })
                     .build();
@@ -163,21 +157,15 @@ public class DialogMethodModel extends SubBaseModel implements DialogMethodModel
                     .setLeftBtText("[[leftBtText]]")
                     .setRighBtText("[[rightBtText]]")
                     .setLayout([[layout]])
-                    .setYes(new [[DialogView]].Yes() {
-                        @Override
-                        public void yes(Object obj) {
-                            [[name]]Yes([[yesParam]]);
-                        }
-                    })
                     .setOnBtClick(new [[DialogView]].OnBtClick() {
                         @Override
                         public void onLeftClick(Object obj) {
-
+                            [[name]]Left([[yesParam]]);
                         }
 
                         @Override
                         public void onRightClick(Object obj) {
-
+                            [[name]]Right([[yesParam]]);
                         }
                     })
                     .build();
@@ -188,5 +176,8 @@ public class DialogMethodModel extends SubBaseModel implements DialogMethodModel
         [[name]].show();
     }
 
-    protected void [[name]]Yes([[classType]] [[classParam]]) {}
+    protected void [[name]]Left([[classType]] [[classParam]]) {}
+    protected void [[name]]Right([[classType]] [[classParam]]) {}
+
+
 model_temp_end */

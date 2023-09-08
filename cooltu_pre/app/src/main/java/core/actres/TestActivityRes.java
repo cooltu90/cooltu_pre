@@ -16,6 +16,7 @@ import com.codingtu.cooltu.processor.annotation.ui.dialog.EditDialogUse;
 import com.codingtu.cooltu.processor.annotation.ui.dialog.NoticeDialogUse;
 import com.codingtu.cooltu.processor.annotation.ui.dialog.ToastDialogUse;
 import com.codingtu.cooltu_pre.R;
+import com.codingtu.cooltu_pre.bean.User;
 import com.codingtu.cooltu_pre.ui.TestActivity;
 import com.codingtu.cooltu.processor.annotation.resource.ResFor;
 
@@ -36,7 +37,7 @@ public class TestActivityRes {
             content = "xxxx",
             leftBtText = "删除1",
             rightBtText = "更新",
-            objType = Void.class
+            objType = User.class
     )
     Dialog dialog;
 
