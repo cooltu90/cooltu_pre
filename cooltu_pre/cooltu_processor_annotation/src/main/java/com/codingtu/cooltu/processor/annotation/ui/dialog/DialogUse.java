@@ -6,4 +6,8 @@ public @interface DialogUse {
     String content();
 
     Class objType() default Object.class;
+
+    String leftBtText() default "取消";
+
+    String rightBtText() default "确定";
 }

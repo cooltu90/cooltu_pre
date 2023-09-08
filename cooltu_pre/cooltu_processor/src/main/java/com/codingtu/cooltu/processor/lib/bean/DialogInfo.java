@@ -7,6 +7,8 @@ public class DialogInfo {
     public String title;
     public String content;
     public String objType;
+    public String leftBtText;
+    public String rightBtText;
 
     @Override
     public boolean equals(Object o) {

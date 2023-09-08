@@ -34,6 +34,8 @@ public class TestActivityRes {
     @DialogUse(
             title = "dialog",
             content = "xxxx",
+            leftBtText = "删除",
+            rightBtText = "更新",
             objType = Void.class
     )
     Dialog dialog;

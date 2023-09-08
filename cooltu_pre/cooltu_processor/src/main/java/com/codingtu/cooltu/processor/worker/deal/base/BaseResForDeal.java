@@ -8,6 +8,8 @@ import com.codingtu.cooltu.processor.lib.bean.DialogInfo;
 import com.codingtu.cooltu.processor.lib.bean.EditDialogInfo;
 import com.codingtu.cooltu.processor.lib.tools.ElementTools;
 
+import java.util.Date;
+
 import javax.lang.model.element.VariableElement;
 
 public abstract class BaseResForDeal extends BaseDeal {
@@ -36,6 +38,8 @@ public abstract class BaseResForDeal extends BaseDeal {
         dialogInfo.name = kv.v;
         dialogInfo.title = use.title();
         dialogInfo.content = use.content();
+        dialogInfo.leftBtText = use.leftBtText();
+        dialogInfo.rightBtText = use.rightBtText();
         dialogInfo.objType = ClassTool.getAnnotationClass(new ClassTool.AnnotationClassGetter() {
             @Override
             public Object get() {

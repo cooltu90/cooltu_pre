@@ -39,7 +39,7 @@
 
 
         <TextView
-            android:id="@id/dialogNoBt"
+            android:id="@id/dialogLeftBt"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -54,7 +54,7 @@
             android:background="#DDDDDD" />
 
         <TextView
-            android:id="@+id/dialogYesBt"
+            android:id="@+id/dialogRightBt"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"

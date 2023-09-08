@@ -21,8 +21,8 @@
     <!-- DialogView -->
     <item name="dialogTitleTv" type="id" />
     <item name="dialogContentTv" type="id" />
-    <item name="dialogYesBt" type="id" />
-    <item name="dialogNoBt" type="id" />
+    <item name="dialogRightBt" type="id" />
+    <item name="dialogLeftBt" type="id" />
     <!-- DialogView -->
     <item name="floatingIv" type="id" />
     <item name="labelViewTv" type="id" />
