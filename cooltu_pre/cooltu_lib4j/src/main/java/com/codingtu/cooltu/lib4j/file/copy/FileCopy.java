@@ -10,6 +10,7 @@ import java.io.OutputStream;
 import com.codingtu.cooltu.lib4j.file.FileTool;
 import com.codingtu.cooltu.lib4j.file.list.FileLister;
 import com.codingtu.cooltu.lib4j.file.list.ListFile;
+import com.codingtu.cooltu.lib4j.log.LibLogs;
 
 public class FileCopy {
     private File src;
@@ -102,6 +103,7 @@ public class FileCopy {
             OutputStream output = new FileOutputStream(newFile);
             copy(input, output);
         } catch (Exception e) {
+            LibLogs.e(e);
         }
     }
 
@@ -113,6 +115,7 @@ public class FileCopy {
                 output.write(bytes, 0, len);
             }
         } catch (Exception e) {
+            LibLogs.e(e);
         } finally {
             if (output != null) {
                 try {

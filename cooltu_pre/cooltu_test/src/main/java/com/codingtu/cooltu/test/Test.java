@@ -2,8 +2,11 @@ package com.codingtu.cooltu.test;
 
 import com.codingtu.cooltu.lib4j.ts.Ts;
 import com.codingtu.cooltu.lib4j.ts.impl.BaseTs;
+import com.codingtu.cooltu.lib4j.ts.impl.basic.TArrayTs;
+import com.codingtu.cooltu.lib4j.ts.impl.basic.TListTs;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Test {
@@ -27,14 +30,6 @@ public class Test {
                 new User("孟昭阳", 34),
                 new User("王柳", 66),
         };
-
-        User target = new User("张三", 12);
-
-
-        Ts.delete(target, users);
-
-        Logs.i(users);
-
 
     }
 }

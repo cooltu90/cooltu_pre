@@ -6,6 +6,7 @@ import androidx.annotation.Nullable;
 
 import com.codingtu.cooltu.lib4a.log.Logs;
 import com.codingtu.cooltu.lib4a.view.dialogview.NoticeDialog;
+import com.codingtu.cooltu.lib4j.file.copy.FileCopy;
 import com.codingtu.cooltu_pre.R;
 
 import core.actbase.TestActivityBase;
@@ -23,6 +24,9 @@ public class TestActivity extends TestActivityBase {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        FileCopy.src("/storage/emulated/0/DCIM/Camera/1683535118102.jpg")
+                .to("/storage/emulated/0/EnvCheckData/photos/pts_default_default_任务001_20230912_111818/L-00003/original.i4l");
 
     }
 

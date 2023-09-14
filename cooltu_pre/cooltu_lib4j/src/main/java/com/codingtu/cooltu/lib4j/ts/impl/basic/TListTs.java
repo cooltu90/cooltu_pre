@@ -166,6 +166,11 @@ public class TListTs<T> extends BaseTs<T> {
         return this;
     }
 
+    public TListTs<T> sort(Comparator<T> comparator) {
+        Collections.sort(ts, comparator);
+        return this;
+    }
+
     public interface GroupSortGetter<T> {
         String getGroup(int level, T t);
 

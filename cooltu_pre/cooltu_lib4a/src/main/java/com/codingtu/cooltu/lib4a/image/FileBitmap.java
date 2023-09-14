@@ -108,10 +108,10 @@ public class FileBitmap {
 
     private int getSize(int w, int h) {
         if (h > box.h || w > box.w) {
-            if (w > h) {
-                return Math.round(h / box.h);
-            } else {
+            if (w * box.h > h * box.w) {
                 return Math.round(w / box.w);
+            } else {
+                return Math.round(h / box.h);
             }
         }
         return getSize();
