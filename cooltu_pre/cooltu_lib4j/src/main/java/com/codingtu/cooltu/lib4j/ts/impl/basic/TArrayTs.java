@@ -54,7 +54,8 @@ public class TArrayTs<T> extends BaseTs<T> {
 
 
     public TArrayTs<T> sort(Comparator<T> comparator) {
-        Arrays.sort(ts, comparator);
+        if (count() > 0)
+            Arrays.sort(ts, comparator);
         return this;
     }
 }

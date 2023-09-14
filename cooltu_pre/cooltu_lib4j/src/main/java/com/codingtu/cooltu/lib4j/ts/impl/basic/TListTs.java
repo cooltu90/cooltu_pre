@@ -167,7 +167,8 @@ public class TListTs<T> extends BaseTs<T> {
     }
 
     public TListTs<T> sort(Comparator<T> comparator) {
-        Collections.sort(ts, comparator);
+        if (count() > 0)
+            Collections.sort(ts, comparator);
         return this;
     }
 

@@ -364,5 +364,8 @@ public class VersionInfo {
      * +++修改FileBitmap中size(w,h)中的换算错误
      * +++对ts增加sort方法
      *
+     * v1.1.17
+     * +++修改ts中sort方法的bug
+     *
      **************************************************/
 }
