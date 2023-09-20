@@ -108,7 +108,7 @@ public class HttpLog {
     }
 
     public void log() {
-        if (!CoreConfigs.configs().isLog()) {
+        if (!CoreConfigs.configs().isLogHttpConnect()) {
             return;
         }
 
@@ -192,7 +192,7 @@ public class HttpLog {
 
 
         for (int i = 0; i < logs.size(); i++) {
-            Logs.i("LOG_API", logs.get(i));
+            Logs.i(logs.get(i));
         }
 
     }

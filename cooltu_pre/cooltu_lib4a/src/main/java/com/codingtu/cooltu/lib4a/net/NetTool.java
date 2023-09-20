@@ -76,7 +76,7 @@ public class NetTool {
         for (int i = 0; i < url.querySize(); i++) {
             params.add(url.queryParameterName(i), url.queryParameterValue(i));
         }
-        Logs.i("LOG_API", "getParamsGet:" + params);
+        Logs.i("getParamsGet:" + params);
         return params;
     }
 
@@ -127,7 +127,7 @@ public class NetTool {
             } catch (Exception e) {
             }
         }
-        Logs.i("LOG_API", "getParamsPost:" + params);
+        Logs.i("getParamsPost:" + params);
         return params;
     }
 

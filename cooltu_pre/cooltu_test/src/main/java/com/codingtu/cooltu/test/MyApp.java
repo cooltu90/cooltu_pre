@@ -18,6 +18,11 @@ public class MyApp extends LibApp {
             }
 
             @Override
+            public boolean isLogHttpConnect() {
+                return false;
+            }
+
+            @Override
             public String getDefaultLogTag() {
                 return "test";
             }

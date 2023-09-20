@@ -52,7 +52,7 @@ public class RetrofitMap extends HashMap<String, Retrofit> {
     private static OkHttpClient createOkHttpClient() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         CoreConfigs.configs().addInterceptorForDefaultOkHttpClient(builder);
-        if (CoreConfigs.configs().isLog()) {
+        if (CoreConfigs.configs().isLogHttpConnect()) {
             builder.addInterceptor(new LogInterceptor());
         }
         return builder.build();

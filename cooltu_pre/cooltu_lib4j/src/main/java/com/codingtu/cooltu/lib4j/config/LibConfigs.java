@@ -20,6 +20,8 @@ public abstract class LibConfigs {
 
     public abstract boolean isLog();
 
+    public abstract boolean isLogHttpConnect();
+
     public abstract String getDefaultLogTag();
 
     public abstract void baseLog(int level, String tag, String msg);
