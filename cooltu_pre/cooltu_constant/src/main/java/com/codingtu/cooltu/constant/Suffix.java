@@ -18,4 +18,6 @@ public class Suffix {
     public static final String MODEL = "Model";
     public static final String INTERFACE = "Interface";
     public static final String BUS = "Bus";
+    public static final String PATH_CONFIGS = "PathConfigs";
+    public static final String PATH = "Path";
 }

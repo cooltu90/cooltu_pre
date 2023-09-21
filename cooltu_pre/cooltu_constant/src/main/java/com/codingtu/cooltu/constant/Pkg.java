@@ -21,6 +21,7 @@ public class Pkg {
     public static final String NET_BACK = "core.tools.net.back";
     public static final String VH = "core.vh";
     public static final String BUS = "core.bus";
+    public static final String PATH = "core.path";
     public static final String R_LAYOUT = "R.layout.";
     // 默认的文件包名
     public static final String DEFAULT_NET_MOCK = ".net.mock";

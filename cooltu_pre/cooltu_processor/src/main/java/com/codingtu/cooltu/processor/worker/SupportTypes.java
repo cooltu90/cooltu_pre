@@ -10,6 +10,7 @@ import com.codingtu.cooltu.processor.annotation.form.FormBean;
 import com.codingtu.cooltu.processor.annotation.form.FormItem;
 import com.codingtu.cooltu.processor.annotation.net.Apis;
 import com.codingtu.cooltu.processor.annotation.net.NetBack;
+import com.codingtu.cooltu.processor.annotation.path.Paths;
 import com.codingtu.cooltu.processor.annotation.permission.Permission;
 import com.codingtu.cooltu.processor.annotation.rename.RenameAct;
 import com.codingtu.cooltu.processor.annotation.resource.ResFor;
@@ -66,7 +67,8 @@ public class SupportTypes {
                 Permission.class,
                 Adapter.class,
                 VH.class,
-                Apis.class
+                Apis.class,
+                Paths.class
         };
     }
 

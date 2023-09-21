@@ -5,7 +5,6 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 
 import com.codingtu.cooltu.lib4a.log.Logs;
-import com.codingtu.cooltu.lib4a.view.dialogview.NoticeDialog;
 import com.codingtu.cooltu.lib4j.file.copy.FileCopy;
 import com.codingtu.cooltu_pre.R;
 
@@ -16,6 +15,8 @@ import com.codingtu.cooltu.processor.annotation.ui.ActBase;
 import com.codingtu.cooltu_pre.bean.User;
 
 import core.actres.TestActivityRes;
+import core.path.CheckPath;
+import core.path.TestPath;
 
 @To(TestActivityRes.class)
 @ActBase(layout = R.layout.activity_test, baseClass = BaseTestActivity.class)
@@ -27,6 +28,9 @@ public class TestActivity extends TestActivityBase {
 
         FileCopy.src("/storage/emulated/0/DCIM/Camera/1683535118102.jpg")
                 .to("/storage/emulated/0/EnvCheckData/photos/pts_default_default_任务001_20230912_111818/L-00003/original.i4l");
+
+
+        TestPath testPath = TestPath.obtain("csqy_测试企业", "A02_2023-08-30");
 
     }
 

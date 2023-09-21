@@ -16,7 +16,6 @@ public class FullName {
     public static final String TS = "com.codingtu.cooltu.lib4j.ts.Ts";
     public static final String EACH = "com.codingtu.cooltu.lib4j.ts.impl.BaseTs.EachTs";
     public static final String LIST_VALUE_MAP = "com.codingtu.cooltu.lib4j.data.map.ListValueMap";
-    //
     public static final String RES_FOR = "com.codingtu.cooltu.processor.annotation.resource.ResFor";
     public static final String RADIO_GROUP = "com.codingtu.cooltu.lib4a.view.combine.RadioGroup";
     public static final String HANDLER_TEXT_WATCHER = "com.codingtu.cooltu.lib4a.view.textview.HandlerTextWatcher";
@@ -38,6 +37,9 @@ public class FullName {
     public static final String DEFAULT_RADIO_GROUP_TO_STRING = "com.codingtu.cooltu.lib4a.form.DefaultRadioGroupToString";
     public static final String ON_HIDDEN_FINISHED = "com.codingtu.cooltu.lib4a.view.layerview.listener.OnHiddenFinished";
     public static final String HANDLER_TOOL = "com.codingtu.cooltu.lib4a.tools.HandlerTool";
+    public static final String SDCARD_TOOL = "com.codingtu.cooltu.lib4a.tools.SDCardTool";
+    public static final String BASE_PATH = "com.codingtu.cooltu.lib4a.path.BasePath";
+    public static final String PATH_BEAN = "com.codingtu.cooltu.lib4a.bean.PathBean";
     //不变的
     public static final String INT = "int";
     public static final String FLOAT = "float";

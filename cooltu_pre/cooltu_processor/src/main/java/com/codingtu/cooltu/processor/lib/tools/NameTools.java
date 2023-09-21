@@ -198,9 +198,15 @@ public class NameTools extends StringTool {
     public static JavaInfo getActResInfo(String allBaseName) {
         return getJavaInfoByName(Pkg.ACT_RES, allBaseName, Suffix.ACTIVITY_RES);
     }
+
     //获取 ActRes 的 JavaInfo
     public static JavaInfo getFragmentResInfo(String allBaseName) {
         return getJavaInfoByName(Pkg.FRAGMENT_RES, allBaseName, Suffix.FRAGMENT_RES);
+    }
+
+    //获取 Path 的 JavaInfo
+    public static JavaInfo getPathInfo(String allBaseName) {
+        return getJavaInfoByName(Pkg.PATH, allBaseName, Suffix.PATH);
     }
 
     public static JavaInfo getActBaseInfoByActFullName(String fullName) {
@@ -360,6 +366,6 @@ public class NameTools extends StringTool {
     }
 
     public static JavaInfo getBusInfo(String name) {
-        return getJavaInfoByName(Pkg.BUS,name,Suffix.BUS);
+        return getJavaInfoByName(Pkg.BUS, name, Suffix.BUS);
     }
 }
