@@ -136,6 +136,11 @@ public class NameTools extends StringTool {
     }
 
 
+    public static String getPathPath() {
+        String s = ConvertTool.pkgToPath(Pkg.PATH);
+        return getJavaDir() + s;
+    }
+
     public static String getModelPath(BaseModel baseModel) {
         String canonicalName = baseModel.getClass().getCanonicalName();
         String s = ConvertTool.pkgToPath(canonicalName);

@@ -4,12 +4,15 @@ import com.codingtu.cooltu.constant.FileContentType;
 import com.codingtu.cooltu.constant.FullName;
 import com.codingtu.cooltu.constant.Pkg;
 import com.codingtu.cooltu.lib4j.data.bean.JavaInfo;
+import com.codingtu.cooltu.lib4j.file.delete.FileDeleter;
 import com.codingtu.cooltu.lib4j.tools.StringTool;
 import com.codingtu.cooltu.lib4j.ts.Ts;
 import com.codingtu.cooltu.lib4j.ts.impl.BaseTs;
 import com.codingtu.cooltu.processor.annotation.tools.To;
 import com.codingtu.cooltu.processor.lib.bean.DirPathInfo;
 import com.codingtu.cooltu.processor.lib.bean.FilePathInfo;
+import com.codingtu.cooltu.processor.lib.log.Logs;
+import com.codingtu.cooltu.processor.lib.tools.NameTools;
 import com.codingtu.cooltu.processor.modelinterface.PathModelInterface;
 import com.codingtu.cooltu.processor.worker.deal.PathsDeal;
 import com.codingtu.cooltu.processor.worker.model.base.BaseModel;
@@ -19,6 +22,8 @@ import java.util.List;
 
 @To(PathsDeal.class)
 public class PathModel extends BaseModel implements PathModelInterface {
+    public static boolean isFirst = true;
+
     private String rootPath;
     private List<DirPathInfo> dirInfos;
     private List<FilePathInfo> fileInfos;
@@ -42,6 +47,15 @@ public class PathModel extends BaseModel implements PathModelInterface {
             fileInfos = new ArrayList<>();
         }
         fileInfos.add(info);
+    }
+
+    @Override
+    protected void beforCreate() {
+        super.beforCreate();
+        if (isFirst) {
+            isFirst = false;
+            FileDeleter.delete(NameTools.getPathPath());
+        }
     }
 
     @Override

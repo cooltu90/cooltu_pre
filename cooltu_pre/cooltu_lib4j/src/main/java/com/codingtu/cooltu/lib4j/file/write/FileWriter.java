@@ -73,9 +73,7 @@ public class FileWriter {
         }
         BufferedWriter bw = null;
         try {
-            LibLogs.i("write");
             FileTool.createFileDir(file);
-
             bw = FileTool.getBufferedWriter(this.file);
             int count = getter == null ? 0 : getter.count();
             for (int i = 0; i < count; i++) {
