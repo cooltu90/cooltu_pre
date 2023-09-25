@@ -5,6 +5,8 @@ import com.codingtu.cooltu.constant.FileType;
 import com.codingtu.cooltu.constant.FullName;
 import com.codingtu.cooltu.constant.Pkg;
 import com.codingtu.cooltu.lib4j.data.bean.JavaInfo;
+import com.codingtu.cooltu.lib4j.file.write.FileWriter;
+import com.codingtu.cooltu.lib4j.tools.CountTool;
 import com.codingtu.cooltu.lib4j.tools.StringTool;
 import com.codingtu.cooltu.lib4j.ts.Ts;
 import com.codingtu.cooltu.lib4j.ts.impl.BaseTs;
@@ -16,6 +18,7 @@ import com.codingtu.cooltu.processor.modelinterface.PathModelInterface;
 import com.codingtu.cooltu.processor.worker.deal.PathsDeal;
 import com.codingtu.cooltu.processor.worker.model.base.BaseModel;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,8 +51,22 @@ public class PathModel extends BaseModel implements PathModelInterface {
 
     @Override
     public void create() {
-        super.create();
-        Logs.i("create:" + info.path + ":" + info.fullName);
+        Logs.i("info:" + (info == null));
+        if (info == null)
+            return;
+        beforCreate();
+        File file = new File(info.path);
+        Logs.i(file.getAbsolutePath());
+        Logs.i("file.exists:" + file.exists());
+        Logs.i("isForce:" + isForce);
+        if (isForce || !file.exists()) {
+            Logs.i("getLineBefore");
+            List<String> lines = getLines();
+            Logs.i("lines:" + CountTool.count(lines));
+            if (!CountTool.isNull(lines)) {
+                FileWriter.to(file).cover().write(lines);
+            }
+        }
     }
 
     /**************************************************

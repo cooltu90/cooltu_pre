@@ -73,6 +73,7 @@ public class FileWriter {
         }
         BufferedWriter bw = null;
         try {
+            LibLogs.i("write");
             FileTool.createFileDir(file);
 
             bw = FileTool.getBufferedWriter(this.file);
@@ -82,7 +83,7 @@ public class FileWriter {
                 bw.newLine();
             }
         } catch (Exception e) {
-            LibLogs.w(e);
+            LibLogs.e(e);
         } finally {
             if (bw != null) {
                 try {

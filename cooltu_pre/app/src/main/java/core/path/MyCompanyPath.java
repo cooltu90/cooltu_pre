@@ -6,6 +6,7 @@ public class MyCompanyPath extends com.codingtu.cooltu.lib4a.path.BasePath {
         return root(com.codingtu.cooltu.lib4a.tools.SDCardTool.getSDCard()
                 + addPrexSeparator("MyApp")
                 + addPrexSeparator(type)
+                + addPrexSeparator("xxx")
         );
     }
 
