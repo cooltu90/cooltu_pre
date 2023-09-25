@@ -46,6 +46,12 @@ public class PathModel extends BaseModel implements PathModelInterface {
         fileInfos.add(info);
     }
 
+    @Override
+    public void create() {
+        super.create();
+        Logs.i("create:" + info.path + ":" + info.fullName);
+    }
+
     /**************************************************
      *
      *
