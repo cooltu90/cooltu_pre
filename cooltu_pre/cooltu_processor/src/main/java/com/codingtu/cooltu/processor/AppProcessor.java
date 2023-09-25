@@ -92,7 +92,7 @@ public class AppProcessor extends AbstractProcessor {
         //ActBackModel.java
         String name = file.getName();
         //ActBackModelInterface
-        String typeName = NameTools.cutSuffix(name, FileType.JAVA) + Suffix.INTERFACE;
+        String typeName = NameTools.cutSuffix(name, FileType.d_JAVA) + Suffix.INTERFACE;
 
         ArrayList<String> newLines = new ArrayList<>();
         newLines.add("package com.codingtu.cooltu.processor.modelinterface;");

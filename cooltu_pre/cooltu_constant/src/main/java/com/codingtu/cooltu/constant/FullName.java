@@ -39,7 +39,9 @@ public class FullName {
     public static final String HANDLER_TOOL = "com.codingtu.cooltu.lib4a.tools.HandlerTool";
     public static final String SDCARD_TOOL = "com.codingtu.cooltu.lib4a.tools.SDCardTool";
     public static final String BASE_PATH = "com.codingtu.cooltu.lib4a.path.BasePath";
-    public static final String PATH_BEAN = "com.codingtu.cooltu.lib4a.bean.PathBean";
+    public static final String PATH_BEAN_FILE = "com.codingtu.cooltu.lib4a.path.PathBeanFile";
+    public static final String PATH_TEXT_FILE = "com.codingtu.cooltu.lib4a.path.PathTextFile";
+    public static final String PATH_IMAGE_FILE = "com.codingtu.cooltu.lib4a.path.PathImageFile";
     //不变的
     public static final String INT = "int";
     public static final String FLOAT = "float";

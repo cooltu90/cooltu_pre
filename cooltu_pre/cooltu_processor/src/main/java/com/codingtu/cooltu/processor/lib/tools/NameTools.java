@@ -48,7 +48,7 @@ public class NameTools extends StringTool {
         info.pkg = packages;
         String javaPath = getJavaDir();
         String pkgPath = ConvertTool.pkgToPath(packages);
-        info.path = javaPath + pkgPath + Constant.SEPARATOR + info.name + FileType.JAVA;
+        info.path = javaPath + pkgPath + Constant.SEPARATOR + info.name + FileType.d_JAVA;
         return info;
     }
 
@@ -144,7 +144,7 @@ public class NameTools extends StringTool {
                 + Module.CORE_PROCESSOR
                 + Path.SRC_MAIN_JAVA
                 + s
-                + FileType.JAVA;
+                + FileType.d_JAVA;
     }
 
     public static String getModelPath() {
@@ -165,7 +165,7 @@ public class NameTools extends StringTool {
                 + s
                 + Constant.SEPARATOR
                 + typeName
-                + FileType.JAVA;
+                + FileType.d_JAVA;
     }
 
     /**************************************************
@@ -289,7 +289,7 @@ public class NameTools extends StringTool {
 
     //通过模块名获取布局文件路径
     public static String getLayoutPath(String module, String layoutName) {
-        return NameTools.getLayoutDir(module) + Constant.SEPARATOR + layoutName + FileType.XML;
+        return NameTools.getLayoutDir(module) + Constant.SEPARATOR + layoutName + FileType.d_XML;
     }
 
     //获取当前模块中的activity布局文件

@@ -1,11 +1,15 @@
-package core.path;
+package com.codingtu.cooltu_pre.path.test;
 
-public class CheckPath extends com.codingtu.cooltu.lib4a.path.BasePath {
+import com.codingtu.cooltu.lib4a.path.BasePath;
+import com.codingtu.cooltu.lib4a.tools.SDCardTool;
+
+
+public class CheckPath extends BasePath {
+
     public CheckDeleteLabelPath DeleteLabel;
-    public CheckExtraInfoPath ExtraInfo;
 
     public static CheckPath obtain(String company, String taskName) {
-        return root(com.codingtu.cooltu.lib4a.tools.SDCardTool.getSDCard()
+        return root(SDCardTool.getSDCard()
                 + addPrexSeparator("EnvCheckData")
                 + addPrexSeparator("tasks")
                 + addPrexSeparator(company)
@@ -23,18 +27,6 @@ public class CheckPath extends com.codingtu.cooltu.lib4a.path.BasePath {
                 this.root
                         + addPrexSeparator("DeleteLabel")
         );
-        this.ExtraInfo = new CheckExtraInfoPath(
-                this.root
-                        + addPrexSeparator("ExtraInfo")
-        );
-
-    }
-    public CheckLabelPath label(String labelName) {
-        return new CheckLabelPath(
-                this.root
-                        + addPrexSeparator(labelName)
-        );
     }
 
 }
-

@@ -12,4 +12,13 @@ public class BasePath extends CoreBean {
         return SEPARATOR + dir;
     }
 
+    protected String root;
+
+    public BasePath(String root) {
+        this.root = root;
+    }
+
+    public String root(){
+        return this.root;
+    }
 }

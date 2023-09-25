@@ -9,6 +9,7 @@ import androidx.annotation.RequiresApi;
 import com.codingtu.cooltu.lib4a.connect.ConnectTool;
 import com.codingtu.cooltu.processor.annotation.permission.Permission;
 import com.codingtu.cooltu.processor.annotation.ui.ActBase;
+import com.codingtu.cooltu_pre.path.test.CheckPath;
 
 import core.actbase.MainActivityBase;
 import core.tools.ActStart;
@@ -21,6 +22,7 @@ public class MainActivity extends MainActivityBase {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Permissions.check(this);
+        CheckPath checkPath = CheckPath.obtain("", "");
     }
 
 

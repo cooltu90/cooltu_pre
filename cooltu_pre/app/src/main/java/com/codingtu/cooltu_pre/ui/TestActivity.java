@@ -1,11 +1,13 @@
 package com.codingtu.cooltu_pre.ui;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
 import com.codingtu.cooltu.lib4a.log.Logs;
-import com.codingtu.cooltu.lib4j.file.copy.FileCopy;
+import com.codingtu.cooltu.lib4a.path.PathBeanFile;
+import com.codingtu.cooltu.lib4a.path.PathImageFile;
 import com.codingtu.cooltu_pre.R;
 
 import core.actbase.TestActivityBase;
@@ -16,7 +18,6 @@ import com.codingtu.cooltu_pre.bean.User;
 
 import core.actres.TestActivityRes;
 import core.path.CheckPath;
-import core.path.TestPath;
 
 @To(TestActivityRes.class)
 @ActBase(layout = R.layout.activity_test, baseClass = BaseTestActivity.class)
@@ -25,13 +26,7 @@ public class TestActivity extends TestActivityBase {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        FileCopy.src("/storage/emulated/0/DCIM/Camera/1683535118102.jpg")
-                .to("/storage/emulated/0/EnvCheckData/photos/pts_default_default_任务001_20230912_111818/L-00003/original.i4l");
-
-
-        TestPath testPath = TestPath.obtain("csqy_测试企业", "A02_2023-08-30");
-
+        CheckPath checkPath = CheckPath.obtain("csqy_测试企业", "A02_2023-08-30");
     }
 
     @Override
