@@ -20,4 +20,3 @@ public class CheckDeleteLabelLabelPath extends com.codingtu.cooltu.lib4a.path.Ba
     }
 
 }
-

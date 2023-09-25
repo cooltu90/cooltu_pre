@@ -13,4 +13,3 @@ public class CheckExtraInfoDeleteLabelLabelPath extends com.codingtu.cooltu.lib4
     }
 
 }
-

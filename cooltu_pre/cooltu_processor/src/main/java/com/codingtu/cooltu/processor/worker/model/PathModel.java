@@ -298,60 +298,7 @@ public class PathModel extends BaseModel implements PathModelInterface {
                 return false;
             }
         });
-//        Ts.ls(fileInfos, new BaseTs.EachTs<FilePathInfo>() {
-//            @Override
-//            public boolean each(int position, FilePathInfo info) {
-//                if (isParam(info.fileName)) {
-//                    String methodLine = null;
-//                    Object[] methodParams = null;
-//                    String paramLine = null;
-//                    Object[] paramParams = null;
-//                    if (info.fileContentType.equals(FileContentType.TXT)) {
-//                        String cutParam = cutParam(info.fileName);
-//                        if (info.isVoidBean) {
-//                            addLnTag(sb, "    public [PathTextFile] [handle_jpg](String [labelName]) {"
-//                                    , FullName.PATH_TEXT_FILE, info.fieldFullName, cutParam);
-//                            addLnTag(sb, "        return new [PathTextFile](", FullName.PATH_TEXT_FILE);
-//                        } else {
-//                            addLnTag(sb, "    public [PathBeanFile]<[User]> [handle_jpg](String [labelName]) {"
-//                                    , FullName.PATH_BEAN_FILE, info.beanClass, info.fieldFullName, cutParam);
-//                            addLnTag(sb, "        return new [PathTextFile](", FullName.PATH_BEAN_FILE);
-//                        }
-//
-//
-//                        addLnTag(sb, "                this.root");
-//                        addLnTag(sb, "                        + addPrexSeparator([labelName] + \"[.txt]\")", cutParam, info.fileType);
-//
-//                        if (info.isVoidBean) {
-//                            addLnTag(sb, "                , \"txt\"");
-//                        } else {
-//                            addLnTag(sb, "                , \"txt\", [className].class", info.beanClass);
-//                        }
-//
-//                        addLnTag(sb, "        );");
-//                        addLnTag(sb, "    }");
-//                    }
-//                }
-//                return false;
-//            }
-//        });
     }
-
-
-/**************************************************
- *
- * ————设置字段
- * {@link #setTagFor_fields(StringBuilder)}
- *
- * ————设置初始化
- * {@link #setTagFor_pathInit(StringBuilder)}
- *
- * ————有字段的文件夹
- * {@link #setTagFor_hasParamPath(StringBuilder)} }
- *
- *
- **************************************************/
-
 }
 /* model_temp_start
 package [[pkg]];
@@ -369,5 +316,4 @@ public class [[name]] extends [[basePath]] {
     }
 [[hasParamPath]]
 }
-
 model_temp_end */

@@ -32,4 +32,3 @@ public class CheckLabelPath extends com.codingtu.cooltu.lib4a.path.BasePath {
     }
 
 }
-

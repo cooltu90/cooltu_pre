@@ -36,7 +36,6 @@ public interface PathModelInterface {
         lines.add("    }");
         lines.add("[[hasParamPath]]");
         lines.add("}");
-        lines.add("");
         return lines;
     }
 }
