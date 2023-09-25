@@ -56,6 +56,7 @@ public class BaseModel {
         File file = new File(info.path);
         if (isForce || !file.exists()) {
             List<String> lines = getLines();
+            Logs.i("lines:" + CountTool.count(lines));
             if (!CountTool.isNull(lines)) {
                 FileWriter.to(file).cover().write(lines);
             }
@@ -141,6 +142,7 @@ public class BaseModel {
      **************************************************/
     public List<String> getTempLines() {
         try {
+            Logs.i(NameTools.getModelPath(this));
             List<String> lines = FileReader.from(new File(NameTools.getModelPath(this))).readLine();
             int start = 0;
             int end = 0;
