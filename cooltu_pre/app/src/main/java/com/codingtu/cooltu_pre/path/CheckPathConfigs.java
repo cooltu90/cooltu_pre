@@ -1,13 +1,12 @@
 package com.codingtu.cooltu_pre.path;
 
-import com.codingtu.cooltu.constant.FileContentType;
 import com.codingtu.cooltu.constant.FileType;
 import com.codingtu.cooltu.processor.annotation.path.DirPath;
 import com.codingtu.cooltu.processor.annotation.path.FilePath;
 import com.codingtu.cooltu.processor.annotation.path.Paths;
 import com.codingtu.cooltu_pre.bean.User;
 
-@Paths("EnvCheckData/tasks/{company}/{taskName}")
+@Paths(name = "check", path = "EnvCheckData/tasks/{company}/{taskName}")
 public class CheckPathConfigs {
 
     @DirPath

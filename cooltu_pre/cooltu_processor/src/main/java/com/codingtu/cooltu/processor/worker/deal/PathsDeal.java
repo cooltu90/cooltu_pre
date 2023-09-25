@@ -35,13 +35,11 @@ public class PathsDeal extends BaseDeal {
     public void deal(Element element) {
 
         Paths paths = element.getAnnotation(Paths.class);
-
-        //baseName = Check
-        String baseName = StringTool.cutSuffix(ElementTools.simpleName(element), Suffix.PATH_CONFIGS);
+        String baseName = paths.name();
         dirMap.put("root", baseName);
 
         JavaInfo basePathJavaInfo = NameTools.getPathInfo(baseName);
-        PathModel pathModel = new PathModel(paths.value(), basePathJavaInfo);
+        PathModel pathModel = new PathModel(paths.path(), basePathJavaInfo);
         pathMap.put("root", pathModel);
 
         Ts.ls(element.getEnclosedElements(), (position, e) -> {
