@@ -249,36 +249,38 @@ public class PathModel extends BaseModel implements PathModelInterface {
 
                     if (info.isFilter) {
                         PathFilterInfo filterInfo = PathFilterDeal.map.get(info.filter);
+                        if (filterInfo != null) {
 
-                        StringBuilder paramSb = new StringBuilder();
-                        StringBuilder filterSetSb = new StringBuilder();
+                            StringBuilder paramSb = new StringBuilder();
+                            StringBuilder filterSetSb = new StringBuilder();
 
-                        Ts.ls(filterInfo.params, new BaseTs.EachTs<KV<String, String>>() {
-                            @Override
-                            public boolean each(int position, KV<String, String> kv) {
-                                if (position != 0) {
-                                    paramSb.append(", ");
+                            Ts.ls(filterInfo.params, new BaseTs.EachTs<KV<String, String>>() {
+                                @Override
+                                public boolean each(int position, KV<String, String> kv) {
+                                    if (position != 0) {
+                                        paramSb.append(", ");
+                                    }
+                                    paramSb.append(kv.k).append(" ").append(kv.v);
+
+                                    addLnTag(filterSetSb, "        filter.[type] = [type];", kv.v, kv.v);
+
+                                    return false;
                                 }
-                                paramSb.append(kv.k).append(" ").append(kv.v);
+                            });
 
-                                addLnTag(filterSetSb, "        filter.[type] = [type];", kv.v, kv.v);
+                            addLnTag(sb, "    public [List]<[CheckLabelPath]> [label]List([params]) {"
+                                    , FullName.T_LIST_TS, info.javaName, info.fieldName, paramSb.toString());
+                            addLnTag(sb, "        [LabelFilter] filter = new [LabelFilter]();", info.filter, info.filter);
+                            addLnTag(sb, filterSetSb.toString());
 
-                                return false;
-                            }
-                        });
-
-                        addLnTag(sb, "    public [List]<[CheckLabelPath]> [label]List([params]) {"
-                                , FullName.T_LIST_TS, info.javaName, info.fieldName, paramSb.toString());
-                        addLnTag(sb, "        [LabelFilter] filter = new [LabelFilter]();", info.filter, info.filter);
-                        addLnTag(sb, filterSetSb.toString());
-
-                        addLnTag(sb, "        return [Ts].ts(new java.io.File(root()).listFiles()).convert((index, file) -> {", FullName.TS);
-                        addLnTag(sb, "            if (filter.check(file.getName())) {");
-                        addLnTag(sb, "                return [label](file.getName());", info.fieldName);
-                        addLnTag(sb, "            }");
-                        addLnTag(sb, "            return null;");
-                        addLnTag(sb, "        });");
-                        addLnTag(sb, "    }");
+                            addLnTag(sb, "        return [Ts].ts(new java.io.File(root()).listFiles()).convert((index, file) -> {", FullName.TS);
+                            addLnTag(sb, "            if (filter.check(file.getName())) {");
+                            addLnTag(sb, "                return [label](file.getName());", info.fieldName);
+                            addLnTag(sb, "            }");
+                            addLnTag(sb, "            return null;");
+                            addLnTag(sb, "        });");
+                            addLnTag(sb, "    }");
+                        }
                     }
 
                 }
@@ -330,36 +332,37 @@ public class PathModel extends BaseModel implements PathModelInterface {
 
                     if (info.isFilter) {
                         PathFilterInfo filterInfo = PathFilterDeal.map.get(info.filter);
+                        if (filterInfo != null) {
+                            StringBuilder paramSb = new StringBuilder();
+                            StringBuilder filterSetSb = new StringBuilder();
 
-                        StringBuilder paramSb = new StringBuilder();
-                        StringBuilder filterSetSb = new StringBuilder();
+                            Ts.ls(filterInfo.params, new BaseTs.EachTs<KV<String, String>>() {
+                                @Override
+                                public boolean each(int position, KV<String, String> kv) {
+                                    if (position != 0) {
+                                        paramSb.append(", ");
+                                    }
+                                    paramSb.append(kv.k).append(" ").append(kv.v);
 
-                        Ts.ls(filterInfo.params, new BaseTs.EachTs<KV<String, String>>() {
-                            @Override
-                            public boolean each(int position, KV<String, String> kv) {
-                                if (position != 0) {
-                                    paramSb.append(", ");
+                                    addLnTag(filterSetSb, "        filter.[type] = [type];", kv.v, kv.v);
+
+                                    return false;
                                 }
-                                paramSb.append(kv.k).append(" ").append(kv.v);
+                            });
 
-                                addLnTag(filterSetSb, "        filter.[type] = [type];", kv.v, kv.v);
+                            addLnTag(sb, "    public [TListTs]<[PathBeanFile<User>]> [label_txt]_list([String type]) {"
+                                    , FullName.T_LIST_TS, fileClass, info.fieldFullName, paramSb.toString());
+                            addLnTag(sb, "        [LabelFilter] filter = new [LabelFilter]();", info.filter, info.filter);
+                            addLnTag(sb, filterSetSb.toString());
 
-                                return false;
-                            }
-                        });
-
-                        addLnTag(sb, "    public [TListTs]<[PathBeanFile<User>]> [label_txt]_list([String type]) {"
-                                , FullName.T_LIST_TS, fileClass, info.fieldFullName, paramSb.toString());
-                        addLnTag(sb, "        [LabelFilter] filter = new [LabelFilter]();", info.filter, info.filter);
-                        addLnTag(sb, filterSetSb.toString());
-
-                        addLnTag(sb, "        return [Ts].ts(new java.io.File(root()).listFiles()).convert((index, file) -> {", FullName.TS);
-                        addLnTag(sb, "            if (filter.check(file.getName())) {");
-                        addLnTag(sb, "                return [label_txt](file.getName());", info.fieldFullName);
-                        addLnTag(sb, "            }");
-                        addLnTag(sb, "            return null;");
-                        addLnTag(sb, "        });");
-                        addLnTag(sb, "    }");
+                            addLnTag(sb, "        return [Ts].ts(new java.io.File(root()).listFiles()).convert((index, file) -> {", FullName.TS);
+                            addLnTag(sb, "            if (filter.check(file.getName())) {");
+                            addLnTag(sb, "                return [label_txt](file.getName());", info.fieldFullName);
+                            addLnTag(sb, "            }");
+                            addLnTag(sb, "            return null;");
+                            addLnTag(sb, "        });");
+                            addLnTag(sb, "    }");
+                        }
                     }
 
 
