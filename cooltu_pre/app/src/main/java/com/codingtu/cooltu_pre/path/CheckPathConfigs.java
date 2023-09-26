@@ -5,6 +5,7 @@ import com.codingtu.cooltu.processor.annotation.path.DirPath;
 import com.codingtu.cooltu.processor.annotation.path.FilePath;
 import com.codingtu.cooltu.processor.annotation.path.Paths;
 import com.codingtu.cooltu_pre.bean.User;
+import com.codingtu.cooltu_pre.path.filter.LabelFilter;
 
 @Paths(name = "check", path = "EnvCheckData/tasks/{company}/{taskName}")
 public class CheckPathConfigs {
@@ -45,10 +46,11 @@ public class CheckPathConfigs {
     @DirPath(parent = "ExtraInfo", dirName = "DeleteLabel", fieldName = "DeleteLabel")
     String ExtraInfoDeleteLabel;
 
-    @DirPath(parent = "ExtraInfoDeleteLabel", dirName = "{labelName}", fieldName = "label")
+    @DirPath(parent = "ExtraInfoDeleteLabel", dirName = "{labelName}", fieldName = "label", filter = LabelFilter.class)
     String ExtraInfoDeleteLabelLabel;
 
-    @DirPath(dirName = "{labelName}")
+
+    @DirPath(dirName = "{labelName}", filter = LabelFilter.class)
     String label;
 
     @FilePath(
@@ -56,7 +58,8 @@ public class CheckPathConfigs {
             fileName = "{labelName}",
             fieldName = "label",
             fileType = FileType.TXT,
-            beanClass = User.class)
+            beanClass = User.class,
+            filter = LabelFilter.class)
     String labelTxt;
 
     @FilePath(

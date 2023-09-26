@@ -1,5 +1,6 @@
 package com.codingtu.cooltu.processor.lib.ls;
 
+import com.codingtu.cooltu.lib4j.data.bean.KV;
 import com.codingtu.cooltu.lib4j.ts.Ts;
 import com.codingtu.cooltu.lib4j.tools.CountTool;
 import com.codingtu.cooltu.processor.lib.tools.ElementTools;
@@ -38,6 +39,14 @@ public class TypeLs {
             String type = ElementTools.getType(ve);
             String name = ElementTools.simpleName(ve);
             eachType.each(position, ve, type, name);
+            return false;
+        });
+    }
+
+
+    public static void lsKvs(List<KV<String, String>> ps, final EachType eachType) {
+        Ts.ls(ps, (position, kv) -> {
+            eachType.each(position, kv.k, kv.v);
             return false;
         });
     }

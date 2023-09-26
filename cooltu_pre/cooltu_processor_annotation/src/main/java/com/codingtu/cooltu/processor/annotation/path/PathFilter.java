@@ -6,14 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.SOURCE)
-@Target(ElementType.FIELD)
-public @interface DirPath {
-    String parent() default "root";
-
-    String dirName() default "";
-
-    String fieldName() default "";
-
-    Class filter() default Void.class;
+@Target(ElementType.TYPE)
+public @interface PathFilter {
 
 }

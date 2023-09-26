@@ -101,6 +101,13 @@ public class PathsDeal extends BaseDeal {
             }
         });
         info.isVoidBean = ClassTool.isVoid(info.beanClass);
+        info.filter = ClassTool.getAnnotationClass(new ClassTool.AnnotationClassGetter() {
+            @Override
+            public Object get() {
+                return file.filter();
+            }
+        });
+        info.isFilter = !ClassTool.isVoid(info.filter);
 
 
         parentModel.addFile(info);
@@ -129,6 +136,13 @@ public class PathsDeal extends BaseDeal {
         dirInfo.javaName = basePathJavaInfo.name;
         dirInfo.fieldName = fieldName;
         dirInfo.dirName = StringTool.isBlank(dir.dirName()) ? kv.v : dir.dirName();
+        dirInfo.filter = ClassTool.getAnnotationClass(new ClassTool.AnnotationClassGetter() {
+            @Override
+            public Object get() {
+                return dir.filter();
+            }
+        });
+        dirInfo.isFilter = !ClassTool.isVoid(dirInfo.filter);
 
         parentModel.addDir(dirInfo);
 

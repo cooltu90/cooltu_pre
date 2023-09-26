@@ -4,16 +4,21 @@ import com.codingtu.cooltu.constant.FileContentType;
 import com.codingtu.cooltu.constant.FullName;
 import com.codingtu.cooltu.constant.Pkg;
 import com.codingtu.cooltu.lib4j.data.bean.JavaInfo;
+import com.codingtu.cooltu.lib4j.data.bean.KV;
 import com.codingtu.cooltu.lib4j.file.delete.FileDeleter;
 import com.codingtu.cooltu.lib4j.tools.StringTool;
 import com.codingtu.cooltu.lib4j.ts.Ts;
 import com.codingtu.cooltu.lib4j.ts.impl.BaseTs;
+import com.codingtu.cooltu.lib4j.ts.impl.basic.TListTs;
 import com.codingtu.cooltu.processor.annotation.tools.To;
 import com.codingtu.cooltu.processor.lib.bean.DirPathInfo;
 import com.codingtu.cooltu.processor.lib.bean.FilePathInfo;
+import com.codingtu.cooltu.processor.lib.bean.PathFilterInfo;
 import com.codingtu.cooltu.processor.lib.log.Logs;
 import com.codingtu.cooltu.processor.lib.tools.NameTools;
+import com.codingtu.cooltu.processor.lib.tools.ParamTools;
 import com.codingtu.cooltu.processor.modelinterface.PathModelInterface;
+import com.codingtu.cooltu.processor.worker.deal.PathFilterDeal;
 import com.codingtu.cooltu.processor.worker.deal.PathsDeal;
 import com.codingtu.cooltu.processor.worker.model.base.BaseModel;
 
@@ -241,6 +246,41 @@ public class PathModel extends BaseModel implements PathModelInterface {
                     addLnTag(sb, "                        + addPrexSeparator([labelName])", param);
                     addLnTag(sb, "        );");
                     addLnTag(sb, "    }");
+
+                    if (info.isFilter) {
+                        PathFilterInfo filterInfo = PathFilterDeal.map.get(info.filter);
+
+                        StringBuilder paramSb = new StringBuilder();
+                        StringBuilder filterSetSb = new StringBuilder();
+
+                        Ts.ls(filterInfo.params, new BaseTs.EachTs<KV<String, String>>() {
+                            @Override
+                            public boolean each(int position, KV<String, String> kv) {
+                                if (position != 0) {
+                                    paramSb.append(", ");
+                                }
+                                paramSb.append(kv.k).append(" ").append(kv.v);
+
+                                addLnTag(filterSetSb, "        filter.[type] = [type];", kv.v, kv.v);
+
+                                return false;
+                            }
+                        });
+
+                        addLnTag(sb, "    public [List]<[CheckLabelPath]> [label]List([params]) {"
+                                , FullName.T_LIST_TS, info.javaName, info.fieldName, paramSb.toString());
+                        addLnTag(sb, "        [LabelFilter] filter = new [LabelFilter]();", info.filter, info.filter);
+                        addLnTag(sb, filterSetSb.toString());
+
+                        addLnTag(sb, "        return [Ts].ts(new java.io.File(root()).listFiles()).convert((index, file) -> {", FullName.TS);
+                        addLnTag(sb, "            if (filter.check(file.getName())) {");
+                        addLnTag(sb, "                return [label](file.getName());", info.fieldName);
+                        addLnTag(sb, "            }");
+                        addLnTag(sb, "            return null;");
+                        addLnTag(sb, "        });");
+                        addLnTag(sb, "    }");
+                    }
+
                 }
                 return false;
             }
@@ -255,11 +295,11 @@ public class PathModel extends BaseModel implements PathModelInterface {
                     Object[] paramParams = null;
                     String fullName = null;
                     String cutParam = cutParam(info.fileName);
+                    String fileClass = null;
 
                     if (!info.isVoidBean) {
                         fullName = FullName.PATH_BEAN_FILE;
-                        methodLine = "    public [PathBeanFile]<[User]> [handle_jpg](String [labelName]) {";
-                        methodParams = new Object[]{fullName, info.beanClass, info.fieldFullName, cutParam};
+                        fileClass = fullName + "<" + info.beanClass + ">";
                         paramLine = "                , \"[txt]\", [className].class";
                         paramParams = new Object[]{info.file.fileType(), info.beanClass};
                     } else {
@@ -273,19 +313,56 @@ public class PathModel extends BaseModel implements PathModelInterface {
                             return false;
                         }
 
-                        methodLine = "    public [PathTextFile] [handle_jpg](String [labelName]) {";
-                        methodParams = new Object[]{fullName, info.fieldFullName, cutParam};
+                        fileClass = fullName;
                         paramLine = "                , \"[txt]\"";
                         paramParams = new Object[]{info.file.fileType()};
                     }
 
-                    addLnTag(sb, methodLine, methodParams);
+                    addLnTag(sb, "    public [PathTextFile] [handle_jpg](String [labelName]) {"
+                            , fileClass, info.fieldFullName, cutParam);
                     addLnTag(sb, "        return new [PathBeanFile](", fullName);
                     addLnTag(sb, "                this.root");
                     addLnTag(sb, "                        + addPrexSeparator([labelName] + \"[.txt]\")", cutParam, info.fileType);
                     addLnTag(sb, paramLine, paramParams);
                     addLnTag(sb, "        );");
                     addLnTag(sb, "    }");
+
+
+                    if (info.isFilter) {
+                        PathFilterInfo filterInfo = PathFilterDeal.map.get(info.filter);
+
+                        StringBuilder paramSb = new StringBuilder();
+                        StringBuilder filterSetSb = new StringBuilder();
+
+                        Ts.ls(filterInfo.params, new BaseTs.EachTs<KV<String, String>>() {
+                            @Override
+                            public boolean each(int position, KV<String, String> kv) {
+                                if (position != 0) {
+                                    paramSb.append(", ");
+                                }
+                                paramSb.append(kv.k).append(" ").append(kv.v);
+
+                                addLnTag(filterSetSb, "        filter.[type] = [type];", kv.v, kv.v);
+
+                                return false;
+                            }
+                        });
+
+                        addLnTag(sb, "    public [TListTs]<[PathBeanFile<User>]> [label_txt]_list([String type]) {"
+                                , FullName.T_LIST_TS, fileClass, info.fieldFullName, paramSb.toString());
+                        addLnTag(sb, "        [LabelFilter] filter = new [LabelFilter]();", info.filter, info.filter);
+                        addLnTag(sb, filterSetSb.toString());
+
+                        addLnTag(sb, "        return [Ts].ts(new java.io.File(root()).listFiles()).convert((index, file) -> {", FullName.TS);
+                        addLnTag(sb, "            if (filter.check(file.getName())) {");
+                        addLnTag(sb, "                return [label_txt](file.getName());", info.fieldFullName);
+                        addLnTag(sb, "            }");
+                        addLnTag(sb, "            return null;");
+                        addLnTag(sb, "        });");
+                        addLnTag(sb, "    }");
+                    }
+
+
                 }
                 return false;
             }

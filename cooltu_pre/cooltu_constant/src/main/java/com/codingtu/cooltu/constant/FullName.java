@@ -42,6 +42,7 @@ public class FullName {
     public static final String PATH_BEAN_FILE = "com.codingtu.cooltu.lib4a.path.PathBeanFile";
     public static final String PATH_TEXT_FILE = "com.codingtu.cooltu.lib4a.path.PathTextFile";
     public static final String PATH_IMAGE_FILE = "com.codingtu.cooltu.lib4a.path.PathImageFile";
+    public static final String T_LIST_TS = "com.codingtu.cooltu.lib4j.ts.impl.basic.TListTs";
     //不变的
     public static final String INT = "int";
     public static final String FLOAT = "float";

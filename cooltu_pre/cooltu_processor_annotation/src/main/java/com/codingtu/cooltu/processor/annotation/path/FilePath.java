@@ -22,4 +22,6 @@ public @interface FilePath {
     String fileName() default "";
 
     Class beanClass() default Void.class;
+
+    Class filter() default Void.class;
 }

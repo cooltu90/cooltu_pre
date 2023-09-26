@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.lang.model.element.VariableElement;
 
+import com.codingtu.cooltu.lib4j.data.bean.KV;
 import com.codingtu.cooltu.processor.lib.ls.EachType;
 import com.codingtu.cooltu.processor.lib.ls.TypeLs;
 
@@ -32,6 +33,7 @@ public class Param {
             }
         });
     }
+
 
     //, String name, double money
     public void add(int position, String type, String name) {

@@ -1,5 +1,7 @@
 package com.codingtu.cooltu.lib4j.fake;
 
+import com.codingtu.cooltu.lib4j.tools.OtherTool;
+
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -272,6 +274,37 @@ public class Fake {
             ints[i] = i;
         }
         return ints;
+    }
+
+    /**************************************************
+     *
+     *
+     *
+     **************************************************/
+    public static <E> E getT(Inject<E> tt) {
+        E t = tt.newT();
+        tt.inject(t);
+        return t;
+    }
+
+    public static <E> List<E> getTs(int size, Inject<E> tt) {
+        ArrayList<E> ts = new ArrayList<E>();
+        for (int i = 0; i < size; i++) {
+            ts.add(getT(tt));
+        }
+        return ts;
+    }
+
+    public static abstract class Inject<E> {
+        E newT() {
+            try {
+                return ((Class<E>) OtherTool.getParameterizedType(this, 0)).newInstance();
+            } catch (Exception e) {
+                return null;
+            }
+        }
+
+        public abstract void inject(E t);
     }
 
 }
