@@ -40,12 +40,28 @@ public final class ImageGetter implements PermissionBack, OnActBack {
     private ImageGetter() {
     }
 
-    public static void fromCamera(Activity act, ImageGetterBack back) {
+    public static void getPicFromCamera(Activity act, ImageGetterBack back) {
         new ImageGetter().getPicByCamera(act, back);
     }
 
-    public static void fromGallery(Activity act, ImageGetterBack back) {
+    public static void getPicFromGallery(Activity act, ImageGetterBack back) {
         new ImageGetter().getPicByGallery(act, back);
+    }
+
+    public static void getVideoFromCamera(Activity act, ImageGetterBack back) {
+        new ImageGetter().getVideoByCamera(act, back);
+    }
+
+    public static void getVideoFromGallery(Activity act, ImageGetterBack back) {
+        new ImageGetter().getVideoByGallery(act, back);
+    }
+
+    private void getVideoByCamera(Activity act, ImageGetterBack back) {
+        from(act, back, CoreRequestCode.GET_VIDEO_BY_CAMERA);
+    }
+
+    private void getVideoByGallery(Activity act, ImageGetterBack back) {
+        from(act, back, CoreRequestCode.GET_VIDEO_BY_GALLERY);
     }
 
     private void getPicByCamera(Activity act, ImageGetterBack back) {
@@ -74,6 +90,10 @@ public final class ImageGetter implements PermissionBack, OnActBack {
                 getPicByCamera();
             } else if (requestCode == CoreRequestCode.GET_PIC_BY_GALLERY) {
                 getPicByGallery();
+            } else if (requestCode == CoreRequestCode.GET_VIDEO_BY_CAMERA) {
+                getVideoByCamera();
+            } else if (requestCode == CoreRequestCode.GET_VIDEO_BY_GALLERY) {
+                getVideoByGallery();
             } else {
                 clear();
             }
@@ -89,15 +109,28 @@ public final class ImageGetter implements PermissionBack, OnActBack {
     }
 
     private void getPicByGallery() {
-//        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-//        intent.setType("image/*");
-//        act.startActivityForResult(intent, CoreRequestCode.GET_PIC_BY_GALLERY);
+        getByGallery("image/*", CoreRequestCode.GET_PIC_BY_GALLERY);
+    }
+
+    private void getVideoByGallery() {
+        getByGallery("video/*", CoreRequestCode.GET_VIDEO_BY_GALLERY);
+    }
+
+    private void getByGallery(String type, int code) {
         Intent intentToPickPic = new Intent(Intent.ACTION_PICK, null);
-        intentToPickPic.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-        act.startActivityForResult(intentToPickPic, CoreRequestCode.GET_PIC_BY_GALLERY);
+        intentToPickPic.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, type);
+        act.startActivityForResult(intentToPickPic, code);
     }
 
     private void getPicByCamera() {
+        getByCamera(MediaStore.ACTION_IMAGE_CAPTURE, ".jpg", CoreRequestCode.GET_PIC_BY_CAMERA);
+    }
+
+    private void getVideoByCamera() {
+        getByCamera(MediaStore.ACTION_VIDEO_CAPTURE, ".mp4", CoreRequestCode.GET_VIDEO_BY_CAMERA);
+    }
+
+    private void getByCamera(String type, String suffix, int code) {
         try {
             File dir = new File(
                     Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + CoreConfigs.configs()
@@ -105,19 +138,19 @@ public final class ImageGetter implements PermissionBack, OnActBack {
             if (!dir.exists()) {
                 dir.mkdirs();
             }
-            outputImage = new File(dir, System.currentTimeMillis() + ".jpg");
+            outputImage = new File(dir, System.currentTimeMillis() + suffix);
             //            outputImage = new File(App.APP.getExternalCacheDir(), System.currentTimeMillis() + ".jpg");
             if (!outputImage.exists()) {
                 outputImage.createNewFile();
             }
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            Intent intent = new Intent(type);
             if (Build.VERSION.SDK_INT >= 24) {
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider
                         .getUriForFile(act, CoreConfigs.configs().getImageGetterFileProvider(), outputImage));
             } else {
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(outputImage));
             }
-            act.startActivityForResult(intent, CoreRequestCode.GET_PIC_BY_CAMERA);
+            act.startActivityForResult(intent, code);
         } catch (Exception e) {
             act = null;
             imageBack(null);
@@ -143,8 +176,12 @@ public final class ImageGetter implements PermissionBack, OnActBack {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == CoreRequestCode.GET_PIC_BY_CAMERA) {
-                cameraBack();
+                cameraPicBack();
+            } else if (requestCode == CoreRequestCode.GET_VIDEO_BY_CAMERA) {
+                cameraVideoBack();
             } else if (requestCode == CoreRequestCode.GET_PIC_BY_GALLERY) {
+                galleryBack(data);
+            } else if (requestCode == CoreRequestCode.GET_VIDEO_BY_GALLERY) {
                 galleryBack(data);
             }
         } else if (resultCode == Activity.RESULT_CANCELED) {
@@ -153,7 +190,18 @@ public final class ImageGetter implements PermissionBack, OnActBack {
         }
     }
 
-    private void cameraBack() {
+    private void cameraPicBack() {
+        if (outputImage != null) {
+            ImageTools.updateAlbum(outputImage);
+            String absolutePath = outputImage.getAbsolutePath();
+            imageBack(absolutePath);
+        } else {
+            imageBack(null);
+        }
+        clear();
+    }
+
+    private void cameraVideoBack() {
         if (outputImage != null) {
             ImageTools.updateAlbum(outputImage);
             String absolutePath = outputImage.getAbsolutePath();

@@ -12,7 +12,7 @@ public class Configs extends CoreConfigs {
 
     @Override
     public String getImageGetterFileProvider() {
-        return null;
+        return "com.codingtu.cooltu_pre.fileprovider";
     }
 
     @Override
