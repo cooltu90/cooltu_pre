@@ -30,6 +30,12 @@ public class TestActivity extends TestActivityBase {
     @Override
     public void tvClick() {
         super.tvClick();
+        ImageGetter.getPicFromCamera(getThis(), new ImageGetter.ImageGetterBack() {
+            @Override
+            public void imageBack(String image) {
+                Logs.i(image);
+            }
+        });
     }
 
     @Override

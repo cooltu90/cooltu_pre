@@ -79,8 +79,21 @@ public final class ImageGetter implements PermissionBack, OnActBack {
             ((CoreUiInterface) act).addPermissionBack(this);
             ((CoreUiInterface) act).addOnActBack(this);
         }
-        PermissionTool.check(act, code, CoreRequestCode.GET_PIC_BY_CAMERA == code ? Manifest.permission.CAMERA :
-                Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        switch (code) {
+            case CoreRequestCode.GET_PIC_BY_CAMERA:
+                PermissionTool.check(act, code, Manifest.permission.CAMERA);
+                break;
+            case CoreRequestCode.GET_VIDEO_BY_CAMERA:
+                PermissionTool.check(act, code, Manifest.permission.CAMERA);
+                break;
+            case CoreRequestCode.GET_PIC_BY_GALLERY:
+                PermissionTool.check(act, code, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                break;
+            case CoreRequestCode.GET_VIDEO_BY_GALLERY:
+                PermissionTool.check(act, code, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                break;
+        }
+
     }
 
     @Override
@@ -175,14 +188,16 @@ public final class ImageGetter implements PermissionBack, OnActBack {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == CoreRequestCode.GET_PIC_BY_CAMERA) {
-                cameraPicBack();
-            } else if (requestCode == CoreRequestCode.GET_VIDEO_BY_CAMERA) {
-                cameraVideoBack();
-            } else if (requestCode == CoreRequestCode.GET_PIC_BY_GALLERY) {
-                galleryBack(data);
-            } else if (requestCode == CoreRequestCode.GET_VIDEO_BY_GALLERY) {
-                galleryBack(data);
+
+            switch (requestCode) {
+                case CoreRequestCode.GET_PIC_BY_CAMERA:
+                case CoreRequestCode.GET_VIDEO_BY_CAMERA:
+                    cameraBack();
+                    break;
+                case CoreRequestCode.GET_PIC_BY_GALLERY:
+                case CoreRequestCode.GET_VIDEO_BY_GALLERY:
+                    galleryBack(data);
+                    break;
             }
         } else if (resultCode == Activity.RESULT_CANCELED) {
             imageBack(null);
@@ -190,18 +205,7 @@ public final class ImageGetter implements PermissionBack, OnActBack {
         }
     }
 
-    private void cameraPicBack() {
-        if (outputImage != null) {
-            ImageTools.updateAlbum(outputImage);
-            String absolutePath = outputImage.getAbsolutePath();
-            imageBack(absolutePath);
-        } else {
-            imageBack(null);
-        }
-        clear();
-    }
-
-    private void cameraVideoBack() {
+    private void cameraBack() {
         if (outputImage != null) {
             ImageTools.updateAlbum(outputImage);
             String absolutePath = outputImage.getAbsolutePath();
