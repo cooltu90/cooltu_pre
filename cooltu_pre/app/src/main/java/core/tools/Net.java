@@ -13,6 +13,7 @@ public class Net {
 
     private static final String GET_OBJ = "getObjBack";
     private static final String ADD_OBJ = "addObjBack";
+    private static final String ADD_OBJ1 = "addObj1Back";
     private static final String GET_USER = "getUserBack";
 
 
@@ -61,6 +62,20 @@ public class Net {
                 );
             }
         }, ADD_OBJ, BASE_URL_TEST_API_ADD_OBJ, params);
+    }
+
+    public static API addObj1() {
+
+        return NetTool.api(new CreateApi() {
+            @Override
+            public Flowable<Result<ResponseBody>>
+            create(Retrofit retrofit, CoreSendParams ps) {
+
+                return retrofit.create(core.tools.net.api.TestApiService.class).addObj1(
+
+                );
+            }
+        }, ADD_OBJ1, BASE_URL_TEST_API, null);
     }
 
     public static API getUser(java.util.List<com.codingtu.cooltu_pre.bean.MyLabel> labels) {

@@ -17,7 +17,7 @@ import retrofit2.adapter.rxjava2.Result;
 
 import com.codingtu.cooltu.lib4a.permission.PermissionBack;
 
-public abstract class MainActivityBase extends com.codingtu.cooltu.lib4a.act.CoreActivity implements View.OnClickListener, NetBackI, PermissionBack {
+public abstract class ConnectActivityBase extends com.codingtu.cooltu.lib4a.act.CoreActivity implements View.OnClickListener, NetBackI, PermissionBack {
 
     protected int fromAct;
 
@@ -27,7 +27,7 @@ public abstract class MainActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(com.codingtu.cooltu_pre.R.layout.activity_main);
+        setContentView(com.codingtu.cooltu_pre.R.layout.activity_connect);
         Intent data = getIntent();
         fromAct = core.tools.Pass.fromAct(data);
 
@@ -75,13 +75,9 @@ public abstract class MainActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
 
     @Override
     public void back(int requestCode, String[] permissions, int[] grantResults) {
-        if (requestCode == core.tools.Permissions.CODE_CHECK) {
-            check(com.codingtu.cooltu.lib4a.permission.PermissionTool.allow(grantResults));
-        }
 
     }
 
-    public void check(boolean isAllow) {}
 
 
     @Override

@@ -15,5 +15,9 @@ public interface TestApiService {
     Flowable<Result<ResponseBody>> addObj(
             @retrofit2.http.Body okhttp3.RequestBody body
     );
+    @retrofit2.http.GET("/addObj1")
+    Flowable<Result<ResponseBody>> addObj1(
+
+    );
 
 }

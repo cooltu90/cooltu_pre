@@ -9,6 +9,8 @@ import androidx.annotation.RequiresApi;
 import com.codingtu.cooltu.lib4a.connect.ConnectTool;
 import com.codingtu.cooltu.processor.annotation.permission.Permission;
 import com.codingtu.cooltu.processor.annotation.ui.ActBase;
+import com.codingtu.cooltu_pre.connect.ConnectDeviceType;
+import com.codingtu.cooltu_pre.connect.ConnectType;
 import com.codingtu.cooltu_pre.path.test.CheckPath;
 
 import core.actbase.MainActivityBase;
@@ -37,8 +39,12 @@ public class MainActivity extends MainActivityBase {
             Manifest.permission.BLUETOOTH_SCAN,
             Manifest.permission.BLUETOOTH_CONNECT,
     })
-    public void check() {
-        ActStart.testActivity(this, "id", "lisi", 100, 10);
+    public void check(boolean isAllow) {
+//        ActStart.testActivity(this, "id", "lisi", 100, 10);
+
+        ConnectTool.cacheConnectDeviceBaseData(ConnectType.UFO, ConnectDeviceType.RF_CRAZY, "DCWIFI", "92:38:C5:92:5C:74");
+
+        ActStart.connectActivity(this);
         finishToNewPage();
     }
 }

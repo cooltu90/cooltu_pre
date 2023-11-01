@@ -73,9 +73,20 @@ public abstract class WelcomeActivityBase extends com.codingtu.cooltu.lib4a.act.
 
     @Override
     public void accept(String code, Result<ResponseBody> result, CoreSendParams params, List objs) {
+        if ("getObjBack".equals(code)) {
+            core.tools.net.back.GetObjBack back = new core.tools.net.back.GetObjBack() {
+                @Override
+                public void accept(String code, Result<ResponseBody> result, CoreSendParams params, List objs) {
+                    super.accept(code, result, params, objs);
+                    getObjBack(new com.codingtu.cooltu_pre.net.mock.GetObjMock().user);
+                }
+            };
+            back.accept(code, result, params, objs);
+        }
 
     }
 
+    public void getObjBack(com.codingtu.cooltu_pre.bean.User user) {}
 
 
 

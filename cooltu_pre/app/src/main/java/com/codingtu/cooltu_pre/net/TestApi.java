@@ -20,4 +20,7 @@ public interface TestApi {
 
     @POST(value = "/addObj", isJsonBody = true, baseUrl = "https://wwww.sddfsdfsd.com")
     public String addObj(String name, int age);
+
+    @GET("/addObj1")
+    public String addObj1();
 }

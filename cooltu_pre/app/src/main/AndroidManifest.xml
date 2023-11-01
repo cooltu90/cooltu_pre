@@ -65,6 +65,9 @@
         <activity
             android:name="com.codingtu.cooltu_pre.ui.NewFormActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="com.codingtu.cooltu_pre.ui.ConnectActivity"
+            android:screenOrientation="portrait" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

@@ -2,13 +2,16 @@ package com.codingtu.cooltu_pre.ui;
 
 import android.graphics.Color;
 
+import com.codingtu.cooltu.processor.annotation.net.NetBack;
 import com.codingtu.cooltu.processor.annotation.tools.To;
 import com.codingtu.cooltu.processor.annotation.ui.ActBase;
 import com.codingtu.cooltu.processor.annotation.ui.ClickView;
 import com.codingtu.cooltu_pre.R;
+import com.codingtu.cooltu_pre.bean.User;
 
 import core.actbase.WelcomeActivityBase;
 import core.actres.WelcomeActivityRes;
+import core.tools.Net;
 
 @To(WelcomeActivityRes.class)
 @ActBase(layout = R.layout.activity_welcome)
@@ -29,6 +32,13 @@ public class WelcomeActivity extends WelcomeActivityBase {
             cv.setBackgroundColor(Color.parseColor("#ffffff"));
         }
         count++;
+
+        Net.getObj("", "").main(this);
+    }
+
+    @NetBack(mock = true)
+    public void getObjBack(User user) {
+
     }
 
 }
