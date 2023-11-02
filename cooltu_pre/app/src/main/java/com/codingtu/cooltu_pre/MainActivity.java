@@ -9,6 +9,7 @@ import androidx.annotation.RequiresApi;
 import com.codingtu.cooltu.lib4a.connect.ConnectTool;
 import com.codingtu.cooltu.processor.annotation.permission.Permission;
 import com.codingtu.cooltu.processor.annotation.ui.ActBase;
+import com.codingtu.cooltu.processor.annotation.ui.ClickView;
 import com.codingtu.cooltu_pre.connect.ConnectDeviceType;
 import com.codingtu.cooltu_pre.connect.ConnectType;
 import com.codingtu.cooltu_pre.path.test.CheckPath;
@@ -24,7 +25,6 @@ public class MainActivity extends MainActivityBase {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Permissions.check(this);
-        CheckPath checkPath = CheckPath.obtain("", "");
     }
 
 
@@ -40,11 +40,17 @@ public class MainActivity extends MainActivityBase {
             Manifest.permission.BLUETOOTH_CONNECT,
     })
     public void check(boolean isAllow) {
-//        ActStart.testActivity(this, "id", "lisi", 100, 10);
-
         ConnectTool.cacheConnectDeviceBaseData(ConnectType.UFO, ConnectDeviceType.RF_CRAZY, "DCWIFI", "92:38:C5:92:5C:74");
+        toast("完成权限");
+    }
 
+    @ClickView(R.id.bt1)
+    public void bt1Click() {
         ActStart.connectActivity(this);
-        finishToNewPage();
+    }
+
+    @ClickView(R.id.bt2)
+    public void bt2Click() {
+        ActStart.connectActivity(this);
     }
 }

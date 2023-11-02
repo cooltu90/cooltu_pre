@@ -25,7 +25,7 @@ public class RfCrazy extends WifiConnectDevice {
 
     @Override
     public ResponseData[] parseResponseDatas(byte[] bytes) {
-        Logs.i("read");
+//        Logs.i("read");
         return null;
     }
 }

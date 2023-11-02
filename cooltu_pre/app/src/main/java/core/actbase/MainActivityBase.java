@@ -21,6 +21,8 @@ public abstract class MainActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
 
     protected int fromAct;
 
+    public android.widget.Button bt1;
+    public android.widget.Button bt2;
 
 
     @Override
@@ -31,7 +33,11 @@ public abstract class MainActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
         Intent data = getIntent();
         fromAct = core.tools.Pass.fromAct(data);
 
+        bt1 = findViewById(com.codingtu.cooltu_pre.R.id.bt1);
+        bt2 = findViewById(com.codingtu.cooltu_pre.R.id.bt2);
 
+        bt1.setOnClickListener(this);
+        bt2.setOnClickListener(this);
 
 
 
@@ -50,9 +56,21 @@ public abstract class MainActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
     public void onClick(View view) {
 
         switch (view.getId()) {
+            case com.codingtu.cooltu_pre.R.id.bt1:
+                bt1Click(
+
+                );
+                break;
+            case com.codingtu.cooltu_pre.R.id.bt2:
+                bt2Click(
+
+                );
+                break;
 
         }
     }
+    protected void bt1Click() {}
+    protected void bt2Click() {}
 
 
     public android.view.View.OnClickListener getOnClick() {

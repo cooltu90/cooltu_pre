@@ -26,9 +26,13 @@ public class ConnectActivity extends ConnectActivityBase implements ConnectCallB
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         ConnectTool.connect(this, ConnectType.UFO, this);
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ConnectTool.removeCallBack(ConnectType.UFO, this);
     }
 
     @Override

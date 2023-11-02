@@ -33,7 +33,7 @@ public class ConnectTool {
         return CoreConnectConfigs.configs();
     }
 
-    private static ListValueMap<Integer, ConnectCallBack> callbacks() {
+    public static ListValueMap<Integer, ConnectCallBack> callbacks() {
         if (CALLBACKS == null) {
             CALLBACKS = new ListValueMap<>();
         }
@@ -47,7 +47,7 @@ public class ConnectTool {
         return PREPARED_DEVICES;
     }
 
-    private static Map<Integer, ConnectDevice> runningDevices() {
+    public static Map<Integer, ConnectDevice> runningDevices() {
         if (RUNNING_DEVICES == null) {
             RUNNING_DEVICES = new HashMap<>();
         }
@@ -107,6 +107,7 @@ public class ConnectTool {
     }
 
     private static void createService(Context context) {
+        Logs.i("createService");
         Intent intent = new Intent(context, ConnectService.class);
         context.startService(intent);
     }
