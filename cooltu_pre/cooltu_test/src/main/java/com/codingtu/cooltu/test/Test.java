@@ -30,6 +30,5 @@ public class Test {
                 new User("孟昭阳", 34),
                 new User("王柳", 66),
         };
-
     }
 }

@@ -34,6 +34,8 @@ public class WelcomeActivity extends WelcomeActivityBase {
         count++;
 
         Net.getObj("", "").main(this);
+
+
     }
 
     @NetBack(mock = true)
