@@ -76,7 +76,8 @@ public class NetTool {
         for (int i = 0; i < url.querySize(); i++) {
             params.add(url.queryParameterName(i), url.queryParameterValue(i));
         }
-        Logs.i("getParamsGet:" + params);
+        if (CoreConfigs.configs().isLogHttpConnect())
+            Logs.i("getParamsGet:" + params);
         return params;
     }
 
@@ -127,7 +128,8 @@ public class NetTool {
             } catch (Exception e) {
             }
         }
-        Logs.i("getParamsPost:" + params);
+        if (CoreConfigs.configs().isLogHttpConnect())
+            Logs.i("getParamsPost:" + params);
         return params;
     }
 
