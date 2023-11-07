@@ -410,5 +410,8 @@ public class VersionInfo {
      * v1.1.37
      * +++修改download的OnFinish方法
      *
+     * v1.1.38
+     * +++修改unzip中的finish事件
+     *
      **************************************************/
 }

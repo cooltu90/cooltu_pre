@@ -185,7 +185,8 @@ public class UnZip implements OnDestroy {
                                 out.write(buf1, 0, len);
                                 long nowTime = System.currentTimeMillis();
                                 if (nowTime - lastTime > 100) {
-                                    emitter.onNext(currentSize);
+                                    if (currentSize < totalLen)
+                                        emitter.onNext(currentSize);
                                     lastTime = nowTime;
                                 }
                             }
