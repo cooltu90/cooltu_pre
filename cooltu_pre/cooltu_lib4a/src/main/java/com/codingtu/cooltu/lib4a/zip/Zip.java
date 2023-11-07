@@ -44,6 +44,10 @@ public class Zip implements OnDestroy {
         public void onProgress(long totalLen, long zipedLen);
     }
 
+    public static interface OnStart {
+        public void onStart();
+    }
+
 
     /**************************************************
      *
@@ -55,14 +59,26 @@ public class Zip implements OnDestroy {
     private File desc;
     private long totalLen;
     private long zipedLen;
+    private Integer cacheSize;
     private Pass pass;
     private ZipedPathDeal zipedPathDeal;
     private OnProgress onProgress;
     private OnError onError;
     private OnFinish onFinish;
+    private OnStart onStart;
 
     private Zip(File src) {
         this.src = src;
+    }
+
+    @Override
+    public void destroy() {
+        pass = null;
+        zipedPathDeal = null;
+        onProgress = null;
+        onError = null;
+        onFinish = null;
+        onStart = null;
     }
 
     public static Zip src(File src) {
@@ -107,28 +123,46 @@ public class Zip implements OnDestroy {
         return this;
     }
 
+    public Zip cacheSize(int cacheSize) {
+        this.cacheSize = cacheSize;
+        return this;
+    }
+
+
+    public Zip onStart(OnStart onStart) {
+        this.onStart = onStart;
+        return this;
+    }
+
     public void start() {
-        if (desc == null) {
-            desc = new File(src.getAbsolutePath() + FileType.d_ZIP);
-        }
-
-        String zipPath = desc.getAbsolutePath();
-
         if (!src.exists()) {
             if (onError != null)
                 onError.onError(new RuntimeException("没有找到需要压缩打包的文件"));
             return;
         }
 
-        totalLen = getLength(src);
+        if (desc == null) {
+            desc = new File(src.getAbsolutePath() + FileType.d_ZIP);
+        }
 
         if (onProgress != null) {
             onProgress.onProgress(totalLen, 0);
         }
 
+        if (cacheSize == null) {
+            cacheSize = 1024;
+        }
+
+        if (onStart != null) {
+            onStart.onStart();
+        }
+
         Observable.create(new ObservableOnSubscribe<Long>() {
                     @Override
                     public void subscribe(ObservableEmitter<Long> emitter) throws Exception {
+                        String zipPath = desc.getAbsolutePath();
+                        totalLen = getLength(src);
+
                         zip(src, zipPath, emitter);
                         emitter.onNext(totalLen);
                     }
@@ -204,7 +238,7 @@ public class Zip implements OnDestroy {
             }
             out.putNextEntry(new ZipEntry(path));
 
-            byte[] buff = new byte[1024];
+            byte[] buff = new byte[cacheSize];
             int len = 0;
 
             while ((len = input.read(buff)) != -1) {
@@ -247,12 +281,4 @@ public class Zip implements OnDestroy {
         return len;
     }
 
-    @Override
-    public void destroy() {
-        onProgress = null;
-        pass = null;
-        zipedPathDeal = null;
-        onError = null;
-        onFinish = null;
-    }
 }

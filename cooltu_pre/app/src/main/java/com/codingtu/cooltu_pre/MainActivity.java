@@ -8,14 +8,13 @@ import androidx.annotation.RequiresApi;
 
 import com.codingtu.cooltu.lib4a.connect.ConnectTool;
 import com.codingtu.cooltu.lib4a.log.Logs;
+import com.codingtu.cooltu.lib4a.zip.UnZip;
 import com.codingtu.cooltu.lib4a.zip.Zip;
 import com.codingtu.cooltu.processor.annotation.permission.Permission;
 import com.codingtu.cooltu.processor.annotation.ui.ActBase;
 import com.codingtu.cooltu.processor.annotation.ui.ClickView;
 import com.codingtu.cooltu_pre.connect.ConnectDeviceType;
 import com.codingtu.cooltu_pre.connect.ConnectType;
-
-import java.io.File;
 
 import core.actbase.MainActivityBase;
 import core.tools.ActStart;
@@ -45,14 +44,6 @@ public class MainActivity extends MainActivityBase {
     public void check(boolean isAllow) {
         ConnectTool.cacheConnectDeviceBaseData(ConnectType.UFO, ConnectDeviceType.RF_CRAZY, "DCWIFI", "92:38:C5:92:5C:74");
         toast("完成权限");
-
-        Zip.src("/storage/emulated/0/0gp/apps").progress(new Zip.OnProgress() {
-            @Override
-            public void onProgress(long totalLen, long zipedLen) {
-                Logs.i("totalLen:" + totalLen + " zipedLen:" + zipedLen);
-            }
-        }).start();
-
     }
 
     @ClickView(R.id.bt1)
