@@ -407,5 +407,8 @@ public class VersionInfo {
      * v1.1.36
      * +++修改download未destroy的bug
      *
+     * v1.1.37
+     * +++修改download的OnFinish方法
+     *
      **************************************************/
 }

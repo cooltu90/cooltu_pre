@@ -27,7 +27,7 @@ public class Download implements OnDestroy {
     }
 
     public static interface OnFinish {
-        public void onFinish(String path);
+        public void onFinish(File file);
     }
 
 
@@ -158,7 +158,7 @@ public class Download implements OnDestroy {
             @Override
             public void onSuccess(Response<File> response) {
                 if (onFinish != null) {
-                    onFinish.onFinish(file.getAbsolutePath());
+                    onFinish.onFinish(response.body());
                 }
                 destroy();
             }
