@@ -404,5 +404,8 @@ public class VersionInfo {
      * v1.1.35
      * +++修改download，zip和unzip的方法
      *
+     * v1.1.36
+     * +++修改download未destroy的bug
+     *
      **************************************************/
 }

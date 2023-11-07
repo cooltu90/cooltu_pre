@@ -126,8 +126,7 @@ public class UnZip implements OnDestroy {
 
     public void unzip() {
         if (!src.exists()) {
-            if (onError != null)
-                onError.onError(new RuntimeException("没有找到需要解压的文件"));
+            onError(new RuntimeException("没有找到需要解压的文件"));
             return;
         }
 
@@ -215,12 +214,17 @@ public class UnZip implements OnDestroy {
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        if (onError != null) {
-                            onError.onError(throwable);
-                        }
+                        onError(throwable);
                     }
                 });
 
+    }
+
+    private void onError(Throwable throwable) {
+        if (onError != null) {
+            onError.onError(throwable);
+        }
+        destroy();
     }
 
 }

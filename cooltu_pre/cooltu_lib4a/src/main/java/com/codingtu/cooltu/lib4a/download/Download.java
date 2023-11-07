@@ -132,11 +132,13 @@ public class Download implements OnDestroy {
 
     public void download() {
         if (StringTool.isBlank(url)) {
+            onError(new RuntimeException("下载链接为空"));
             return;
         }
 
         if (file == null) {
             if (dir == null) {
+                onError(new RuntimeException("未指定下载保存路径"));
                 return;
             }
             if (StringTool.isBlank(fileName)) {
@@ -158,14 +160,13 @@ public class Download implements OnDestroy {
                 if (onFinish != null) {
                     onFinish.onFinish(file.getAbsolutePath());
                 }
+                destroy();
             }
 
             @Override
             public void onError(Response<File> response) {
                 super.onError(response);
-                if (onError != null) {
-                    onError.onError(response.getException());
-                }
+                Download.this.onError(response.getException());
             }
 
             @Override
@@ -204,6 +205,13 @@ public class Download implements OnDestroy {
         okGo.<File>get(url)
                 .tag(tag)
                 .execute(fileCallback);
+    }
+
+    private void onError(Throwable throwable) {
+        if (onError != null) {
+            onError.onError(throwable);
+        }
+        destroy();
     }
 
 }

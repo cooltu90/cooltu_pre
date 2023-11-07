@@ -136,8 +136,7 @@ public class Zip implements OnDestroy {
 
     public void zip() {
         if (!src.exists()) {
-            if (onError != null)
-                onError.onError(new RuntimeException("没有找到需要压缩打包的文件"));
+            onError(new RuntimeException("没有找到需要压缩打包的文件"));
             return;
         }
 
@@ -186,9 +185,7 @@ public class Zip implements OnDestroy {
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        if (onError != null) {
-                            onError.onError(throwable);
-                        }
+                        onError(throwable);
                     }
                 });
 
@@ -279,6 +276,13 @@ public class Zip implements OnDestroy {
 
         }
         return len;
+    }
+
+    private void onError(Throwable throwable) {
+        if (onError != null) {
+            onError.onError(throwable);
+        }
+        destroy();
     }
 
 }
