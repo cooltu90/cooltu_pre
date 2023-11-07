@@ -7,9 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.RequiresApi;
 
 import com.codingtu.cooltu.lib4a.connect.ConnectTool;
-import com.codingtu.cooltu.lib4a.log.Logs;
-import com.codingtu.cooltu.lib4a.zip.UnZip;
-import com.codingtu.cooltu.lib4a.zip.Zip;
+import com.codingtu.cooltu.lib4a.download.Download;
 import com.codingtu.cooltu.processor.annotation.permission.Permission;
 import com.codingtu.cooltu.processor.annotation.ui.ActBase;
 import com.codingtu.cooltu.processor.annotation.ui.ClickView;
@@ -44,6 +42,13 @@ public class MainActivity extends MainActivityBase {
     public void check(boolean isAllow) {
         ConnectTool.cacheConnectDeviceBaseData(ConnectType.UFO, ConnectDeviceType.RF_CRAZY, "DCWIFI", "92:38:C5:92:5C:74");
         toast("完成权限");
+
+        Download.url("").progress(new Download.OnProgress() {
+            @Override
+            public void onProgress(long totalLen, long currentSize) {
+
+            }
+        }).download();
     }
 
     @ClickView(R.id.bt1)

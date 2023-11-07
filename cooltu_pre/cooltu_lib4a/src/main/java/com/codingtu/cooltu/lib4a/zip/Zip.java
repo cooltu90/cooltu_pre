@@ -129,12 +129,12 @@ public class Zip implements OnDestroy {
     }
 
 
-    public Zip onStart(OnStart onStart) {
+    public Zip start(OnStart onStart) {
         this.onStart = onStart;
         return this;
     }
 
-    public void start() {
+    public void zip() {
         if (!src.exists()) {
             if (onError != null)
                 onError.onError(new RuntimeException("没有找到需要压缩打包的文件"));

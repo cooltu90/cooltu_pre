@@ -401,5 +401,8 @@ public class VersionInfo {
      * v1.1.34
      * +++增加zip和unzip功能
      *
+     * v1.1.35
+     * +++修改download，zip和unzip的方法
+     *
      **************************************************/
 }

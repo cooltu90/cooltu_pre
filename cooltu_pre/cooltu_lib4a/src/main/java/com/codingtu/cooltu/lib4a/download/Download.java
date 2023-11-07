@@ -1,5 +1,6 @@
 package com.codingtu.cooltu.lib4a.download;
 
+import com.codingtu.cooltu.lib4a.act.OnDestroy;
 import com.codingtu.cooltu.lib4a.net.interceptor.HeaderInterceptor;
 import com.codingtu.cooltu.lib4j.tools.StringTool;
 import com.lzy.okgo.OkGo;
@@ -10,22 +11,63 @@ import com.lzy.okgo.model.Response;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
-public class Download {
+public class Download implements OnDestroy {
+
+    public static interface OnProgress {
+        public void onProgress(long totalLen, long currentSize);
+    }
+
+    public static interface OnStart {
+        public void onStart();
+    }
+
+    public static interface OnError {
+        public void onError(Throwable throwable);
+
+    }
+
+    public static interface OnFinish {
+        public void onFinish(String path);
+    }
+
+
+    /**************************************************
+     *
+     *
+     *
+     **************************************************/
 
     private String url;
     private File file;
     private File dir;
     private String fileName;
     private String tag;
-    private DownloadCallBack callBack;
     private Long timeout;
     private HeaderInterceptor headerInterceptor;
+
+    private OnFinish onFinish;
+    private OnError onError;
+    private OnProgress onProgress;
+    private OnStart onStart;
+
+
+    public Download() {
+    }
 
     public static Download url(String url) {
         Download download = new Download();
         download.url = url;
         download.tag = "download";
         return download;
+    }
+
+    @Override
+    public void destroy() {
+        onFinish = null;
+        onError = null;
+        onProgress = null;
+        onStart = null;
+        headerInterceptor = null;
     }
 
     public Download fileDir(String dir) {
@@ -52,28 +94,43 @@ public class Download {
         return this;
     }
 
-    public Download setTag(String tag) {
+    public Download tag(String tag) {
         this.tag = tag;
         return this;
     }
 
-    public Download setTimeout(Long timeout) {
+    public Download timeout(Long timeout) {
         this.timeout = timeout;
         return this;
     }
 
-    public Download setHeaderInterceptor(HeaderInterceptor headerInterceptor) {
+    public Download headerInterceptor(HeaderInterceptor headerInterceptor) {
         this.headerInterceptor = headerInterceptor;
         return this;
     }
 
-    public Download callBack(DownloadCallBack callBack) {
-        this.callBack = callBack;
+    public Download error(OnError onError) {
+        this.onError = onError;
+        return this;
+    }
+
+    public Download finish(OnFinish onFinish) {
+        this.onFinish = onFinish;
+        return this;
+    }
+
+    public Download progress(OnProgress onProgress) {
+        this.onProgress = onProgress;
+        return this;
+    }
+
+    public Download start(OnStart onStart) {
+        this.onStart = onStart;
         return this;
     }
 
 
-    public void start() {
+    public void download() {
         if (StringTool.isBlank(url)) {
             return;
         }
@@ -91,26 +148,34 @@ public class Download {
             fileName = file.getName();
         }
 
+        if (onStart != null) {
+            onStart.onStart();
+        }
 
         FileCallback fileCallback = new FileCallback(dir.getAbsolutePath(), fileName) {
             @Override
             public void onSuccess(Response<File> response) {
-                callBack.onFinish(file.getAbsolutePath());
+                if (onFinish != null) {
+                    onFinish.onFinish(file.getAbsolutePath());
+                }
             }
 
             @Override
             public void onError(Response<File> response) {
                 super.onError(response);
-                callBack.onFail(response.getException());
+                if (onError != null) {
+                    onError.onError(response.getException());
+                }
             }
 
             @Override
             public void downloadProgress(Progress progress) {
                 super.downloadProgress(progress);
-                callBack.onProgress(progress.totalSize, progress.currentSize);
+                if (onProgress != null) {
+                    onProgress.onProgress(progress.totalSize, progress.currentSize);
+                }
             }
         };
-        callBack.onStart();
 
         OkGo okGo = OkGo.getInstance();
         if (timeout != null && headerInterceptor != null) {
