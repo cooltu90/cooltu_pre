@@ -1,8 +1,7 @@
-package com.codingtu.cooltu.lib4a.zip;
+package com.codingtu.cooltu.lib4a.tools;
 
 import com.codingtu.cooltu.constant.Constant;
 import com.codingtu.cooltu.lib4a.act.OnDestroy;
-import com.codingtu.cooltu.lib4a.tools.SDCardTool;
 
 import java.io.File;
 import java.io.FileOutputStream;

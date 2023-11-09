@@ -7,12 +7,15 @@ import android.os.Bundle;
 import androidx.annotation.RequiresApi;
 
 import com.codingtu.cooltu.lib4a.connect.ConnectTool;
-import com.codingtu.cooltu.lib4a.download.Download;
+import com.codingtu.cooltu.lib4a.tools.Download;
+import com.codingtu.cooltu.lib4a.tools.Upload;
 import com.codingtu.cooltu.processor.annotation.permission.Permission;
 import com.codingtu.cooltu.processor.annotation.ui.ActBase;
 import com.codingtu.cooltu.processor.annotation.ui.ClickView;
 import com.codingtu.cooltu_pre.connect.ConnectDeviceType;
 import com.codingtu.cooltu_pre.connect.ConnectType;
+
+import java.io.File;
 
 import core.actbase.MainActivityBase;
 import core.tools.ActStart;
@@ -49,6 +52,8 @@ public class MainActivity extends MainActivityBase {
 
             }
         }).download();
+
+        Upload url = Upload.url("").file("",new File("")).header("","");
     }
 
     @ClickView(R.id.bt1)

@@ -1,4 +1,4 @@
-package com.codingtu.cooltu.lib4a.zip;
+package com.codingtu.cooltu.lib4a.tools;
 
 import com.codingtu.cooltu.constant.Constant;
 import com.codingtu.cooltu.constant.FileType;

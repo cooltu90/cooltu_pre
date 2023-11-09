@@ -413,5 +413,8 @@ public class VersionInfo {
      * v1.1.38
      * +++修改unzip中的finish事件
      *
+     * v1.1.39
+     * ！！！增加Upload，修改Download Zip 和UnZip的包
+     *
      **************************************************/
 }
