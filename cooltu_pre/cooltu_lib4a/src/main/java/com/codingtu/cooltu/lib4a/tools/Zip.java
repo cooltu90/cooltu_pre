@@ -36,7 +36,7 @@ public class Zip implements OnDestroy {
     }
 
     public static interface OnFinish {
-        public void onFinish(long totalLen);
+        public void onFinish(File file);
     }
 
 
@@ -178,7 +178,7 @@ public class Zip implements OnDestroy {
                         if (currentLen == totalLen) {
                             //完成
                             if (onFinish != null) {
-                                onFinish.onFinish(totalLen);
+                                onFinish.onFinish(desc);
                             }
                             destroy();
                         }
