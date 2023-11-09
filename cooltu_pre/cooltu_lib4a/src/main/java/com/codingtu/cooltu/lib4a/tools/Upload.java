@@ -123,8 +123,7 @@ public class Upload implements OnDestroy {
         if (onStart != null) {
             onStart.onStart();
         }
-
-        post.execute(new StringCallback() {
+        post.params(fileKey, file).execute(new StringCallback() {
             @Override
             public void onSuccess(Response<String> response) {
                 if (onFinish != null) {
