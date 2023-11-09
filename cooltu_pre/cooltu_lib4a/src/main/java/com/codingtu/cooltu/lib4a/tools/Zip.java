@@ -104,7 +104,7 @@ public class Zip implements OnDestroy {
         return this;
     }
 
-    public Zip filter(Pass pass) {
+    public Zip pass(Pass pass) {
         this.pass = pass;
         return this;
     }
