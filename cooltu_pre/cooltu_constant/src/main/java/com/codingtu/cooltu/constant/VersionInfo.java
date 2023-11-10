@@ -430,6 +430,8 @@ public class VersionInfo {
      *
      * v1.1.44
      * +++修改LayerView的hidden方法
+     * v1.1.45
+     * +++修改LayerView的hidden方法
      *
      *
      **************************************************/
