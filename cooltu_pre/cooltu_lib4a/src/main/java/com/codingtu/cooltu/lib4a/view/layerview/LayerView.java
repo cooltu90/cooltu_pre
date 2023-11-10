@@ -194,6 +194,9 @@ public abstract class LayerView extends RelativeLayout implements OnDestroy {
     }
 
     public void hidden(LayerListener layerListener) {
+        if (ViewTool.isVisible(this)) {
+            return;
+        }
         if (layerListener != null) {
             this.layerListener = layerListener;
         }

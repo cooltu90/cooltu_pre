@@ -85,6 +85,8 @@ public class ToastDialog implements OnDestroy {
     }
 
     public void hidden() {
-        rlv.hidden();
+        if(ViewTool.isVisible(rlv)){
+            rlv.hidden();
+        }
     }
 }
