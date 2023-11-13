@@ -20,7 +20,7 @@ public class RfCrazy extends WifiConnectDevice {
 
     @Override
     protected String getIp() {
-        return "192.168.59.203";
+        return "192.168.126.166";
     }
 
     @Override

@@ -9,12 +9,14 @@ import com.codingtu.cooltu.lib4a.connect.ConnectTool;
 import com.codingtu.cooltu.lib4a.connect.ResponseData;
 import com.codingtu.cooltu.lib4a.connect.device.ConnectDevice;
 import com.codingtu.cooltu.lib4a.log.Logs;
+import com.codingtu.cooltu.processor.annotation.ui.ClickView;
 import com.codingtu.cooltu_pre.R;
 
 import core.actbase.ConnectActivityBase;
 
 import com.codingtu.cooltu.processor.annotation.tools.To;
 import com.codingtu.cooltu.processor.annotation.ui.ActBase;
+import com.codingtu.cooltu_pre.connect.ConnectDeviceType;
 import com.codingtu.cooltu_pre.connect.ConnectType;
 
 import core.actres.ConnectActivityRes;
@@ -26,6 +28,13 @@ public class ConnectActivity extends ConnectActivityBase implements ConnectCallB
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ConnectTool.connect(this, ConnectType.UFO, this);
+    }
+
+    @ClickView(R.id.bt)
+    public void btClick() {
+        ConnectTool.cacheConnectDeviceBaseData(ConnectType.UFO, ConnectDeviceType.RF_CRAZY, "DCWIFI", "92:38:C5:92:5C:75");
+
         ConnectTool.connect(this, ConnectType.UFO, this);
     }
 
@@ -47,7 +56,7 @@ public class ConnectActivity extends ConnectActivityBase implements ConnectCallB
 
     @Override
     public void connectSuccess(ConnectDevice connectDevice) {
-        Logs.i("connectSuccess");
+        Logs.i("connectSuccess:"+connectDevice.baseData.mac);
     }
 
     @Override
@@ -62,6 +71,6 @@ public class ConnectActivity extends ConnectActivityBase implements ConnectCallB
 
     @Override
     public void disconnect(ConnectDevice connectDevice) {
-
+        Logs.i("disconnect");
     }
 }

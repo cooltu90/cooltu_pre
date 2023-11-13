@@ -12,6 +12,7 @@ import com.codingtu.cooltu.lib4a.R;
 import com.codingtu.cooltu.lib4a.act.CoreUiInterface;
 import com.codingtu.cooltu.lib4a.act.OnDestroy;
 import com.codingtu.cooltu.lib4a.act.WhenKeyDown;
+import com.codingtu.cooltu.lib4a.log.Logs;
 import com.codingtu.cooltu.lib4a.view.attrs.Attrs;
 import com.codingtu.cooltu.lib4a.view.attrs.AttrsTools;
 import com.codingtu.cooltu.lib4a.view.attrs.GetAttrs;

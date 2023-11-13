@@ -45,15 +45,6 @@ public class MainActivity extends MainActivityBase {
     public void check(boolean isAllow) {
         ConnectTool.cacheConnectDeviceBaseData(ConnectType.UFO, ConnectDeviceType.RF_CRAZY, "DCWIFI", "92:38:C5:92:5C:74");
         toast("完成权限");
-
-        Download.url("").progress(new Download.OnProgress() {
-            @Override
-            public void onProgress(long totalLen, long currentSize) {
-
-            }
-        }).download();
-
-        Upload url = Upload.url("").file("",new File("")).header("","");
     }
 
     @ClickView(R.id.bt1)

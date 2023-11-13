@@ -21,6 +21,7 @@ public abstract class ConnectActivityBase extends com.codingtu.cooltu.lib4a.act.
 
     protected int fromAct;
 
+    public android.widget.Button bt;
 
 
     @Override
@@ -31,7 +32,9 @@ public abstract class ConnectActivityBase extends com.codingtu.cooltu.lib4a.act.
         Intent data = getIntent();
         fromAct = core.tools.Pass.fromAct(data);
 
+        bt = findViewById(com.codingtu.cooltu_pre.R.id.bt);
 
+        bt.setOnClickListener(this);
 
 
 
@@ -50,9 +53,15 @@ public abstract class ConnectActivityBase extends com.codingtu.cooltu.lib4a.act.
     public void onClick(View view) {
 
         switch (view.getId()) {
+            case com.codingtu.cooltu_pre.R.id.bt:
+                btClick(
+
+                );
+                break;
 
         }
     }
+    protected void btClick() {}
 
 
     public android.view.View.OnClickListener getOnClick() {
