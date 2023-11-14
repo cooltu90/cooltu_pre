@@ -446,6 +446,9 @@ public class VersionInfo {
      * v1.1.50
      * +++修改LayerView的hidden问题
      *
+     * v1.1.51
+     * +++修改LayerView的hidden问题
+     *
      *
      **************************************************/
 }

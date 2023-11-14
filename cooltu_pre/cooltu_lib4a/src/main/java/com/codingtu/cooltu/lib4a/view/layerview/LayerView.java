@@ -111,6 +111,7 @@ public abstract class LayerView extends RelativeLayout implements OnDestroy {
                 sendEvent(LayerEventType.HIDDEN_FINISHED);
                 ViewTool.gone(LayerView.this);
                 hiddenStatus = LayerEventType.HIDDEN_FINISHED;
+                Logs.i("onAnimationEnd");
             }
 
             @Override
@@ -197,7 +198,7 @@ public abstract class LayerView extends RelativeLayout implements OnDestroy {
     }
 
     public final void hidden(LayerListener layerListener) {
-        if (hiddenStatus == LayerEventType.HIDDEN_FINISHED) {
+        if (hiddenStatus == LayerEventType.HIDDEN_FINISHED && ViewTool.isVisible(this)) {
             hiddenStatus = LayerEventType.HIDDEN_START;
             if (layerListener != null) {
                 this.layerListener = layerListener;

@@ -25,6 +25,7 @@ public abstract class FormActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
     public android.widget.SeekBar seekBar;
     public android.widget.EditText et;
     public android.widget.TextView bt;
+    public com.codingtu.cooltu.lib4a.view.dialogview.EditDialog editDialog;
     public com.codingtu.cooltu_pre.bean.TestForm testForm;
     public boolean initFormBean;
     public BindHandler handler;
@@ -85,9 +86,6 @@ public abstract class FormActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
 
         switch (view.getId()) {
             case com.codingtu.cooltu_pre.R.id.bt:
-                if (!checkTestForm()) {
-                    return;
-                }
                 btClick(
 
                 );
@@ -218,6 +216,32 @@ public abstract class FormActivityBase extends com.codingtu.cooltu.lib4a.act.Cor
 
 
 
+
+
+    protected void showEditDialog(String text ) {
+        if (editDialog == null)
+            editDialog = new com.codingtu.cooltu.lib4a.view.dialogview.EditDialog.Builder(getThis())
+                    .setTitle("输入金额 ")
+                    .setHint("请输入金额")
+                    .setInputType(2)
+                    .setLayout(com.codingtu.cooltu.lib4a.R.layout.default_dialog_edit)
+                    .setYes(new com.codingtu.cooltu.lib4a.view.dialogview.EditDialog.Yes() {
+                        @Override
+                        public boolean yes(String text, Object obj) {
+                            return editDialogYes(text);
+                        }
+                    })
+                    .build();
+        editDialog.setEditText(text);
+        editDialog.setObject(null);
+        editDialog.show();
+    }
+
+    
+
+    protected boolean editDialogYes(String text ) {
+        return false;
+    }
 
 
 

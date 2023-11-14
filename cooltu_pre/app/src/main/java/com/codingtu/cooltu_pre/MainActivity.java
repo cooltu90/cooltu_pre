@@ -49,7 +49,7 @@ public class MainActivity extends MainActivityBase {
 
     @ClickView(R.id.bt1)
     public void bt1Click() {
-        ActStart.connectActivity(this);
+        ActStart.formActivity(getThis());
     }
 
     @ClickView(R.id.bt2)

@@ -30,8 +30,8 @@ public class FormActivity extends FormActivityBase {
         super.onCreate(savedInstanceState);
     }
 
-    @ClickView(value = R.id.bt, check = true)
+    @ClickView(value = R.id.bt)
     public void btClick() {
-        Logs.i("testform:" + testForm);
+        showEditDialog("");
     }
 }
