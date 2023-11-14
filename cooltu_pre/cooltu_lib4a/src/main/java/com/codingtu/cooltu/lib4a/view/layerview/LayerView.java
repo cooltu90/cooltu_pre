@@ -208,6 +208,7 @@ public abstract class LayerView extends RelativeLayout implements OnDestroy {
             } else {
                 ViewTool.gone(this);
                 sendEvent(LayerEventType.HIDDEN_FINISHED);
+                hiddenStatus = LayerEventType.HIDDEN_FINISHED;
             }
         }
     }
