@@ -125,8 +125,8 @@ public class CenterLayerView extends LayerView {
     }
 
     @Override
-    public void hidden(LayerListener layerListener) {
-        super.hidden(layerListener);
+    protected void hiddenAnimation() {
+        super.hiddenAnimation();
         dialogView.startAnimation(hiddenScaleAnim);
     }
 }

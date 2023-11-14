@@ -12,7 +12,7 @@ import com.codingtu.cooltu.lib4a.tools.ViewTool;
 import com.codingtu.cooltu.lib4a.view.layerview.RelativeLayerView;
 import com.codingtu.cooltu.lib4a.view.layerview.listener.OnHiddenFinished;
 
-public class NoticeDialog implements OnDestroy, View.OnClickListener {
+public final class NoticeDialog implements OnDestroy, View.OnClickListener {
 
     private Activity act;
     private RelativeLayerView rlv;
@@ -73,7 +73,7 @@ public class NoticeDialog implements OnDestroy, View.OnClickListener {
     }
 
     public void hidden() {
-        rlv.hidden();
+        hidden(null);
     }
 
     @Override

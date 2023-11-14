@@ -24,7 +24,7 @@ import com.codingtu.cooltu.lib4a.view.layerview.listener.LayerEvent;
 import com.codingtu.cooltu.lib4a.view.layerview.listener.LayerEventType;
 import com.codingtu.cooltu.lib4a.view.layerview.listener.LayerListener;
 
-public class EditDialog implements OnDestroy, View.OnClickListener {
+public final class EditDialog implements OnDestroy, View.OnClickListener {
 
     private Activity act;
     private RelativeLayerView rlv;

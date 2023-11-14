@@ -107,11 +107,9 @@ public class RelativeLayerView extends LayerView {
     }
 
     @Override
-    public void hidden(LayerListener layerListener) {
-        super.hidden(layerListener);
-        if (!stopAnimation) {
-            dialogView.startAnimation(hiddenScaleAnim);
-        }
+    protected void hiddenAnimation() {
+        super.hiddenAnimation();
+        dialogView.startAnimation(hiddenScaleAnim);
     }
 
     public View getDialogView() {

@@ -192,11 +192,11 @@ public abstract class LayerView extends RelativeLayout implements OnDestroy {
         return layerEvent;
     }
 
-    public void hidden() {
+    public final void hidden() {
         hidden(null);
     }
 
-    public void hidden(LayerListener layerListener) {
+    public final void hidden(LayerListener layerListener) {
         if (hiddenStatus == LayerEventType.HIDDEN_FINISHED) {
             hiddenStatus = LayerEventType.HIDDEN_START;
             if (layerListener != null) {
@@ -205,12 +205,17 @@ public abstract class LayerView extends RelativeLayout implements OnDestroy {
             sendEvent(LayerEventType.HIDDEN_START);
             if (!stopAnimation) {
                 shadowView.startAnimation(hiddenShadowAnim);
+                hiddenAnimation();
             } else {
                 ViewTool.gone(this);
                 sendEvent(LayerEventType.HIDDEN_FINISHED);
                 hiddenStatus = LayerEventType.HIDDEN_FINISHED;
             }
         }
+    }
+
+    protected void hiddenAnimation() {
+
     }
 
     @Override
