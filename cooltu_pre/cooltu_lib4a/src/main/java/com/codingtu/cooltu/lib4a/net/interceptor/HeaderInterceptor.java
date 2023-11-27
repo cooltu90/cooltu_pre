@@ -1,12 +1,10 @@
 package com.codingtu.cooltu.lib4a.net.interceptor;
 
+import com.codingtu.cooltu.lib4a.bean.KVS;
 import com.codingtu.cooltu.lib4a.log.Logs;
 import com.codingtu.cooltu.lib4a.net.NetTool;
 
 import java.io.IOException;
-import java.lang.reflect.Method;
-
-import com.codingtu.cooltu.lib4a.bean.KVS;
 
 import okhttp3.Interceptor;
 import okhttp3.Request;
