@@ -16,25 +16,41 @@ public class LibLogs {
     public static final int LEVEL_INFO = 0;
     public static final int LEVEL_WARNING = 1;
     public static final int LEVEL_ERROR = 2;
+    private static String TAG_DEFAULT;
+    private static String TAG_I;
+    private static String TAG_E;
+    private static String TAG_W;
 
     public static LibConfigs getConfigs() {
         return LibConfigs.configs();
     }
 
     private static String getDefaultTag() {
-        return getConfigs() == null ? "log" : getConfigs().getDefaultLogTag();
+        if (TAG_DEFAULT == null) {
+            TAG_DEFAULT = getConfigs() == null ? "log" : getConfigs().getDefaultLogTag();
+        }
+        return TAG_DEFAULT;
     }
 
     private static String getDefaultTagI() {
-        return getDefaultTag() + "_I";
+        if (TAG_I == null) {
+            TAG_I = getDefaultTag() + "_I";
+        }
+        return TAG_I;
     }
 
     private static String getDefaultTagE() {
-        return getDefaultTag() + "_E";
+        if (TAG_E == null) {
+            TAG_E = getDefaultTag() + "_E";
+        }
+        return TAG_E;
     }
 
     private static String getDefaultTagW() {
-        return getDefaultTag() + "_W";
+        if (TAG_W == null) {
+            TAG_W = getDefaultTag() + "_W";
+        }
+        return TAG_W;
     }
 
     private static boolean isLog() {
@@ -42,67 +58,87 @@ public class LibLogs {
     }
 
     public static void line(Object... msgs) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(" \n");
-        sb.append(
-                "┌───────────────────────────────────────────────────────────────────────────────────────\n");
+        if (isLog()) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(" \n");
+            sb.append(
+                    "┌───────────────────────────────────────────────────────────────────────────────────────\n");
 
-        for (int i = 0; i < CountTool.count(msgs); i++) {
-            sb.append("│ " + msgs[i] + "\n");
+            for (int i = 0; i < CountTool.count(msgs); i++) {
+                sb.append("│ " + msgs[i] + "\n");
+            }
+            sb.append(
+                    "└───────────────────────────────────────────────────────────────────────────────────────\n");
+            i(sb.toString());
         }
-        sb.append(
-                "└───────────────────────────────────────────────────────────────────────────────────────\n");
-        i(sb.toString());
     }
 
     public static void lineWithTag(String tag, Object... msgs) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(" \n");
-        sb.append(
-                "┌───────────────────────────────────────────────────────────────────────────────────────\n");
+        if (isLog()) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(" \n");
+            sb.append(
+                    "┌───────────────────────────────────────────────────────────────────────────────────────\n");
 
-        for (int i = 0; i < CountTool.count(msgs); i++) {
-            sb.append("│ " + msgs[i] + "\n");
+            for (int i = 0; i < CountTool.count(msgs); i++) {
+                sb.append("│ " + msgs[i] + "\n");
+            }
+            sb.append(
+                    "└───────────────────────────────────────────────────────────────────────────────────────\n");
+            i(tag, sb.toString());
         }
-        sb.append(
-                "└───────────────────────────────────────────────────────────────────────────────────────\n");
-        i(tag, sb.toString());
     }
 
     public static void i(Object msg) {
-        log(LEVEL_INFO, getDefaultTagI(), msg);
+        if (isLog()) {
+            log(LEVEL_INFO, getDefaultTagI(), msg);
+        }
     }
 
     public static void e(Object msg) {
-        log(LEVEL_ERROR, getDefaultTagE(), msg);
+        if (isLog()) {
+            log(LEVEL_ERROR, getDefaultTagE(), msg);
+        }
     }
 
     public static void w(Object msg) {
-        log(LEVEL_WARNING, getDefaultTagW(), msg);
+        if (isLog()) {
+            log(LEVEL_WARNING, getDefaultTagW(), msg);
+        }
     }
 
     public static void isNull(String name, Object obj) {
-        log(LEVEL_INFO, getDefaultTagI(), name + "==null?" + (obj == null));
+        if (isLog()) {
+            log(LEVEL_INFO, getDefaultTagI(), name + "==null?" + (obj == null));
+        }
     }
 
     public static void i(String tag, Object msg) {
-        log(LEVEL_INFO, tag, msg);
+        if (isLog()) {
+            log(LEVEL_INFO, tag, msg);
+        }
     }
 
     public static void e(String tag, Object msg) {
-        log(LEVEL_ERROR, tag, msg);
+        if (isLog()) {
+            log(LEVEL_ERROR, tag, msg);
+        }
     }
 
     public static void w(String tag, Object msg) {
-        log(LEVEL_WARNING, tag, msg);
+        if (isLog()) {
+            log(LEVEL_WARNING, tag, msg);
+        }
     }
 
     public static void isNull(String tag, String name, Object obj) {
-        log(LEVEL_INFO, tag, name + "==null?" + (obj == null));
+        if (isLog()) {
+            log(LEVEL_INFO, tag, name + "==null?" + (obj == null));
+        }
     }
 
     private static <T> void log(int level, String tag, Object msg) {
-        if (isLog() && StringTool.isNotBlank(tag)) {
+        if (StringTool.isNotBlank(tag)) {
             if (msg == null) {
                 logNull(level, tag);
             } else if (msg instanceof String) {
