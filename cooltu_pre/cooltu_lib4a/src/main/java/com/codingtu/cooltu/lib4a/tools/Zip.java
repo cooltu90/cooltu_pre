@@ -212,6 +212,9 @@ public class Zip implements OnDestroy {
 
     private void recursivePressFile(ZipOutputStream out, File needPressFile, String parentDirName, ObservableEmitter<Long> emitter) throws Exception {
         if (needPressFile.isDirectory()) {
+            if (pass != null && pass.pass(needPressFile)) {
+                return;
+            }
             File[] files = needPressFile.listFiles();
             for (File file : files) {
                 recursivePressFile(out, file, (StringTool.isBlank(parentDirName) ? ("") : (parentDirName + Constant.SEPARATOR)) + needPressFile.getName(), emitter);
