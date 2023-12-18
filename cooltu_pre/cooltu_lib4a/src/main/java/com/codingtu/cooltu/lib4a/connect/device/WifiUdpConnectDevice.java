@@ -16,7 +16,7 @@ public abstract class WifiUdpConnectDevice extends ConnectDevice {
     public void connect() {
 
 
-        
+
 
     }
 
