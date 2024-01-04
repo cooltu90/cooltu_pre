@@ -14,10 +14,12 @@ import java.io.IOException;
 
 public class EncodeFile extends CryptionFile {
 
+    private final boolean isRename;
     private String newFilePath;
 
-    public EncodeFile(File file, byte[] pswBytes, CryptionListener listener) {
+    public EncodeFile(boolean isRename, File file, byte[] pswBytes, CryptionListener listener) {
         super(file, pswBytes, listener);
+        this.isRename = isRename;
     }
 
     @Override
@@ -39,7 +41,7 @@ public class EncodeFile extends CryptionFile {
         }
 
         //未加密
-        File newFile = getFile(this.file);
+        File newFile = isRename ? getFile(this.file) : this.file;
         newFilePath = newFile.getAbsolutePath();
         opt = new FileOutputStream(newFile);
         //写入标记
@@ -108,7 +110,7 @@ public class EncodeFile extends CryptionFile {
                     return;
                 }
             }
-
+            super.finish();
         } catch (Exception e) {
             error(e);
             newFile.delete();
@@ -121,7 +123,6 @@ public class EncodeFile extends CryptionFile {
                 ipt = null;
             }
         }
-        super.finish();
     }
 
     private static File getFile(File file) {

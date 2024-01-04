@@ -13,6 +13,7 @@ public class Cryption {
     private File file;
     private byte[] pswBytes;
     private CryptionListener listener;
+    private boolean isRename;
 
 
     public static Cryption encode() {
@@ -40,6 +41,11 @@ public class Cryption {
         return this;
     }
 
+    public Cryption rename() {
+        this.isRename = true;
+        return this;
+    }
+
     public void start() {
         if (file.isDirectory()) {
             FileLister.dir(file)
@@ -55,7 +61,7 @@ public class Cryption {
     }
 
     private void start(File file) {
-        (isEncode ? new EncodeFile(file, pswBytes, listener) : new DecodeFile(file, pswBytes, listener)).start();
+        (isEncode ? new EncodeFile(isRename, file, pswBytes, listener) : new DecodeFile(file, pswBytes, listener)).start();
     }
 
 }
