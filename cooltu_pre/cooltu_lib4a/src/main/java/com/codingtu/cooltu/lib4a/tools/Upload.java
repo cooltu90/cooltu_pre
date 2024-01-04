@@ -26,7 +26,7 @@ public class Upload implements OnDestroy {
     }
 
     public static interface OnFinish {
-        public void onFinish();
+        public void onFinish(String msg);
     }
 
     /**************************************************
@@ -127,7 +127,7 @@ public class Upload implements OnDestroy {
             @Override
             public void onSuccess(Response<String> response) {
                 if (onFinish != null) {
-                    onFinish.onFinish();
+                    onFinish.onFinish(response.body());
                 }
                 destroy();
             }
