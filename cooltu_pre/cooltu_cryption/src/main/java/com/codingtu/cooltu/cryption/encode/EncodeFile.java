@@ -5,7 +5,6 @@ import com.codingtu.cooltu.cryption.tools.CryptionListener;
 import com.codingtu.cooltu.cryption.tools.CryptionTools;
 import com.codingtu.cooltu.cryption.tools.CryptionTypes;
 import com.codingtu.cooltu.lib4j.tools.MD5;
-import com.codingtu.cooltu.lib4j.tools.StringTool;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,7 +14,6 @@ import java.io.IOException;
 public class EncodeFile extends CryptionFile {
 
     private final boolean isRename;
-    private String newFilePath;
 
     public EncodeFile(boolean isRename, File file, byte[] pswBytes, CryptionListener listener) {
         super(file, pswBytes, listener);
@@ -41,9 +39,8 @@ public class EncodeFile extends CryptionFile {
         }
 
         //未加密
-        File newFile = isRename ? getFile(this.file) : this.file;
-        newFilePath = newFile.getAbsolutePath();
-        opt = new FileOutputStream(newFile);
+        File tempFile = new File(this.file.getAbsolutePath() + ".tmp");
+        opt = new FileOutputStream(tempFile);
         //写入标记
         opt.write(signBytes);
         //写入类型
@@ -71,58 +68,23 @@ public class EncodeFile extends CryptionFile {
                 opt.write(encode(bytes, len), 0, len);
                 readLen += len;
             }
-            percent(readLen, totalLen);
+            progress(totalLen, readLen);
         }
         while ((len = ipt.read(bytes)) > 0);
-
     }
 
     @Override
-    protected void finish() {
-        //验证
-        if (StringTool.isBlank(newFilePath)) {
-            error("加密文件为空？？");
-            return;
+    protected void dealFile() {
+        File tempFile = new File(this.file.getAbsolutePath() + ".tmp");
+
+        String newPath = file.getAbsolutePath();
+        if (isRename) {
+            newPath = getFile(this.file).getAbsolutePath();
         }
-        File newFile = new File(newFilePath);
-        try {
-            ipt = new FileInputStream(newFile);
-            byte[] bytes = new byte[CryptionTools.MAX_READ_LEN];
-            //获取标志
-            ipt.read(bytes, 0, CryptionTools.signLen());
-            byte[] signBytes = encode(CryptionTools.signBytes());
-            if (!CryptionTools.isEncode(signBytes, bytes)) {
-                error("加密失败");
-                return;
-            } else {
-                //获取类型
-                type = CryptionTypes.getType(ipt.read());
-                //获取最后修改时间
-                long lastModify = Long.parseLong(read(bytes, CryptionTools.lastModifyLen()));
-                //获取名字长度
-                int nameLen = ipt.read();
-                //获取名字
-                String name = read(bytes, nameLen);
-                if (file.getName().equals(name)) {
-                    this.file.delete();
-                } else {
-                    error("加密失败");
-                    return;
-                }
-            }
-            super.finish();
-        } catch (Exception e) {
-            error(e);
-            newFile.delete();
-        } finally {
-            if (ipt != null) {
-                try {
-                    ipt.close();
-                } catch (IOException e) {
-                }
-                ipt = null;
-            }
-        }
+        this.file.delete();
+        File newFile = new File(newPath);
+        tempFile.renameTo(newFile);
+        this.file = newFile;
     }
 
     private static File getFile(File file) {
@@ -130,7 +92,7 @@ public class EncodeFile extends CryptionFile {
         int times = 2;
         while (true) {
             if (times > 10) {
-                throw new RuntimeException("重名文件");
+                return file;
             }
             File newFile = new File(file.getParentFile().getAbsolutePath(), MD5.md5(name, times++));
             if (!newFile.exists()) {

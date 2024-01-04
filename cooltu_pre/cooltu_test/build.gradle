@@ -10,4 +10,5 @@ java {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':cooltu_lib4j')
+    implementation project(':cooltu_cryption')
 }

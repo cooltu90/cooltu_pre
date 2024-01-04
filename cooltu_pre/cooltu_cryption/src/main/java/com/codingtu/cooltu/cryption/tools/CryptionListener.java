@@ -8,7 +8,7 @@ public interface CryptionListener {
 
     void finish(File file);
 
-    void percent(File file, long totalLen, long currentLen);
+    void progress(File file, long totalLen, long currentLen);
 
     void error(File file, Throwable throwable);
 }

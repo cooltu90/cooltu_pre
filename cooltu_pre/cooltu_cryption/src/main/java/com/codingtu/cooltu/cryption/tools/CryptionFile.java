@@ -49,13 +49,18 @@ public abstract class CryptionFile {
                 }
                 opt = null;
             }
+            dealFile();
             finish();
         }
     }
 
+    protected void dealFile() {
+
+    }
+
     protected void finish() {
         if (listener != null) {
-            listener.finish(file);
+            listener.finish(this.file);
         }
     }
 
@@ -75,9 +80,9 @@ public abstract class CryptionFile {
     }
 
 
-    protected void percent(long currentLen, long totalLen) {
+    protected void progress(long totalLen,long currentLen) {
         if (listener != null) {
-            listener.percent(file, totalLen, currentLen);
+            listener.progress(file, totalLen, currentLen);
         }
     }
 

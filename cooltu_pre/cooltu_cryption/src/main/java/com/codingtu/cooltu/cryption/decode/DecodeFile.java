@@ -15,6 +15,8 @@ import java.io.IOException;
 
 public class DecodeFile extends CryptionFile {
 
+    private String newName;
+
     public DecodeFile(File file, byte[] pswBytes, CryptionListener listener) {
         super(file, pswBytes, listener);
     }
@@ -41,17 +43,12 @@ public class DecodeFile extends CryptionFile {
         //获取名字长度
         int nameLen = ipt.read();
         //获取名字
-        String name = read(bytes, nameLen);
+        newName = read(bytes, nameLen);
 
         //获取文件实体
-        File newFile = new File(this.file.getParentFile(), name);
-        FileInfo fileInfo = FileTool.toFileInfo(newFile);
-        try {
-            opt = new FileOutputStream(newFile);
-        } catch (Exception e) {
-            newFile = new File(this.file.getParentFile(), file.getName() + "." + fileInfo.type);
-            opt = new FileOutputStream(newFile);
-        }
+        File tempFile = new File(this.file.getAbsolutePath() + ".tmp");
+
+        opt = new FileOutputStream(tempFile);
 
         long readLen = CryptionTools.getInfosLen() + nameLen;
         long totalLen = this.file.length();
@@ -60,14 +57,21 @@ public class DecodeFile extends CryptionFile {
         while ((len = ipt.read(bytes)) > 0) {
             opt.write(encode(bytes, len), 0, len);
             readLen += len;
-            percent(readLen, totalLen);
+            progress(totalLen, readLen);
         }
-        newFile.setLastModified(lastModify);
+        tempFile.setLastModified(lastModify);
     }
 
     @Override
-    protected void finish() {
-        super.finish();
+    protected void dealFile() {
+        File tempFile = new File(this.file.getAbsolutePath() + ".tmp");
+
+        File newFile = new File(this.file.getParentFile(), newName);
+
         this.file.delete();
+
+        tempFile.renameTo(newFile);
+
     }
+
 }

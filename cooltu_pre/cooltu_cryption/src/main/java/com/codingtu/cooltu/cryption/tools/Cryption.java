@@ -31,6 +31,11 @@ public class Cryption {
         return this;
     }
 
+    public Cryption file(String path) {
+        this.file = new File(path);
+        return this;
+    }
+
     public Cryption password(String password) {
         this.pswBytes = password.getBytes();
         return this;
