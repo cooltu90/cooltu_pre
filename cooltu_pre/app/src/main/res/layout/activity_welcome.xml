@@ -40,4 +40,10 @@
         app:strokeColor="#ff0000"
         app:strokeWidth="5dp" />
 
+
+    <fragment
+        android:id="@+id/fragment"
+        android:layout_width="10dp"
+        android:layout_height="10dp" />
+
 </RelativeLayout>

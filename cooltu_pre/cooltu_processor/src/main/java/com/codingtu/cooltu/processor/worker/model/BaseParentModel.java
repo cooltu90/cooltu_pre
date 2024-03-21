@@ -263,13 +263,15 @@ public abstract class BaseParentModel extends BaseModel {
         Ts.ls(vis, new BaseTs.EachTs<LayoutTools.ViewInfo>() {
             @Override
             public boolean each(int position, LayoutTools.ViewInfo vi) {
-                String viParent = LayoutTools.getViParent(vi);
-                boolean isCoreR = vi.id.startsWith("core_");
-                addLnTag(findViewSb, "        [n1] = [n2]findViewById([n3].R.id.[n4]);",
-                        LayoutTools.getViFieldName(vi),
-                        getFindViewByIdParent(viParent),
-                        isCoreR ? Pkg.COOLTU_LIB4A : layoutId.rPackage,
-                        vi.id);
+                if(!"android.widget.fragment".equals(vi.name)){
+                    String viParent = LayoutTools.getViParent(vi);
+                    boolean isCoreR = vi.id.startsWith("core_");
+                    addLnTag(findViewSb, "        [n1] = [n2]findViewById([n3].R.id.[n4]);",
+                            LayoutTools.getViFieldName(vi),
+                            getFindViewByIdParent(viParent),
+                            isCoreR ? Pkg.COOLTU_LIB4A : layoutId.rPackage,
+                            vi.id);
+                }
                 return false;
             }
         });
@@ -864,7 +866,9 @@ public abstract class BaseParentModel extends BaseModel {
         Ts.ls(vis, new BaseTs.EachTs<LayoutTools.ViewInfo>() {
             @Override
             public boolean each(int position, LayoutTools.ViewInfo vi) {
-                addFieldSb(sb, vi.name, LayoutTools.getViFieldName(vi));
+                if(!"android.widget.fragment".equals(vi.name)){
+                    addFieldSb(sb, vi.name, LayoutTools.getViFieldName(vi));
+                }
                 return false;
             }
         });
